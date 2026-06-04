@@ -1,0 +1,407 @@
+- generic [ref=e2]:
+  - navigation "Main navigation" [ref=e3]:
+    - link "BuildSynergy" [ref=e4] [cursor=pointer]:
+      - /url: /
+    - list [ref=e5]:
+      - listitem [ref=e6]:
+        - link "Systems" [ref=e7] [cursor=pointer]:
+          - /url: "#systems"
+      - listitem [ref=e8]:
+        - link "Solutions" [ref=e9] [cursor=pointer]:
+          - /url: "#solutions"
+      - listitem [ref=e10]:
+        - link "Process" [ref=e11] [cursor=pointer]:
+          - /url: "#process"
+      - listitem [ref=e12]:
+        - link "Team" [ref=e13] [cursor=pointer]:
+          - /url: "#team"
+      - listitem [ref=e14]:
+        - link "Contact" [ref=e15] [cursor=pointer]:
+          - /url: "#contact"
+    - link "Start a Project" [ref=e16] [cursor=pointer]:
+      - /url: "#contact"
+  - generic [ref=e17]:
+    - generic:
+      - generic [ref=e20]:
+        - generic [ref=e21]: Digital Business Systems
+        - heading "Build the digital engine your business deserves." [level=1] [ref=e22]
+        - paragraph [ref=e23]: Premium websites, lead systems, CRM flows, AI tools, automations, and analytics — connected into one business ecosystem.
+        - generic [ref=e24]:
+          - link "Start a Project" [ref=e25] [cursor=pointer]:
+            - /url: "#contact"
+          - link "Explore the System" [ref=e26] [cursor=pointer]:
+            - /url: "#systems"
+        - generic [ref=e27]: Scroll to activate the engine
+      - generic [ref=e29]:
+        - generic [ref=e30]: The Current Reality
+        - heading "A website alone is not a business system." [level=2] [ref=e31]
+        - paragraph [ref=e32]: When leads, messages, follow-ups, customer data, and reporting are disconnected, growth becomes harder than it should be.
+      - generic [ref=e33]:
+        - generic [ref=e34]: System 01
+        - heading "Premium websites that create trust." [level=2] [ref=e35]
+        - paragraph [ref=e36]: Fast, responsive, conversion-focused digital experiences designed to make serious businesses look the part.
+      - generic [ref=e37]:
+        - generic [ref=e38]: System 02
+        - heading "Turn attention into real enquiries." [level=2] [ref=e39]
+        - paragraph [ref=e40]: Smart forms, quote systems, booking flows, and conversion paths help capture demand before it disappears.
+      - generic [ref=e41]:
+        - generic [ref=e42]: System 03
+        - heading "Keep your business flow in one place." [level=2] [ref=e43]
+        - paragraph [ref=e44]: Organise customers, enquiries, jobs, conversations, and follow-ups inside a cleaner digital operating system.
+      - generic [ref=e45]:
+        - generic [ref=e46]: System 04
+        - heading "Automate the work that slows you down." [level=2] [ref=e47]
+        - paragraph [ref=e48]: AI tools, smart reminders, lead routing, workflow triggers, and support systems reduce repetitive manual work.
+      - generic [ref=e49]:
+        - generic [ref=e50]: System 05
+        - heading "Meet customers where they already are." [level=2] [ref=e51]
+        - paragraph [ref=e52]: Connect enquiries and responses into communication flows that help customers move forward faster.
+      - generic [ref=e53]:
+        - generic [ref=e54]: System 06
+        - heading "See what is working." [level=2] [ref=e55]
+        - paragraph [ref=e56]: Track leads, traffic, customer behaviour, and growth signals with clear performance visibility.
+      - generic [ref=e57]:
+        - generic [ref=e58]: Complete Digital Ecosystem
+        - heading "Your business deserves systems that work together." [level=2] [ref=e59]
+        - paragraph [ref=e60]: BuildSynergy connects your website, leads, customers, communication, automation, and analytics into one modern digital engine.
+        - generic [ref=e61]:
+          - link "Start a Project" [ref=e62] [cursor=pointer]:
+            - /url: "#contact"
+          - link "View Our Solutions" [ref=e63] [cursor=pointer]:
+            - /url: "#solutions"
+  - generic [ref=e64]:
+    - generic [ref=e65]:
+      - generic [ref=e66]: The Real Problem
+      - heading "Most businesses do not have a website problem. They have a system problem." [level=2] [ref=e67]
+      - paragraph [ref=e68]: A website on its own is not enough when leads are missed, messages are scattered, follow-ups are manual, and nobody knows what is working.
+    - generic [ref=e69]:
+      - generic [ref=e70]:
+        - generic [ref=e71]: ◻
+        - heading "Outdated Online Presence" [level=4] [ref=e72]
+        - paragraph [ref=e73]: Your website no longer reflects the quality of your work or the scale of your business.
+      - generic [ref=e74]:
+        - generic [ref=e75]: ◻
+        - heading "Missed Leads" [level=4] [ref=e76]
+        - paragraph [ref=e77]: Visitors land on your site but have no clear way to enquire, quote, or book.
+      - generic [ref=e78]:
+        - generic [ref=e79]: ◻
+        - heading "Scattered Messages" [level=4] [ref=e80]
+        - paragraph [ref=e81]: Enquiries arrive across email, WhatsApp, and social — and some fall through the gaps.
+      - generic [ref=e82]:
+        - generic [ref=e83]: ◻
+        - heading "No CRM System" [level=4] [ref=e84]
+        - paragraph [ref=e85]: Customer details and job history live in spreadsheets, inboxes, or memory.
+      - generic [ref=e86]:
+        - generic [ref=e87]: ◻
+        - heading "Manual Follow-Ups" [level=4] [ref=e88]
+        - paragraph [ref=e89]: Reminders, proposals, and follow-up messages are all done by hand, every time.
+      - generic [ref=e90]:
+        - generic [ref=e91]: ◻
+        - heading "No Analytics" [level=4] [ref=e92]
+        - paragraph [ref=e93]: You have no visibility into what is working — which campaigns, pages, or leads convert.
+      - generic [ref=e94]:
+        - generic [ref=e95]: ◻
+        - heading "Weak Mobile Experience" [level=4] [ref=e96]
+        - paragraph [ref=e97]: Your website is difficult to use on phone, where most of your customers will find you.
+      - generic [ref=e98]:
+        - generic [ref=e99]: ◻
+        - heading "Poor Digital Trust" [level=4] [ref=e100]
+        - paragraph [ref=e101]: Without professional design and clear credentials, serious clients move on.
+  - generic [ref=e103]:
+    - generic [ref=e104]:
+      - generic [ref=e105]: The BuildSynergy Approach
+      - heading "We connect the pieces your business needs to grow." [level=2] [ref=e106]
+      - paragraph [ref=e107]: BuildSynergy brings strategy, design, automation, communication, and reporting into one connected digital ecosystem.
+    - generic [ref=e108]:
+      - heading "Premium Website Design" [level=4] [ref=e111]
+      - heading "SEO and Google Visibility" [level=4] [ref=e114]
+      - heading "Lead Capture Systems" [level=4] [ref=e117]
+      - heading "Quote Request Flows" [level=4] [ref=e120]
+      - heading "CRM Setup and Configuration" [level=4] [ref=e123]
+      - heading "Communication Integration" [level=4] [ref=e126]
+      - heading "AI Chatbots" [level=4] [ref=e129]
+      - heading "Automation Workflows" [level=4] [ref=e132]
+      - heading "Analytics Dashboards" [level=4] [ref=e135]
+      - heading "Company Profile PDFs" [level=4] [ref=e138]
+      - heading "Photography and Video" [level=4] [ref=e141]
+      - heading "Ongoing Maintenance" [level=4] [ref=e144]
+  - generic [ref=e146]:
+    - generic [ref=e147]:
+      - generic [ref=e148]: Built For Real Businesses
+      - heading "Built for businesses that need to look sharper and operate smarter." [level=2] [ref=e149]
+    - generic [ref=e150]:
+      - generic [ref=e151]: Industrial Companies
+      - generic [ref=e152]: Construction Businesses
+      - generic [ref=e153]: Property Companies
+      - generic [ref=e154]: Medical Practices
+      - generic [ref=e155]: Legal Firms
+      - generic [ref=e156]: Automotive Businesses
+      - generic [ref=e157]: Beauty and Wellness
+      - generic [ref=e158]: Home Services
+      - generic [ref=e159]: Professional Services
+      - generic [ref=e160]: Local Service Businesses
+  - generic [ref=e162]:
+    - generic [ref=e163]:
+      - generic [ref=e164]: Complete Digital Foundation
+      - heading "Everything your business needs to modernise online." [level=2] [ref=e165]
+      - paragraph [ref=e166]: One connected engagement — no piecemeal vendors, no mismatched tools.
+    - generic [ref=e167]:
+      - generic [ref=e168]:
+        - generic [ref=e169]: Full digital ecosystem setup
+        - heading "The BuildSynergy Package" [level=3] [ref=e170]
+      - generic [ref=e172]:
+        - generic [ref=e173]: Premium multi-page website
+        - generic [ref=e174]: Mobile-first responsive design
+        - generic [ref=e175]: Communication integration
+        - generic [ref=e176]: Quote request system
+        - generic [ref=e177]: AI chatbot setup
+        - generic [ref=e178]: Google Maps optimisation
+        - generic [ref=e179]: SEO technical foundation
+        - generic [ref=e180]: Company profile PDF
+        - generic [ref=e181]: Photography and video support
+        - generic [ref=e182]: Analytics dashboard
+        - generic [ref=e183]: Speed and performance optimisation
+        - generic [ref=e184]: Recruitment page
+        - generic [ref=e185]: Ongoing maintenance support
+      - generic [ref=e186]:
+        - paragraph [ref=e187]: Tailored to your business. Scope and investment discussed in your initial strategy call.
+        - link "Request a Proposal" [ref=e188] [cursor=pointer]:
+          - /url: "#contact"
+  - generic [ref=e190]:
+    - generic [ref=e191]:
+      - generic [ref=e192]: How We Work
+      - heading "A clear process from idea to launch." [level=2] [ref=e193]
+      - paragraph [ref=e194]: Four phases. No surprises. You always know what is happening and what comes next.
+    - generic [ref=e195]:
+      - generic [ref=e196]:
+        - generic [ref=e197]: "01"
+        - generic [ref=e198]:
+          - generic [ref=e199]: Discover
+          - generic [ref=e200]: We map your business, audience, goals, and current gaps.
+      - generic [ref=e201]:
+        - generic [ref=e202]: "02"
+        - generic [ref=e203]:
+          - generic [ref=e204]: Design
+          - generic [ref=e205]: Premium creative direction shaped around your brand and customers.
+      - generic [ref=e206]:
+        - generic [ref=e207]: "03"
+        - generic [ref=e208]:
+          - generic [ref=e209]: Build
+          - generic [ref=e210]: Development, integrations, automations, and content created and tested.
+      - generic [ref=e211]:
+        - generic [ref=e212]: "04"
+        - generic [ref=e213]:
+          - generic [ref=e214]: Launch
+          - generic [ref=e215]: Handover, training, analytics setup, and ongoing improvement.
+  - generic [ref=e217]:
+    - generic [ref=e218]:
+      - generic [ref=e219]: The People Behind the Systems
+      - heading "The people behind the systems." [level=2] [ref=e220]
+      - paragraph [ref=e221]: A focused digital team combining strategy, design, development, automation, AI, content, and ongoing support.
+    - generic [ref=e222]:
+      - generic [ref=e223]:
+        - generic [ref=e224]: JT
+        - heading "Jonathan" [level=4] [ref=e225]
+        - generic [ref=e226]: Founder · Strategy Lead
+      - generic [ref=e227]:
+        - generic [ref=e228]: CD
+        - heading "Creative" [level=4] [ref=e229]
+        - generic [ref=e230]: Designer · Brand Direction
+      - generic [ref=e231]:
+        - generic [ref=e232]: WD
+        - heading "Web" [level=4] [ref=e233]
+        - generic [ref=e234]: Developer · Frontend + Backend
+      - generic [ref=e235]:
+        - generic [ref=e236]: AI
+        - heading "Automation" [level=4] [ref=e237]
+        - generic [ref=e238]: AI and Automation Specialist
+      - generic [ref=e239]:
+        - generic [ref=e240]: CM
+        - heading "Content" [level=4] [ref=e241]
+        - generic [ref=e242]: Content and Media Specialist
+      - generic [ref=e243]:
+        - generic [ref=e244]: SG
+        - heading "Support" [level=4] [ref=e245]
+        - generic [ref=e246]: Support and Growth Lead
+  - generic [ref=e248]:
+    - generic [ref=e249]:
+      - generic [ref=e250]: The Transformation
+      - heading "From outdated presence to connected digital system." [level=2] [ref=e251]
+    - generic [ref=e252]:
+      - generic [ref=e253]:
+        - generic [ref=e254]: Before BuildSynergy
+        - generic [ref=e255]: Static outdated website
+        - generic [ref=e256]: Enquiries sent to a basic email
+        - generic [ref=e257]: Manual messages across platforms
+        - generic [ref=e258]: Customer data in spreadsheets
+        - generic [ref=e259]: No automated follow-up
+        - generic [ref=e260]: No traffic or lead tracking
+        - generic [ref=e261]: Poor mobile experience
+        - generic [ref=e262]: Inconsistent brand appearance
+      - generic [ref=e263]:
+        - generic [ref=e264]: After BuildSynergy
+        - generic [ref=e265]: Premium conversion-focused website
+        - generic [ref=e266]: Smart lead capture and quote flows
+        - generic [ref=e267]: Centralised communication system
+        - generic [ref=e268]: Organised CRM and pipeline
+        - generic [ref=e269]: Automated reminders and responses
+        - generic [ref=e270]: Live analytics and reporting
+        - generic [ref=e271]: Optimised mobile experience
+        - generic [ref=e272]: Consistent professional brand presence
+  - generic [ref=e274]:
+    - generic [ref=e275]:
+      - generic [ref=e276]: Selected Work
+      - heading "Digital systems built for real business outcomes." [level=2] [ref=e277]
+    - generic [ref=e278]:
+      - generic [ref=e279]:
+        - generic [ref=e281]: ⚙
+        - generic [ref=e282]:
+          - generic [ref=e283]: Industrial Supplier
+          - heading "From outdated catalogue site to professional digital platform" [level=4] [ref=e284]
+          - paragraph [ref=e285]: Replaced an aging website with a modern product and services showcase connected to a quote request system and CRM.
+          - generic [ref=e286]:
+            - generic [ref=e287]: Website
+            - generic [ref=e288]: Lead Capture
+            - generic [ref=e289]: CRM
+      - generic [ref=e290]:
+        - generic [ref=e292]: 🏗
+        - generic [ref=e293]:
+          - generic [ref=e294]: Property Business
+          - heading "Enquiry and management system for a growing property portfolio" [level=4] [ref=e295]
+          - paragraph [ref=e296]: Built a polished property showcase with integrated lead flow, automated follow-ups, and a lightweight CRM for the sales team.
+          - generic [ref=e297]:
+            - generic [ref=e298]: Website
+            - generic [ref=e299]: Automation
+            - generic [ref=e300]: Analytics
+      - generic [ref=e301]:
+        - generic [ref=e303]: 🔧
+        - generic [ref=e304]:
+          - generic [ref=e305]: Service Company
+          - heading "Digital foundation for a trade and services business" [level=4] [ref=e306]
+          - paragraph [ref=e307]: Created a professional site with booking flow, Google optimisation, and a communication system that reduced manual admin by hours per week.
+          - generic [ref=e308]:
+            - generic [ref=e309]: Website
+            - generic [ref=e310]: Booking Flow
+            - generic [ref=e311]: SEO
+  - generic [ref=e313]:
+    - generic [ref=e314]:
+      - generic [ref=e315]: Built To A Higher Standard
+      - heading "Built with the standards serious businesses expect." [level=2] [ref=e316]
+    - generic [ref=e317]:
+      - generic [ref=e318]:
+        - generic [ref=e319]: 📱
+        - generic [ref=e320]:
+          - heading "Mobile-first design" [level=4] [ref=e321]
+          - paragraph [ref=e322]: Built for how your customers actually browse — on their phones.
+      - generic [ref=e323]:
+        - generic [ref=e324]: ⚡
+        - generic [ref=e325]:
+          - heading "Fast loading pages" [level=4] [ref=e326]
+          - paragraph [ref=e327]: Performance optimised from day one. No bloated page builders.
+      - generic [ref=e328]:
+        - generic [ref=e329]: 🔒
+        - generic [ref=e330]:
+          - heading "Secure setup" [level=4] [ref=e331]
+          - paragraph [ref=e332]: SSL, clean hosting, and secure data handling as standard.
+      - generic [ref=e333]:
+        - generic [ref=e334]: 🔍
+        - generic [ref=e335]:
+          - heading "SEO foundation" [level=4] [ref=e336]
+          - paragraph [ref=e337]: Technical and on-page SEO built into every project we deliver.
+      - generic [ref=e338]:
+        - generic [ref=e339]: 💬
+        - generic [ref=e340]:
+          - heading "Clear communication" [level=4] [ref=e341]
+          - paragraph [ref=e342]: You always know where we are. No chasing. No surprises.
+      - generic [ref=e343]:
+        - generic [ref=e344]: 🛠
+        - generic [ref=e345]:
+          - heading "Ongoing support" [level=4] [ref=e346]
+          - paragraph [ref=e347]: We stay involved after launch to improve, maintain, and grow.
+      - generic [ref=e348]:
+        - generic [ref=e349]: 📊
+        - generic [ref=e350]:
+          - heading "Analytics visibility" [level=4] [ref=e351]
+          - paragraph [ref=e352]: Dashboards that show you what is working and what to do next.
+      - generic [ref=e353]:
+        - generic [ref=e354]: 🇿🇦
+        - generic [ref=e355]:
+          - heading "South African businesses" [level=4] [ref=e356]
+          - paragraph [ref=e357]: Built specifically for the South African market and context.
+  - generic [ref=e359]:
+    - generic [ref=e360]:
+      - generic [ref=e361]: Common Questions
+      - heading "Questions before we build?" [level=2] [ref=e362]
+    - generic [ref=e363]:
+      - button "What exactly does BuildSynergy build?" [ref=e365] [cursor=pointer]:
+        - generic [ref=e366]: What exactly does BuildSynergy build?
+        - generic [ref=e367]: +
+      - button "How long does a project typically take?" [ref=e369] [cursor=pointer]:
+        - generic [ref=e370]: How long does a project typically take?
+        - generic [ref=e371]: +
+      - button "Do I need to supply all the content?" [ref=e373] [cursor=pointer]:
+        - generic [ref=e374]: Do I need to supply all the content?
+        - generic [ref=e375]: +
+      - button "What platforms and tools do you use?" [ref=e377] [cursor=pointer]:
+        - generic [ref=e378]: What platforms and tools do you use?
+        - generic [ref=e379]: +
+      - button "Do you work with businesses outside South Africa?" [ref=e381] [cursor=pointer]:
+        - generic [ref=e382]: Do you work with businesses outside South Africa?
+        - generic [ref=e383]: +
+      - button "What happens after launch?" [ref=e385] [cursor=pointer]:
+        - generic [ref=e386]: What happens after launch?
+        - generic [ref=e387]: +
+      - button "Can I start with just a website?" [ref=e389] [cursor=pointer]:
+        - generic [ref=e390]: Can I start with just a website?
+        - generic [ref=e391]: +
+  - generic [ref=e393]:
+    - generic [ref=e394]: Start the Conversation
+    - heading "Ready to modernise your business?" [level=2] [ref=e395]
+    - paragraph [ref=e396]: Let's build a digital system that looks premium, captures leads, and helps your business operate smarter.
+    - generic [ref=e397]:
+      - link "Start a Project" [ref=e398] [cursor=pointer]:
+        - /url: mailto:hello@buildsynergy.co.za
+      - link "Book a Strategy Call" [ref=e399] [cursor=pointer]:
+        - /url: mailto:hello@buildsynergy.co.za
+  - contentinfo [ref=e400]:
+    - generic [ref=e401]:
+      - generic [ref=e402]:
+        - generic [ref=e403]: BuildSynergy
+        - generic [ref=e404]: Digital systems for modern businesses.
+      - generic [ref=e405]:
+        - generic [ref=e406]:
+          - heading "Platform" [level=5] [ref=e407]
+          - list [ref=e408]:
+            - listitem [ref=e409]:
+              - link "Systems" [ref=e410] [cursor=pointer]:
+                - /url: "#systems"
+            - listitem [ref=e411]:
+              - link "Solutions" [ref=e412] [cursor=pointer]:
+                - /url: "#solutions"
+            - listitem [ref=e413]:
+              - link "Ecosystem" [ref=e414] [cursor=pointer]:
+                - /url: "#ecosystem"
+        - generic [ref=e415]:
+          - heading "Company" [level=5] [ref=e416]
+          - list [ref=e417]:
+            - listitem [ref=e418]:
+              - link "Process" [ref=e419] [cursor=pointer]:
+                - /url: "#process"
+            - listitem [ref=e420]:
+              - link "Team" [ref=e421] [cursor=pointer]:
+                - /url: "#team"
+            - listitem [ref=e422]:
+              - link "Contact" [ref=e423] [cursor=pointer]:
+                - /url: "#contact"
+    - generic [ref=e424]:
+      - generic [ref=e425]: © 2025 BuildSynergy. All rights reserved.
+      - generic [ref=e426]:
+        - link "LinkedIn" [ref=e427] [cursor=pointer]:
+          - /url: /
+          - text: in
+        - link "Facebook" [ref=e428] [cursor=pointer]:
+          - /url: /
+          - text: f
+        - link "Instagram" [ref=e429] [cursor=pointer]:
+          - /url: /
+          - text: ig

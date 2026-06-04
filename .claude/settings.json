@@ -1,0 +1,29 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx vite *)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:5173)",
+      "mcp__plugin_playwright_playwright__browser_console_messages",
+      "Bash(curl -s http://localhost:5173/)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:5174/)",
+      "Bash(curl -s http://localhost:5174/)",
+      "mcp__plugin_playwright_playwright__browser_evaluate",
+      "Skill(stitch-kit:stitch-orchestrator)",
+      "Skill(stitch-kit:stitch-orchestrator:*)",
+      "mcp__stitch__list_projects",
+      "mcp__stitch__get_project",
+      "mcp__stitch__list_screens",
+      "mcp__stitch__list_design_systems",
+      "mcp__stitch__generate_screen_from_text",
+      "PowerShell($data = Get-Content \"C:\\\\Users\\\\Jonathan D Theron\\\\.claude\\\\projects\\\\c--Users-Jonathan-D-Theron-BuildSynergy-website\\\\2ed596c2-fe20-4883-b2bb-5ee45a7ff15e\\\\tool-results\\\\mcp-stitch-list_projects-1780587483060.txt\" | ConvertFrom-Json; $data.projects | Select-Object name, title | Format-Table -AutoSize)",
+      "Skill(stitch-kit:stitch-svelte-components)",
+      "Skill(stitch-kit:stitch-svelte-components:*)",
+      "PowerShell(New-Item -ItemType Directory -Force \"C:\\\\Users\\\\Jonathan D Theron\\\\BuildSynergy-website\\\\temp\" | Out-Null; Invoke-WebRequest -Uri \"https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ7Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpaCiVodG1sX2Q1NmZiMGUxZjM5MTQzZGJhNGEwYzBjZjBjNmIyOGE3EgsSBxD2xvrfjhgYAZIBIwoKcHJvamVjdF9pZBIVQhMzMzA1NDAxNzI4Mjk3NzMwNjgx&filename=&opi=89354086\" -OutFile \"C:\\\\Users\\\\Jonathan D Theron\\\\BuildSynergy-website\\\\temp\\\\source.html\" -UseBasicParsing; Write-Host \"Downloaded. Size: $\\(\\(Get-Item 'C:\\\\Users\\\\Jonathan D Theron\\\\BuildSynergy-website\\\\temp\\\\source.html'\\).Length\\) bytes\")",
+      "PowerShell(Invoke-WebRequest -Uri \"http://localhost:5173\" -UseBasicParsing -TimeoutSec 5)",
+      "mcp__plugin_playwright_playwright__browser_wait_for",
+      "PowerShell(Get-NetTCPConnection -LocalPort 5173 -ErrorAction SilentlyContinue | ForEach-Object { Stop-Process -Id $_.OwningProcess -Force -ErrorAction SilentlyContinue }; Write-Host \"Stopped\")",
+      "PowerShell(3000,3001,4173,5173,5174,8080 | ForEach-Object { Get-NetTCPConnection -LocalPort $_ -ErrorAction SilentlyContinue | ForEach-Object { Stop-Process -Id $_.OwningProcess -Force -ErrorAction SilentlyContinue } }; Write-Host \"Done\")",
+      "PowerShell(Invoke-WebRequest -Uri \"https://lh3.googleusercontent.com/aida/AP1WRLu6MdevM9IjYII7BxFSm-vk4yBar_Gz8rnu2EjSj9ZlMPQXGsBdFa9BjiYr47lP5UAfsQ7mX2RCnZ1tgdDYhSCYRnYRbLGDD5tZ3ybMttDewtwJ1z1Y_dotl5zDs1x0XdVLHimxwRlpDZHQvbkinbC3o8sAuNQU9OypwCP_ldR1t7-zlQkdo0Co4up997LOzSmyuFWgJrlFUQLAu8ObePlF9R2dhEs5fBa1MmGbRFWJR6UX_JQOrOcdSi0\" -OutFile \"C:\\\\Users\\\\Jonathan D Theron\\\\BuildSynergy-website\\\\stitch-screen.png\" -UseBasicParsing)"
+    ]
+  }
+}

@@ -1,0 +1,175 @@
+- generic [ref=e2]:
+  - navigation [ref=e3]:
+    - generic [ref=e4]:
+      - link "BuildSynergy" [ref=e5] [cursor=pointer]:
+        - /url: /
+      - generic [ref=e6]:
+        - link "Platform" [ref=e7] [cursor=pointer]:
+          - /url: /
+        - link "Services" [ref=e8] [cursor=pointer]:
+          - /url: /services
+        - link "About" [ref=e9] [cursor=pointer]:
+          - /url: /about
+        - link "Start a Project" [ref=e10] [cursor=pointer]:
+          - /url: /contact
+  - region "BuildSynergy — Digital Ecosystem" [ref=e11]:
+    - generic:
+      - generic: BUILDSYNERGY
+      - generic:
+        - generic: "SYSTEMS: 6"
+        - generic: "STATUS: LIVE"
+      - heading [level=1]: DIGITAL ECOSYSTEM
+      - generic:
+        - generic:
+          - paragraph: "[ SYSTEM OVERVIEW ]"
+          - paragraph: COMPLETE DIGITAL INFRASTRUCTURE
+        - link [ref=e17] [cursor=pointer]:
+          - /url: "#websites"
+          - text: EXPLORE SYSTEMS
+  - generic:
+    - generic:
+      - generic:
+        - generic:
+          - generic: Analytics
+          - generic: Live
+        - generic:
+          - generic:
+            - generic: 2.4K
+            - generic: Visitors
+          - generic:
+            - generic: "47"
+            - generic: Leads
+          - generic:
+            - generic: 89%
+            - generic: Conv.
+          - generic:
+            - generic: R12K
+            - generic: Revenue
+        - generic:
+          - img
+      - generic:
+        - generic:
+          - generic: Messages
+          - generic:
+            - generic: Active
+        - generic:
+          - generic: 3 unread
+          - generic: Email · SMS · Chat
+      - generic:
+        - generic: AI Hub
+        - generic: Running
+        - generic:
+          - img
+          - generic:
+            - generic: ◎
+          - generic: Bot
+          - generic: Route
+          - generic: Report
+          - generic: Trigger
+        - generic:
+          - generic: Lead routing
+          - generic: Follow-up
+          - generic: Support bot
+      - generic:
+        - generic:
+          - generic: CRM
+          - generic: This month
+        - generic:
+          - generic:
+            - generic: "47"
+            - generic: New Leads
+            - generic: ↑ 12%
+          - generic:
+            - generic: R12K
+            - generic: Revenue
+            - generic: ↑ 8%
+          - generic:
+            - generic: 89%
+            - generic: Conv. Rate
+            - generic: ↑ 4%
+        - generic:
+          - generic:
+            - generic: New
+          - generic:
+            - generic: Active
+          - generic:
+            - generic: Won
+      - generic:
+        - generic:
+          - generic: Lead Pipeline
+          - generic: 3 today
+        - generic:
+          - generic:
+            - generic: Visitors
+            - generic: 1,240
+          - generic:
+            - generic: Engaged
+            - generic: "844"
+          - generic:
+            - generic: Enquired
+            - generic: "471"
+          - generic:
+            - generic: Converted
+            - generic: "47"
+        - generic:
+          - generic:
+            - generic: Enterprise
+          - generic:
+            - generic: Starter
+      - generic:
+        - generic:
+          - generic: +24% leads
+  - main [ref=e19]:
+    - region "Premium websites that convert.":
+      - generic:
+        - generic: LAYER 01
+        - heading "Premium websites that convert." [level=2]
+        - paragraph: Not just beautiful pages. We build fast, responsive, conversion-focused websites designed to turn attention into enquiries.
+    - region "Turn visitors into real leads.":
+      - generic:
+        - generic: LAYER 02
+        - heading "Turn visitors into real leads." [level=2]
+        - paragraph: Smart forms, quote systems, booking flows, and enquiry funnels built to capture demand before it disappears.
+    - region "One place for your business flow.":
+      - generic:
+        - generic: LAYER 03
+        - heading "One place for your business flow." [level=2]
+        - paragraph: Organise enquiries, customers, jobs, conversations, and follow-ups inside a cleaner digital operating system.
+    - region "Automate the work that slows you down.":
+      - generic:
+        - generic: LAYER 04
+        - heading "Automate the work that slows you down." [level=2]
+        - paragraph: AI chatbots, smart reminders, lead routing, workflow triggers, and support tools that reduce manual admin.
+    - region "Meet customers where they already are.":
+      - generic:
+        - generic: LAYER 05
+        - heading "Meet customers where they already are." [level=2]
+        - paragraph: Connect your website to communication flows that make it easier for customers to enquire, respond, and move forward.
+    - region "See exactly what is working.":
+      - generic:
+        - generic: LAYER 06
+        - heading "See exactly what is working." [level=2]
+        - paragraph: Track leads, traffic, customer behaviour, campaign performance, and growth signals with clean reporting dashboards.
+    - region "Your website should not stand alone.":
+      - generic:
+        - generic: COMPLETE DIGITAL ECOSYSTEM
+        - heading "Your website should not stand alone." [level=2]
+        - paragraph: BuildSynergy connects the systems behind your business so your online presence becomes a real growth machine.
+        - generic:
+          - link "Start a Project":
+            - /url: /contact
+          - link "View Solutions":
+            - /url: /services
+  - contentinfo [ref=e20]:
+    - generic [ref=e21]:
+      - generic [ref=e22]: BuildSynergy
+      - navigation "Footer links" [ref=e23]:
+        - link "Services" [ref=e24] [cursor=pointer]:
+          - /url: /services
+        - link "About" [ref=e25] [cursor=pointer]:
+          - /url: /about
+        - link "Privacy" [ref=e26] [cursor=pointer]:
+          - /url: /privacy
+        - link "Contact" [ref=e27] [cursor=pointer]:
+          - /url: /contact
+      - generic [ref=e28]: © 2026 BuildSynergy

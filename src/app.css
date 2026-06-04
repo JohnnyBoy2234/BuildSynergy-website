@@ -1,0 +1,211 @@
+/* ── Fonts ──────────────────────────────────────────────────────────── */
+/* Space Grotesk (headings) + Inter (body) loaded via app.html */
+
+/* ── Reset ──────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── Design Tokens ──────────────────────────────────────────────────── */
+:root {
+  /* Backgrounds */
+  --bg:          #050505;
+  --bg2:         #0a0a0d;
+  --surface:     #111114;
+  --surface2:    #17171c;
+
+  /* Glass */
+  --glass:       rgba(255,255,255,0.035);
+  --glass2:      rgba(255,255,255,0.06);
+
+  /* Borders */
+  --border:      rgba(255,255,255,0.10);
+  --border2:     rgba(255,255,255,0.16);
+
+  /* Text */
+  --text:        rgba(255,255,255,0.92);
+  --text-body:   rgba(255,255,255,0.62);
+  --text-muted:  rgba(255,255,255,0.42);
+
+  /* Accents */
+  --cyan:        #00d4ff;
+  --blue:        #3366ff;
+  --violet:      #7744ff;
+  --cyan-glow:   rgba(0,212,255,0.15);
+  --blue-glow:   rgba(51,102,255,0.15);
+
+  /* Typography */
+  --sans:    'Inter', system-ui, sans-serif;
+  --display: 'Space Grotesk', system-ui, sans-serif;
+
+  /* Spacing rhythm */
+  --section-pad: clamp(5rem, 10vw, 9rem);
+  --container:   1280px;
+  --gutter:      clamp(1.25rem, 5vw, 5rem);
+}
+
+/* ── Base ────────────────────────────────────────────────────────────── */
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.65;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Ambient background */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 55% at 68% 30%, rgba(20,45,140,0.10) 0%, transparent 100%),
+    radial-gradient(ellipse 55% 45% at 28% 72%, rgba(90,25,150,0.07) 0%, transparent 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+#svelte { position: relative; z-index: 1; }
+
+/* ── Typography ──────────────────────────────────────────────────────── */
+h1, h2, h3, h4 {
+  font-family: var(--display);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: var(--text);
+}
+h1 { font-size: clamp(2.6rem, 5.5vw, 4.4rem); }
+h2 { font-size: clamp(2rem, 3.5vw, 3rem); }
+h3 { font-size: clamp(1.3rem, 2vw, 1.6rem); }
+h4 { font-size: 1.05rem; font-weight: 600; letter-spacing: -0.01em; }
+
+p { color: var(--text-body); line-height: 1.7; }
+
+/* ── Eyebrow ─────────────────────────────────────────────────────────── */
+.eyebrow {
+  font-family: var(--display);
+  font-size: 0.67rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  display: block;
+  margin-bottom: 1rem;
+}
+
+/* ── Buttons ─────────────────────────────────────────────────────────── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--blue);
+  color: #fff;
+  font-family: var(--display);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 0.85rem 1.75rem;
+  border-radius: 100px;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+.btn-primary:hover {
+  opacity: 0.88;
+  transform: translateY(-1px);
+  box-shadow: 0 0 24px rgba(51,102,255,0.35);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: transparent;
+  color: var(--text-body);
+  font-family: var(--display);
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 0.85rem 1.5rem;
+  border-radius: 100px;
+  border: 1px solid var(--border2);
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s, transform 0.2s;
+}
+.btn-secondary:hover {
+  color: var(--text);
+  border-color: rgba(255,255,255,0.3);
+  transform: translateY(-1px);
+}
+
+/* ── Container ───────────────────────────────────────────────────────── */
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+/* ── Section shell ───────────────────────────────────────────────────── */
+.section {
+  position: relative;
+  padding: var(--section-pad) var(--gutter);
+  z-index: 1;
+}
+
+/* ── Divider ─────────────────────────────────────────────────────────── */
+.divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+  margin: 0 var(--gutter);
+}
+
+/* ── Reveal system ───────────────────────────────────────────────────── */
+.will-reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.will-reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+.will-reveal-fade {
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+.will-reveal-fade.revealed { opacity: 1; }
+
+/* ── Gradient text ───────────────────────────────────────────────────── */
+.text-gradient {
+  background: linear-gradient(165deg, #ffffff 0%, rgba(255,255,255,0.6) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Card base ───────────────────────────────────────────────────────── */
+.card {
+  background: var(--glass);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  transition: border-color 0.3s, background 0.3s, transform 0.25s;
+}
+.card:hover {
+  border-color: var(--border2);
+  background: var(--glass2);
+  transform: translateY(-3px);
+}
+
+/* ── Reduced motion ──────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+  .will-reveal, .will-reveal-fade { opacity: 1; transform: none; }
+}

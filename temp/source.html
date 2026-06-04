@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>BuildSynergy | Precision in Digital Craftsmanship</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            background-color: #050505;
+            color: #e5e2e1;
+            overflow-x: hidden;
+        }
+        .glass-panel {
+            background: rgba(10, 10, 10, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .cyan-glow {
+            box-shadow: 0 0 20px rgba(0, 219, 231, 0.15);
+        }
+        .cyan-glow-intense:hover {
+            box-shadow: 0 0 30px rgba(0, 219, 231, 0.3);
+        }
+        .text-gradient {
+            background: linear-gradient(180deg, #ffffff 0%, #a3a3a3 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary": "#313030",
+                        "outline": "#849495",
+                        "tertiary-container": "#dddad9",
+                        "surface-variant": "#353534",
+                        "secondary": "#c8c6c5",
+                        "on-primary-fixed": "#002022",
+                        "surface-container-low": "#1c1b1b",
+                        "surface-bright": "#3a3939",
+                        "surface-container-high": "#2a2a2a",
+                        "secondary-fixed": "#e5e2e1",
+                        "surface-container-lowest": "#0e0e0e",
+                        "tertiary": "#faf6f6",
+                        "on-surface-variant": "#b9cacb",
+                        "background": "#050505",
+                        "on-background": "#e5e2e1",
+                        "on-tertiary-fixed-variant": "#474646",
+                        "surface-container": "#201f1f",
+                        "primary-container": "#00f2ff",
+                        "surface-tint": "#00dbe7",
+                        "on-error": "#690005",
+                        "error-container": "#93000a",
+                        "inverse-surface": "#e5e2e1",
+                        "outline-variant": "#3a494b",
+                        "primary": "#e1fdff",
+                        "surface": "#131313",
+                        "surface-dim": "#131313",
+                        "on-tertiary-container": "#605f5f",
+                        "on-secondary": "#313030",
+                        "inverse-on-surface": "#313030",
+                        "on-secondary-fixed": "#1c1b1b",
+                        "primary-fixed": "#74f5ff",
+                        "on-surface": "#e5e2e1",
+                        "on-primary-container": "#006a71",
+                        "on-primary": "#00363a",
+                        "on-secondary-container": "#b7b5b4",
+                        "tertiary-fixed": "#e5e2e1",
+                        "error": "#ffb4ab",
+                        "on-tertiary-fixed": "#1c1b1b",
+                        "secondary-container": "#474746",
+                        "tertiary-fixed-dim": "#c9c6c5",
+                        "on-primary-fixed-variant": "#004f54",
+                        "surface-container-highest": "#353534",
+                        "primary-fixed-dim": "#00dbe7",
+                        "on-error-container": "#ffdad6",
+                        "on-secondary-fixed-variant": "#474746",
+                        "inverse-primary": "#00696f",
+                        "secondary-fixed-dim": "#c8c6c5"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "8px",
+                        "margin-mobile": "20px",
+                        "margin-desktop": "64px",
+                        "gutter": "24px",
+                        "container-max": "1280px",
+                        "section-gap": "160px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "eyebrow": ["Inter"],
+                        "headline-lg-mobile": ["Space Grotesk"],
+                        "headline-md": ["Space Grotesk"],
+                        "label-md": ["Inter"],
+                        "display": ["Space Grotesk"],
+                        "headline-lg": ["Space Grotesk"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "0em", "fontWeight": "400"}],
+                        "eyebrow": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "headline-md": ["32px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "500"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                        "display": ["80px", {"lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "700"}],
+                        "headline-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "letterSpacing": "0em", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="font-body-md text-on-background selection:bg-primary-fixed-dim selection:text-on-primary-fixed">
+<!-- Navigation -->
+<nav class="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-3 mx-margin-mobile md:mx-auto rounded-full mt-margin-mobile md:mt-8 max-w-container-max bg-background/80 backdrop-blur-md border border-outline-variant/30 shadow-[0_0_20px_rgba(0,219,231,0.1)]">
+<div class="font-display text-headline-md text-on-background tracking-tight">BuildSynergy</div>
+<div class="hidden md:flex gap-8">
+<a class="text-primary-fixed-dim font-semibold drop-shadow-[0_0_8px_rgba(0,219,231,0.5)] transition-all duration-300 hover:scale-105" href="#">Home</a>
+<a class="text-on-surface-variant hover:text-primary transition-all duration-300 hover:scale-105" href="#services">Services</a>
+<a class="text-on-surface-variant hover:text-primary transition-all duration-300 hover:scale-105" href="#team">Team</a>
+<a class="text-on-surface-variant hover:text-primary transition-all duration-300 hover:scale-105" href="#contact">Contact</a>
+</div>
+<button class="bg-primary-fixed-dim text-on-primary-container px-6 py-2 rounded-full font-label-md hover:scale-105 active:scale-95 transition-all duration-300 cyan-glow-intense">
+            Start a Project
+        </button>
+</nav>
+<!-- Hero Section -->
+<section class="relative min-h-screen flex flex-col items-center justify-center text-center px-margin-mobile pt-32 overflow-hidden">
+<!-- Background Atmospheric Element -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary-fixed-dim/5 blur-[120px] rounded-full -z-10"></div>
+<div class="max-w-4xl mx-auto space-y-6">
+<span class="font-eyebrow text-eyebrow text-primary tracking-[0.2em] uppercase">Premium Digital Solutions</span>
+<h1 class="font-display text-[48px] md:text-display text-gradient leading-tight tracking-tighter">
+                Make your business look as good as the work you do.
+            </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">
+                BuildSynergy creates professional websites and digital solutions that help businesses build trust, attract customers, and grow online.
+            </p>
+<div class="flex flex-col md:flex-row gap-4 justify-center pt-8">
+<button class="bg-primary-fixed-dim text-on-primary-container px-8 py-4 rounded-xl font-label-md hover:scale-105 transition-transform cyan-glow-intense">
+                    Start a Project
+                </button>
+<button class="border border-outline-variant text-on-surface px-8 py-4 rounded-xl font-label-md hover:bg-white/5 transition-all">
+                    View Our Services
+                </button>
+</div>
+</div>
+<!-- Scroll Indicator -->
+<div class="absolute bottom-12 left-1/2 -translate-x-1/2 animate-bounce">
+<span class="material-symbols-outlined text-outline">expand_more</span>
+</div>
+</section>
+<!-- Problem Section -->
+<section class="py-section-gap px-margin-mobile max-w-container-max mx-auto">
+<div class="flex flex-col md:flex-row gap-gutter">
+<div class="md:w-1/2 space-y-6">
+<span class="font-eyebrow text-eyebrow text-error/80 uppercase">The Problem</span>
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg leading-tight">
+                    A strong business can still lose customers because of a weak online presence.
+                </h2>
+<div class="w-24 h-1 bg-error/30 rounded-full"></div>
+</div>
+<div class="md:w-1/2 grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Bento Style Problem Cards -->
+<div class="p-8 glass-panel rounded-xl group hover:border-error/40 transition-colors">
+<span class="material-symbols-outlined text-error mb-4">running_with_errors</span>
+<h3 class="font-headline-md text-body-lg mb-2">Outdated Aesthetics</h3>
+<p class="text-on-surface-variant text-label-md">Visuals that belong in 2010 damage your modern credibility instantly.</p>
+</div>
+<div class="p-8 glass-panel rounded-xl group hover:border-error/40 transition-colors">
+<span class="material-symbols-outlined text-error mb-4">phonelink_erase</span>
+<h3 class="font-headline-md text-body-lg mb-2">Mobile Friction</h3>
+<p class="text-on-surface-variant text-label-md">If it doesn't work on a phone, 60% of your audience is already gone.</p>
+</div>
+<div class="p-8 glass-panel rounded-xl group hover:border-error/40 transition-colors md:col-span-2">
+<div class="flex items-start gap-6">
+<span class="material-symbols-outlined text-error text-4xl">no_accounts</span>
+<div>
+<h3 class="font-headline-md text-body-lg mb-2">The Trust Deficit</h3>
+<p class="text-on-surface-variant text-label-md">Missing contact info or weak SEO makes you look invisible to potential partners.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Services / Solution Section -->
+<section class="py-section-gap bg-surface-container-lowest/50" id="services">
+<div class="max-w-container-max mx-auto px-margin-mobile">
+<div class="text-center max-w-3xl mx-auto mb-20">
+<span class="font-eyebrow text-eyebrow text-primary uppercase">Our Solution</span>
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg mt-4">Everything your business needs to look stronger online.</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Featured Service -->
+<div class="md:col-span-8 group relative overflow-hidden rounded-xl h-[400px]">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105" data-alt="A cinematic, high-contrast close-up of a high-end laptop displaying a sophisticated, dark-themed website interface with cyan accents. The surrounding environment is a minimalist, dimly lit creative studio with soft blue ambient light and high-key reflections on polished surfaces. The overall aesthetic is professional, sleek, and technologically advanced." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3s9dQGLGt_YMd75EdSkt8cZtfpKAcH6_xcpreovDnCIiXTIwMsVbdp2flbd-4XAeA-yfgiIU0TdhvsaYZ7LjKhDz3ke0eUeHnXOXHtZ4RUuZYiKrPZBZeUog2BtDZjsq8rTTiOxGRkVuveAQ_HP4-ybw9EieNcU8rVrd-3Qruow1fRxipn4E21Tp_6KAZpWM0MsQ7KxEyhBOk0wr5PDrz40oWQUmSPW_ZH5jEhjBwivnGmKarLB28crbpezp2nNNn-FkNCFlf5us"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent p-8 flex flex-col justify-end">
+<h3 class="font-headline-lg text-headline-md mb-2">Premium Business Websites</h3>
+<p class="text-on-surface-variant max-w-md">Bespoke digital homes designed for elite conversion and authority.</p>
+<div class="mt-4 flex gap-2">
+<span class="px-3 py-1 bg-primary/10 border border-primary/20 text-primary text-[10px] uppercase rounded-full">Best Seller</span>
+<span class="px-3 py-1 bg-white/5 border border-white/10 text-white/60 text-[10px] uppercase rounded-full">Interactive</span>
+</div>
+</div>
+</div>
+<!-- Secondary Service Column -->
+<div class="md:col-span-4 flex flex-col gap-gutter">
+<div class="p-8 glass-panel rounded-xl flex-1 hover:border-primary/30 transition-all cursor-default">
+<span class="material-symbols-outlined text-primary text-3xl mb-4" data-weight="fill">chat_bubble</span>
+<h3 class="font-headline-md text-label-md font-bold mb-2 uppercase tracking-wider">Communication Stack</h3>
+<p class="text-on-surface-variant text-label-md">WhatsApp Integration, AI Chatbots, and automated Lead Capture forms.</p>
+</div>
+<div class="p-8 glass-panel rounded-xl flex-1 hover:border-primary/30 transition-all cursor-default">
+<span class="material-symbols-outlined text-primary text-3xl mb-4" data-weight="fill">search_check</span>
+<h3 class="font-headline-md text-label-md font-bold mb-2 uppercase tracking-wider">SEO Foundations</h3>
+<p class="text-on-surface-variant text-label-md">Dominate Google visibility from day one with precision-engineered code.</p>
+</div>
+</div>
+<!-- Three Bottom Services -->
+<div class="md:col-span-4 p-8 glass-panel rounded-xl hover:bg-white/5 transition-all">
+<h4 class="font-display text-headline-md mb-4">Mobile First</h4>
+<p class="text-on-surface-variant text-label-md leading-relaxed">Optimization for every device size, ensuring flawless performance in the palm of your hand.</p>
+</div>
+<div class="md:col-span-4 p-8 glass-panel rounded-xl hover:bg-white/5 transition-all">
+<h4 class="font-display text-headline-md mb-4">Branding</h4>
+<p class="text-on-surface-variant text-label-md leading-relaxed">Visual identity refinement that aligns your digital presence with your real-world excellence.</p>
+</div>
+<div class="md:col-span-4 p-8 glass-panel rounded-xl hover:bg-white/5 transition-all">
+<h4 class="font-display text-headline-md mb-4">Maintenance</h4>
+<p class="text-on-surface-variant text-label-md leading-relaxed">Concierge support and hosting so you can focus on your business while we handle the tech.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Team Section -->
+<section class="py-section-gap px-margin-mobile max-w-container-max mx-auto" id="team">
+<div class="text-center mb-20">
+<span class="font-eyebrow text-eyebrow text-primary uppercase">Our Team</span>
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg mt-4">The people behind the work.</h2>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
+<!-- Profile 1 -->
+<div class="group">
+<div class="relative aspect-[4/5] rounded-xl overflow-hidden mb-6">
+<img class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500 scale-100 group-hover:scale-110" data-alt="A professional studio portrait of a visionary strategy lead in a dark, minimalist setting. The individual is wearing sophisticated, modern business attire. The lighting is dramatic and cinematic, with a soft cyan rim light that separates them from the deep black background. The mood is authoritative and intelligent, reflecting a high-end tech executive aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWc9gkGCtfXfCfs0w-VdyMXTt0XFQqy-QTon36OZsF3VKuTBr6gCpwCuJwWj0tSuSKwLnC-q3in2Y6PHB-tUReebSxmDDxd7LYTsQUBtg_9TpsEIceCKL6LgnABdNxO7qNqcvoq_I7f2qpIkL_BUy9pkwwLftbYKnWlVteYNefpO-nPExlRoCeJ75njL3xpdhdmegZ0SxosGG8mQMCkWGkJ8-g2NIkIBgqXZnRrP4ixzRWWBy4R9dny3aDaTFGZyrHEnuCrywBZXo"/>
+<div class="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
+</div>
+<h3 class="font-headline-md text-headline-md">Alex Vance</h3>
+<p class="text-primary font-label-md tracking-wider uppercase">Founder &amp; Strategy Lead</p>
+</div>
+<!-- Profile 2 -->
+<div class="group">
+<div class="relative aspect-[4/5] rounded-xl overflow-hidden mb-6">
+<img class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500 scale-100 group-hover:scale-110" data-alt="A cinematic portrait of a creative designer in a stylish dark-mode studio. The background is subtle and out of focus, featuring high-end digital equipment. High-contrast lighting with a cool blue tint highlights their creative and thoughtful expression. The overall style is modern, professional, and sophisticated, consistent with a high-end digital agency brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCW5gqwv4K5fMgOr0owSTJfulNfvgWz2wr0tbyEYShFjff5tsxpoV7yTl6ttsZdgjsT2uprrlzuBA4XkjbsBGS4vLQ_nbFf8NSSgGTfOoSlh63vths0ACngqpyC8IPqa1AFICNZ3XxnIq2kA6J5tqP3AJv6nCIX6ZtzA3_2vD0B8ea6nEIxLENfuuHh1ZnBSsLR_o7wglUxzuZDInQ9nHc8iJ2T2xVwsHAs08DM4KbTctmzGfuOogFSlh2jpAN2Oeu2_g43ipbOg4"/>
+</div>
+<h3 class="font-headline-md text-headline-md">Sofia Rossi</h3>
+<p class="text-primary font-label-md tracking-wider uppercase">Creative Designer</p>
+</div>
+<!-- Profile 3 -->
+<div class="group">
+<div class="relative aspect-[4/5] rounded-xl overflow-hidden mb-6">
+<img class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500 scale-100 group-hover:scale-110" data-alt="A portrait of a senior web developer in a sleek, dark tech environment. Dim reflections of code lines appear in the background on a glass partition. The lighting is precise, with a sharp white key light and a subtle cyan ambient glow. The person has a confident and focused look, embodying the concept of digital craftsmanship and technical excellence." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDlRl7_EHqWPayOgfNP3FleKM5Jzgo4nbEdTGhZkWqcCS4KBmRJlplbjSuIpOb_sHp-LNA4hXePFd9M-Gj6wiAPDPuJfvHF6MIEZ7I5sUliZtS8Ubr8dfvYABgA-HPtCc7Iit78Q4XsT72fXkcCEFggUQngyqirHk6nljq3IU-YdQRBcDu8tW7DHfhyNrVxDcheY957qro1rq8_VgjHkwd7j13ALAo2avfyli1DGhND2fvwatI2g_1VWo4fDFF0-2jCXhO4F5wlCRg"/>
+</div>
+<h3 class="font-headline-md text-headline-md">Marcus Chen</h3>
+<p class="text-primary font-label-md tracking-wider uppercase">Lead Developer</p>
+</div>
+</div>
+</section>
+<!-- Contact Section -->
+<section class="py-section-gap px-margin-mobile" id="contact">
+<div class="max-w-4xl mx-auto">
+<div class="glass-panel p-8 md:p-16 rounded-[2rem] relative overflow-hidden">
+<!-- Atmospheric Background in Card -->
+<div class="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-64 h-64 bg-primary-fixed-dim/10 blur-[80px] rounded-full"></div>
+<div class="relative z-10 text-center md:text-left mb-12">
+<span class="font-eyebrow text-eyebrow text-primary uppercase">Start a Project</span>
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg mt-4">Ready to give your business a stronger online presence?</h2>
+</div>
+<form class="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="space-y-2">
+<label class="font-label-md text-on-surface-variant px-1">Full Name</label>
+<input class="w-full bg-[#0A0A0A] border-outline-variant/30 rounded-xl px-4 py-4 text-on-surface focus:ring-1 focus:ring-primary focus:border-primary transition-all" placeholder="John Doe" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="font-label-md text-on-surface-variant px-1">Business Name</label>
+<input class="w-full bg-[#0A0A0A] border-outline-variant/30 rounded-xl px-4 py-4 text-on-surface focus:ring-1 focus:ring-primary focus:border-primary transition-all" placeholder="Acme Corp" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="font-label-md text-on-surface-variant px-1">Work Email</label>
+<input class="w-full bg-[#0A0A0A] border-outline-variant/30 rounded-xl px-4 py-4 text-on-surface focus:ring-1 focus:ring-primary focus:border-primary transition-all" placeholder="john@company.com" type="email"/>
+</div>
+<div class="space-y-2">
+<label class="font-label-md text-on-surface-variant px-1">Service Required</label>
+<select class="w-full bg-[#0A0A0A] border-outline-variant/30 rounded-xl px-4 py-4 text-on-surface focus:ring-1 focus:ring-primary focus:border-primary transition-all appearance-none">
+<option>New Website</option>
+<option>Website Redesign</option>
+<option>SEO Strategy</option>
+<option>Full Digital Overhaul</option>
+</select>
+</div>
+<div class="md:col-span-2 space-y-2">
+<label class="font-label-md text-on-surface-variant px-1">Message</label>
+<textarea class="w-full bg-[#0A0A0A] border-outline-variant/30 rounded-xl px-4 py-4 text-on-surface focus:ring-1 focus:ring-primary focus:border-primary transition-all" placeholder="Tell us about your project goals..." rows="4"></textarea>
+</div>
+<div class="md:col-span-2 flex flex-col md:flex-row items-center gap-6 pt-4">
+<button class="w-full md:w-auto bg-primary-fixed-dim text-on-primary-container px-12 py-5 rounded-xl font-label-md font-bold hover:scale-105 transition-all cyan-glow-intense" type="submit">
+                            Submit My Project
+                        </button>
+<a class="text-on-surface-variant hover:text-primary font-label-md transition-colors" href="mailto:hello@buildsynergy.com">
+                            Or book a consultation →
+                        </a>
+</div>
+</form>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest border-t border-outline-variant/20 pt-section-gap pb-8">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop flex flex-col gap-unit">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 mb-16">
+<div class="space-y-4">
+<div class="font-display text-headline-md text-on-background">BuildSynergy</div>
+<p class="text-on-surface-variant max-w-xs text-label-md">Precision in digital craftsmanship. We build foundations for the next generation of business leaders.</p>
+</div>
+<div class="flex flex-wrap gap-x-12 gap-y-6">
+<div class="flex flex-col gap-3">
+<span class="font-label-md text-on-background font-bold uppercase tracking-widest text-[10px]">Navigate</span>
+<a class="text-on-surface-variant hover:text-primary-fixed transition-colors" href="#">Home</a>
+<a class="text-on-surface-variant hover:text-primary-fixed transition-colors" href="#services">Services</a>
+<a class="text-on-surface-variant hover:text-primary-fixed transition-colors" href="#team">Team</a>
+</div>
+<div class="flex flex-col gap-3">
+<span class="font-label-md text-on-background font-bold uppercase tracking-widest text-[10px]">Legal</span>
+<a class="text-on-surface-variant hover:text-primary-fixed transition-colors" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant hover:text-primary-fixed transition-colors" href="#">Terms of Service</a>
+</div>
+<div class="flex flex-col gap-3">
+<span class="font-label-md text-on-background font-bold uppercase tracking-widest text-[10px]">Connect</span>
+<a class="text-on-surface-variant hover:text-primary-fixed transition-colors" href="#">LinkedIn</a>
+<a class="text-on-surface-variant hover:text-primary-fixed transition-colors" href="#">Twitter</a>
+</div>
+</div>
+</div>
+<div class="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-on-surface-variant text-[12px]">
+<p>© 2024 BuildSynergy. Precision in Digital Craftsmanship.</p>
+<div class="flex gap-6">
+<span>Back to top</span>
+<button class="w-8 h-8 rounded-full border border-outline-variant flex items-center justify-center hover:bg-primary hover:text-on-primary transition-all" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+<span class="material-symbols-outlined text-[16px]">arrow_upward</span>
+</button>
+</div>
+</div>
+</div>
+</footer>
+<script>
+        // Simple reveal on scroll logic
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100', 'translate-y-0');
+                    entry.target.classList.remove('opacity-0', 'translate-y-10');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            section.classList.add('transition-all', 'duration-1000', 'opacity-0', 'translate-y-10');
+            observer.observe(section);
+        });
+    </script>
+</body></html>
