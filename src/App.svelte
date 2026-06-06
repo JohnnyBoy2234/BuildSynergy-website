@@ -33,10 +33,10 @@
   const problems = [
     { icon: '◻', title: 'Outdated Online Presence', desc: 'Your website no longer reflects the quality of your work or the scale of your business.' },
     { icon: '◻', title: 'Missed Leads', desc: 'Visitors land on your site but have no clear way to enquire, quote, or book.' },
-    { icon: '◻', title: 'Scattered Messages', desc: 'Enquiries arrive across email, WhatsApp, and social — and some fall through the gaps.' },
+    { icon: '◻', title: 'Scattered Messages', desc: 'Enquiries arrive across email, WhatsApp, and social and some fall through the gaps.' },
     { icon: '◻', title: 'No CRM System', desc: 'Customer details and job history live in spreadsheets, inboxes, or memory.' },
     { icon: '◻', title: 'Manual Follow-Ups', desc: 'Reminders, proposals, and follow-up messages are all done by hand, every time.' },
-    { icon: '◻', title: 'No Analytics', desc: 'You have no visibility into what is working — which campaigns, pages, or leads convert.' },
+    { icon: '◻', title: 'No Analytics', desc: 'You have no visibility into what is working which campaigns, pages, or leads convert.' },
     { icon: '◻', title: 'Weak Mobile Experience', desc: 'Your website is difficult to use on phone, where most of your customers will find you.' },
     { icon: '◻', title: 'Poor Digital Trust', desc: 'Without professional design and clear credentials, serious clients move on.' },
   ];
@@ -148,7 +148,7 @@
   ];
 
   const trustItems = [
-    { icon: '📱', title: 'Mobile-first design', desc: 'Built for how your customers actually browse — on their phones.' },
+    { icon: '📱', title: 'Mobile-first design', desc: 'Built for how your customers actually browse on their phones.' },
     { icon: '⚡', title: 'Fast loading pages', desc: 'Performance optimised from day one. No bloated page builders.' },
     { icon: '🔒', title: 'Secure setup', desc: 'SSL, clean hosting, and secure data handling as standard.' },
     { icon: '🔍', title: 'SEO foundation', desc: 'Technical and on-page SEO built into every project we deliver.' },
@@ -161,7 +161,7 @@
   const faqs = [
     {
       q: 'What exactly does BuildSynergy build?',
-      a: 'We build complete digital systems for businesses — starting with your website but extending into lead capture, CRM, automation, communication, and analytics. We do not just build websites; we connect the tools your business needs to operate more effectively online.',
+      a: 'We build complete digital systems for businesses starting with your website but extending into lead capture, CRM, automation, communication, and analytics. We do not just build websites; we connect the tools your business needs to operate more effectively online.',
     },
     {
       q: 'How long does a project typically take?',
@@ -169,7 +169,7 @@
     },
     {
       q: 'Do I need to supply all the content?',
-      a: 'We help with content — including copywriting direction, photography guidance, and video support. You will need to provide business details, product or service information, and any existing brand assets.',
+      a: 'We help with content including copywriting direction, photography guidance, and video support. You will need to provide business details, product or service information, and any existing brand assets.',
     },
     {
       q: 'What platforms and tools do you use?',
@@ -210,7 +210,7 @@
 </nav>
 
 <!-- ═══════════════════════════════════════════════════════════════════════════
-     SCROLLYTELLING — 9 sections × 100vh = 900vh
+     SCROLLYTELLING 9 sections × 100vh = 900vh
 ═══════════════════════════════════════════════════════════════════════════ -->
 <section id="systems" class="scrolly-wrapper" bind:this={scrollyWrapper}>
 
@@ -227,7 +227,7 @@
       <div class="panel-content left">
         <span class="eyebrow">Digital Business Systems</span>
         <h1 class="text-gradient">Build the digital engine your business deserves.</h1>
-        <p>Premium websites, lead systems, CRM flows, AI tools, automations, and analytics — connected into one business ecosystem.</p>
+        <p>Premium websites, lead systems, CRM flows, AI tools, automations, and analytics connected into one business ecosystem.</p>
         <div class="cta-group">
           <a class="btn-primary" href="#contact">Start a Project</a>
           <a class="btn-secondary" href="#systems">Explore the System</a>
@@ -385,7 +385,7 @@
   <div class="section-header">
     <span class="eyebrow">Complete Digital Foundation</span>
     <h2>Everything your business needs to modernise online.</h2>
-    <p>One connected engagement — no piecemeal vendors, no mismatched tools.</p>
+    <p>One connected engagement no piecemeal vendors, no mismatched tools.</p>
   </div>
   <div class="package-card">
     <div class="package-header">

@@ -1,0 +1,276 @@
+- generic [ref=e2]:
+  - banner [ref=e3]:
+    - link "BuildSynergy" [ref=e4] [cursor=pointer]:
+      - /url: /
+      - img [ref=e5]
+      - generic [ref=e12]: BuildSynergy
+    - navigation "Main navigation" [ref=e13]:
+      - button "Home" [ref=e14] [cursor=pointer]
+      - button "Services" [ref=e15] [cursor=pointer]
+      - button "Team" [ref=e16] [cursor=pointer]
+      - button "Contact" [ref=e17] [cursor=pointer]
+      - link "Start a Project" [ref=e18] [cursor=pointer]:
+        - /url: "#contact"
+  - main [ref=e19]:
+    - generic [ref=e21]:
+      - generic [ref=e23]: Premium Digital Solutions
+      - heading "Make your business look as good as the work you do." [level=1] [ref=e24]:
+        - text: Make your business look
+        - text: as good as the work you do.
+      - paragraph [ref=e25]: BuildSynergy creates professional websites and digital solutions that help businesses build trust, attract customers, and grow online.
+      - generic [ref=e26]:
+        - button "Start a Project" [ref=e27] [cursor=pointer]
+        - button "View Our Services" [ref=e28] [cursor=pointer]
+      - generic [ref=e29]: Scroll to explore
+    - generic [ref=e32]:
+      - generic [ref=e33]:
+        - generic [ref=e34]: The Problem
+        - heading "A strong business can still lose customers because of a weak online presence." [level=2] [ref=e35]:
+          - generic [ref=e266]: A
+          - generic [ref=e268]: strong
+          - generic [ref=e270]: business
+          - generic [ref=e272]: can
+          - generic [ref=e274]: still
+          - generic [ref=e276]: lose
+          - generic [ref=e278]: customers
+          - generic [ref=e280]: because
+          - generic [ref=e282]: of
+          - generic [ref=e284]: a
+          - generic [ref=e286]: weak
+          - generic [ref=e288]: online
+          - generic [ref=e290]: presence.
+        - paragraph [ref=e36]: Outdated websites, poor mobile layouts, and difficult contact processes make customers choose a competitor even when your work is better.
+        - generic: ×
+      - generic [ref=e38]:
+        - generic [ref=e39]:
+          - generic [ref=e40]: "01"
+          - generic [ref=e41]:
+            - heading "Outdated website" [level=4] [ref=e42]
+            - paragraph [ref=e43]: A website that looks old signals that your business might be too.
+          - generic [ref=e44]: ↗
+        - generic [ref=e45]:
+          - generic [ref=e46]: "02"
+          - generic [ref=e47]:
+            - heading "Poor mobile experience" [level=4] [ref=e48]
+            - paragraph [ref=e49]: Most customers browse on their phone. A broken mobile site loses them.
+          - generic [ref=e50]: ↗
+        - generic [ref=e51]:
+          - generic [ref=e52]: "03"
+          - generic [ref=e53]:
+            - heading "Weak first impression" [level=4] [ref=e54]
+            - paragraph [ref=e55]: You have seconds to earn trust. A low-quality site spends them badly.
+          - generic [ref=e56]: ↗
+        - generic [ref=e57]:
+          - generic [ref=e58]: "04"
+          - generic [ref=e59]:
+            - heading "Difficult contact process" [level=4] [ref=e60]
+            - paragraph [ref=e61]: If contacting you is unclear, customers give up and call a competitor.
+          - generic [ref=e62]: ↗
+        - generic [ref=e63]:
+          - generic [ref=e64]: "05"
+          - generic [ref=e65]:
+            - heading "Missing information" [level=4] [ref=e66]
+            - paragraph [ref=e67]: Customers need to understand what you do, where you are, and why to choose you.
+          - generic [ref=e68]: ↗
+        - generic [ref=e69]:
+          - generic [ref=e70]: "06"
+          - generic [ref=e71]:
+            - heading "Low online trust" [level=4] [ref=e72]
+            - paragraph [ref=e73]: No reviews, no visuals, no clear brand and serious customers walk away.
+          - generic [ref=e74]: ↗
+    - generic [ref=e76]:
+      - generic [ref=e77]:
+        - generic [ref=e78]: Our Solution
+        - heading "Everything your business needs to look stronger online." [level=2] [ref=e79]:
+          - generic [ref=e292]: Everything
+          - generic [ref=e294]: your
+          - generic [ref=e296]: business
+          - generic [ref=e298]: needs
+          - generic [ref=e300]: to
+          - generic [ref=e302]: look
+          - generic [ref=e304]: stronger
+          - generic [ref=e306]: online.
+        - paragraph [ref=e80]: We create the digital tools that help your business look professional, build trust, and make it easier for customers to reach you.
+      - generic [ref=e81]:
+        - generic [ref=e82]:
+          - generic [ref=e83]: Featured Service
+          - generic [ref=e85]:
+            - heading "Premium Business Websites" [level=3] [ref=e86]
+            - paragraph [ref=e87]: Modern, professional websites designed to represent your business and win customer trust.
+        - generic [ref=e95]:
+          - generic [ref=e96]: "02"
+          - heading "Website Redesigns" [level=4] [ref=e97]
+          - paragraph [ref=e98]: Upgrade an outdated website into a cleaner, faster, and more credible online presence.
+        - generic [ref=e99]:
+          - generic [ref=e100]: "03"
+          - heading "WhatsApp Integration" [level=4] [ref=e101]
+          - paragraph [ref=e102]: Give customers a direct, simple way to contact your business from your website.
+        - generic [ref=e103]:
+          - generic [ref=e104]: "04"
+          - heading "Contact and Quote Forms" [level=4] [ref=e105]
+          - paragraph [ref=e106]: Make it easy for customers to enquire, request pricing, or ask for more information.
+        - generic [ref=e107]:
+          - heading "Mobile Optimisation" [level=4] [ref=e109]
+          - paragraph [ref=e110]: Ensure your website works beautifully across phones, tablets, and computers.
+        - generic [ref=e111]:
+          - heading "AI Chatbot Integration" [level=4] [ref=e113]
+          - paragraph [ref=e114]: A helpful website assistant that answers common customer questions automatically.
+        - generic [ref=e115]:
+          - heading "Google Maps and Business Setup" [level=4] [ref=e117]
+          - paragraph [ref=e118]: Help customers find and trust your business in Google Search and Maps.
+        - generic [ref=e119]:
+          - heading "SEO Foundations" [level=4] [ref=e121]
+          - paragraph [ref=e122]: Structure your website so search engines can better discover your business.
+        - generic [ref=e123]:
+          - heading "Company Profile PDFs" [level=4] [ref=e125]
+          - paragraph [ref=e126]: Professional company documents that support your sales process.
+        - generic [ref=e127]:
+          - heading "Photography and Video" [level=4] [ref=e129]
+          - paragraph [ref=e130]: Better visuals that show customers the quality of your work.
+        - generic [ref=e131]:
+          - heading "Website Analytics" [level=4] [ref=e133]
+          - paragraph [ref=e134]: Understand how visitors find and use your website.
+        - generic [ref=e135]:
+          - heading "Ongoing Maintenance" [level=4] [ref=e137]
+          - paragraph [ref=e138]: Keep your website updated, supported, and working properly after launch.
+    - generic [ref=e140]:
+      - generic [ref=e141]:
+        - generic [ref=e142]: Our Team
+        - heading "The people behind the work." [level=2] [ref=e143]:
+          - generic [ref=e308]: The
+          - generic [ref=e310]: people
+          - generic [ref=e312]: behind
+          - generic [ref=e314]: the
+          - generic [ref=e316]: work.
+        - paragraph [ref=e144]: Strategy, design, development, content, and support a focused team helping businesses show up better online.
+      - generic [ref=e145]:
+        - generic [ref=e146]:
+          - generic [ref=e149]: JT
+          - generic [ref=e150]:
+            - generic [ref=e151]: Founder and Strategy Lead
+            - paragraph [ref=e152]: Business direction, client strategy, and digital modernisation.
+        - generic [ref=e153]:
+          - generic [ref=e156]: CD
+          - generic [ref=e157]:
+            - generic [ref=e158]: Creative Designer
+            - paragraph [ref=e159]: Website design, visual direction, and premium brand presentation.
+        - generic [ref=e160]:
+          - generic [ref=e163]: WD
+          - generic [ref=e164]:
+            - generic [ref=e165]: Web Developer
+            - paragraph [ref=e166]: Fast, responsive, and professional website builds.
+        - generic [ref=e167]:
+          - generic [ref=e170]: CM
+          - generic [ref=e171]:
+            - generic [ref=e172]: Content and Media Specialist
+            - paragraph [ref=e173]: Website copy, photography, video, and company profiles.
+        - generic [ref=e174]:
+          - generic [ref=e177]: SV
+          - generic [ref=e178]:
+            - generic [ref=e179]: SEO and Visibility Specialist
+            - paragraph [ref=e180]: Google visibility, SEO foundations, and online discoverability.
+        - generic [ref=e181]:
+          - generic [ref=e184]: SG
+          - generic [ref=e185]:
+            - generic [ref=e186]: Support and Maintenance Lead
+            - paragraph [ref=e187]: Website updates, ongoing support, and post-launch improvements.
+    - generic [ref=e189]:
+      - generic [ref=e190]:
+        - generic [ref=e191]: Start a Project
+        - heading "Ready to give your business a stronger online presence?" [level=2] [ref=e192]:
+          - generic [ref=e318]: Ready
+          - generic [ref=e320]: to
+          - generic [ref=e322]: give
+          - generic [ref=e324]: your
+          - generic [ref=e326]: business
+          - generic [ref=e328]: a
+          - generic [ref=e330]: stronger
+          - generic [ref=e332]: online
+          - generic [ref=e334]: presence?
+        - paragraph [ref=e193]: Tell us about your business and what you'd like to improve. We'll help you identify the right digital solution.
+      - generic [ref=e195]:
+        - generic [ref=e196]:
+          - generic [ref=e197]:
+            - generic [ref=e198]: Name
+            - textbox "Name" [ref=e199]:
+              - /placeholder: Your name
+          - generic [ref=e200]:
+            - generic [ref=e201]: Business Name
+            - textbox "Business Name" [ref=e202]:
+              - /placeholder: Your business
+        - generic [ref=e203]:
+          - generic [ref=e204]:
+            - generic [ref=e205]: Email
+            - textbox "Email" [ref=e206]:
+              - /placeholder: hello@yourbusiness.co.za
+          - generic [ref=e207]:
+            - generic [ref=e208]: Phone
+            - textbox "Phone" [ref=e209]:
+              - /placeholder: +27 81 000 0000
+        - generic [ref=e210]:
+          - generic [ref=e211]: Website (optional)
+          - textbox "Website (optional)" [ref=e212]:
+            - /placeholder: https://yourbusiness.co.za
+        - generic [ref=e213]:
+          - generic [ref=e214]: What do you need help with?
+          - group [ref=e215]:
+            - button "New Website" [ref=e216] [cursor=pointer]
+            - button "Website Redesign" [ref=e217] [cursor=pointer]
+            - button "WhatsApp Integration" [ref=e218] [cursor=pointer]
+            - button "Contact or Quote Forms" [ref=e219] [cursor=pointer]
+            - button "AI Chatbot" [ref=e220] [cursor=pointer]
+            - button "Google Visibility" [ref=e221] [cursor=pointer]
+            - button "Company Profile" [ref=e222] [cursor=pointer]
+            - button "Photography or Video" [ref=e223] [cursor=pointer]
+            - button "Website Maintenance" [ref=e224] [cursor=pointer]
+            - button "Not Sure Yet" [ref=e225] [cursor=pointer]
+        - generic [ref=e226]:
+          - generic [ref=e227]: Project Message
+          - textbox "Project Message" [ref=e228]:
+            - /placeholder: Tell us about your project and goals...
+        - generic [ref=e229]:
+          - button "Start My Project" [ref=e230] [cursor=pointer]
+          - link "Or book a consultation →" [ref=e231] [cursor=pointer]:
+            - /url: mailto:hello@buildsynergy.co.za
+        - paragraph [ref=e232]: Your information is kept private and only used to respond to your enquiry.
+  - contentinfo [ref=e233]:
+    - generic [ref=e234]:
+      - generic [ref=e235]:
+        - generic [ref=e236]:
+          - generic [ref=e237]: BuildSynergy
+          - paragraph [ref=e238]:
+            - text: Premium websites and digital solutions
+            - text: for modern South African businesses.
+          - link "hello@buildsynergy.co.za" [ref=e239] [cursor=pointer]:
+            - /url: mailto:hello@buildsynergy.co.za
+        - navigation "Footer" [ref=e240]:
+          - generic [ref=e241]:
+            - generic [ref=e242]: Navigate
+            - list [ref=e243]:
+              - listitem [ref=e244]:
+                - link "Home" [ref=e245] [cursor=pointer]:
+                  - /url: "#home"
+              - listitem [ref=e246]:
+                - link "Services" [ref=e247] [cursor=pointer]:
+                  - /url: "#services"
+              - listitem [ref=e248]:
+                - link "Team" [ref=e249] [cursor=pointer]:
+                  - /url: "#team"
+              - listitem [ref=e250]:
+                - link "Contact" [ref=e251] [cursor=pointer]:
+                  - /url: "#contact"
+          - generic [ref=e252]:
+            - generic [ref=e253]: Connect
+            - list [ref=e254]:
+              - listitem [ref=e255]:
+                - link "LinkedIn" [ref=e256] [cursor=pointer]:
+                  - /url: /
+              - listitem [ref=e257]:
+                - link "Facebook" [ref=e258] [cursor=pointer]:
+                  - /url: /
+              - listitem [ref=e259]:
+                - link "Instagram" [ref=e260] [cursor=pointer]:
+                  - /url: /
+      - generic [ref=e262]:
+        - generic [ref=e263]: © 2026 BuildSynergy. All rights reserved.
+        - button "Back to top" [ref=e264] [cursor=pointer]: ↑ Top

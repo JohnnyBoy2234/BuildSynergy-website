@@ -6,37 +6,42 @@
 
 /* ── Design Tokens ──────────────────────────────────────────────────── */
 :root {
-  /* Backgrounds */
-  --bg:          #050505;
-  --bg2:         #0a0a0d;
-  --surface:     #111114;
-  --surface2:    #17171c;
+  /* Backgrounds deep navy-black with indigo undertone */
+  --bg:       #04040e;
+  --bg2:      #07071a;
+  --surface:  #0c0c22;
+  --surface2: #11112e;
 
   /* Glass */
-  --glass:       rgba(255,255,255,0.035);
-  --glass2:      rgba(255,255,255,0.06);
+  --glass:    rgba(255,255,255,0.04);
+  --glass2:   rgba(255,255,255,0.07);
 
   /* Borders */
-  --border:      rgba(255,255,255,0.10);
-  --border2:     rgba(255,255,255,0.16);
+  --border:   rgba(255,255,255,0.09);
+  --border2:  rgba(255,255,255,0.16);
 
   /* Text */
-  --text:        rgba(255,255,255,0.92);
-  --text-body:   rgba(255,255,255,0.62);
-  --text-muted:  rgba(255,255,255,0.42);
+  --text:       rgba(255,255,255,0.93);
+  --text-body:  rgba(255,255,255,0.62);
+  --text-muted: rgba(255,255,255,0.40);
 
-  /* Accents */
-  --cyan:        #00d4ff;
-  --blue:        #3366ff;
-  --violet:      #7744ff;
-  --cyan-glow:   rgba(0,212,255,0.15);
-  --blue-glow:   rgba(51,102,255,0.15);
+  /* Accent palette pulled from the abstract 3D background */
+  --indigo:      #6366f1;
+  --cyan:        #22d3ee;
+  --violet:      #a855f7;
+  --pink:        #e879f9;
+  --blue:        #6366f1;   /* alias for backwards compat */
+
+  /* Glow colours */
+  --indigo-glow: rgba(99,102,241,0.22);
+  --cyan-glow:   rgba(34,211,238,0.18);
+  --violet-glow: rgba(168,85,247,0.15);
 
   /* Typography */
   --sans:    'Inter', system-ui, sans-serif;
   --display: 'Space Grotesk', system-ui, sans-serif;
 
-  /* Spacing rhythm */
+  /* Layout rhythm */
   --section-pad: clamp(5rem, 10vw, 9rem);
   --container:   1280px;
   --gutter:      clamp(1.25rem, 5vw, 5rem);
@@ -56,14 +61,15 @@ body {
   overflow-x: hidden;
 }
 
-/* Ambient background */
+/* Ambient background indigo / violet / cyan from the abstract 3D bg */
 body::before {
   content: '';
   position: fixed;
   inset: 0;
   background:
-    radial-gradient(ellipse 70% 55% at 68% 30%, rgba(20,45,140,0.10) 0%, transparent 100%),
-    radial-gradient(ellipse 55% 45% at 28% 72%, rgba(90,25,150,0.07) 0%, transparent 100%);
+    radial-gradient(ellipse 65% 60% at 70% 20%, rgba(99,102,241,0.12) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 50% at 25% 75%, rgba(168,85,247,0.10) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 40% at 50% 50%, rgba(34,211,238,0.05) 0%, transparent 60%);
   pointer-events: none;
   z-index: 0;
 }
@@ -92,9 +98,20 @@ p { color: var(--text-body); line-height: 1.7; }
   font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--cyan);
+  /* Alternate between indigo and cyan for visual variety */
+  color: var(--indigo);
   display: block;
   margin-bottom: 1rem;
+}
+
+/* ── GSAP word-split (global used across sections) ─────────────────── */
+.word-outer {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+}
+.word-inner {
+  display: inline-block;
 }
 
 /* ── Buttons ─────────────────────────────────────────────────────────── */
@@ -102,7 +119,7 @@ p { color: var(--text-body); line-height: 1.7; }
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: var(--blue);
+  background: linear-gradient(135deg, var(--indigo), var(--violet));
   color: #fff;
   font-family: var(--display);
   font-size: 0.875rem;
@@ -117,7 +134,7 @@ p { color: var(--text-body); line-height: 1.7; }
 .btn-primary:hover {
   opacity: 0.88;
   transform: translateY(-1px);
-  box-shadow: 0 0 24px rgba(51,102,255,0.35);
+  box-shadow: 0 0 28px rgba(99,102,241,0.4);
 }
 
 .btn-secondary {
@@ -157,32 +174,33 @@ p { color: var(--text-body); line-height: 1.7; }
   z-index: 1;
 }
 
-/* ── Divider ─────────────────────────────────────────────────────────── */
+/* ── Section fade blends adjacent section backgrounds together ─────── */
 .divider {
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--border), transparent);
-  margin: 0 var(--gutter);
+  height: 140px;
+  margin-top:    -70px;
+  margin-bottom: -70px;
+  position: relative;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    var(--bg) 50%,
+    transparent 100%
+  );
 }
 
-/* ── Reveal system ───────────────────────────────────────────────────── */
+/* ── Reveal system (progressive enhancement content always visible) ── */
 .will-reveal {
-  opacity: 0;
-  transform: translateY(28px);
   transition: opacity 0.65s ease, transform 0.65s ease;
 }
-.will-reveal.revealed {
-  opacity: 1;
-  transform: translateY(0);
-}
 .will-reveal-fade {
-  opacity: 0;
   transition: opacity 0.6s ease;
 }
-.will-reveal-fade.revealed { opacity: 1; }
 
-/* ── Gradient text ───────────────────────────────────────────────────── */
+/* ── Gradient text white → indigo/cyan to echo abstract bg ─────────── */
 .text-gradient {
-  background: linear-gradient(165deg, #ffffff 0%, rgba(255,255,255,0.6) 100%);
+  background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 55%, #67e8f9 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

@@ -23,7 +23,8 @@
       "mcp__plugin_playwright_playwright__browser_wait_for",
       "PowerShell(Get-NetTCPConnection -LocalPort 5173 -ErrorAction SilentlyContinue | ForEach-Object { Stop-Process -Id $_.OwningProcess -Force -ErrorAction SilentlyContinue }; Write-Host \"Stopped\")",
       "PowerShell(3000,3001,4173,5173,5174,8080 | ForEach-Object { Get-NetTCPConnection -LocalPort $_ -ErrorAction SilentlyContinue | ForEach-Object { Stop-Process -Id $_.OwningProcess -Force -ErrorAction SilentlyContinue } }; Write-Host \"Done\")",
-      "PowerShell(Invoke-WebRequest -Uri \"https://lh3.googleusercontent.com/aida/AP1WRLu6MdevM9IjYII7BxFSm-vk4yBar_Gz8rnu2EjSj9ZlMPQXGsBdFa9BjiYr47lP5UAfsQ7mX2RCnZ1tgdDYhSCYRnYRbLGDD5tZ3ybMttDewtwJ1z1Y_dotl5zDs1x0XdVLHimxwRlpDZHQvbkinbC3o8sAuNQU9OypwCP_ldR1t7-zlQkdo0Co4up997LOzSmyuFWgJrlFUQLAu8ObePlF9R2dhEs5fBa1MmGbRFWJR6UX_JQOrOcdSi0\" -OutFile \"C:\\\\Users\\\\Jonathan D Theron\\\\BuildSynergy-website\\\\stitch-screen.png\" -UseBasicParsing)"
+      "PowerShell(Invoke-WebRequest -Uri \"https://lh3.googleusercontent.com/aida/AP1WRLu6MdevM9IjYII7BxFSm-vk4yBar_Gz8rnu2EjSj9ZlMPQXGsBdFa9BjiYr47lP5UAfsQ7mX2RCnZ1tgdDYhSCYRnYRbLGDD5tZ3ybMttDewtwJ1z1Y_dotl5zDs1x0XdVLHimxwRlpDZHQvbkinbC3o8sAuNQU9OypwCP_ldR1t7-zlQkdo0Co4up997LOzSmyuFWgJrlFUQLAu8ObePlF9R2dhEs5fBa1MmGbRFWJR6UX_JQOrOcdSi0\" -OutFile \"C:\\\\Users\\\\Jonathan D Theron\\\\BuildSynergy-website\\\\stitch-screen.png\" -UseBasicParsing)",
+      "Bash(npx svelte-check *)"
     ]
   }
 }

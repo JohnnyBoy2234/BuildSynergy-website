@@ -5,7 +5,7 @@
 
   function submit(e) {
     e.preventDefault()
-    alert('Thanks — this is a mockup. In production we would wire a backend.')
+    alert('Thanks this is a mockup. In production we would wire a backend.')
   }
 </script>
 

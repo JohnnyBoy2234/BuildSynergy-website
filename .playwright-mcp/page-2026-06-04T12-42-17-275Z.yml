@@ -12,7 +12,7 @@
           - /url: /about
         - link "Start a Project" [ref=e10] [cursor=pointer]:
           - /url: /contact
-  - region "BuildSynergy — Digital Ecosystem" [ref=e11]:
+  - region "BuildSynergy Digital Ecosystem" [ref=e11]:
     - generic:
       - generic: BUILDSYNERGY
       - generic:
