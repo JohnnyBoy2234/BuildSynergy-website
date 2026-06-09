@@ -64,7 +64,7 @@ function convert_formdata(data) {
 		/** @type {any[]} */
 		let values = data.getAll(key);
 		if (is_array) key = key.slice(0, -2);
-		if (values.length > 1 && !is_array) throw new Error(`Form cannot contain duplicated keys "${key}" has ${values.length} values`);
+		if (values.length > 1 && !is_array) throw new Error(`Form cannot contain duplicated keys — "${key}" has ${values.length} values`);
 		values = values.filter((entry) => typeof entry === "string" || entry.name !== "" || entry.size > 0);
 		if (key.startsWith("n:")) {
 			key = key.slice(2);

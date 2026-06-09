@@ -38,7 +38,7 @@ function create_validator(validate_or_fn, maybe_fn) {
 *
 * @template {MaybePromise<any>} T
 * @param {RemoteInternals} internals
-* @param {string} payload the stringified raw argument (i.e. the cache key the client will use)
+* @param {string} payload — the stringified raw argument (i.e. the cache key the client will use)
 * @param {RequestState} state
 * @param {() => Promise<T>} get_result
 * @returns {Promise<T>}
@@ -971,8 +971,8 @@ function batch(validate_or_fn, maybe_fn) {
 	* Enqueues a single call into the current batch (creating one if necessary)
 	* and returns a promise that resolves with the result for this entry.
 	*
-	* @param {string} payload the stringified raw argument (cache key)
-	* @param {() => MaybePromise<any>} get_validated produces the validated argument for this entry
+	* @param {string} payload — the stringified raw argument (cache key)
+	* @param {() => MaybePromise<any>} get_validated — produces the validated argument for this entry
 	* @returns {Promise<any>}
 	*/
 	const enqueue = (payload, get_validated) => {
@@ -1062,7 +1062,7 @@ function batch(validate_or_fn, maybe_fn) {
 }
 /**
 * @param {RemoteInternals} __
-* @param {string} payload the stringified raw argument (i.e. the cache key the client will use)
+* @param {string} payload — the stringified raw argument (i.e. the cache key the client will use)
 * @param {RequestState} state
 * @param {() => Promise<any>} fn
 * @returns {RemoteQuery<any>}
@@ -1111,7 +1111,7 @@ function create_query_resource(__, payload, state, fn) {
 			return update_refresh_value(get_refresh_context(__, "set", payload), value);
 		},
 		run() {
-			throw new Error(`\`myQuery().run()\` has been removed please replace it with \`myQuery()\`. See https://github.com/sveltejs/kit/pull/15779 for more details`);
+			throw new Error(`\`myQuery().run()\` has been removed — please replace it with \`myQuery()\`. See https://github.com/sveltejs/kit/pull/15779 for more details`);
 		},
 		/** @type {Promise<any>['then']} */
 		then(onfulfilled, onrejected) {
@@ -1127,9 +1127,9 @@ function create_query_resource(__, payload, state, fn) {
 }
 /**
 * @param {RemoteQueryLiveInternals} __
-* @param {string} payload the stringified raw argument (i.e. the cache key the client will use)
+* @param {string} payload — the stringified raw argument (i.e. the cache key the client will use)
 * @param {RequestState} state
-* @param {AbortSignal} signal the request signal; aborts in-flight iteration when the client disconnects
+* @param {AbortSignal} signal — the request signal; aborts in-flight iteration when the client disconnects
 * @param {() => AsyncGenerator<any, void, void>} get_generator
 * @returns {RemoteLiveQuery<any>}
 */
@@ -1264,7 +1264,7 @@ Object.defineProperty(query, "live", {
 /**
 * @param {RemoteInternals} __
 * @param {'set' | 'refresh'} action
-* @param {string} payload the stringified raw argument (i.e. the cache key the client will use)
+* @param {string} payload — the stringified raw argument (i.e. the cache key the client will use)
 * @returns {{ __: RemoteInternals; state: any; refreshes: Map<string, Promise<any>>; cache: Record<string, { serialize: boolean; data: any }>; refreshes_key: string; payload: string }}
 */
 function get_refresh_context(__, action, payload) {
@@ -1337,7 +1337,7 @@ function update_refresh_value({ __, refreshes, refreshes_key, cache, payload }, 
 * await requested(getPost, 5).refreshAll();
 * ```
 *
-* Works with `query.batch` as well refreshes for individual entries are
+* Works with `query.batch` as well — refreshes for individual entries are
 * collected into a single batched call.
 *
 * For live queries, the same applies, but with `reconnect` and `reconnectAll`.

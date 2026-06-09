@@ -2,7 +2,7 @@ import { _ as text_encoder, a as split_remote_key, g as get_relative_path, h as 
 import { a as public_env, c as app_dir, d as override, f as reset, l as assets, o as set_private_env, s as set_public_env, u as base } from "./chunks/internal.js";
 import { E as ENDPOINT_METHODS, O as PAGE_METHODS, _ as is_form_content_type, a as get_global_name, c as handle_fatal_error, d as redirect_response, f as serialize_uses, g as get_set_cookies, h as s, i as format_server_error, l as has_prerendered_path, m as escape_html, o as get_node_type, p as static_error_page, r as create_replacer, s as handle_error_and_jsonify, t as clarify_devalue_error, u as method_not_allowed, v as negotiate, x as deserialize_binary_form } from "./chunks/utils.js";
 import { _ as has_data_suffix, b as strip_resolution_suffix, d as make_trackable, f as normalize_path, g as add_resolution_suffix, h as add_data_suffix, i as validate_page_server_exports, l as decode_pathname, m as noop_span, n as validate_layout_server_exports, o as find_route, p as resolve, r as validate_page_exports, s as hash, t as validate_layout_exports, u as disable_search, v as has_resolution_suffix, x as compact, y as strip_data_suffix } from "./chunks/exports.js";
-import { E as writable, T as readable } from "./chunks/dev.js";
+import { D as writable, E as readable } from "./chunks/dev.js";
 import { a as set_read_implementation, i as set_manifest, n as options, r as read_implementation, t as get_hooks } from "./chunks/internal2.js";
 import { error, isRedirect, json, text } from "@sveltejs/kit";
 import { ActionFailure, HttpError, Redirect, SvelteKitError } from "@sveltejs/kit/internal";
@@ -252,7 +252,7 @@ async function call_action(event, event_state, actions) {
 	}
 	const action = actions[name];
 	if (!action) throw new SvelteKitError(404, "Not Found", `No action with name '${name}' found`);
-	if (!is_form_content_type(event.request)) throw new SvelteKitError(415, "Unsupported Media Type", `Form actions expect form-encoded data received ${event.request.headers.get("content-type")}`);
+	if (!is_form_content_type(event.request)) throw new SvelteKitError(415, "Unsupported Media Type", `Form actions expect form-encoded data — received ${event.request.headers.get("content-type")}`);
 	return record_span({
 		name: "sveltekit.form_action",
 		attributes: {
@@ -772,7 +772,7 @@ function create_universal_fetch(event, state, fetched, csr, resolve_opts) {
 				const lower = key.toLowerCase();
 				const value = get.call(response.headers, lower);
 				if (value && !lower.startsWith("x-sveltekit-")) {
-					if (!resolve_opts.filterSerializedResponseHeaders(lower, value)) throw new Error(`Failed to get response header "${lower}" it must be included by the \`filterSerializedResponseHeaders\` option: https://svelte.dev/docs/kit/hooks#Server-hooks-handle (at ${event.route.id})`);
+					if (!resolve_opts.filterSerializedResponseHeaders(lower, value)) throw new Error(`Failed to get response header "${lower}" — it must be included by the \`filterSerializedResponseHeaders\` option: https://svelte.dev/docs/kit/hooks#Server-hooks-handle (at ${event.route.id})`);
 				}
 				return value;
 			};
@@ -1955,7 +1955,7 @@ async function handle_remote_call_internal(event, state, options, manifest, id) 
 		}
 		if (internals.type === "form") {
 			if (event.request.method !== "POST") throw new SvelteKitError(405, "Method Not Allowed", `\`form\` functions must be invoked via POST request, not ${event.request.method}`);
-			if (!is_form_content_type(event.request)) throw new SvelteKitError(415, "Unsupported Media Type", `\`form\` functions expect form-encoded data received ${event.request.headers.get("content-type")}`);
+			if (!is_form_content_type(event.request)) throw new SvelteKitError(415, "Unsupported Media Type", `\`form\` functions expect form-encoded data — received ${event.request.headers.get("content-type")}`);
 			const { data, meta, form_data } = await deserialize_binary_form(event.request);
 			state.remote.requested = create_requested_map(meta.remote_refreshes);
 			if (additional_args && !("id" in data)) data.id = JSON.parse(decodeURIComponent(additional_args));
@@ -3025,7 +3025,7 @@ async function internal_respond(request, options, manifest, state) {
 		cookies,
 		fetch: null,
 		getClientAddress: state.getClientAddress || (() => {
-			throw new Error(`undefined does not specify getClientAddress. Please raise an issue`);
+			throw new Error(`@sveltejs/adapter-static does not specify getClientAddress. Please raise an issue`);
 		}),
 		locals: {},
 		params: {},
