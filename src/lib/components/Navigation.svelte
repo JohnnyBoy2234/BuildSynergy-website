@@ -74,6 +74,13 @@
     if (i !== -1) moveLamp(i);
   }
 
+  // Re-measure lamp whenever collapsed state changes, after transitions finish
+  $effect(() => {
+    const _ = hideLabels;
+    const t = setTimeout(() => requestAnimationFrame(refreshLamp), 360);
+    return () => clearTimeout(t);
+  });
+
   onMount(async () => {
     const checkMobile = () => { isMobile = window.innerWidth < 768; };
     checkMobile();
@@ -81,8 +88,6 @@
 
     const onScroll = () => {
       scrolled = window.scrollY > 80;
-      // Re-position lamp after CSS label transition (300ms)
-      setTimeout(refreshLamp, 320);
     };
     window.addEventListener('scroll', onScroll, { passive: true });
 
@@ -329,7 +334,7 @@
     z-index: 1;
     display: flex;
     align-items: center;
-    gap: 0.35rem;
+    gap: 0;
     font-family: var(--display);
     font-size: 0.82rem;
     font-weight: 500;
@@ -357,20 +362,24 @@
   .nav-item:hover .nav-icon,
   .nav-item.active .nav-icon { opacity: 1; }
 
-  /* Label with collapse transition */
+  /* Label with collapse transition — margin-left carries the spacing so it
+     collapses with the text, keeping the icon visually centered */
   .nav-label {
     overflow: hidden;
     max-width: 80px;
+    margin-left: 0.35rem;
     opacity: 1;
     white-space: nowrap;
     transition: max-width 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-                opacity 0.22s ease;
+                opacity 0.22s ease,
+                margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   /* Desktop collapsed: icons only */
   .nav-pill.collapsed .nav-label {
     max-width: 0;
     opacity: 0;
+    margin-left: 0;
   }
   .nav-pill.collapsed .nav-item {
     padding: 0.45rem 0.65rem;
