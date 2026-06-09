@@ -1,0 +1,308 @@
+================================================================
+BUILDSYNERGY — WEBSITE CONTENT EXTRACT
+================================================================
+Site:    BuildSynergy
+Email:   hello@buildsynergy.co.za
+Date:    June 2026
+================================================================
+
+
+----------------------------------------------------------------
+NAVIGATION
+----------------------------------------------------------------
+Logo:      BuildSynergy
+Nav links: Home | Services | Process | Packages | Contact
+CTA:       Start a Project
+
+
+----------------------------------------------------------------
+HERO SECTION
+----------------------------------------------------------------
+Heading:
+  You're Better Than the Way Customers See You Online.
+
+Subheading:
+  BuildSynergy helps South African businesses create a sharper,
+  more trustworthy digital presence with modern design, lead
+  capture, hosting and ongoing support.
+
+Support line:
+  Look professional. Get found. Turn interest into enquiries.
+
+Primary CTA:  Get My Free Digital Presence Audit
+Secondary CTA: See What We Do
+
+Trust line:
+  For service businesses, trades, suppliers and local companies
+  ready to be taken seriously online.
+
+Floating UI cards (visual props):
+  - New Enquiry: Plumbing Services, JHB
+  - SEO Status: Indexed & Ready
+  - Hosting: Active · 99.9% uptime
+  - Quote Request: Received · 2 min ago
+  - Digital Presence Score: 94 (↑ from 31 before BuildSynergy)
+
+
+----------------------------------------------------------------
+TRUST STRIP (capability tags)
+----------------------------------------------------------------
+  Professional Design  |  Managed Hosting  |  Quote Requests
+  SEO Basics  |  Monthly Support  |  Lead Capture
+
+
+----------------------------------------------------------------
+SECTION 1 — THE PROBLEM
+----------------------------------------------------------------
+Heading:
+  The Problem Isn't That Your Business Is Small.
+
+Lead:
+  Customers decide how much they trust you before they ever
+  speak to you.
+
+Steps:
+  → They search your name.
+  → They compare you to competitors.
+  → They check if you look professional, easy to contact and
+     still active.
+
+Body:
+  If your online presence feels outdated, incomplete or hard to
+  trust, good customers move on — even if your actual work is
+  better.
+
+  That gap costs businesses enquiries every day.
+
+Closing statement:
+  We close that gap.
+
+Before/After visual (labels):
+  BEFORE                      AFTER BUILDSYNERGY
+  - No website found          - Professional website live
+  - Last updated 3 years ago  - SEO indexed & found
+  - No contact info           - Lead forms active
+  - Not mobile friendly       - Mobile & fast
+  Trust Score: 24             Trust Score: 91
+
+
+----------------------------------------------------------------
+SECTION 2 — THE SOLUTION (Services)
+----------------------------------------------------------------
+Heading:
+  We Build the Digital Front Door Your Business Deserves.
+
+Subheading:
+  BuildSynergy creates modern digital systems that help customers
+  find you, trust you and contact you faster — without you having
+  to manage the technical side.
+
+Service Cards:
+
+  01  Website Design & Development
+      A complete, professional website built around your business
+      with managed hosting and monthly care included as standard.
+
+  02  Mobile App Development
+      Custom iOS and Android apps that give your business its own
+      presence directly on your customers' devices.
+
+  03  Lead Capture & Quote Systems
+      Smart enquiry forms and quote request flows that turn website
+      visitors into real customers.
+
+  04  Google Visibility & SEO
+      Local SEO setup and Google presence so nearby customers can
+      find your business and understand what you offer.
+
+  05  Branding & Visual Identity
+      Logo, colour palette and visual identity that makes your
+      business instantly recognisable and trustworthy.
+
+  06  E-commerce & Online Payments
+      Online stores and payment integrations so customers can browse
+      your services and pay directly through your site.
+
+Closing line:
+  You focus on running the business. We make sure your first
+  impression works.
+
+
+----------------------------------------------------------------
+SECTION 3 — THE PROCESS
+----------------------------------------------------------------
+Heading:
+  Simple Steps. Most of the Work Is Ours.
+
+Subheading:
+  We handle strategy, design, development and ongoing care.
+  Your only job is to review and approve before we go live.
+
+Steps:
+
+  01  Discover
+      We review your business, goals and what customers need to see
+      before they trust you.
+
+  02  Design
+      We create your site structure, messaging and visual direction —
+      refined together.
+
+  03  Build
+      We develop your website, connect lead tools, optimise for
+      mobile and prepare for launch.
+
+  04  Launch & Grow
+      We go live and keep your presence sharp through hosting,
+      updates and monthly care.
+
+Footer note:
+  Most clients are live within 2–4 weeks of getting started.
+
+
+----------------------------------------------------------------
+SECTION 4 — PACKAGES
+----------------------------------------------------------------
+Heading:
+  Choose the Level of Support Your Business Needs.
+
+Intro:
+  Whether you need a simple professional presence or a stronger
+  digital system with ongoing support, we'll help you choose the
+  right setup.
+
+  ┌─────────────────────────────────────────────────────────┐
+  │  STARTER PRESENCE                                       │
+  │  For businesses that need to look professional and get  │
+  │  online quickly.                                        │
+  │                                                         │
+  │  ✓ Mobile-ready website                                 │
+  │  ✓ Basic SEO setup                                      │
+  │  ✓ Contact form                                         │
+  │  ✓ Hosting setup                                        │
+  │  ✓ Basic launch support                                 │
+  │                                                         │
+  │  CTA: Start with Starter                                │
+  └─────────────────────────────────────────────────────────┘
+
+  ┌─────────────────────────────────────────────────────────┐
+  │  BUSINESS PRESENCE  ★ Recommended                       │
+  │  For businesses that want stronger lead capture and     │
+  │  ongoing support.                                       │
+  │                                                         │
+  │  ✓ Everything in Starter                                │
+  │  ✓ Quote request system                                 │
+  │  ✓ Google visibility setup                              │
+  │  ✓ Monthly care plan                                    │
+  │  ✓ Technical support                                    │
+  │  ✓ Updates and backups                                  │
+  │                                                         │
+  │  CTA: Start with Business                               │
+  └─────────────────────────────────────────────────────────┘
+
+  ┌─────────────────────────────────────────────────────────┐
+  │  GROWTH SYSTEM                                          │
+  │  For businesses ready for a more complete digital setup.│
+  │                                                         │
+  │  ✓ Everything in Business                               │
+  │  ✓ Advanced lead capture                                │
+  │  ✓ Analytics setup                                      │
+  │  ✓ Ongoing improvements                                 │
+  │  ✓ Priority support                                     │
+  │                                                         │
+  │  CTA: Start with Growth                                 │
+  └─────────────────────────────────────────────────────────┘
+
+Note:
+  Not sure which is right for you? Get in touch and we'll
+  advise you →
+
+
+----------------------------------------------------------------
+SECTION 5 — THE TEAM
+----------------------------------------------------------------
+Heading:
+  The Team Behind BuildSynergy.
+
+Subheading:
+  Two brothers. One focused on building, one on business.
+  Together we handle every project end to end — from the first
+  conversation to ongoing support.
+
+Team Members:
+
+  Jonathan Theron
+  Co-Founder | Design & Development
+
+  Caleb Theron
+  Co-Founder | Strategy & Client Relations
+
+
+----------------------------------------------------------------
+SECTION 6 — CONTACT / START A PROJECT
+----------------------------------------------------------------
+Eyebrow:  Start a Project
+
+Heading:
+  Ready to give your business a stronger online presence?
+
+Subheading:
+  Tell us about your business and what you'd like to improve.
+  We'll help you identify the right digital solution.
+
+Form fields:
+  - Name (required)
+  - Business Name (required)
+  - Email (required)
+  - Phone
+  - Website (optional)
+  - What do you need help with? (chip selector):
+      New Website | Website Redesign | WhatsApp Integration
+      Contact or Quote Forms | AI Chatbot | Google Visibility
+      Company Profile | Photography or Video
+      Website Maintenance | Not Sure Yet
+  - Project Message (required)
+  - Checkbox: I agree to the Privacy Policy and Terms & Conditions
+
+Submit CTA:  Start My Project
+
+Success message:
+  Message received.
+  We'll be in touch within one business day.
+
+
+----------------------------------------------------------------
+FOOTER
+----------------------------------------------------------------
+Tagline:
+  Premium websites and digital solutions for modern South African
+  businesses.
+
+Email:  hello@buildsynergy.co.za
+
+Nav columns:
+  Navigate:   Home | Services | Process | Packages | Contact
+  Connect:    LinkedIn | Facebook | Instagram
+  Legal:      Privacy Policy | Terms & Conditions
+
+Copyright:
+  © 2026 BuildSynergy. All rights reserved.
+
+
+----------------------------------------------------------------
+LEGAL PAGES
+----------------------------------------------------------------
+
+PRIVACY POLICY  (/privacy-policy)
+  Governed by POPIA (Protection of Personal Information Act).
+  Covers: data collection, use, storage, sharing, rights,
+  cookies, and contact details.
+
+TERMS & CONDITIONS  (/terms)
+  Covers: service agreements, payment, intellectual property,
+  liability, and governing law (South Africa).
+
+
+================================================================
+END OF CONTENT EXTRACT
+================================================================
