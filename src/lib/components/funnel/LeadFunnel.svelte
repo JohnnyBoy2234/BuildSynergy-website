@@ -16,6 +16,9 @@
 
   function validateStep(n: number): Record<string, string> {
     const e: Record<string, string> = {};
+    if (n === 1) {
+      if (!data.service) e.service = 'Please choose an option.';
+    }
     if (n === 2) {
       if (data.hasWebsite === null) e.hasWebsite = 'Please choose one.';
       if (!data.mainGoal.trim()) e.mainGoal = 'Required.';
@@ -70,7 +73,7 @@
 
 <div class="lf">
   {#if submitted}
-    <div class="lf-success">
+    <div class="lf-success" role="status">
       <div class="success-ring" aria-hidden="true">
         <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
           <path d="M6 14l6 6 10-12" stroke="#22d3ee" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
