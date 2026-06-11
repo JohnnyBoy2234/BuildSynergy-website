@@ -5,7 +5,6 @@
   import SectionCanvas from './SectionCanvas.svelte';
   import LeadFunnel from './funnel/LeadFunnel.svelte';
 
-  let sectionEl: HTMLElement;
   let panelEl:   HTMLElement;
   let headingEl: HTMLElement;
 
@@ -41,7 +40,7 @@
   });
 </script>
 
-<section id="contact" class="contact-section" bind:this={sectionEl}>
+<section id="contact" class="contact-section">
   <!-- Particle network -->
   <SectionCanvas particleCount={45} opacity={0.35} />
 

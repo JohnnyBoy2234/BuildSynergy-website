@@ -41,20 +41,3 @@
     {/each}
   </div>
 </div>
-
-<style>
-  .lf-title {
-    font-size: 1.15rem;
-    margin: 0 0 1.25rem;
-  }
-  .lf-label {
-    font-size: 0.82rem;
-    font-weight: 500;
-    color: var(--text-muted);
-    letter-spacing: 0.02em;
-  }
-  .opt {
-    font-weight: 400;
-    opacity: 0.6;
-  }
-</style>

@@ -194,6 +194,11 @@
   }
   .btn-submit:disabled { opacity: 0.5; cursor: wait; }
 
+  .lf :global(.lf-title) {
+    font-size: 1.15rem;
+    margin: 0 0 1.25rem;
+  }
+
   /* Shared field styles for step components (copied from the replaced form) */
   .lf :global(.form-row) {
     display: grid;

@@ -48,14 +48,3 @@
   </label>
   {#if errors.agreed}<span class="err-msg">{errors.agreed}</span>{/if}
 </div>
-
-<style>
-  .lf-title {
-    font-size: 1.15rem;
-    margin: 0 0 1.25rem;
-  }
-  .opt {
-    font-weight: 400;
-    opacity: 0.6;
-  }
-</style>

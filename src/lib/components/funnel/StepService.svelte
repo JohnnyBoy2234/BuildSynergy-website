@@ -21,10 +21,3 @@
     >{opt}</button>
   {/each}
 </div>
-
-<style>
-  .lf-title {
-    font-size: 1.15rem;
-    margin: 0 0 1.25rem;
-  }
-</style>
