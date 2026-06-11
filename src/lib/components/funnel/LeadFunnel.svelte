@@ -95,7 +95,7 @@
       {#key step}
         <div class="lf-step" use:stepIn>
           {#if step === 1}
-            <StepService bind:data onselect={next} />
+            <StepService bind:data {errors} onselect={next} />
           {:else if step === 2}
             <StepContext bind:data {errors} />
           {:else if step === 3}

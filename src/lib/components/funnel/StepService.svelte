@@ -3,10 +3,11 @@
 
   interface Props {
     data: FunnelData;
+    errors: Record<string, string>;
     onselect: () => void;
   }
 
-  let { data = $bindable(), onselect }: Props = $props();
+  let { data = $bindable(), errors, onselect }: Props = $props();
 </script>
 
 <h3 class="lf-title">What do you need help with?</h3>
@@ -21,3 +22,4 @@
     >{opt}</button>
   {/each}
 </div>
+{#if errors.service}<span class="err-msg">{errors.service}</span>{/if}
