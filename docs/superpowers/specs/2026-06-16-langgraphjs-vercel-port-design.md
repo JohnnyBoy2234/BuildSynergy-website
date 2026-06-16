@@ -38,6 +38,24 @@ below. They would be required for *any* Vercel deployment.
 | q_aBot fate | **Kept as the Python reference** until the TS port reaches parity; not deleted. |
 | Adapter | Switch `@sveltejs/adapter-static` → `@sveltejs/adapter-vercel`. |
 
+## Cost posture: free as much as possible
+
+Hard constraint from the user: **stay on free tiers wherever possible.** The whole
+stack is $0:
+
+| Service | Role | Free tier | Ceiling |
+|---|---|---|---|
+| Groq | LLM | Yes | Rate limits (req/min, tokens/day); may throttle under burst. |
+| Gemini | Embeddings | Yes | Rate-limited; our usage is tiny (4 docs once + 1 query embed/turn). |
+| Neon | Postgres (sessions + leads) | Yes | ~0.5GB, autosuspends when idle → first-request cold-start blip. |
+| Vercel | Hosting + functions | Hobby (free) | 60s functions; **officially non-commercial** (see risk #2). |
+
+Service count is already minimal: a serverless-persistent LangGraph checkpointer
+realistically requires Postgres, and Neon's free tier covers it. The only non-free
+*pressure* is the Hobby commercial-use ToS — a policy question, not a bill. If that
+becomes a problem, Cloudflare Pages/Workers (free tier, commercial allowed) is the
+fallback, at the cost of switching adapters and accepting Workers runtime limits.
+
 ## Architecture
 
 ### Project layout (in BuildSynergy-website)
