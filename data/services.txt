@@ -1,0 +1,43 @@
+Build Synergy — Services
+
+Build Synergy is a small web development and design studio based in Cape Town, South Africa. We build custom websites, SaaS MVPs, and brand identities for startups and growing small businesses.
+
+--- What We Build ---
+
+Custom Websites
+We design and build marketing sites, portfolio sites, and landing pages from scratch. We do not use WordPress or page builders. Every project is hand-coded using modern frameworks. Typical turnaround: 3–6 weeks.
+
+SaaS MVPs
+We take early-stage product ideas and build a working, deployable MVP. This includes frontend, backend, database, authentication, and deployment. We work closely with founders who have validated their idea but need to get something in users' hands. Typical turnaround: 8–14 weeks depending on scope.
+
+Brand Identity
+Logo, colour palette, typography system, and a basic brand guide. Often bundled with a website project. Can be done standalone. Typical turnaround: 2–3 weeks.
+
+E-commerce
+We build Shopify storefronts with custom themes and integrations. We do not build custom e-commerce from scratch unless it is part of a larger SaaS engagement.
+
+--- Pricing ---
+
+We charge project-based, not hourly.
+
+Custom Website: R18,000 – R45,000 depending on scope and content volume
+SaaS MVP: R65,000 – R140,000 depending on feature set
+Brand Identity: R8,500 – R16,000
+E-commerce (Shopify): R12,000 – R28,000
+
+All prices are in South African Rand and exclude VAT. A 50% deposit is required before work begins. The remaining 50% is due on delivery.
+
+--- What We Do Not Do ---
+
+We do not offer ongoing maintenance retainers at this time.
+We do not do print design, social media management, or SEO campaigns.
+We do not build mobile apps (native iOS or Android).
+We do not work with clients who have no budget defined — every engagement starts with a scoping call.
+
+--- Clients We Work Best With ---
+
+Startups at the seed or pre-seed stage who need a first digital presence or an MVP.
+Small businesses that have outgrown a DIY website and want something professional.
+Founders who know what they want but need someone to build it properly.
+
+We are not the right fit for large enterprises, government contracts, or clients who need a team of 10 or more developers.
