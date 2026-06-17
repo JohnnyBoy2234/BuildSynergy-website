@@ -30,3 +30,6 @@ dist-ssr
 
 # Vercel build output
 .vercel
+
+# SvelteKit generated output (should never be tracked)
+.svelte-kit
