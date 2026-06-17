@@ -85,7 +85,7 @@ Be warm. Show you have been listening.`,
 }
 
 function makeProcessTurn(llm: ChatGroq) {
-  const structured = llm.withStructuredOutput(TurnAnalysisSchema, { method: 'json_mode', name: 'TurnAnalysis' });
+  const structured = llm.withStructuredOutput(TurnAnalysisSchema, { method: 'jsonMode', name: 'TurnAnalysis' });
   return async (state: AgentStateType) => {
     const profile = state.profile ?? ({} as Profile);
     const questionsAsked = [...(state.questions_asked ?? [])];
@@ -153,7 +153,7 @@ function makeAsk(llm: ChatGroq) {
 }
 
 function makeValidateQuestion(llm: ChatGroq) {
-  const structured = llm.withStructuredOutput(GradeSchema, { method: 'json_mode', name: 'Grade' });
+  const structured = llm.withStructuredOutput(GradeSchema, { method: 'jsonMode', name: 'Grade' });
   return async (state: AgentStateType) => {
     const question = state.pending_message ?? '';
     const counts = state.retry_counts ?? {};
@@ -210,7 +210,7 @@ function makeFetchDocs(retrieve: Deps['retrieve']) {
 }
 
 function makeGradeDocs(llm: ChatGroq) {
-  const structured = llm.withStructuredOutput(DocGradeSchema, { method: 'json_mode', name: 'DocGrade' });
+  const structured = llm.withStructuredOutput(DocGradeSchema, { method: 'jsonMode', name: 'DocGrade' });
   return async (state: AgentStateType) => {
     const query = state.rewritten_query || String(state.messages.at(-1)!.content);
     const prompt = ChatPromptTemplate.fromMessages([
@@ -252,7 +252,7 @@ function makeAnswer(llm: ChatGroq) {
 }
 
 function makeVerifyAnswer(llm: ChatGroq) {
-  const structured = llm.withStructuredOutput(AnswerGradeSchema, { method: 'json_mode', name: 'AnswerGrade' });
+  const structured = llm.withStructuredOutput(AnswerGradeSchema, { method: 'jsonMode', name: 'AnswerGrade' });
   return async (state: AgentStateType) => {
     const answer = state.pending_message ?? '';
     const counts = state.retry_counts ?? {};
@@ -289,7 +289,7 @@ function makeComposeResponse(llm: ChatGroq) {
 }
 
 function makeRecommend(llm: ChatGroq) {
-  const structured = llm.withStructuredOutput(RecommendationSchema, { method: 'json_mode', name: 'Recommendation' });
+  const structured = llm.withStructuredOutput(RecommendationSchema, { method: 'jsonMode', name: 'Recommendation' });
   return async (state: AgentStateType) => {
     const profile = state.profile ?? ({} as Profile);
     const score = state.lead_score ?? 0.0;
