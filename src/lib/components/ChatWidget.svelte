@@ -70,6 +70,11 @@
 
   function panelIn(node: HTMLElement) {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (window.matchMedia('(max-width: 767px)').matches) {
+      // Full-screen panel slides up from the bottom.
+      gsap.fromTo(node, { y: '12%', opacity: 0 }, { y: 0, opacity: 1, duration: 0.3, ease: 'power3.out' });
+      return;
+    }
     gsap.fromTo(
       node,
       { opacity: 0, y: 16, scale: 0.96 },
@@ -175,18 +180,27 @@
   }
   .close:hover { color: var(--text); }
 
-  /* Lift above the bottom-docked mobile nav (matches Navigation's 767px breakpoint) */
+  /* Mobile: full-screen chat window */
   @media (max-width: 767px) {
-    .launcher {
-      bottom: 6rem;
-    }
     .panel {
+      top: 0; left: 0; right: 0; bottom: auto;
       width: auto;
-      left: 0.75rem; right: 0.75rem;
-      top: 1rem;
-      bottom: 10.5rem;
-      height: auto;
+      height: 100dvh;
+      max-width: none;
       max-height: none;
+      border: none;
+      border-radius: 0;
+    }
+    /* the full-screen panel closes from its own header button */
+    .launcher.open { display: none; }
+
+    .phead {
+      padding: max(0.95rem, env(safe-area-inset-top)) 1.1rem 0.95rem;
+    }
+    .brand { font-size: 1.05rem; }
+    .close { padding: 0.5rem; }
+    .input {
+      padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
     }
   }
 </style>
