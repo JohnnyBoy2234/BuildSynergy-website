@@ -5,7 +5,6 @@
   import ProblemSection   from '$lib/components/ProblemSection.svelte';
   import SolutionSection  from '$lib/components/SolutionSection.svelte';
   import ProcessSection   from '$lib/components/ProcessSection.svelte';
-  import PackageSection   from '$lib/components/PackageSection.svelte';
   import ManifestoSection from '$lib/components/ManifestoSection.svelte';
   import FinalCTA         from '$lib/components/FinalCTA.svelte';
   import Footer           from '$lib/components/Footer.svelte';
@@ -36,9 +35,6 @@
   <div class="divider"></div>
   <ProcessSection />
 
-  <!-- 9. Packages -->
-  <div class="divider"></div>
-  <PackageSection />
 
   <!-- 10. Why BuildSynergy -->
   <ManifestoSection />

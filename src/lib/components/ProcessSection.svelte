@@ -8,41 +8,35 @@
       num: '01',
       label: 'Discover',
       desc: 'We review your business, goals and what customers need to see before they trust you.',
-      icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <circle cx="10.5" cy="10.5" r="6.5" stroke="currentColor" stroke-width="1.5"/>
-        <path d="M15.5 15.5l4.5 4.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
-        <path d="M8 10.5h5M10.5 8v5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" opacity=".45"/>
+      icon: `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <circle cx="10.5" cy="10.5" r="6.5" stroke="currentColor" stroke-width="1.8"/>
+        <path d="M15.5 15.5L20 20" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
       </svg>`,
     },
     {
       num: '02',
       label: 'Design',
       desc: 'We create your site structure, messaging and visual direction refined together.',
-      icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <path d="M12 2H9L6 9l6 13 6-13-3-7h-3z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
-        <path d="M8.5 9h7" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" opacity=".4"/>
-        <path d="M12 22V13" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" opacity=".35"/>
+      icon: `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M15.5 5.5l3 3M4 20l1-4L16 5l3 3L9 19l-5 1z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
       </svg>`,
     },
     {
       num: '03',
       label: 'Build',
       desc: 'We develop your website, connect lead tools, optimise for mobile and prepare for launch.',
-      icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <path d="M7 6L2 12l5 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M17 6l5 6-5 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M14 4l-4 16" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" opacity=".4"/>
+      icon: `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M8 7l-5 5 5 5M16 7l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>`,
     },
     {
       num: '04',
       label: 'Launch & Grow',
       desc: 'We go live and keep your presence sharp through hosting, updates and monthly care.',
-      icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <path d="M12 2C12 2 6.5 8 6.5 13.5h11C17.5 8 12 2 12 2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
-        <path d="M12 13.5V19" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
-        <path d="M9 19h6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
-        <path d="M6.5 13.5L4 15.5v2l3.5-1M17.5 13.5L20 15.5v2l-3.5-1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" opacity=".5"/>
+      icon: `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M12 3c3 1.6 5 5 5 9l-2.5 2h-5L7 12c0-4 2-7.4 5-9z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+        <circle cx="12" cy="10" r="1.6" stroke="currentColor" stroke-width="1.6"/>
+        <path d="M9.5 16l-2 3.5M14.5 16l2 3.5M12 16.5V21" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
       </svg>`,
     },
   ];
@@ -87,7 +81,7 @@
 </script>
 
 <section id="process" class="process-section" bind:this={sectionEl}>
-  <div class="proc-glow-c" aria-hidden="true"></div>
+  <div class="section-wash" aria-hidden="true"></div>
 
   <div class="proc-container">
 
@@ -144,21 +138,6 @@
     overflow: hidden;
   }
 
-  .proc-glow-c {
-    position: absolute;
-    top: 30%; left: 50%;
-    width: 800px; height: 500px;
-    background: radial-gradient(ellipse, rgba(99,102,241,0.07) 0%, transparent 65%);
-    filter: blur(90px);
-    pointer-events: none;
-    animation: proc-breathe 9s ease-in-out infinite;
-  }
-
-  @keyframes proc-breathe {
-    0%, 100% { transform: translateX(-50%) scale(1);    opacity: 1; }
-    50%       { transform: translateX(-50%) scale(1.25); opacity: 0.45; }
-  }
-
   /* ── Container ─────────────────────────────────────────────────── */
   .proc-container {
     position: relative; z-index: 1;
@@ -196,13 +175,14 @@
   /* Horizontal line connecting step centres */
   .proc-line {
     position: absolute;
-    top: 32px; /* half of the 64px node */
+    top: 38px; /* half of the 76px node */
     left: 12.5%; right: 12.5%; /* from centre of step 1 to centre of step 4 */
     height: 1px;
     background: linear-gradient(90deg,
-      rgba(99,102,241,0.55) 0%,
-      rgba(168,85,247,0.4)  50%,
-      rgba(34,211,238,0.45) 100%
+      transparent 0%,
+      rgba(99,102,241,0.5) 15%,
+      rgba(99,102,241,0.5) 85%,
+      transparent 100%
     );
     pointer-events: none;
   }
@@ -245,10 +225,10 @@
   .step-node {
     position: relative;
     z-index: 2;
-    width: 64px; height: 64px;
+    width: 76px; height: 76px;
     border-radius: 50%;
-    border: 1px solid rgba(99,102,241,0.22);
-    background: rgba(255,255,255,0.025);
+    border: 1px solid rgba(99,102,241,0.32);
+    background: rgba(99,102,241,0.06);
     backdrop-filter: blur(6px);
     display: flex; align-items: center; justify-content: center;
     transition: border-color 0.35s, background 0.35s, box-shadow 0.35s;
@@ -275,10 +255,10 @@
   /* Icon inside */
   .node-icon {
     display: flex; align-items: center;
-    color: rgba(99,102,241,0.65);
+    color: #a5b4fc;
     transition: color 0.25s;
   }
-  .proc-step:hover .node-icon { color: var(--indigo); }
+  .proc-step:hover .node-icon { color: #e0e7ff; }
 
   /* ── Text block ────────────────────────────────────────────────── */
   .step-text {

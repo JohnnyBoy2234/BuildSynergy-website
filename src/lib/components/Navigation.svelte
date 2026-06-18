@@ -3,13 +3,6 @@
 
   const navItems = [
     {
-      name: 'Home', id: 'home',
-      icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <path d="M3 12L12 3l9 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M5 10v9a1 1 0 001 1h4v-5h4v5h4a1 1 0 001-1v-9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>`,
-    },
-    {
       name: 'Services', id: 'services',
       icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
         <rect x="3" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.5"/>
@@ -28,17 +21,9 @@
       </svg>`,
     },
     {
-      name: 'Packages', id: 'packages',
+      name: 'Why us', id: 'why',
       icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z" stroke="currentColor" stroke-width="1.5"/>
-        <path d="M3.27 6.96L12 12.01l8.73-5.05M12 22.08V12" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" opacity=".45"/>
-      </svg>`,
-    },
-    {
-      name: 'Contact', id: 'contact',
-      icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="1.5"/>
-        <path d="M22 6l-10 7L2 6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" opacity=".55"/>
+        <path d="M12 3l1.9 5.6L19.5 9l-4.4 3.6L16.4 18 12 14.9 7.6 18l1.3-5.4L4.5 9l5.6-.4L12 3z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
       </svg>`,
     },
   ];
@@ -48,10 +33,7 @@
   let lampWidth = $state(0);
   let pillEl:   HTMLElement;
   let itemEls:  HTMLElement[] = [];
-  let isMobile  = $state(false);
   let scrolled  = $state(false);
-
-  let hideLabels = $derived(!isMobile && scrolled);
 
   async function activate(name: string, index: number, scroll = false) {
     activeTab = name;
@@ -74,17 +56,16 @@
     if (i !== -1) moveLamp(i);
   }
 
-  // Re-measure lamp whenever collapsed state changes, after transitions finish
-  $effect(() => {
-    const _ = hideLabels;
-    const t = setTimeout(() => requestAnimationFrame(refreshLamp), 360);
-    return () => clearTimeout(t);
-  });
+  function go(id: string) {
+    document.querySelector(`#${id}`)?.scrollIntoView({ behavior: 'smooth' });
+  }
 
   onMount(async () => {
-    const checkMobile = () => { isMobile = window.innerWidth < 768; };
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
+    const onResize = () => {
+      requestAnimationFrame(refreshLamp);
+    };
+    onResize();
+    window.addEventListener('resize', onResize);
 
     const onScroll = () => {
       scrolled = window.scrollY > 80;
@@ -110,17 +91,17 @@
     });
 
     return () => {
-      window.removeEventListener('resize', checkMobile);
+      window.removeEventListener('resize', onResize);
       window.removeEventListener('scroll', onScroll);
       io.disconnect();
     };
   });
 </script>
 
-<header class="nav-wrap" class:mobile={isMobile}>
+<header class="nav-wrap">
   <nav
     class="nav-pill"
-    class:collapsed={hideLabels}
+    class:scrolled
     bind:this={pillEl}
     aria-label="Main navigation"
   >
@@ -128,7 +109,7 @@
     <a
       class="nav-logo-pill"
       href="/"
-      onclick={(e) => { e.preventDefault(); activate('Home', 0, true); }}
+      onclick={(e) => { e.preventDefault(); go('home'); }}
       aria-label="BuildSynergy Home"
     >
       <svg class="logo-mark" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -146,7 +127,7 @@
         <circle cx="4"  cy="9"  r="1.1" fill="#22d3ee"/>
         <circle cx="12" cy="22" r="1.2" fill="#22d3ee"/>
       </svg>
-      <span class="logo-text" class:logo-hidden={hideLabels}>
+      <span class="logo-text">
         Build<span class="logo-accent">Synergy</span>
       </span>
     </a>
@@ -184,16 +165,13 @@
     <a
       href="#contact"
       class="nav-cta"
-      class:cta-icon={hideLabels || isMobile}
-      onclick={(e) => { e.preventDefault(); activate('Contact', 4, true); }}
+      onclick={(e) => { e.preventDefault(); go('contact'); }}
+      aria-label="Get a quote"
     >
-      {#if hideLabels || isMobile}
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      {:else}
-        Start a Project
-      {/if}
+      <span class="cta-text">Get a quote</span>
+      <svg class="cta-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
     </a>
   </nav>
 </header>
@@ -208,10 +186,6 @@
     z-index: 100;
     overflow: visible;
   }
-  .nav-wrap.mobile {
-    top: auto;
-    bottom: 1.5rem;
-  }
 
   /* ── Pill ─────────────────────────────────────────────────────────── */
   .nav-pill {
@@ -224,12 +198,16 @@
     -webkit-backdrop-filter: blur(20px);
     border: 1px solid rgba(99,102,241,0.18);
     border-radius: 100px;
-    padding: 0.3rem 0.3rem;
+    padding: 0.35rem 0.4rem;
     box-shadow:
       0 0 0 1px rgba(255,255,255,0.04) inset,
       0 4px 24px rgba(0,0,0,0.4);
     overflow: visible;
-    transition: padding 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: background 0.3s ease, border-color 0.3s ease;
+  }
+  .nav-pill.scrolled {
+    background: rgba(8, 8, 22, 0.85);
+    border-color: rgba(99,102,241,0.28);
   }
 
   /* ── Logo ─────────────────────────────────────────────────────────── */
@@ -242,7 +220,6 @@
     flex-shrink: 0;
     position: relative;
     z-index: 1;
-    overflow: hidden;
   }
 
   .logo-mark {
@@ -254,25 +231,11 @@
 
   .logo-text {
     font-family: var(--display);
-    font-size: 1rem;
+    font-size: 1.08rem;
     font-weight: 700;
     letter-spacing: -0.03em;
     color: rgba(255,255,255,0.92);
     white-space: nowrap;
-    overflow: hidden;
-    max-width: 120px;
-    opacity: 1;
-    transition: max-width 0.32s cubic-bezier(0.4, 0, 0.2, 1),
-                opacity 0.25s ease;
-  }
-  .logo-text.logo-hidden {
-    max-width: 0;
-    opacity: 0;
-  }
-
-  /* Hide logo text on mobile (mark only) */
-  .nav-wrap.mobile .logo-text {
-    display: none;
   }
 
   .logo-accent {
@@ -336,15 +299,15 @@
     align-items: center;
     gap: 0;
     font-family: var(--display);
-    font-size: 0.82rem;
+    font-size: 0.92rem;
     font-weight: 500;
-    color: rgba(255,255,255,0.52);
+    color: rgba(255,255,255,0.58);
     background: none;
     border: none;
     cursor: pointer;
-    padding: 0.45rem 0.85rem;
+    padding: 0.5rem 0.95rem;
     border-radius: 100px;
-    transition: color 0.2s, padding 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: color 0.2s;
     white-space: nowrap;
   }
   .nav-item:hover  { color: rgba(255,255,255,0.85); }
@@ -362,48 +325,9 @@
   .nav-item:hover .nav-icon,
   .nav-item.active .nav-icon { opacity: 1; }
 
-  /* Label with collapse transition — margin-left carries the spacing so it
-     collapses with the text, keeping the icon visually centered */
   .nav-label {
-    overflow: hidden;
-    max-width: 80px;
-    margin-left: 0.35rem;
-    opacity: 1;
+    margin-left: 0.4rem;
     white-space: nowrap;
-    transition: max-width 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-                opacity 0.22s ease,
-                margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  /* Desktop collapsed: icons only */
-  .nav-pill.collapsed .nav-label {
-    max-width: 0;
-    opacity: 0;
-    margin-left: 0;
-  }
-  .nav-pill.collapsed .nav-item {
-    padding: 0.45rem 0.65rem;
-  }
-
-  /* ── Mobile items: stacked icon + label ──────────────────────────── */
-  .nav-wrap.mobile .nav-item {
-    flex-direction: column;
-    gap: 0.2rem;
-    padding: 0.4rem 0.75rem 0.35rem;
-  }
-  .nav-wrap.mobile .nav-label {
-    font-size: 0.56rem;
-    font-weight: 600;
-    letter-spacing: 0.02em;
-    max-width: none;
-    opacity: 1;
-  }
-  .nav-wrap.mobile .nav-icon {
-    opacity: 0.7;
-  }
-  .nav-wrap.mobile .nav-item.active .nav-icon,
-  .nav-wrap.mobile .nav-item:hover .nav-icon {
-    opacity: 1;
   }
 
   /* ── CTA button ───────────────────────────────────────────────────── */
@@ -429,7 +353,36 @@
     opacity: 0.88;
     box-shadow: 0 0 18px rgba(99,102,241,0.4);
   }
-  .nav-cta.cta-icon {
-    padding: 0.5rem 0.62rem;
+  /* Arrow only shows on mobile (icon-only CTA) */
+  .cta-arrow { display: none; }
+
+  /* ── Mobile: dock to bottom, stacked icon + label, icon-only CTA ──── */
+  @media (max-width: 767px) {
+    .nav-wrap {
+      top: auto;
+      bottom: 1.5rem;
+      max-width: calc(100vw - 1.5rem);
+    }
+
+    .logo-text { display: none; }
+
+    .nav-item {
+      flex-direction: column;
+      gap: 0.2rem;
+      padding: 0.4rem 0.7rem 0.35rem;
+    }
+    .nav-label {
+      font-size: 0.64rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      margin-left: 0;
+    }
+    .nav-icon { opacity: 0.7; }
+    .nav-item.active .nav-icon,
+    .nav-item:hover .nav-icon { opacity: 1; }
+
+    .cta-text { display: none; }
+    .cta-arrow { display: block; }
+    .nav-cta { padding: 0.5rem 0.62rem; }
   }
 </style>

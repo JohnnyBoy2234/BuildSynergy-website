@@ -147,7 +147,7 @@
   });
 </script>
 
-<section id="solution" class="sol-section" bind:this={sectionEl}>
+<section id="services" class="sol-section" bind:this={sectionEl}>
   <div class="sol-glow-l" aria-hidden="true"></div>
   <div class="sol-glow-r" aria-hidden="true"></div>
 

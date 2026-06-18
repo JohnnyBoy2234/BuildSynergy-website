@@ -57,7 +57,7 @@
   });
 </script>
 
-<section class="team-section" bind:this={sectionEl}>
+<section id="why" class="team-section" bind:this={sectionEl}>
   <div class="t-glow-l" aria-hidden="true"></div>
   <div class="t-glow-r" aria-hidden="true"></div>
 
