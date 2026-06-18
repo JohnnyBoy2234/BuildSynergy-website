@@ -16,7 +16,7 @@
         'Hosting setup',
         'Basic launch support',
       ],
-      cta: 'Start with Starter',
+      cta: 'Request a quote',
     },
     {
       id:          'business',
@@ -31,7 +31,7 @@
         'Technical support',
         'Updates and backups',
       ],
-      cta: 'Start with Business',
+      cta: 'Request a quote',
     },
     {
       id:          'growth',
@@ -45,7 +45,7 @@
         'Ongoing improvements',
         'Priority support',
       ],
-      cta: 'Start with Growth',
+      cta: 'Request a quote',
     },
   ];
 
@@ -123,6 +123,7 @@
 
               <h3 class="pkg-name">{pkg.name}</h3>
               <p class="pkg-tagline">{pkg.tagline}</p>
+              <span class="pkg-quote">Custom quote · pay for what you need</span>
             </div>
 
             <!-- Divider -->
@@ -346,6 +347,16 @@
     line-height: 1.65;
   }
   .pkg-card--rec .pkg-tagline { color: rgba(255,255,255,0.55); }
+
+  .pkg-quote {
+    display: inline-block;
+    margin-top: 0.9rem;
+    font-family: var(--display);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: #a5b4fc;
+  }
 
   /* ── Rule ──────────────────────────────────────────────────────── */
   .pkg-rule {
