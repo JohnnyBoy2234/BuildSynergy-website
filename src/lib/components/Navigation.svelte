@@ -51,8 +51,6 @@
   let isMobile  = $state(false);
   let scrolled  = $state(false);
 
-  let hideLabels = $derived(!isMobile && scrolled);
-
   async function activate(name: string, index: number, scroll = false) {
     activeTab = name;
     if (scroll) document.querySelector(`#${navItems[index].id}`)?.scrollIntoView({ behavior: 'smooth' });
@@ -74,17 +72,13 @@
     if (i !== -1) moveLamp(i);
   }
 
-  // Re-measure lamp whenever collapsed state changes, after transitions finish
-  $effect(() => {
-    const _ = hideLabels;
-    const t = setTimeout(() => requestAnimationFrame(refreshLamp), 360);
-    return () => clearTimeout(t);
-  });
-
   onMount(async () => {
-    const checkMobile = () => { isMobile = window.innerWidth < 768; };
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
+    const onResize = () => {
+      isMobile = window.innerWidth < 768;
+      requestAnimationFrame(refreshLamp);
+    };
+    onResize();
+    window.addEventListener('resize', onResize);
 
     const onScroll = () => {
       scrolled = window.scrollY > 80;
@@ -110,7 +104,7 @@
     });
 
     return () => {
-      window.removeEventListener('resize', checkMobile);
+      window.removeEventListener('resize', onResize);
       window.removeEventListener('scroll', onScroll);
       io.disconnect();
     };
@@ -120,7 +114,7 @@
 <header class="nav-wrap" class:mobile={isMobile}>
   <nav
     class="nav-pill"
-    class:collapsed={hideLabels}
+    class:scrolled
     bind:this={pillEl}
     aria-label="Main navigation"
   >
@@ -146,7 +140,7 @@
         <circle cx="4"  cy="9"  r="1.1" fill="#22d3ee"/>
         <circle cx="12" cy="22" r="1.2" fill="#22d3ee"/>
       </svg>
-      <span class="logo-text" class:logo-hidden={hideLabels}>
+      <span class="logo-text">
         Build<span class="logo-accent">Synergy</span>
       </span>
     </a>
@@ -184,10 +178,10 @@
     <a
       href="#contact"
       class="nav-cta"
-      class:cta-icon={hideLabels || isMobile}
+      class:cta-icon={isMobile}
       onclick={(e) => { e.preventDefault(); activate('Contact', 4, true); }}
     >
-      {#if hideLabels || isMobile}
+      {#if isMobile}
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true">
           <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
@@ -224,12 +218,16 @@
     -webkit-backdrop-filter: blur(20px);
     border: 1px solid rgba(99,102,241,0.18);
     border-radius: 100px;
-    padding: 0.3rem 0.3rem;
+    padding: 0.35rem 0.4rem;
     box-shadow:
       0 0 0 1px rgba(255,255,255,0.04) inset,
       0 4px 24px rgba(0,0,0,0.4);
     overflow: visible;
-    transition: padding 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: background 0.3s ease, border-color 0.3s ease;
+  }
+  .nav-pill.scrolled {
+    background: rgba(8, 8, 22, 0.85);
+    border-color: rgba(99,102,241,0.28);
   }
 
   /* ── Logo ─────────────────────────────────────────────────────────── */
@@ -242,7 +240,6 @@
     flex-shrink: 0;
     position: relative;
     z-index: 1;
-    overflow: hidden;
   }
 
   .logo-mark {
@@ -254,20 +251,11 @@
 
   .logo-text {
     font-family: var(--display);
-    font-size: 1rem;
+    font-size: 1.08rem;
     font-weight: 700;
     letter-spacing: -0.03em;
     color: rgba(255,255,255,0.92);
     white-space: nowrap;
-    overflow: hidden;
-    max-width: 120px;
-    opacity: 1;
-    transition: max-width 0.32s cubic-bezier(0.4, 0, 0.2, 1),
-                opacity 0.25s ease;
-  }
-  .logo-text.logo-hidden {
-    max-width: 0;
-    opacity: 0;
   }
 
   /* Hide logo text on mobile (mark only) */
@@ -336,15 +324,15 @@
     align-items: center;
     gap: 0;
     font-family: var(--display);
-    font-size: 0.82rem;
+    font-size: 0.92rem;
     font-weight: 500;
-    color: rgba(255,255,255,0.52);
+    color: rgba(255,255,255,0.58);
     background: none;
     border: none;
     cursor: pointer;
-    padding: 0.45rem 0.85rem;
+    padding: 0.5rem 0.95rem;
     border-radius: 100px;
-    transition: color 0.2s, padding 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: color 0.2s;
     white-space: nowrap;
   }
   .nav-item:hover  { color: rgba(255,255,255,0.85); }
@@ -362,27 +350,9 @@
   .nav-item:hover .nav-icon,
   .nav-item.active .nav-icon { opacity: 1; }
 
-  /* Label with collapse transition — margin-left carries the spacing so it
-     collapses with the text, keeping the icon visually centered */
   .nav-label {
-    overflow: hidden;
-    max-width: 80px;
-    margin-left: 0.35rem;
-    opacity: 1;
+    margin-left: 0.4rem;
     white-space: nowrap;
-    transition: max-width 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-                opacity 0.22s ease,
-                margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  /* Desktop collapsed: icons only */
-  .nav-pill.collapsed .nav-label {
-    max-width: 0;
-    opacity: 0;
-    margin-left: 0;
-  }
-  .nav-pill.collapsed .nav-item {
-    padding: 0.45rem 0.65rem;
   }
 
   /* ── Mobile items: stacked icon + label ──────────────────────────── */
@@ -392,11 +362,10 @@
     padding: 0.4rem 0.75rem 0.35rem;
   }
   .nav-wrap.mobile .nav-label {
-    font-size: 0.56rem;
+    font-size: 0.64rem;
     font-weight: 600;
     letter-spacing: 0.02em;
-    max-width: none;
-    opacity: 1;
+    margin-left: 0;
   }
   .nav-wrap.mobile .nav-icon {
     opacity: 0.7;
