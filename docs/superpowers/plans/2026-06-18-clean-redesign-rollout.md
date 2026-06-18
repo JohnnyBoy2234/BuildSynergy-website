@@ -201,19 +201,19 @@ git add -A && git commit -m "refactor: process section — static wash, single a
 
 ---
 
-### Task 6: PackageSection — add pricing + single accent
+### Task 6: PackageSection — quote-driven (no flat prices) + single accent
+
+**Decision made (2026-06-18):** quotes, not flat prices. Packages funnel to the contact section
+for a custom quote. DONE: CTAs now read "Request a quote", a "Custom quote · pay for what you
+need" cue replaces any price, and all CTAs scroll to `#contact`.
 
 **Files:**
 - Modify: `src/lib/components/PackageSection.svelte`
 
-**Decision required from Caleb (review gate):** exact prices or ranges per tier. Plan inserts a
-`price` field per package; Caleb supplies values (e.g. "from R4 500", "from R7 900", "Custom").
-
-- [ ] **Step 1: Add `price` (and optional `priceNote`) to each package object** and render it
-  prominently below `pkg-name`, above the feature list.
+- [x] **Step 1 (done):** quote-oriented CTAs + custom-quote cue, funnel to contact.
 - [ ] **Step 2: Single accent.** Recommended tier keeps `--indigo` emphasis; remove any other
   accent colours. Migrate `.pkg-cta` buttons to shared `.btn` / `.btn--ghost`.
-- [ ] **Step 3: Static wash** in place of `.pkg-glow-l/-r`.
+- [ ] **Step 3: Static wash** in place of the animated `.pkg-glow-l/-r`.
 - [ ] **Step 4: Verify + commit**
 
 ```bash
