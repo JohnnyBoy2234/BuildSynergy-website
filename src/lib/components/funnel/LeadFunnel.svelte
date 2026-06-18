@@ -56,10 +56,19 @@
     errors = validateStep(TOTAL_STEPS);
     if (Object.keys(errors).length) return;
     submitting = true;
-    // TODO: wire to delivery (email service / endpoint / sheet)
-    await new Promise(r => setTimeout(r, 900));
-    submitting = false;
-    submitted = true;
+    try {
+      const res = await fetch('/api/lead', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+      if (!res.ok) throw new Error();
+      submitted = true;
+    } catch {
+      errors = { submit: 'Could not send right now — please try again.' };
+    } finally {
+      submitting = false;
+    }
   }
 
   function stepIn(node: HTMLElement) {
@@ -105,6 +114,10 @@
           {/if}
         </div>
       {/key}
+
+      {#if errors.submit}
+        <p class="err-msg" role="alert" style="margin-top:1rem">{errors.submit}</p>
+      {/if}
 
       {#if step > 1}
         <div class="lf-nav">

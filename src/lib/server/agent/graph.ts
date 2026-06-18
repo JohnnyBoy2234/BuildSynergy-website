@@ -7,6 +7,7 @@ import { AgentState, type AgentStateType } from './state';
 import { SCORE_THRESHOLD, computeLeadScore } from './scoring';
 import { behavioralScore } from './browsing';
 import { writeLead } from './persistence';
+import { sendLeadEmail, chatbotLeadEmail } from '../leads/email';
 import {
   TurnAnalysisSchema, GradeSchema, DocGradeSchema, AnswerGradeSchema, RecommendationSchema,
   type TurnAnalysis, type Profile,
@@ -313,6 +314,13 @@ Respond with JSON only: {{"action": "portfolio"|"contact"|"newsletter", "message
     const result = await prompt.pipe(structured).invoke({ profile: JSON.stringify(profile) });
     const msgs = state.messages.map((m) => ({ type: m.getType(), content: String(m.content) }));
     await writeLead(profile, score, result.action, questionsAsked, msgs);
+    // Email delivery is best-effort: the lead is already persisted in Neon, so a
+    // mail failure must not break the conversation.
+    try {
+      await sendLeadEmail(chatbotLeadEmail(profile, score, result.action, conversation(state.messages)));
+    } catch (e) {
+      console.error('chatbot lead email failed:', (e as Error).message);
+    }
     return { alert_human: true, recommendation_action: result.action, messages: [new AIMessage(result.message)] };
   };
 }
