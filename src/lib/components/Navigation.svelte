@@ -3,13 +3,6 @@
 
   const navItems = [
     {
-      name: 'Home', id: 'home',
-      icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <path d="M3 12L12 3l9 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M5 10v9a1 1 0 001 1h4v-5h4v5h4a1 1 0 001-1v-9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>`,
-    },
-    {
       name: 'Services', id: 'services',
       icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
         <rect x="3" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.5"/>
@@ -28,17 +21,9 @@
       </svg>`,
     },
     {
-      name: 'Packages', id: 'packages',
+      name: 'Why us', id: 'why',
       icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z" stroke="currentColor" stroke-width="1.5"/>
-        <path d="M3.27 6.96L12 12.01l8.73-5.05M12 22.08V12" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" opacity=".45"/>
-      </svg>`,
-    },
-    {
-      name: 'Contact', id: 'contact',
-      icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="1.5"/>
-        <path d="M22 6l-10 7L2 6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" opacity=".55"/>
+        <path d="M12 3l1.9 5.6L19.5 9l-4.4 3.6L16.4 18 12 14.9 7.6 18l1.3-5.4L4.5 9l5.6-.4L12 3z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
       </svg>`,
     },
   ];
@@ -48,7 +33,6 @@
   let lampWidth = $state(0);
   let pillEl:   HTMLElement;
   let itemEls:  HTMLElement[] = [];
-  let isMobile  = $state(false);
   let scrolled  = $state(false);
 
   async function activate(name: string, index: number, scroll = false) {
@@ -72,9 +56,12 @@
     if (i !== -1) moveLamp(i);
   }
 
+  function go(id: string) {
+    document.querySelector(`#${id}`)?.scrollIntoView({ behavior: 'smooth' });
+  }
+
   onMount(async () => {
     const onResize = () => {
-      isMobile = window.innerWidth < 768;
       requestAnimationFrame(refreshLamp);
     };
     onResize();
@@ -111,7 +98,7 @@
   });
 </script>
 
-<header class="nav-wrap" class:mobile={isMobile}>
+<header class="nav-wrap">
   <nav
     class="nav-pill"
     class:scrolled
@@ -122,7 +109,7 @@
     <a
       class="nav-logo-pill"
       href="/"
-      onclick={(e) => { e.preventDefault(); activate('Home', 0, true); }}
+      onclick={(e) => { e.preventDefault(); go('home'); }}
       aria-label="BuildSynergy Home"
     >
       <svg class="logo-mark" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -178,16 +165,13 @@
     <a
       href="#contact"
       class="nav-cta"
-      class:cta-icon={isMobile}
-      onclick={(e) => { e.preventDefault(); activate('Contact', 4, true); }}
+      onclick={(e) => { e.preventDefault(); go('contact'); }}
+      aria-label="Get a quote"
     >
-      {#if isMobile}
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      {:else}
-        Start a Project
-      {/if}
+      <span class="cta-text">Get a quote</span>
+      <svg class="cta-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
     </a>
   </nav>
 </header>
@@ -201,10 +185,6 @@
     transform: translateX(-50%);
     z-index: 100;
     overflow: visible;
-  }
-  .nav-wrap.mobile {
-    top: auto;
-    bottom: 1.5rem;
   }
 
   /* ── Pill ─────────────────────────────────────────────────────────── */
@@ -256,11 +236,6 @@
     letter-spacing: -0.03em;
     color: rgba(255,255,255,0.92);
     white-space: nowrap;
-  }
-
-  /* Hide logo text on mobile (mark only) */
-  .nav-wrap.mobile .logo-text {
-    display: none;
   }
 
   .logo-accent {
@@ -355,26 +330,6 @@
     white-space: nowrap;
   }
 
-  /* ── Mobile items: stacked icon + label ──────────────────────────── */
-  .nav-wrap.mobile .nav-item {
-    flex-direction: column;
-    gap: 0.2rem;
-    padding: 0.4rem 0.75rem 0.35rem;
-  }
-  .nav-wrap.mobile .nav-label {
-    font-size: 0.64rem;
-    font-weight: 600;
-    letter-spacing: 0.02em;
-    margin-left: 0;
-  }
-  .nav-wrap.mobile .nav-icon {
-    opacity: 0.7;
-  }
-  .nav-wrap.mobile .nav-item.active .nav-icon,
-  .nav-wrap.mobile .nav-item:hover .nav-icon {
-    opacity: 1;
-  }
-
   /* ── CTA button ───────────────────────────────────────────────────── */
   .nav-cta {
     position: relative;
@@ -398,7 +353,36 @@
     opacity: 0.88;
     box-shadow: 0 0 18px rgba(99,102,241,0.4);
   }
-  .nav-cta.cta-icon {
-    padding: 0.5rem 0.62rem;
+  /* Arrow only shows on mobile (icon-only CTA) */
+  .cta-arrow { display: none; }
+
+  /* ── Mobile: dock to bottom, stacked icon + label, icon-only CTA ──── */
+  @media (max-width: 767px) {
+    .nav-wrap {
+      top: auto;
+      bottom: 1.5rem;
+      max-width: calc(100vw - 1.5rem);
+    }
+
+    .logo-text { display: none; }
+
+    .nav-item {
+      flex-direction: column;
+      gap: 0.2rem;
+      padding: 0.4rem 0.7rem 0.35rem;
+    }
+    .nav-label {
+      font-size: 0.64rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      margin-left: 0;
+    }
+    .nav-icon { opacity: 0.7; }
+    .nav-item.active .nav-icon,
+    .nav-item:hover .nav-icon { opacity: 1; }
+
+    .cta-text { display: none; }
+    .cta-arrow { display: block; }
+    .nav-cta { padding: 0.5rem 0.62rem; }
   }
 </style>

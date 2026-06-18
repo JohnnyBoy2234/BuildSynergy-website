@@ -2,97 +2,144 @@
   import { onMount } from 'svelte';
 
   let ready = $state(false);
-
-  onMount(() => {
-    requestAnimationFrame(() => requestAnimationFrame(() => { ready = true; }));
-  });
+  let canvas: HTMLCanvasElement;
 
   function scrollTo(id: string) {
     document.querySelector(id)?.scrollIntoView({ behavior: 'smooth' });
   }
+
+  onMount(() => {
+    requestAnimationFrame(() => requestAnimationFrame(() => { ready = true; }));
+
+    // Synergy network: drifting nodes that link to each other (and the cursor)
+    // when close. Indigo only, kept faint so the headline stays legible.
+    const ctx = canvas.getContext('2d')!;
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const LINK = 155;
+    let w = 0, h = 0, raf = 0;
+    let nodes: { x: number; y: number; vx: number; vy: number }[] = [];
+    const pointer = { x: -9999, y: -9999 };
+
+    function resize() {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      w = canvas.clientWidth;
+      h = canvas.clientHeight;
+      canvas.width = w * dpr;
+      canvas.height = h * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      const count = Math.round(Math.min(90, (w * h) / 13000));
+      nodes = Array.from({ length: count }, () => ({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        vx: (Math.random() - 0.5) * 0.22,
+        vy: (Math.random() - 0.5) * 0.22,
+      }));
+      if (reduce) draw();
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, w, h);
+      for (let i = 0; i < nodes.length; i++) {
+        const a = nodes[i];
+        for (let j = i + 1; j < nodes.length; j++) {
+          const b = nodes[j];
+          const d = Math.hypot(a.x - b.x, a.y - b.y);
+          if (d < LINK) {
+            ctx.strokeStyle = `rgba(99,102,241,${(1 - d / LINK) * 0.16})`;
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(a.x, a.y);
+            ctx.lineTo(b.x, b.y);
+            ctx.stroke();
+          }
+        }
+        const pd = Math.hypot(a.x - pointer.x, a.y - pointer.y);
+        if (pd < LINK * 1.5) {
+          ctx.strokeStyle = `rgba(129,140,248,${(1 - pd / (LINK * 1.5)) * 0.4})`;
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.moveTo(a.x, a.y);
+          ctx.lineTo(pointer.x, pointer.y);
+          ctx.stroke();
+        }
+      }
+      for (const n of nodes) {
+        ctx.fillStyle = 'rgba(129,140,248,0.5)';
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, 1.5, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    function step() {
+      for (const n of nodes) {
+        n.x += n.vx;
+        n.y += n.vy;
+        if (n.x < 0 || n.x > w) n.vx *= -1;
+        if (n.y < 0 || n.y > h) n.vy *= -1;
+      }
+      draw();
+      raf = requestAnimationFrame(step);
+    }
+
+    function onPointer(e: PointerEvent) {
+      const r = canvas.getBoundingClientRect();
+      pointer.x = e.clientX - r.left;
+      pointer.y = e.clientY - r.top;
+    }
+    function onLeave() { pointer.x = -9999; pointer.y = -9999; }
+
+    resize();
+    window.addEventListener('resize', resize);
+    if (reduce) {
+      draw();
+    } else {
+      step();
+      window.addEventListener('pointermove', onPointer, { passive: true });
+      window.addEventListener('pointerleave', onLeave);
+    }
+
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener('resize', resize);
+      window.removeEventListener('pointermove', onPointer);
+      window.removeEventListener('pointerleave', onLeave);
+    };
+  });
 </script>
 
 <section id="home" class="hero">
-  <!-- One faint, static wash. No drifting orbs, no noise. -->
+  <canvas class="hero-net" bind:this={canvas} aria-hidden="true"></canvas>
   <div class="hero-wash" aria-hidden="true"></div>
 
-  <div class="hero-grid" class:ready>
+  <div class="hero-inner" class:ready>
+    <span class="hero-eyebrow">Web design studio · South Africa</span>
 
-    <!-- LEFT: copy -->
-    <div class="hero-copy">
-      <span class="hero-eyebrow">Web design studio · South Africa</span>
+    <h1 class="hero-heading">
+      You're better than the way customers
+      <span class="accent">see you online.</span>
+    </h1>
 
-      <h1 class="hero-heading">
-        You're better than the way customers
-        <span class="accent">see you online.</span>
-      </h1>
+    <p class="hero-sub">
+      BuildSynergy gives South African service businesses a sharper, more trustworthy
+      website — with hosting, lead capture and ongoing support handled for you.
+    </p>
 
-      <p class="hero-sub">
-        BuildSynergy gives South African service businesses a sharper, more trustworthy
-        website — with hosting, lead capture and ongoing support handled for you.
-      </p>
-
-      <div class="hero-ctas">
-        <button class="btn" onclick={() => scrollTo('#contact')}>
-          Get a free digital presence audit
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
-        <button class="btn btn--ghost" onclick={() => scrollTo('#services')}>
-          See what we do
-        </button>
-      </div>
-
-      <p class="hero-trust">
-        For trades, suppliers and local businesses ready to be taken seriously online.
-      </p>
+    <div class="hero-ctas">
+      <button class="btn" onclick={() => scrollTo('#contact')}>
+        Get a quote
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <button class="btn btn--ghost" onclick={() => scrollTo('#services')}>
+        See what we do
+      </button>
     </div>
 
-    <!-- RIGHT: one honest visual — a sample of the kind of site we build -->
-    <div class="hero-visual" aria-hidden="true">
-      <div class="browser">
-        <div class="browser-bar">
-          <span class="dot"></span>
-          <span class="dot"></span>
-          <span class="dot"></span>
-          <div class="browser-url">apexplumbing.co.za</div>
-        </div>
-
-        <div class="browser-body">
-          <!-- mini site nav -->
-          <div class="mini-nav">
-            <span class="mini-logo">Apex Plumbing</span>
-            <div class="mini-links">
-              <span>Services</span>
-              <span>About</span>
-              <span>Contact</span>
-            </div>
-            <span class="mini-btn">Get a Quote</span>
-          </div>
-
-          <!-- mini site hero -->
-          <div class="mini-hero">
-            <div class="mini-hero-copy">
-              <h3 class="mini-h">Trusted plumbers in Cape Town.</h3>
-              <div class="mini-line"></div>
-              <div class="mini-line short"></div>
-              <span class="mini-cta">Book a callout</span>
-            </div>
-            <div class="mini-hero-art"></div>
-          </div>
-
-          <!-- mini feature row -->
-          <div class="mini-cards">
-            <div class="mini-card"></div>
-            <div class="mini-card"></div>
-            <div class="mini-card"></div>
-          </div>
-        </div>
-      </div>
-      <span class="visual-caption">The kind of site we build.</span>
-    </div>
-
+    <p class="hero-trust">
+      For trades, suppliers and local businesses ready to be taken seriously online.
+    </p>
   </div>
 </section>
 
@@ -106,52 +153,59 @@
     overflow: hidden;
     display: flex;
     align-items: center;
+    justify-content: center;
     padding: 0 var(--gutter);
   }
 
-  /* Single faint static wash — no animation */
+  /* Synergy network — fades out toward the edges so it blends into the section */
+  .hero-net {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+    -webkit-mask-image: radial-gradient(ellipse 82% 72% at 50% 46%, #000 28%, transparent 80%);
+            mask-image: radial-gradient(ellipse 82% 72% at 50% 46%, #000 28%, transparent 80%);
+  }
+
+  /* Soft indigo glow seated behind the headline for depth */
   .hero-wash {
     position: absolute;
     inset: 0;
-    background: radial-gradient(ellipse 60% 55% at 75% 35%,
-      rgba(99,102,241,0.14) 0%, transparent 70%);
+    z-index: 0;
+    background: radial-gradient(ellipse 50% 45% at 50% 42%,
+      rgba(99,102,241,0.16) 0%, transparent 70%);
     pointer-events: none;
   }
 
   /* ── Layout ────────────────────────────────────────────────────── */
-  .hero-grid {
+  .hero-inner {
     position: relative;
     z-index: 1;
-    width: 100%;
-    max-width: 1200px;
+    max-width: 780px;
     margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1.05fr 1fr;
-    gap: 5rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    padding: 9rem 0 5rem;
+    padding: 8rem 0 4rem;
   }
 
   /* ── Entrance: one gentle move, no loops ───────────────────────── */
-  .hero-copy > *,
-  .hero-visual {
+  .hero-inner > * {
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 0.7s ease, transform 0.7s ease;
   }
-  .hero-grid.ready .hero-copy > *,
-  .hero-grid.ready .hero-visual { opacity: 1; transform: none; }
-
-  .hero-grid.ready .hero-eyebrow { transition-delay: 0.05s; }
-  .hero-grid.ready .hero-heading { transition-delay: 0.13s; }
-  .hero-grid.ready .hero-sub     { transition-delay: 0.21s; }
-  .hero-grid.ready .hero-ctas    { transition-delay: 0.29s; }
-  .hero-grid.ready .hero-trust   { transition-delay: 0.37s; }
-  .hero-visual { transition-delay: 0.22s; transform: translateY(28px); }
+  .hero-inner.ready > * { opacity: 1; transform: none; }
+  .hero-inner.ready .hero-eyebrow { transition-delay: 0.05s; }
+  .hero-inner.ready .hero-heading { transition-delay: 0.13s; }
+  .hero-inner.ready .hero-sub     { transition-delay: 0.21s; }
+  .hero-inner.ready .hero-ctas    { transition-delay: 0.29s; }
+  .hero-inner.ready .hero-trust   { transition-delay: 0.37s; }
 
   /* ── Copy ──────────────────────────────────────────────────────── */
-  .hero-copy { max-width: 540px; }
-
   .hero-eyebrow {
     display: inline-block;
     font-family: var(--display);
@@ -165,20 +219,22 @@
 
   .hero-heading {
     font-family: var(--display);
-    font-size: clamp(2.5rem, 4.4vw, 3.9rem);
+    font-size: clamp(2.7rem, 5.6vw, 4.6rem);
     font-weight: 800;
-    line-height: 1.05;
+    line-height: 1.04;
     letter-spacing: -0.04em;
     color: #fff;
     margin-bottom: 1.6rem;
+    max-width: 15ch;
   }
   .hero-heading .accent { display: block; color: var(--indigo); }
 
   .hero-sub {
-    font-size: 1.05rem;
+    font-size: 1.08rem;
     color: var(--text-body);
     line-height: 1.7;
     margin-bottom: 2.25rem;
+    max-width: 560px;
   }
 
   .hero-ctas {
@@ -186,6 +242,7 @@
     flex-wrap: wrap;
     gap: 0.85rem;
     align-items: center;
+    justify-content: center;
     margin-bottom: 2rem;
   }
 
@@ -193,155 +250,18 @@
     font-size: 0.82rem;
     color: var(--text-muted);
     line-height: 1.6;
-    max-width: 400px;
-  }
-
-  /* ── Visual: browser window with a light site mockup ──────────── */
-  .hero-visual {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.9rem;
-  }
-
-  .browser {
-    width: 100%;
-    max-width: 460px;
-    border-radius: 12px;
-    overflow: hidden;
-    background: #ffffff;
-    box-shadow:
-      0 30px 80px rgba(0,0,0,0.45),
-      0 0 0 1px rgba(255,255,255,0.06);
-  }
-
-  .browser-bar {
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-    padding: 0.6rem 0.85rem;
-    background: #f1f1f5;
-    border-bottom: 1px solid #e5e5ea;
-  }
-  .dot { width: 9px; height: 9px; border-radius: 50%; background: #d2d2d9; }
-  .browser-url {
-    margin-left: 0.6rem;
-    flex: 1;
-    height: 20px;
-    border-radius: 100px;
-    background: #e6e6ec;
-    font-size: 0.62rem;
-    color: #8a8a96;
-    display: flex;
-    align-items: center;
-    padding: 0 0.7rem;
-  }
-
-  .browser-body { padding: 0; background: #fff; }
-
-  /* mini nav */
-  .mini-nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0.7rem 1rem;
-    border-bottom: 1px solid #f0f0f3;
-  }
-  .mini-logo {
-    font-family: var(--display);
-    font-size: 0.72rem;
-    font-weight: 700;
-    color: #1a1a2e;
-    letter-spacing: -0.01em;
-  }
-  .mini-links { display: flex; gap: 0.7rem; }
-  .mini-links span { font-size: 0.56rem; color: #9a9aa6; font-weight: 500; }
-  .mini-btn {
-    font-size: 0.56rem;
-    font-weight: 600;
-    color: #fff;
-    background: var(--indigo);
-    padding: 0.28rem 0.6rem;
-    border-radius: 100px;
-  }
-
-  /* mini hero */
-  .mini-hero {
-    display: grid;
-    grid-template-columns: 1.3fr 1fr;
-    gap: 0.9rem;
-    align-items: center;
-    padding: 1.4rem 1rem;
-  }
-  .mini-hero-copy { display: flex; flex-direction: column; gap: 0.5rem; }
-  .mini-h {
-    font-family: var(--display);
-    font-size: 0.92rem;
-    font-weight: 800;
-    line-height: 1.15;
-    letter-spacing: -0.02em;
-    color: #15152b;
-  }
-  .mini-line { height: 5px; border-radius: 3px; background: #e9e9ef; width: 100%; }
-  .mini-line.short { width: 70%; }
-  .mini-cta {
-    margin-top: 0.35rem;
-    align-self: flex-start;
-    font-size: 0.58rem;
-    font-weight: 600;
-    color: #fff;
-    background: var(--indigo);
-    padding: 0.35rem 0.75rem;
-    border-radius: 100px;
-  }
-  .mini-hero-art {
-    height: 84px;
-    border-radius: 8px;
-    background: linear-gradient(135deg, #eef0ff, #e3e8ff);
-    border: 1px solid #e4e6f5;
-  }
-
-  /* mini feature cards */
-  .mini-cards {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0.55rem;
-    padding: 0 1rem 1.3rem;
-  }
-  .mini-card {
-    height: 46px;
-    border-radius: 7px;
-    background: #f6f6f9;
-    border: 1px solid #eeeef2;
-  }
-
-  .visual-caption {
-    font-family: var(--display);
-    font-size: 0.74rem;
-    font-weight: 500;
-    color: var(--text-muted);
-    letter-spacing: 0.01em;
+    max-width: 420px;
   }
 
   /* ── Responsive ────────────────────────────────────────────────── */
-  @media (max-width: 980px) {
-    .hero-grid {
-      grid-template-columns: 1fr;
-      gap: 3rem;
-      padding: 8rem 0 4rem;
-      justify-items: start;
-    }
-    .hero-visual { width: 100%; }
-  }
-
   @media (max-width: 600px) {
-    .hero-heading { font-size: clamp(2.1rem, 9vw, 2.7rem); }
+    .hero-heading { font-size: clamp(2.1rem, 9vw, 2.9rem); max-width: 100%; }
     .hero-ctas { flex-direction: column; align-items: stretch; width: 100%; }
     .hero-ctas :global(.btn) { justify-content: center; }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .hero-copy > *, .hero-visual {
+    .hero-inner > * {
       opacity: 1 !important;
       transform: none !important;
       transition: none !important;

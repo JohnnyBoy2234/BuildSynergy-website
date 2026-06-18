@@ -175,12 +175,17 @@
   }
   .close:hover { color: var(--text); }
 
-  @media (max-width: 640px) {
+  /* Lift above the bottom-docked mobile nav (matches Navigation's 767px breakpoint) */
+  @media (max-width: 767px) {
+    .launcher {
+      bottom: 6rem;
+    }
     .panel {
       width: auto;
       left: 0.75rem; right: 0.75rem;
-      bottom: 5.5rem;
-      height: 75vh;
+      top: 1rem;
+      bottom: 10.5rem;
+      height: auto;
       max-height: none;
     }
   }
