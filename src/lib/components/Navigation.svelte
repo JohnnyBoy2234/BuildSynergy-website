@@ -34,6 +34,10 @@
   let pillEl:   HTMLElement;
   let itemEls:  HTMLElement[] = [];
   let scrolled  = $state(false);
+  let menuOpen  = $state(false);
+
+  function toggleMenu() { menuOpen = !menuOpen; }
+  function closeMenu()  { menuOpen = false; }
 
   async function activate(name: string, index: number, scroll = false) {
     activeTab = name;
@@ -60,20 +64,22 @@
     document.querySelector(`#${id}`)?.scrollIntoView({ behavior: 'smooth' });
   }
 
-  onMount(async () => {
-    const onResize = () => {
-      requestAnimationFrame(refreshLamp);
-    };
-    onResize();
-    window.addEventListener('resize', onResize);
-
+  onMount(() => {
+    const onResize = () => requestAnimationFrame(refreshLamp);
     const onScroll = () => {
       scrolled = window.scrollY > 80;
+      if (menuOpen) closeMenu();
     };
-    window.addEventListener('scroll', onScroll, { passive: true });
+    const onDocClick = (e: MouseEvent) => {
+      if (menuOpen && pillEl && !pillEl.contains(e.target as Node)) closeMenu();
+    };
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') closeMenu(); };
 
-    await tick();
-    moveLamp(0);
+    onResize();
+    window.addEventListener('resize', onResize);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('click', onDocClick);
+    window.addEventListener('keydown', onKey);
 
     const io = new IntersectionObserver(
       (entries) => {
@@ -85,14 +91,20 @@
       },
       { rootMargin: '-40% 0px -55% 0px' }
     );
-    navItems.forEach(n => {
-      const el = document.querySelector(`#${n.id}`);
-      if (el) io.observe(el);
+
+    tick().then(() => {
+      moveLamp(0);
+      navItems.forEach(n => {
+        const el = document.querySelector(`#${n.id}`);
+        if (el) io.observe(el);
+      });
     });
 
     return () => {
       window.removeEventListener('resize', onResize);
       window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('click', onDocClick);
+      window.removeEventListener('keydown', onKey);
       io.disconnect();
     };
   });
@@ -102,14 +114,15 @@
   <nav
     class="nav-pill"
     class:scrolled
+    class:menu-open={menuOpen}
     bind:this={pillEl}
     aria-label="Main navigation"
   >
-    <!-- Logo -->
+    <!-- Logo + business name -->
     <a
       class="nav-logo-pill"
       href="/"
-      onclick={(e) => { e.preventDefault(); go('home'); }}
+      onclick={(e) => { e.preventDefault(); go('home'); closeMenu(); }}
       aria-label="BuildSynergy Home"
     >
       <svg class="logo-mark" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -134,45 +147,57 @@
 
     <div class="nav-sep" aria-hidden="true"></div>
 
-    <!-- Sliding lamp indicator -->
-    <div
-      class="lamp"
-      style="left: {lampLeft}px; width: {lampWidth}px"
-      aria-hidden="true"
-    >
-      <div class="lamp-bar">
-        <div class="lamp-bloom lamp-bloom--wide"></div>
-        <div class="lamp-bloom lamp-bloom--mid"></div>
-        <div class="lamp-bloom lamp-bloom--tight"></div>
-      </div>
-    </div>
-
-    {#each navItems as item, i}
-      <button
-        class="nav-item"
-        class:active={activeTab === item.name}
-        bind:this={itemEls[i]}
-        onclick={() => activate(item.name, i, true)}
-        aria-current={activeTab === item.name ? 'page' : undefined}
-        aria-label={item.name}
+    <!-- Links (inline on desktop, dropdown on mobile) -->
+    <div id="nav-links" class="nav-links" class:open={menuOpen}>
+      <!-- Sliding lamp indicator (desktop only) -->
+      <div
+        class="lamp"
+        style="left: {lampLeft}px; width: {lampWidth}px"
+        aria-hidden="true"
       >
-        <span class="nav-icon">{@html item.icon}</span>
-        <span class="nav-label">{item.name}</span>
-      </button>
-    {/each}
+        <div class="lamp-bar">
+          <div class="lamp-bloom lamp-bloom--wide"></div>
+          <div class="lamp-bloom lamp-bloom--mid"></div>
+          <div class="lamp-bloom lamp-bloom--tight"></div>
+        </div>
+      </div>
+
+      {#each navItems as item, i}
+        <button
+          class="nav-item"
+          class:active={activeTab === item.name}
+          bind:this={itemEls[i]}
+          onclick={() => { activate(item.name, i, true); closeMenu(); }}
+          aria-current={activeTab === item.name ? 'page' : undefined}
+          aria-label={item.name}
+        >
+          <span class="nav-icon">{@html item.icon}</span>
+          <span class="nav-label">{item.name}</span>
+        </button>
+      {/each}
+    </div>
 
     <!-- CTA -->
     <a
       href="#contact"
       class="nav-cta"
-      onclick={(e) => { e.preventDefault(); go('contact'); }}
-      aria-label="Get a quote"
+      onclick={(e) => { e.preventDefault(); go('contact'); closeMenu(); }}
     >
-      <span class="cta-text">Get a quote</span>
-      <svg class="cta-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
+      Get a quote
     </a>
+
+    <!-- Hamburger (mobile only) -->
+    <button
+      class="nav-burger"
+      class:open={menuOpen}
+      onclick={toggleMenu}
+      aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+      aria-expanded={menuOpen}
+      aria-controls="nav-links"
+    >
+      <span></span>
+      <span></span>
+    </button>
   </nav>
 </header>
 
@@ -251,6 +276,14 @@
     height: 18px;
     background: rgba(255,255,255,0.1);
     flex-shrink: 0;
+  }
+
+  /* ── Links container ──────────────────────────────────────────────── */
+  .nav-links {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.1rem;
   }
 
   /* ── Lamp indicator ──────────────────────────────────────────────── */
@@ -347,42 +380,110 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: opacity 0.2s, box-shadow 0.2s, padding 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: opacity 0.2s, box-shadow 0.2s;
   }
   .nav-cta:hover {
     opacity: 0.88;
     box-shadow: 0 0 18px rgba(99,102,241,0.4);
   }
-  /* Arrow only shows on mobile (icon-only CTA) */
-  .cta-arrow { display: none; }
 
-  /* ── Mobile: dock to bottom, stacked icon + label, icon-only CTA ──── */
+  /* ── Hamburger (mobile only) ──────────────────────────────────────── */
+  .nav-burger {
+    display: none;
+    position: relative;
+    z-index: 1;
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+  }
+  .nav-burger span {
+    position: absolute;
+    width: 18px;
+    height: 2px;
+    border-radius: 2px;
+    background: rgba(255,255,255,0.88);
+    transition: transform 0.25s ease;
+  }
+  .nav-burger span:nth-child(1) { transform: translateY(-4px); }
+  .nav-burger span:nth-child(2) { transform: translateY(4px); }
+  .nav-burger.open span:nth-child(1) { transform: rotate(45deg); }
+  .nav-burger.open span:nth-child(2) { transform: rotate(-45deg); }
+
+  /* ── Mobile: top bar, name + clear CTA + hamburger dropdown ───────── */
   @media (max-width: 767px) {
     .nav-wrap {
-      top: auto;
-      bottom: 1.5rem;
-      max-width: calc(100vw - 1.5rem);
+      top: 0.75rem;
+      left: 0.75rem;
+      right: 0.75rem;
+      transform: none;
+    }
+    .nav-pill {
+      border-radius: 16px;
+      padding: 0.4rem 0.5rem 0.4rem 0.55rem;
+      gap: 0.4rem;
     }
 
-    .logo-text { display: none; }
+    .nav-sep { display: none; }
+    .logo-text { font-size: 1.02rem; }
+    .lamp { display: none; }
+
+    /* push CTA + hamburger to the right */
+    .nav-cta {
+      margin-left: auto;
+      font-size: 0.78rem;
+      padding: 0.5rem 0.95rem;
+    }
+    .nav-burger { display: inline-flex; }
+
+    /* links collapse into a dropdown panel under the bar */
+    .nav-links {
+      position: absolute;
+      top: calc(100% + 0.55rem);
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.15rem;
+      padding: 0.5rem;
+      background: rgba(8, 8, 22, 0.95);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(99,102,241,0.18);
+      border-radius: 16px;
+      box-shadow: 0 14px 44px rgba(0,0,0,0.5);
+      opacity: 0;
+      transform: translateY(-8px);
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+    }
+    .nav-links.open {
+      opacity: 1;
+      transform: none;
+      visibility: visible;
+      pointer-events: auto;
+    }
 
     .nav-item {
-      flex-direction: column;
-      gap: 0.2rem;
-      padding: 0.4rem 0.7rem 0.35rem;
+      flex-direction: row;
+      justify-content: flex-start;
+      width: 100%;
+      padding: 0.7rem 0.85rem;
+      border-radius: 10px;
     }
+    .nav-item.active { background: rgba(99,102,241,0.14); }
+    .nav-icon { opacity: 0.8; }
     .nav-label {
-      font-size: 0.64rem;
-      font-weight: 600;
-      letter-spacing: 0.02em;
-      margin-left: 0;
+      margin-left: 0.65rem;
+      font-size: 0.95rem;
+      font-weight: 500;
+      letter-spacing: 0;
     }
-    .nav-icon { opacity: 0.7; }
-    .nav-item.active .nav-icon,
-    .nav-item:hover .nav-icon { opacity: 1; }
-
-    .cta-text { display: none; }
-    .cta-arrow { display: block; }
-    .nav-cta { padding: 0.5rem 0.62rem; }
   }
 </style>
