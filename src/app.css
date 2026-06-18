@@ -25,11 +25,11 @@
   --text-body:  rgba(255,255,255,0.62);
   --text-muted: rgba(255,255,255,0.40);
 
-  /* Accent palette pulled from the abstract 3D background */
+  /* Accent: indigo only. The colours below are data-state colours, NOT decorative accents. */
   --indigo:      #6366f1;
-  --cyan:        #22d3ee;
-  --violet:      #a855f7;
-  --pink:        #e879f9;
+  --cyan:        #22d3ee;   /* data only */
+  --violet:      #a855f7;   /* data only */
+  --pink:        #e879f9;   /* data only */
   --blue:        #6366f1;   /* alias for backwards compat */
 
   /* Glow colours */
@@ -114,49 +114,46 @@ p { color: var(--text-body); line-height: 1.7; }
   display: inline-block;
 }
 
-/* ── Buttons ─────────────────────────────────────────────────────────── */
-.btn-primary {
+/* ── Buttons (single accent) ─────────────────────────────────────────── */
+.btn {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  background: linear-gradient(135deg, var(--indigo), var(--violet));
+  gap: 0.55rem;
+  background: var(--indigo);
   color: #fff;
   font-family: var(--display);
-  font-size: 0.875rem;
+  font-size: 0.9rem;
   font-weight: 600;
   text-decoration: none;
-  padding: 0.85rem 1.75rem;
+  padding: 0.9rem 1.7rem;
   border-radius: 100px;
   border: none;
   cursor: pointer;
-  transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
+  transition: background 0.2s, transform 0.2s;
 }
-.btn-primary:hover {
-  opacity: 0.88;
-  transform: translateY(-1px);
-  box-shadow: 0 0 28px rgba(99,102,241,0.4);
-}
+.btn:hover { background: #5457e5; transform: translateY(-1px); }
+.btn svg { transition: transform 0.2s; }
+.btn:hover svg { transform: translateX(3px); }
 
-.btn-secondary {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
+.btn--ghost {
   background: transparent;
   color: var(--text-body);
-  font-family: var(--display);
-  font-size: 0.875rem;
-  font-weight: 500;
-  text-decoration: none;
-  padding: 0.85rem 1.5rem;
-  border-radius: 100px;
   border: 1px solid var(--border2);
-  cursor: pointer;
-  transition: color 0.2s, border-color 0.2s, transform 0.2s;
+  font-weight: 500;
 }
-.btn-secondary:hover {
-  color: var(--text);
-  border-color: rgba(255,255,255,0.3);
-  transform: translateY(-1px);
+.btn--ghost:hover {
+  background: transparent;
+  color: #fff;
+  border-color: rgba(255,255,255,0.32);
+}
+
+/* ── Single faint static section wash ────────────────────────────────── */
+.section-wash {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse 55% 50% at 70% 30%,
+    rgba(99,102,241,0.10) 0%, transparent 70%);
 }
 
 /* ── Container ───────────────────────────────────────────────────────── */

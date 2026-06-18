@@ -33,13 +33,13 @@
       </p>
 
       <div class="hero-ctas">
-        <button class="cta-primary" onclick={() => scrollTo('#contact')}>
+        <button class="btn" onclick={() => scrollTo('#contact')}>
           Get a free digital presence audit
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
             <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </button>
-        <button class="cta-secondary" onclick={() => scrollTo('#services')}>
+        <button class="btn btn--ghost" onclick={() => scrollTo('#services')}>
           See what we do
         </button>
       </div>
@@ -189,41 +189,6 @@
     margin-bottom: 2rem;
   }
 
-  .cta-primary {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.55rem;
-    background: var(--indigo);
-    color: #fff;
-    font-family: var(--display);
-    font-size: 0.9rem;
-    font-weight: 600;
-    padding: 0.9rem 1.7rem;
-    border-radius: 100px;
-    border: none;
-    cursor: pointer;
-    transition: background 0.2s, transform 0.2s;
-  }
-  .cta-primary:hover { background: #5457e5; transform: translateY(-1px); }
-  .cta-primary svg { transition: transform 0.2s; }
-  .cta-primary:hover svg { transform: translateX(3px); }
-
-  .cta-secondary {
-    display: inline-flex;
-    align-items: center;
-    background: transparent;
-    color: var(--text-body);
-    font-family: var(--display);
-    font-size: 0.9rem;
-    font-weight: 500;
-    padding: 0.9rem 1.4rem;
-    border-radius: 100px;
-    border: 1px solid var(--border2);
-    cursor: pointer;
-    transition: color 0.2s, border-color 0.2s;
-  }
-  .cta-secondary:hover { color: #fff; border-color: rgba(255,255,255,0.32); }
-
   .hero-trust {
     font-size: 0.82rem;
     color: var(--text-muted);
@@ -372,7 +337,7 @@
   @media (max-width: 600px) {
     .hero-heading { font-size: clamp(2.1rem, 9vw, 2.7rem); }
     .hero-ctas { flex-direction: column; align-items: stretch; width: 100%; }
-    .cta-primary, .cta-secondary { justify-content: center; }
+    .hero-ctas :global(.btn) { justify-content: center; }
   }
 
   @media (prefers-reduced-motion: reduce) {
