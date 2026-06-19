@@ -7,45 +7,34 @@
   import {
     getOrCreateSessionId, loadTranscript, saveTranscript, type ChatMessage,
   } from '$lib/chat/session';
-  import { analytics, greeting as fetchGreeting, chat as sendChat } from '$lib/chat/api';
+  import { analytics, chat as sendChat } from '$lib/chat/api';
 
   const ESCALATION_NOTE = "I've flagged this for the team — they'll follow up with you directly.";
+  const GREETING = "Hi 👋 I'm the BuildSynergy assistant. Tell me a bit about your business and what you'd like to improve online — I'll point you in the right direction.";
 
   let open = $state(false);
-  let messages = $state<ChatMessage[]>([]);
+  // Greeting is part of the initial state, so it renders instantly — no fetch, no loading.
+  let messages = $state<ChatMessage[]>([{ role: 'assistant', content: GREETING }]);
   let sending = $state(false);
-  let greeted = $state(false);
   let escalated = $state(false);
+  let analyticsSent = false;
   let sessionId = '';
 
   onMount(() => {
     sessionId = getOrCreateSessionId();
-    messages = loadTranscript();
-    greeted = messages.length > 0;
+    const saved = loadTranscript();
+    if (saved.length > 0) messages = saved; // resume a prior conversation if there is one
   });
 
   function persist() {
     saveTranscript(messages);
   }
 
-  async function toggle() {
+  function toggle() {
     open = !open;
-    if (open && !greeted) await runGreeting();
-  }
-
-  async function runGreeting() {
-    greeted = true;
-    sending = true;
-    try {
-      const browsing = getBrowsing();
-      await analytics(sessionId, browsing);
-      const { greeting } = await fetchGreeting(sessionId, browsing);
-      messages = [...messages, { role: 'assistant', content: greeting }];
-    } catch {
-      messages = [...messages, { role: 'error', content: "I couldn't start the chat. Please try again." }];
-    } finally {
-      sending = false;
-      persist();
+    if (open && !analyticsSent) {
+      analyticsSent = true;
+      void analytics(sessionId, getBrowsing()).catch(() => {});
     }
   }
 
