@@ -1,7 +1,12 @@
-<svelte:head>
-  <title>Privacy Policy BuildSynergy</title>
-  <meta name="description" content="BuildSynergy Privacy Policy how we collect, use and protect your personal information in accordance with POPIA." />
-</svelte:head>
+<script lang="ts">
+  import Seo from '$lib/components/Seo.svelte';
+</script>
+
+<Seo
+  title="Privacy Policy — BuildSynergy"
+  description="BuildSynergy Privacy Policy — how we collect, use and protect your personal information in accordance with POPIA."
+  path="/privacy-policy"
+/>
 
 <div class="pp-wrap">
   <div class="pp-container">

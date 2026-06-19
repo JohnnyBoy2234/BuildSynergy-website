@@ -8,12 +8,13 @@
   import ManifestoSection from '$lib/components/ManifestoSection.svelte';
   import FinalCTA         from '$lib/components/FinalCTA.svelte';
   import Footer           from '$lib/components/Footer.svelte';
+  import Seo              from '$lib/components/Seo.svelte';
 </script>
 
-<svelte:head>
-  <title>BuildSynergy Professional Websites & Digital Solutions for South African Businesses</title>
-  <meta name="description" content="BuildSynergy helps South African businesses look more credible online, get found faster, capture enquiries and stay supported after launch." />
-</svelte:head>
+<Seo
+  title="BuildSynergy | Professional Websites for SA Businesses"
+  description="BuildSynergy helps South African businesses look more credible online, get found faster, capture enquiries and stay supported after launch."
+/>
 
 <Navigation />
 <main>

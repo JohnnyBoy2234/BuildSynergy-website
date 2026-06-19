@@ -32,6 +32,7 @@
   let lampLeft  = $state(0);
   let lampWidth = $state(0);
   let pillEl:   HTMLElement;
+  let linksEl:  HTMLElement;
   let itemEls:  HTMLElement[] = [];
   let scrolled  = $state(false);
   let menuOpen  = $state(false);
@@ -48,8 +49,8 @@
 
   function moveLamp(index: number) {
     const el = itemEls[index];
-    if (!el || !pillEl) return;
-    const nr = pillEl.getBoundingClientRect();
+    if (!el || !linksEl) return;
+    const nr = linksEl.getBoundingClientRect();
     const er = el.getBoundingClientRect();
     lampLeft  = er.left - nr.left;
     lampWidth = er.width;
@@ -111,6 +112,17 @@
 </script>
 
 <header class="nav-wrap">
+  <!-- Wordmark logo, top-left -->
+  <a
+    class="nav-logo"
+    href="/"
+    onclick={(e) => { e.preventDefault(); go('home'); closeMenu(); }}
+    aria-label="BuildSynergy Home"
+  >
+    <span class="logo-build">Build</span><span class="logo-accent">Synergy</span>
+  </a>
+
+  <!-- Nav pill, top-right: links + CTA + hamburger -->
   <nav
     class="nav-pill"
     class:scrolled
@@ -118,37 +130,8 @@
     bind:this={pillEl}
     aria-label="Main navigation"
   >
-    <!-- Logo + business name -->
-    <a
-      class="nav-logo-pill"
-      href="/"
-      onclick={(e) => { e.preventDefault(); go('home'); closeMenu(); }}
-      aria-label="BuildSynergy Home"
-    >
-      <svg class="logo-mark" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <defs>
-          <linearGradient id="lgMark" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%"   stop-color="#6366f1"/>
-            <stop offset="50%"  stop-color="#a855f7"/>
-            <stop offset="100%" stop-color="#22d3ee"/>
-          </linearGradient>
-        </defs>
-        <path d="M12 2 L20 9 L12 22 L4 9 Z" stroke="url(#lgMark)" stroke-width="1.4" fill="none" stroke-linejoin="round"/>
-        <path d="M12 6 L17 10 L12 18 L7 10 Z" fill="url(#lgMark)" opacity="0.25"/>
-        <circle cx="12" cy="2"  r="1.4" fill="#6366f1"/>
-        <circle cx="20" cy="9"  r="1.1" fill="#a855f7"/>
-        <circle cx="4"  cy="9"  r="1.1" fill="#22d3ee"/>
-        <circle cx="12" cy="22" r="1.2" fill="#22d3ee"/>
-      </svg>
-      <span class="logo-text">
-        Build<span class="logo-accent">Synergy</span>
-      </span>
-    </a>
-
-    <div class="nav-sep" aria-hidden="true"></div>
-
     <!-- Links (inline on desktop, dropdown on mobile) -->
-    <div id="nav-links" class="nav-links" class:open={menuOpen}>
+    <div id="nav-links" class="nav-links" class:open={menuOpen} bind:this={linksEl}>
       <!-- Sliding lamp indicator (desktop only) -->
       <div
         class="lamp"
@@ -206,24 +189,30 @@
   .nav-wrap {
     position: fixed;
     top: 1.5rem;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 0;
+    right: 0;
     z-index: 100;
-    overflow: visible;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0 clamp(1.25rem, 4vw, 3rem);
+    pointer-events: none;
   }
+  .nav-wrap > * { pointer-events: auto; }
 
   /* ── Pill ─────────────────────────────────────────────────────────── */
   .nav-pill {
     position: relative;
     display: flex;
     align-items: center;
-    gap: 0.1rem;
+    gap: 0.35rem;
     background: rgba(8, 8, 22, 0.55);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border: 1px solid rgba(99,102,241,0.18);
     border-radius: 100px;
-    padding: 0.35rem 0.4rem;
+    padding: 0.45rem 0.5rem;
     box-shadow:
       0 0 0 1px rgba(255,255,255,0.04) inset,
       0 4px 24px rgba(0,0,0,0.4);
@@ -235,47 +224,30 @@
     border-color: rgba(99,102,241,0.28);
   }
 
-  /* ── Logo ─────────────────────────────────────────────────────────── */
-  .nav-logo-pill {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
+  /* ── Wordmark logo ────────────────────────────────────────────────── */
+  .nav-logo {
+    flex-shrink: 0;
     text-decoration: none;
-    padding: 0.45rem 0.75rem 0.45rem 0.6rem;
-    flex-shrink: 0;
-    position: relative;
-    z-index: 1;
-  }
-
-  .logo-mark {
-    width: 26px;
-    height: 26px;
-    flex-shrink: 0;
-    filter: drop-shadow(0 0 6px rgba(99,102,241,0.45));
-  }
-
-  .logo-text {
     font-family: var(--display);
-    font-size: 1.08rem;
-    font-weight: 700;
+    font-size: 1.7rem;
+    line-height: 1;
     letter-spacing: -0.03em;
-    color: rgba(255,255,255,0.92);
     white-space: nowrap;
+    transition: filter 0.25s ease;
+  }
+  .nav-logo:hover { filter: drop-shadow(0 0 14px rgba(99,102,241,0.55)); }
+
+  .logo-build {
+    font-weight: 500;
+    color: rgba(255,255,255,0.9);
   }
 
   .logo-accent {
+    font-weight: 700;
     background: linear-gradient(135deg, #a5b4fc, #22d3ee);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-  }
-
-  /* ── Separator ────────────────────────────────────────────────────── */
-  .nav-sep {
-    width: 1px;
-    height: 18px;
-    background: rgba(255,255,255,0.1);
-    flex-shrink: 0;
   }
 
   /* ── Links container ──────────────────────────────────────────────── */
@@ -332,13 +304,13 @@
     align-items: center;
     gap: 0;
     font-family: var(--display);
-    font-size: 0.92rem;
+    font-size: 1rem;
     font-weight: 500;
     color: rgba(255,255,255,0.58);
     background: none;
     border: none;
     cursor: pointer;
-    padding: 0.5rem 0.95rem;
+    padding: 0.6rem 1.15rem;
     border-radius: 100px;
     transition: color 0.2s;
     white-space: nowrap;
@@ -368,12 +340,12 @@
     position: relative;
     z-index: 1;
     font-family: var(--display);
-    font-size: 0.8rem;
+    font-size: 0.95rem;
     font-weight: 600;
     color: #fff;
     text-decoration: none;
     background: linear-gradient(135deg, #6366f1, #a855f7);
-    padding: 0.5rem 1.1rem;
+    padding: 0.65rem 1.4rem;
     border-radius: 100px;
     white-space: nowrap;
     flex-shrink: 0;
@@ -415,38 +387,36 @@
   .nav-burger.open span:nth-child(1) { transform: rotate(45deg); }
   .nav-burger.open span:nth-child(2) { transform: rotate(-45deg); }
 
-  /* ── Mobile: top bar, name + clear CTA + hamburger dropdown ───────── */
+  /* ── Mobile: wordmark left, CTA + hamburger pill right, dropdown ──── */
   @media (max-width: 767px) {
     .nav-wrap {
       top: 0.75rem;
-      left: 0.75rem;
-      right: 0.75rem;
-      transform: none;
+      padding: 0 0.85rem;
+      gap: 0.6rem;
     }
+    .nav-logo { font-size: 1.35rem; }
+
     .nav-pill {
       border-radius: 16px;
-      padding: 0.4rem 0.5rem 0.4rem 0.55rem;
+      padding: 0.4rem 0.5rem;
       gap: 0.4rem;
     }
 
-    .nav-sep { display: none; }
-    .logo-text { font-size: 1.02rem; }
     .lamp { display: none; }
 
-    /* push CTA + hamburger to the right */
     .nav-cta {
-      margin-left: auto;
-      font-size: 0.78rem;
-      padding: 0.5rem 0.95rem;
+      font-size: 0.85rem;
+      padding: 0.55rem 1.05rem;
     }
     .nav-burger { display: inline-flex; }
 
-    /* links collapse into a dropdown panel under the bar */
+    /* links collapse into a dropdown panel under the pill */
     .nav-links {
       position: absolute;
       top: calc(100% + 0.55rem);
-      left: 0;
+      left: auto;
       right: 0;
+      min-width: 220px;
       flex-direction: column;
       align-items: stretch;
       gap: 0.15rem;

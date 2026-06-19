@@ -1,7 +1,12 @@
-<svelte:head>
-  <title>Terms &amp; Conditions — BuildSynergy</title>
-  <meta name="description" content="BuildSynergy Terms and Conditions governing all digital services including website design, development, managed hosting, lead capture, SEO and website care." />
-</svelte:head>
+<script lang="ts">
+  import Seo from '$lib/components/Seo.svelte';
+</script>
+
+<Seo
+  title="Terms & Conditions — BuildSynergy"
+  description="BuildSynergy Terms and Conditions governing all digital services including website design, development, managed hosting, lead capture, SEO and website care."
+  path="/terms"
+/>
 
 <div class="tc-wrap">
   <div class="tc-container">
