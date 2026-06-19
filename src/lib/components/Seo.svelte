@@ -1,5 +1,5 @@
 <script lang="ts">
-  const SITE_URL = 'https://buildsynergy.co.za';
+  const SITE_URL = 'https://www.buildsynergy.co.za';
 
   interface Props {
     title: string;

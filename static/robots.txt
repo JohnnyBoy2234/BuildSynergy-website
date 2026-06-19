@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://buildsynergy.co.za/sitemap.xml
+Sitemap: https://www.buildsynergy.co.za/sitemap.xml
