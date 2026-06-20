@@ -11,7 +11,7 @@
       quote:    'I believe every South African business deserves a digital presence that actually works not just looks the part. I handle the design, development and technical side of every project personally.',
       initials: 'JT',
       accent:   '#6366f1',
-      glow:     'rgba(99,102,241,0.18)',
+      glow:     'rgba(99,102,241,0.16)',
     },
     {
       name:     'Caleb Theron',
@@ -19,8 +19,8 @@
       subtitle: 'Strategy & Client Relations',
       quote:    'I focus on understanding what each client actually needs and making sure we deliver something that moves their business forward. The relationship does not end at launch.',
       initials: 'CT',
-      accent:   '#22d3ee',
-      glow:     'rgba(34,211,238,0.15)',
+      accent:   '#6366f1',
+      glow:     'rgba(99,102,241,0.16)',
     },
   ];
 
@@ -129,8 +129,7 @@
     position: absolute;
     top: 10%; left: -8%;
     width: 600px; height: 600px;
-    background: radial-gradient(ellipse, rgba(99,102,241,0.07) 0%, transparent 65%);
-    filter: blur(80px);
+    background: radial-gradient(ellipse, rgba(99,102,241,0.05) 0%, transparent 65%);
     pointer-events: none;
     animation: team-drift-l 20s ease-in-out infinite alternate;
   }
@@ -138,8 +137,7 @@
     position: absolute;
     bottom: 10%; right: -6%;
     width: 500px; height: 500px;
-    background: radial-gradient(ellipse, rgba(34,211,238,0.05) 0%, transparent 65%);
-    filter: blur(80px);
+    background: radial-gradient(ellipse, rgba(99,102,241,0.04) 0%, transparent 65%);
     pointer-events: none;
     animation: team-drift-r 16s ease-in-out infinite alternate;
   }
@@ -172,12 +170,12 @@
     font-size: clamp(2.2rem, 4vw, 3.8rem);
     font-weight: 800;
     letter-spacing: -0.04em; line-height: 1.05;
-    color: rgba(255,255,255,0.95);
+    color: var(--text);
   }
 
   .t-sub {
     font-size: 1rem;
-    color: rgba(255,255,255,0.42);
+    color: var(--text-body);
     line-height: 1.78;
     max-width: 520px;
   }
@@ -195,26 +193,27 @@
   /* ── Card ──────────────────────────────────────────────────────── */
   .t-card {
     position: relative;
-    background: rgba(7, 7, 20, 0.75);
-    border: 1px solid rgba(255,255,255,0.07);
+    background: var(--surface);
+    border: 1px solid var(--border);
     border-radius: 24px;
     overflow: hidden;
     display: flex; flex-direction: column;
+    box-shadow: var(--shadow-sm);
     transition: border-color 0.35s, transform 0.35s, box-shadow 0.35s;
     cursor: default;
     isolation: isolate;
   }
   .t-card:hover {
-    border-color: color-mix(in srgb, var(--accent) 28%, transparent);
+    border-color: color-mix(in srgb, var(--accent) 40%, transparent);
     transform: translateY(-5px);
-    box-shadow: 0 20px 56px rgba(0,0,0,0.35), 0 0 0 1px color-mix(in srgb, var(--accent) 12%, transparent);
+    box-shadow: var(--shadow-md);
   }
 
   /* Top beam sweeps on hover */
   .t-beam {
     position: absolute;
     top: 0; left: 0; right: 0; height: 1px;
-    background: linear-gradient(90deg, transparent, var(--accent), rgba(34,211,238,0.5), transparent);
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
     transform: scaleX(0); transform-origin: left;
     transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     pointer-events: none; z-index: 1;
@@ -228,10 +227,10 @@
     aspect-ratio: 4 / 3;
     background:
       radial-gradient(ellipse 70% 80% at 50% 100%, var(--glow) 0%, transparent 65%),
-      linear-gradient(to bottom, rgba(255,255,255,0.025) 0%, rgba(255,255,255,0.01) 100%);
+      var(--surface2);
     display: flex; align-items: flex-end; justify-content: center;
     overflow: hidden;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
+    border-bottom: 1px solid var(--border);
   }
 
   .t-photo-glow {
@@ -239,8 +238,7 @@
     bottom: -30px; left: 50%; transform: translateX(-50%);
     width: 160px; height: 160px;
     border-radius: 50%;
-    background: var(--glow);
-    filter: blur(40px);
+    background: var(--indigo-soft);
     opacity: 0.6;
     transition: opacity 0.35s;
     pointer-events: none;
@@ -284,10 +282,10 @@
     font-size: 1.2rem;
     font-weight: 800;
     letter-spacing: -0.03em;
-    color: rgba(255,255,255,0.88);
+    color: var(--text);
     transition: color 0.2s;
   }
-  .t-card:hover .t-name { color: rgba(255,255,255,0.98); }
+  .t-card:hover .t-name { color: var(--text); }
 
   .t-role-badge {
     font-family: var(--display);
@@ -297,50 +295,17 @@
     text-transform: uppercase;
     padding: 0.2rem 0.6rem;
     border-radius: 100px;
-    color: color-mix(in srgb, var(--accent) 80%, white);
-    background: color-mix(in srgb, var(--accent) 10%, transparent);
+    color: var(--indigo-strong);
+    background: var(--indigo-soft);
     border: 1px solid color-mix(in srgb, var(--accent) 22%, transparent);
     white-space: nowrap;
   }
 
   .t-role {
     font-size: 0.78rem;
-    color: rgba(255,255,255,0.3);
+    color: var(--text-muted);
     letter-spacing: 0.01em;
     margin-top: -0.2rem;
-  }
-
-  .t-divider {
-    height: 1px;
-    background: linear-gradient(90deg, rgba(255,255,255,0.07), transparent);
-    margin: 0.3rem 0;
-  }
-
-  .t-quote {
-    position: relative;
-    font-size: 0.875rem;
-    color: rgba(255,255,255,0.38);
-    line-height: 1.72;
-    padding-left: 1rem;
-    border-left: 2px solid color-mix(in srgb, var(--accent) 30%, transparent);
-    margin: 0;
-    font-style: italic;
-    transition: color 0.2s, border-color 0.2s;
-  }
-  .t-card:hover .t-quote {
-    color: rgba(255,255,255,0.56);
-    border-left-color: color-mix(in srgb, var(--accent) 55%, transparent);
-  }
-
-  .t-quote-mark {
-    font-family: var(--display);
-    font-size: 1.8rem;
-    font-weight: 900;
-    line-height: 0;
-    vertical-align: -0.4em;
-    margin-right: 0.1rem;
-    color: color-mix(in srgb, var(--accent) 40%, transparent);
-    font-style: normal;
   }
 
   /* ── Word-split heading support ────────────────────────────────── */
