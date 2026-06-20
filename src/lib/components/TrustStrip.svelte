@@ -67,9 +67,9 @@
 <style>
   .incl-strip {
     position: relative;
-    background: rgba(6,6,18,0.6);
-    border-top:    1px solid rgba(99,102,241,0.14);
-    border-bottom: 1px solid rgba(99,102,241,0.14);
+    background: var(--bg2);
+    border-top:    1px solid var(--border);
+    border-bottom: 1px solid var(--border);
     padding: 1.5rem var(--gutter);
   }
 
@@ -108,7 +108,8 @@
     padding: 0.4rem 0.95rem;
     border-radius: 100px;
     border: 1px solid var(--border);
-    background: var(--glass);
+    background: var(--surface);
+    box-shadow: var(--shadow-sm);
   }
 
   .incl-icon {
