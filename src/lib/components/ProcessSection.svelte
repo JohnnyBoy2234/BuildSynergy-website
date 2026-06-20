@@ -134,7 +134,7 @@
   .process-section {
     position: relative;
     padding: var(--section-pad) var(--gutter);
-    background: var(--bg2);
+    background: var(--bg);
     overflow: hidden;
   }
 
@@ -163,7 +163,7 @@
 
   .proc-sub {
     font-size: 1rem;
-    color: rgba(255,255,255,0.46);
+    color: var(--text-body);
     line-height: 1.75; max-width: 500px;
   }
 
@@ -215,11 +215,11 @@
     font-size: 0.52rem;
     font-weight: 700;
     letter-spacing: 0.1em;
-    color: rgba(255,255,255,0.22);
+    color: var(--text-muted);
     z-index: 3;
     transition: color 0.25s;
   }
-  .proc-step:hover .step-num { color: rgba(99,102,241,0.7); }
+  .proc-step:hover .step-num { color: var(--indigo); }
 
   /* Icon circle */
   .step-node {
@@ -227,25 +227,22 @@
     z-index: 2;
     width: 76px; height: 76px;
     border-radius: 50%;
-    border: 1px solid rgba(99,102,241,0.32);
-    background: rgba(99,102,241,0.06);
-    backdrop-filter: blur(6px);
+    border: 1px solid var(--border2);
+    background: var(--indigo-soft);
     display: flex; align-items: center; justify-content: center;
     transition: border-color 0.35s, background 0.35s, box-shadow 0.35s;
   }
   .proc-step:hover .step-node {
-    border-color: rgba(99,102,241,0.55);
-    background: rgba(99,102,241,0.07);
-    box-shadow:
-      0 0 28px rgba(99,102,241,0.18),
-      0 0 0 5px rgba(99,102,241,0.05);
+    border-color: var(--indigo);
+    background: var(--indigo-soft);
+    box-shadow: var(--shadow-md);
   }
 
-  /* Glow behind the node on hover */
+  /* Soft indigo ring behind the node on hover */
   .node-glow {
     position: absolute; inset: -10px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(99,102,241,0.18), transparent 70%);
+    background: radial-gradient(circle, rgba(99,102,241,0.12), transparent 70%);
     opacity: 0;
     transition: opacity 0.35s;
     pointer-events: none;
@@ -255,10 +252,10 @@
   /* Icon inside */
   .node-icon {
     display: flex; align-items: center;
-    color: #a5b4fc;
+    color: var(--indigo);
     transition: color 0.25s;
   }
-  .proc-step:hover .node-icon { color: #e0e7ff; }
+  .proc-step:hover .node-icon { color: var(--indigo-strong); }
 
   /* ── Text block ────────────────────────────────────────────────── */
   .step-text {
@@ -272,26 +269,26 @@
     font-size: 1rem;
     font-weight: 700;
     letter-spacing: -0.02em;
-    color: rgba(255,255,255,0.75);
+    color: var(--text);
     transition: color 0.2s;
   }
-  .proc-step:hover .step-label { color: rgba(255,255,255,0.95); }
+  .proc-step:hover .step-label { color: var(--text); }
 
   .step-desc {
     font-size: 0.82rem;
-    color: rgba(255,255,255,0.32);
+    color: var(--text-body);
     line-height: 1.65;
     max-width: 180px;
     margin: 0 auto;
     transition: color 0.2s;
   }
-  .proc-step:hover .step-desc { color: rgba(255,255,255,0.54); }
+  .proc-step:hover .step-desc { color: var(--text-body); }
 
   /* ── Footer note ───────────────────────────────────────────────── */
   .proc-note {
     font-family: var(--display);
     font-size: 0.78rem; font-weight: 500;
-    color: rgba(255,255,255,0.18);
+    color: var(--text-muted);
     text-align: center;
     letter-spacing: 0.02em;
   }
@@ -317,7 +314,7 @@
       width: 1px; height: auto;
       background: linear-gradient(to bottom,
         rgba(99,102,241,0.5) 0%,
-        rgba(34,211,238,0.4) 100%
+        rgba(99,102,241,0.3) 100%
       );
     }
 
