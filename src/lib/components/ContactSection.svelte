@@ -62,10 +62,12 @@
 </section>
 
 <style>
+  /* Intentional deep-dark block closing the otherwise light page */
   .contact-section {
     position: relative;
     padding: var(--section-pad) var(--gutter);
-    background: var(--bg);
+    background: #0B0F19;
+    border-radius: 36px 36px 0 0;
     overflow: hidden;
   }
 
@@ -78,12 +80,12 @@
   .ct-glow--l {
     width: 500px; height: 500px;
     top: 10%; left: -5%;
-    background: rgba(99,102,241,0.10);
+    background: rgba(99,102,241,0.18);
   }
   .ct-glow--r {
     width: 400px; height: 400px;
     bottom: 10%; right: -5%;
-    background: rgba(168,85,247,0.09);
+    background: rgba(99,102,241,0.12);
   }
 
   .ct-inner {
@@ -94,15 +96,15 @@
   }
 
   .ct-header { max-width: 560px; margin-bottom: 3.5rem; }
-  .ct-header h2 { margin: 0.6rem 0 1rem; }
-  .ct-header p  { color: var(--text-body); font-size: 1rem; }
+  .ct-header h2 { margin: 0.6rem 0 1rem; color: #fff; }
+  .ct-header p  { color: rgba(255,255,255,0.6); font-size: 1rem; }
 
   /* Panel */
   .ct-panel {
-    background: rgba(8,8,22,0.82);
+    background: rgba(255,255,255,0.04);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border: 1px solid var(--border);
+    border: 1px solid rgba(255,255,255,0.1);
     border-radius: 22px;
     padding: 3rem;
     max-width: 860px;
