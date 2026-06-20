@@ -45,7 +45,7 @@
           const b = nodes[j];
           const d = Math.hypot(a.x - b.x, a.y - b.y);
           if (d < LINK) {
-            ctx.strokeStyle = `rgba(99,102,241,${(1 - d / LINK) * 0.16})`;
+            ctx.strokeStyle = `rgba(79,70,229,${(1 - d / LINK) * 0.14})`;
             ctx.lineWidth = 1;
             ctx.beginPath();
             ctx.moveTo(a.x, a.y);
@@ -55,7 +55,7 @@
         }
         const pd = Math.hypot(a.x - pointer.x, a.y - pointer.y);
         if (pd < LINK * 1.5) {
-          ctx.strokeStyle = `rgba(129,140,248,${(1 - pd / (LINK * 1.5)) * 0.4})`;
+          ctx.strokeStyle = `rgba(79,70,229,${(1 - pd / (LINK * 1.5)) * 0.30})`;
           ctx.lineWidth = 1;
           ctx.beginPath();
           ctx.moveTo(a.x, a.y);
@@ -64,7 +64,7 @@
         }
       }
       for (const n of nodes) {
-        ctx.fillStyle = 'rgba(129,140,248,0.5)';
+        ctx.fillStyle = 'rgba(79,70,229,0.45)';
         ctx.beginPath();
         ctx.arc(n.x, n.y, 1.5, 0, Math.PI * 2);
         ctx.fill();
@@ -169,14 +169,17 @@
             mask-image: radial-gradient(ellipse 82% 72% at 50% 46%, #000 28%, transparent 80%);
   }
 
-  /* Soft indigo glow seated behind the headline for depth */
+  /* Fine dot-grid + faint cool radial, masked to fade at the edges */
   .hero-wash {
     position: absolute;
     inset: 0;
     z-index: 0;
-    background: radial-gradient(ellipse 50% 45% at 50% 42%,
-      rgba(99,102,241,0.16) 0%, transparent 70%);
     pointer-events: none;
+    background:
+      radial-gradient(circle at 1px 1px, rgba(99,102,241,0.10) 1px, transparent 0) 0 0 / 26px 26px,
+      radial-gradient(ellipse 50% 45% at 50% 40%, rgba(99,102,241,0.05) 0%, transparent 70%);
+    -webkit-mask-image: radial-gradient(ellipse 75% 65% at 50% 42%, #000 30%, transparent 80%);
+            mask-image: radial-gradient(ellipse 75% 65% at 50% 42%, #000 30%, transparent 80%);
   }
 
   /* ── Layout ────────────────────────────────────────────────────── */
@@ -223,7 +226,7 @@
     font-weight: 800;
     line-height: 1.04;
     letter-spacing: -0.04em;
-    color: #fff;
+    color: var(--text);
     margin-bottom: 1.6rem;
     max-width: 15ch;
   }
