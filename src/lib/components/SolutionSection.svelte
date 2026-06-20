@@ -8,7 +8,7 @@
       label: 'Website Design & Development',
       desc:  'A complete, professional website built around your business with managed hosting and monthly care included as standard.',
       accent: '#6366f1',
-      glow:   'rgba(99,102,241,0.18)',
+      glow:   'rgba(99,102,241,0.16)',
       icon: `<svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
         <rect x="2" y="3.5" width="24" height="16" rx="2" stroke="currentColor" stroke-width="1.4"/>
         <path d="M2 9h24" stroke="currentColor" stroke-width="1.2" opacity=".4"/>
@@ -21,8 +21,8 @@
     {
       label: 'Mobile App Development',
       desc:  'Custom iOS and Android apps that give your business its own presence directly on your customers\' devices.',
-      accent: '#a855f7',
-      glow:   'rgba(168,85,247,0.16)',
+      accent: '#6366f1',
+      glow:   'rgba(99,102,241,0.16)',
       icon: `<svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
         <rect x="8" y="2" width="12" height="24" rx="2.5" stroke="currentColor" stroke-width="1.4"/>
         <path d="M8 7h12M8 21h12" stroke="currentColor" stroke-width="1.1" opacity=".4"/>
@@ -33,20 +33,20 @@
     {
       label: 'Lead Capture & Quote Systems',
       desc:  'Smart enquiry forms and quote request flows that turn website visitors into real customers.',
-      accent: '#22d3ee',
-      glow:   'rgba(34,211,238,0.15)',
+      accent: '#6366f1',
+      glow:   'rgba(99,102,241,0.16)',
       icon: `<svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
         <path d="M3 5h22v14a1.5 1.5 0 0 1-1.5 1.5h-19A1.5 1.5 0 0 1 3 19V5z" stroke="currentColor" stroke-width="1.4"/>
         <path d="M3 5l11 8.5L25 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-        <circle cx="20.5" cy="21.5" r="4.5" fill="var(--bg2,#07071a)" stroke="currentColor" stroke-width="1.3"/>
+        <circle cx="20.5" cy="21.5" r="4.5" fill="var(--bg2,#F7F9FC)" stroke="currentColor" stroke-width="1.3"/>
         <path d="M19 21.5h3M20.5 20v3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
       </svg>`,
     },
     {
       label: 'Google Visibility & SEO',
       desc:  'Local SEO setup and Google presence so nearby customers can find your business and understand what you offer.',
-      accent: '#f59e0b',
-      glow:   'rgba(245,158,11,0.14)',
+      accent: '#6366f1',
+      glow:   'rgba(99,102,241,0.16)',
       icon: `<svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
         <circle cx="12.5" cy="12.5" r="8.5" stroke="currentColor" stroke-width="1.4"/>
         <path d="M19 19l5.5 5.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
@@ -57,8 +57,8 @@
     {
       label: 'Branding & Visual Identity',
       desc:  'Logo, colour palette and visual identity that makes your business instantly recognisable and trustworthy.',
-      accent: '#ec4899',
-      glow:   'rgba(236,72,153,0.14)',
+      accent: '#6366f1',
+      glow:   'rgba(99,102,241,0.16)',
       icon: `<svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
         <circle cx="14" cy="14" r="10" stroke="currentColor" stroke-width="1.4"/>
         <circle cx="14" cy="14" r="4"  stroke="currentColor" stroke-width="1.2" opacity=".5"/>
@@ -69,8 +69,8 @@
     {
       label: 'E-commerce & Online Payments',
       desc:  'Online stores and payment integrations so customers can browse your services and pay directly through your site.',
-      accent: '#4ade80',
-      glow:   'rgba(74,222,128,0.13)',
+      accent: '#6366f1',
+      glow:   'rgba(99,102,241,0.16)',
       icon: `<svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
         <path d="M4 4h2.5l3.5 12h12l2.5-8H9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
         <circle cx="13" cy="22.5" r="1.8" stroke="currentColor" stroke-width="1.2"/>
@@ -210,22 +210,22 @@
   .sol-section {
     position: relative;
     padding: var(--section-pad) var(--gutter);
-    background: var(--bg);
+    background: var(--bg2);
     overflow: hidden;
   }
 
   .sol-glow-l {
     position: absolute; top: 0; left: -8%;
     width: 600px; height: 600px;
-    background: radial-gradient(ellipse, rgba(99,102,241,0.09) 0%, transparent 65%);
-    filter: blur(70px); pointer-events: none;
+    background: radial-gradient(ellipse, rgba(99,102,241,0.05) 0%, transparent 65%);
+    pointer-events: none;
     animation: sol-drift-l 18s ease-in-out infinite alternate;
   }
   .sol-glow-r {
     position: absolute; bottom: 0; right: -6%;
     width: 500px; height: 500px;
-    background: radial-gradient(ellipse, rgba(34,211,238,0.06) 0%, transparent 65%);
-    filter: blur(70px); pointer-events: none;
+    background: radial-gradient(ellipse, rgba(99,102,241,0.04) 0%, transparent 65%);
+    pointer-events: none;
     animation: sol-drift-r 22s ease-in-out infinite alternate;
   }
 
@@ -256,7 +256,7 @@
   }
 
   .sol-sub {
-    font-size: 1rem; color: rgba(255,255,255,0.52);
+    font-size: 1rem; color: var(--text-body);
     line-height: 1.75; max-width: 560px;
   }
 
@@ -270,21 +270,22 @@
   /* ── Card ──────────────────────────────────────────────────────── */
   .sol-card {
     position: relative;
-    background: rgba(7, 7, 20, 0.82);
-    border: 1px solid rgba(255,255,255,0.07);
+    background: var(--surface);
+    border: 1px solid var(--border);
     border-radius: 20px;
     padding: 2rem 1.85rem;
     display: flex; flex-direction: column; gap: 1.5rem;
     cursor: default;
     overflow: hidden;
+    box-shadow: var(--shadow-sm);
     transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
     isolation: isolate;
   }
 
   .sol-card:hover {
-    border-color: color-mix(in srgb, var(--accent) 30%, transparent);
+    border-color: color-mix(in srgb, var(--accent) 40%, transparent);
     transform: translateY(-4px);
-    box-shadow: 0 16px 48px rgba(0,0,0,0.3), 0 0 0 1px color-mix(in srgb, var(--accent) 15%, transparent);
+    box-shadow: var(--shadow-md);
   }
 
   /* Spotlight follows cursor via --mx / --my CSS vars */
@@ -308,7 +309,7 @@
     position: absolute;
     top: 0; left: 0; right: 0;
     height: 1px;
-    background: linear-gradient(90deg, transparent, var(--accent), rgba(34,211,238,0.6), transparent);
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
     transform: scaleX(0);
     transform-origin: left;
     transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
@@ -341,8 +342,8 @@
     z-index: 2;
     width: 52px; height: 52px;
     border-radius: 15px;
-    background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(255,255,255,0.07);
+    background: var(--surface2);
+    border: 1px solid var(--border);
     display: flex; align-items: center; justify-content: center;
     flex-shrink: 0;
     transition: border-color 0.3s, background 0.3s;
@@ -355,8 +356,7 @@
   .card-icon-glow {
     position: absolute; inset: -6px;
     border-radius: 20px;
-    background: var(--glow);
-    filter: blur(10px);
+    background: var(--indigo-soft);
     opacity: 0;
     transition: opacity 0.35s;
   }
@@ -381,28 +381,28 @@
   .card-label {
     font-family: var(--display);
     font-size: 1.05rem; font-weight: 700; letter-spacing: -0.02em;
-    color: rgba(255,255,255,0.75);
+    color: var(--text);
     line-height: 1.25;
     transition: color 0.2s;
   }
-  .sol-card:hover .card-label { color: rgba(255,255,255,0.95); }
+  .sol-card:hover .card-label { color: var(--text); }
 
   .card-desc {
-    font-size: 0.875rem; color: rgba(255,255,255,0.38);
+    font-size: 0.875rem; color: var(--text-body);
     line-height: 1.7;
     transition: color 0.2s;
   }
-  .sol-card:hover .card-desc { color: rgba(255,255,255,0.58); }
+  .sol-card:hover .card-desc { color: var(--text-body); }
 
   /* ── Closer ────────────────────────────────────────────────────── */
   .sol-closer {
     font-family: var(--display);
     font-size: clamp(1rem, 1.5vw, 1.1rem);
     font-weight: 500;
-    color: rgba(255,255,255,0.35);
+    color: var(--text-muted);
     letter-spacing: -0.01em;
   }
-  .sol-closer span { color: rgba(255,255,255,0.72); font-weight: 600; }
+  .sol-closer span { color: var(--text); font-weight: 600; }
 
   /* ── Responsive ────────────────────────────────────────────────── */
   @media (max-width: 900px) {
