@@ -117,14 +117,14 @@
     width: 56px; height: 56px;
     border: none;
     border-radius: 50%;
-    background: linear-gradient(135deg, var(--indigo), var(--violet));
+    background: var(--indigo);
     color: #fff;
     cursor: pointer;
     display: inline-flex; align-items: center; justify-content: center;
-    box-shadow: 0 8px 30px rgba(99, 102, 241, 0.45);
-    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: var(--shadow-indigo);
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
   }
-  .launcher:hover { transform: translateY(-2px); box-shadow: 0 12px 36px rgba(99, 102, 241, 0.6); }
+  .launcher:hover { transform: translateY(-2px); background: var(--indigo-strong); box-shadow: 0 12px 36px rgba(99, 102, 241, 0.35); }
 
   .panel {
     position: fixed;
@@ -140,7 +140,7 @@
     border: 1px solid var(--border2);
     border-radius: 18px;
     overflow: hidden;
-    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.55);
+    box-shadow: var(--shadow-lg);
     backdrop-filter: blur(12px);
   }
   .phead {
@@ -158,8 +158,8 @@
   }
   .dot {
     width: 8px; height: 8px; border-radius: 50%;
-    background: var(--cyan);
-    box-shadow: 0 0 8px var(--cyan);
+    background: var(--indigo);
+    box-shadow: 0 0 8px var(--indigo);
   }
   .close {
     background: none; border: none; cursor: pointer;
