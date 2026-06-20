@@ -24,12 +24,12 @@
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
     renderer.setSize(canvas.clientWidth, canvas.clientHeight, false);
 
-    // Palette from abstract 3D bg: indigo / cyan / violet / pink
+    // Indigo-only palette to match the light theme's single accent
     const palette = [
       new THREE.Color('#6366f1'),
-      new THREE.Color('#22d3ee'),
-      new THREE.Color('#a855f7'),
-      new THREE.Color('#e879f9'),
+      new THREE.Color('#818cf8'),
+      new THREE.Color('#4f46e5'),
+      new THREE.Color('#a5b4fc'),
     ];
 
     const positions  = new Float32Array(count * 3);

@@ -85,7 +85,8 @@
   .footer {
     position: relative;
     padding: 5rem var(--gutter) 2.5rem;
-    background: var(--bg);
+    background: var(--bg2);
+    border-top: 1px solid var(--border);
     overflow: hidden;
   }
 
@@ -93,7 +94,7 @@
     position: absolute;
     top: 0; left: 0; right: 0;
     height: 200px;
-    background: linear-gradient(to bottom, rgba(7,7,26,0.8), transparent);
+    background: transparent;
     pointer-events: none;
   }
 
@@ -130,7 +131,7 @@
     letter-spacing: -0.02em;
     margin-bottom: 0.75rem;
   }
-  .logo span { color: var(--cyan); }
+  .logo span { color: var(--indigo); }
 
   .footer-brand p {
     font-size: 0.875rem;
@@ -146,7 +147,7 @@
     transition: color 0.2s;
     letter-spacing: 0.01em;
   }
-  .footer-email:hover { color: var(--cyan); }
+  .footer-email:hover { color: var(--indigo-strong); }
 
   .footer-nav { display: flex; gap: 3.5rem; flex-wrap: wrap; }
   .nav-col { display: flex; flex-direction: column; gap: 0.85rem; }
@@ -169,7 +170,7 @@
 
   .footer-divider {
     height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(99,102,241,0.25), rgba(168,85,247,0.2), transparent);
+    background: linear-gradient(90deg, transparent, var(--border2), transparent);
     margin-bottom: 2rem;
   }
 

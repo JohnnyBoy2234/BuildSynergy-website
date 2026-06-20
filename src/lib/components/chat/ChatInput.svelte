@@ -56,7 +56,7 @@
     flex: 1;
     resize: none;
     max-height: 120px;
-    background: rgba(6, 6, 18, 0.9);
+    background: var(--surface2);
     border: 1px solid var(--border);
     border-radius: 12px;
     padding: 0.6rem 0.8rem;
@@ -78,11 +78,11 @@
     display: inline-flex; align-items: center; justify-content: center;
     border: none;
     border-radius: 12px;
-    background: linear-gradient(135deg, var(--indigo), var(--violet));
+    background: var(--indigo);
     color: #fff;
     cursor: pointer;
-    transition: opacity 0.2s, transform 0.2s;
+    transition: background 0.2s, transform 0.2s;
   }
-  .send:hover:not(:disabled) { transform: translateY(-1px); }
+  .send:hover:not(:disabled) { transform: translateY(-1px); background: var(--indigo-strong); }
   .send:disabled { opacity: 0.4; cursor: default; }
 </style>

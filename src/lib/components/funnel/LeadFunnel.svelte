@@ -85,7 +85,7 @@
     <div class="lf-success" role="status">
       <div class="success-ring" aria-hidden="true">
         <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-          <path d="M6 14l6 6 10-12" stroke="#22d3ee" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M6 14l6 6 10-12" stroke="#818cf8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </div>
       <h3>Message received.</h3>
@@ -146,19 +146,19 @@
   .lf-progress-label {
     font-size: 0.78rem;
     font-weight: 500;
-    color: var(--text-muted);
+    color: rgba(255, 255, 255, 0.5);
     letter-spacing: 0.04em;
   }
   .lf-bar {
     height: 4px;
     border-radius: 100px;
-    background: rgba(255, 255, 255, 0.07);
+    background: rgba(255, 255, 255, 0.1);
     overflow: hidden;
   }
   .lf-bar-fill {
     height: 100%;
     border-radius: 100px;
-    background: linear-gradient(90deg, var(--indigo), var(--violet));
+    background: linear-gradient(90deg, var(--indigo), var(--indigo-strong));
     transition: width 0.3s ease;
   }
 
@@ -179,17 +179,17 @@
   .lf-back {
     background: none;
     border: none;
-    color: var(--text-muted);
+    color: rgba(255, 255, 255, 0.55);
     font-family: var(--sans);
     font-size: 0.88rem;
     cursor: pointer;
     padding: 0.5rem 0;
     transition: color 0.2s;
   }
-  .lf-back:hover { color: var(--text); }
+  .lf-back:hover { color: #fff; }
 
   .btn-submit {
-    background: linear-gradient(135deg, var(--indigo), var(--violet));
+    background: var(--indigo);
     color: #fff;
     font-family: var(--display);
     font-size: 0.9rem;
@@ -198,18 +198,19 @@
     border-radius: 100px;
     border: none;
     cursor: pointer;
-    transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
+    transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
   }
   .btn-submit:hover:not(:disabled) {
-    opacity: 0.88;
+    background: var(--indigo-strong);
     transform: translateY(-1px);
-    box-shadow: 0 0 26px rgba(99, 102, 241, 0.4);
+    box-shadow: var(--shadow-indigo);
   }
   .btn-submit:disabled { opacity: 0.5; cursor: wait; }
 
   .lf :global(.lf-title) {
     font-size: 1.15rem;
     margin: 0 0 1.25rem;
+    color: #fff;
   }
 
   /* Shared field styles for step components (copied from the replaced form) */
@@ -227,18 +228,18 @@
   .lf :global(.lf-label) {
     font-size: 0.82rem;
     font-weight: 500;
-    color: var(--text-muted);
+    color: rgba(255, 255, 255, 0.55);
     letter-spacing: 0.02em;
   }
   .lf :global(.opt) { font-weight: 400; opacity: 0.6; }
 
   .lf :global(input),
   .lf :global(textarea) {
-    background: rgba(6, 6, 18, 0.9);
-    border: 1px solid var(--border);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.14);
     border-radius: 10px;
     padding: 0.875rem 1rem;
-    color: var(--text);
+    color: #fff;
     font-family: var(--sans);
     font-size: 0.9rem;
     width: 100%;
@@ -246,11 +247,11 @@
     transition: border-color 0.2s, box-shadow 0.2s;
   }
   .lf :global(input::placeholder),
-  .lf :global(textarea::placeholder) { color: var(--text-muted); }
+  .lf :global(textarea::placeholder) { color: rgba(255, 255, 255, 0.45); }
   .lf :global(input:focus),
   .lf :global(textarea:focus) {
-    border-color: rgba(99, 102, 241, 0.55);
-    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+    border-color: rgba(99, 102, 241, 0.7);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.18);
   }
   .lf :global(.err input),
   .lf :global(.err textarea) { border-color: rgba(239, 68, 68, 0.5); }
@@ -268,17 +269,17 @@
     font-size: 0.78rem;
     padding: 0.38rem 0.85rem;
     border-radius: 100px;
-    border: 1px solid var(--border);
-    background: var(--glass);
-    color: var(--text-body);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.06);
+    color: rgba(255, 255, 255, 0.65);
     cursor: pointer;
     transition: border-color 0.2s, background 0.2s, color 0.2s;
   }
-  .lf :global(.chip:hover) { border-color: var(--border2); color: var(--text); }
+  .lf :global(.chip:hover) { border-color: rgba(255, 255, 255, 0.32); color: #fff; }
   .lf :global(.chip.active) {
     border-color: var(--indigo);
-    background: rgba(99, 102, 241, 0.14);
-    color: var(--text);
+    background: rgba(99, 102, 241, 0.25);
+    color: #fff;
   }
 
   /* Consent checkbox (copied from the replaced form) */
@@ -301,8 +302,8 @@
     height: 17px;
     min-width: 17px;
     border-radius: 5px;
-    border: 1px solid var(--border);
-    background: rgba(6, 6, 18, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.06);
     cursor: pointer;
     margin-top: 1px;
     position: relative;
@@ -334,7 +335,7 @@
     text-decoration: none;
     transition: color 0.2s;
   }
-  .lf :global(.agree-label a:hover) { color: var(--cyan); }
+  .lf :global(.agree-label a:hover) { color: #a5b4fc; }
   .lf :global(.err .agree-label) { color: rgba(239, 68, 68, 0.8); }
   .lf :global(.err .agree-check) { border-color: rgba(239, 68, 68, 0.5); }
 
@@ -351,14 +352,14 @@
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    background: rgba(34, 211, 238, 0.1);
-    border: 1px solid rgba(34, 211, 238, 0.3);
+    background: rgba(99, 102, 241, 0.12);
+    border: 1px solid rgba(99, 102, 241, 0.35);
     display: flex;
     align-items: center;
     justify-content: center;
   }
-  .lf-success h3 { font-size: 1.5rem; }
-  .lf-success p { max-width: 380px; color: var(--text-body); }
+  .lf-success h3 { font-size: 1.5rem; color: #fff; }
+  .lf-success p { max-width: 380px; color: rgba(255, 255, 255, 0.6); }
 
   @media (max-width: 768px) {
     .lf :global(.form-row) { grid-template-columns: 1fr; }

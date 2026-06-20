@@ -137,13 +137,7 @@
         class="lamp"
         style="left: {lampLeft}px; width: {lampWidth}px"
         aria-hidden="true"
-      >
-        <div class="lamp-bar">
-          <div class="lamp-bloom lamp-bloom--wide"></div>
-          <div class="lamp-bloom lamp-bloom--mid"></div>
-          <div class="lamp-bloom lamp-bloom--tight"></div>
-        </div>
-      </div>
+      ></div>
 
       {#each navItems as item, i}
         <button
@@ -207,21 +201,19 @@
     display: flex;
     align-items: center;
     gap: 0.35rem;
-    background: rgba(8, 8, 22, 0.55);
+    background: rgba(255,255,255,0.7);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(99,102,241,0.18);
+    border: 1px solid var(--border);
     border-radius: 100px;
     padding: 0.45rem 0.5rem;
-    box-shadow:
-      0 0 0 1px rgba(255,255,255,0.04) inset,
-      0 4px 24px rgba(0,0,0,0.4);
+    box-shadow: var(--shadow-md);
     overflow: visible;
     transition: background 0.3s ease, border-color 0.3s ease;
   }
   .nav-pill.scrolled {
-    background: rgba(8, 8, 22, 0.85);
-    border-color: rgba(99,102,241,0.28);
+    background: rgba(255,255,255,0.9);
+    border-color: var(--border2);
   }
 
   /* ── Wordmark logo ────────────────────────────────────────────────── */
@@ -235,19 +227,15 @@
     white-space: nowrap;
     transition: filter 0.25s ease;
   }
-  .nav-logo:hover { filter: drop-shadow(0 0 14px rgba(99,102,241,0.55)); }
 
   .logo-build {
     font-weight: 500;
-    color: rgba(255,255,255,0.9);
+    color: var(--text);
   }
 
   .logo-accent {
     font-weight: 700;
-    background: linear-gradient(135deg, #a5b4fc, #22d3ee);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--indigo);
   }
 
   /* ── Links container ──────────────────────────────────────────────── */
@@ -264,37 +252,13 @@
     top: 0;
     height: 100%;
     border-radius: 100px;
-    background: rgba(99,102,241,0.12);
+    background: var(--indigo-soft);
     transition: left 0.38s cubic-bezier(0.25, 1, 0.5, 1),
                 width 0.38s cubic-bezier(0.25, 1, 0.5, 1);
     pointer-events: none;
     z-index: 0;
     overflow: visible;
   }
-
-  .lamp-bar {
-    position: absolute;
-    top: -2px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 36px;
-    height: 3px;
-    background: linear-gradient(90deg, rgba(99,102,241,0), #a855f7, rgba(99,102,241,0));
-    border-radius: 0 0 4px 4px;
-  }
-
-  .lamp-bloom {
-    position: absolute;
-    border-radius: 50%;
-    top: -4px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(168,85,247,0.25);
-    filter: blur(6px);
-  }
-  .lamp-bloom--wide  { width: 48px; height: 12px; top: -6px; filter: blur(8px); }
-  .lamp-bloom--mid   { width: 28px; height: 8px;  top: -4px; filter: blur(5px); }
-  .lamp-bloom--tight { width: 14px; height: 6px;  top: -2px; filter: blur(3px); background: rgba(168,85,247,0.5); }
 
   /* ── Nav items ────────────────────────────────────────────────────── */
   .nav-item {
@@ -306,7 +270,7 @@
     font-family: var(--display);
     font-size: 1rem;
     font-weight: 500;
-    color: rgba(255,255,255,0.58);
+    color: var(--text-muted);
     background: none;
     border: none;
     cursor: pointer;
@@ -315,8 +279,8 @@
     transition: color 0.2s;
     white-space: nowrap;
   }
-  .nav-item:hover  { color: rgba(255,255,255,0.85); }
-  .nav-item.active { color: #fff; }
+  .nav-item:hover  { color: var(--text); }
+  .nav-item.active { color: var(--text); }
 
   /* Icon */
   .nav-icon {
@@ -344,7 +308,7 @@
     font-weight: 600;
     color: #fff;
     text-decoration: none;
-    background: linear-gradient(135deg, #6366f1, #a855f7);
+    background: var(--indigo);
     padding: 0.65rem 1.4rem;
     border-radius: 100px;
     white-space: nowrap;
@@ -352,11 +316,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: opacity 0.2s, box-shadow 0.2s;
+    transition: background 0.2s, box-shadow 0.2s;
   }
   .nav-cta:hover {
-    opacity: 0.88;
-    box-shadow: 0 0 18px rgba(99,102,241,0.4);
+    background: var(--indigo-strong);
+    box-shadow: var(--shadow-indigo);
   }
 
   /* ── Hamburger (mobile only) ──────────────────────────────────────── */
@@ -379,7 +343,7 @@
     width: 18px;
     height: 2px;
     border-radius: 2px;
-    background: rgba(255,255,255,0.88);
+    background: var(--text);
     transition: transform 0.25s ease;
   }
   .nav-burger span:nth-child(1) { transform: translateY(-4px); }
@@ -421,12 +385,12 @@
       align-items: stretch;
       gap: 0.15rem;
       padding: 0.5rem;
-      background: rgba(8, 8, 22, 0.95);
+      background: var(--surface);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(99,102,241,0.18);
+      border: 1px solid var(--border);
       border-radius: 16px;
-      box-shadow: 0 14px 44px rgba(0,0,0,0.5);
+      box-shadow: var(--shadow-lg);
       opacity: 0;
       transform: translateY(-8px);
       visibility: hidden;
@@ -447,7 +411,7 @@
       padding: 0.7rem 0.85rem;
       border-radius: 10px;
     }
-    .nav-item.active { background: rgba(99,102,241,0.14); }
+    .nav-item.active { background: var(--indigo-soft); }
     .nav-icon { opacity: 0.8; }
     .nav-label {
       margin-left: 0.65rem;

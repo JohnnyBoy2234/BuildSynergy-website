@@ -51,20 +51,20 @@
     word-break: break-word;
   }
   .bubble.assistant {
-    background: var(--glass2);
+    background: var(--surface2);
     border: 1px solid var(--border);
     color: var(--text);
     border-bottom-left-radius: 4px;
   }
   .bubble.user {
-    background: linear-gradient(135deg, var(--indigo), var(--violet));
+    background: var(--indigo);
     color: #fff;
     border-bottom-right-radius: 4px;
   }
   .bubble.error {
-    background: rgba(239, 68, 68, 0.12);
+    background: rgba(239, 68, 68, 0.1);
     border: 1px solid rgba(239, 68, 68, 0.4);
-    color: rgba(255, 255, 255, 0.9);
+    color: #991b1b;
   }
   .typing { display: inline-flex; gap: 4px; align-items: center; }
   .typing span {

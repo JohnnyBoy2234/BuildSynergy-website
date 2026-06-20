@@ -6,36 +6,32 @@
 
 /* ── Design Tokens ──────────────────────────────────────────────────── */
 :root {
-  /* Backgrounds deep navy-black with indigo undertone */
-  --bg:       #04040e;
-  --bg2:      #07071a;
-  --surface:  #0c0c22;
-  --surface2: #11112e;
-
-  /* Glass */
-  --glass:    rgba(255,255,255,0.04);
-  --glass2:   rgba(255,255,255,0.07);
+  /* Backgrounds — light, cool */
+  --bg:       #FFFFFF;
+  --bg2:      #F7F9FC;
+  --surface:  #FFFFFF;
+  --surface2: #F4F6FB;
+  --tint:     #EEF1F8;
 
   /* Borders */
-  --border:   rgba(255,255,255,0.09);
-  --border2:  rgba(255,255,255,0.16);
+  --border:   #E5E8F0;
+  --border2:  #D4D9E6;
 
   /* Text */
-  --text:       rgba(255,255,255,0.93);
-  --text-body:  rgba(255,255,255,0.62);
-  --text-muted: rgba(255,255,255,0.40);
+  --text:       #0B0F19;
+  --text-body:  #4A5163;
+  --text-muted: #7A8194;
 
-  /* Accent: indigo only. The colours below are data-state colours, NOT decorative accents. */
-  --indigo:      #6366f1;
-  --cyan:        #22d3ee;   /* data only */
-  --violet:      #a855f7;   /* data only */
-  --pink:        #e879f9;   /* data only */
-  --blue:        #6366f1;   /* alias for backwards compat */
+  /* Accent: indigo only */
+  --indigo:        #6366F1;
+  --indigo-strong: #4F46E5;
+  --indigo-soft:   #EEF0FE;
 
-  /* Glow colours */
-  --indigo-glow: rgba(99,102,241,0.22);
-  --cyan-glow:   rgba(34,211,238,0.18);
-  --violet-glow: rgba(168,85,247,0.15);
+  /* Shadows replace dark-theme glows */
+  --shadow-sm:     0 1px 2px rgba(16,24,40,0.05);
+  --shadow-md:     0 4px 16px rgba(16,24,40,0.08);
+  --shadow-lg:     0 12px 32px rgba(16,24,40,0.10);
+  --shadow-indigo: 0 8px 24px rgba(99,102,241,0.18);
 
   /* Typography */
   --sans:    'Inter', system-ui, sans-serif;
@@ -61,15 +57,12 @@ body {
   overflow-x: hidden;
 }
 
-/* Ambient background indigo / violet / cyan from the abstract 3D bg */
+/* Near-invisible cool wash at the top of the page */
 body::before {
   content: '';
   position: fixed;
   inset: 0;
-  background:
-    radial-gradient(ellipse 65% 60% at 70% 20%, rgba(99,102,241,0.12) 0%, transparent 70%),
-    radial-gradient(ellipse 50% 50% at 25% 75%, rgba(168,85,247,0.10) 0%, transparent 70%),
-    radial-gradient(ellipse 40% 40% at 50% 50%, rgba(34,211,238,0.05) 0%, transparent 60%);
+  background: radial-gradient(ellipse 70% 60% at 50% -5%, rgba(99,102,241,0.04) 0%, transparent 70%);
   pointer-events: none;
   z-index: 0;
 }
@@ -129,9 +122,9 @@ p { color: var(--text-body); line-height: 1.7; }
   border-radius: 100px;
   border: none;
   cursor: pointer;
-  transition: background 0.2s, transform 0.2s;
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
 }
-.btn:hover { background: #5457e5; transform: translateY(-1px); }
+.btn:hover { background: var(--indigo-strong); transform: translateY(-1px); box-shadow: var(--shadow-indigo); }
 .btn svg { transition: transform 0.2s; }
 .btn:hover svg { transform: translateX(3px); }
 
@@ -142,9 +135,9 @@ p { color: var(--text-body); line-height: 1.7; }
   font-weight: 500;
 }
 .btn--ghost:hover {
-  background: transparent;
-  color: #fff;
-  border-color: rgba(255,255,255,0.32);
+  background: var(--surface2);
+  color: var(--text);
+  border-color: var(--indigo);
 }
 
 /* ── Single faint static section wash ────────────────────────────────── */
@@ -153,7 +146,7 @@ p { color: var(--text-body); line-height: 1.7; }
   inset: 0;
   pointer-events: none;
   background: radial-gradient(ellipse 55% 50% at 70% 30%,
-    rgba(99,102,241,0.10) 0%, transparent 70%);
+    rgba(99,102,241,0.05) 0%, transparent 70%);
 }
 
 /* ── Container ───────────────────────────────────────────────────────── */
@@ -179,12 +172,7 @@ p { color: var(--text-body); line-height: 1.7; }
   position: relative;
   z-index: 2;
   pointer-events: none;
-  background: linear-gradient(
-    to bottom,
-    transparent 0%,
-    var(--bg) 50%,
-    transparent 100%
-  );
+  background: transparent;
 }
 
 /* ── Reveal system (progressive enhancement content always visible) ── */
@@ -197,7 +185,7 @@ p { color: var(--text-body); line-height: 1.7; }
 
 /* ── Gradient text white → indigo/cyan to echo abstract bg ─────────── */
 .text-gradient {
-  background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 55%, #67e8f9 100%);
+  background: linear-gradient(135deg, #0B0F19 0%, #4F46E5 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -205,14 +193,15 @@ p { color: var(--text-body); line-height: 1.7; }
 
 /* ── Card base ───────────────────────────────────────────────────────── */
 .card {
-  background: var(--glass);
+  background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 16px;
-  transition: border-color 0.3s, background 0.3s, transform 0.25s;
+  box-shadow: var(--shadow-sm);
+  transition: border-color 0.3s, box-shadow 0.3s, transform 0.25s;
 }
 .card:hover {
   border-color: var(--border2);
-  background: var(--glass2);
+  box-shadow: var(--shadow-md);
   transform: translateY(-3px);
 }
 
