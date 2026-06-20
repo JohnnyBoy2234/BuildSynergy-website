@@ -24,7 +24,7 @@
 
     <div class="tc-summary">
       <p class="summary-label">Plain-English Summary</p>
-      <p>BuildSynergy provides digital services including website design, development, managed hosting, lead capture setup, SEO basics, website care, maintenance, support and online presence audits. We need clear information, payment on time, and your approval before work can be completed or launched. We provide managed hosting through trusted third-party infrastructure providers, but we do not own or control those platforms. We will act professionally and use reasonable care, but we do not guarantee Google rankings, leads, sales, uninterrupted hosting or third-party platform performance.</p>
+      <p>BuildSynergy provides digital services including website design, development, managed hosting, lead capture setup, SEO basics, website care, maintenance, support, AI development and integration, and online presence audits. We need clear information, payment on time, and your approval before work can be completed or launched. We provide managed hosting through trusted third-party infrastructure providers, but we do not own or control those platforms. We will act professionally and use reasonable care, but we do not guarantee Google rankings, leads, sales, uninterrupted hosting or third-party platform performance.</p>
       <p class="summary-note">This summary is for convenience only. The full Terms below are binding.</p>
     </div>
 
@@ -140,8 +140,9 @@
       </section>
 
       <section>
-        <h2>16. E-Commerce</h2>
-        <p>16.1–16.5. E-commerce functionality is only included where specifically listed in the Quotation. Unless otherwise stated, BuildSynergy may load up to 10 products as part of a standard setup. The Client is responsible for product information, stock levels, prices, refunds, returns, delivery terms, legal notices, tax information and customer service. BuildSynergy is not responsible for payment gateway approval, transaction failures, chargebacks, fraud, refunds, customer disputes or payment processor downtime.</p>
+        <h2>16. AI Development and Integration</h2>
+        <p>16.1–16.5. AI features, tools and integrations are only included where specifically listed in the Quotation. AI functionality often relies on third-party AI providers, models, APIs and platforms, which are governed by their own terms, pricing, usage limits and availability. AI systems can produce inaccurate, incomplete, biased or unexpected outputs, and the Client is responsible for reviewing, testing and approving all AI-generated output before relying on or publishing it. BuildSynergy does not guarantee the accuracy, reliability, suitability or continuous availability of any AI feature, and is not liable for errors, inaccurate outputs, downtime, model changes, price increases or discontinued AI services outside its reasonable control.</p>
+        <p>16.6–16.9. The Client is responsible for ensuring that their use of any AI tool complies with applicable laws, the Protection of Personal Information Act and the acceptable-use policies of the relevant AI providers, including obtaining any consents required for data processed by AI systems. Ongoing AI usage, API and subscription costs are for the Client's account unless expressly included in the Quotation. BuildSynergy is not liable for decisions, actions or losses arising from the Client's reliance on AI outputs.</p>
       </section>
 
       <section>

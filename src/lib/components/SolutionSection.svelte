@@ -67,15 +67,14 @@
       </svg>`,
     },
     {
-      label: 'E-commerce & Online Payments',
-      desc:  'Online stores and payment integrations so customers can browse your services and pay directly through your site.',
+      label: 'AI Development & Integration',
+      desc:  'Custom AI tools and integrations that automate repetitive tasks and add intelligent features to the systems your business already uses.',
       accent: '#6366f1',
       glow:   'rgba(99,102,241,0.16)',
       icon: `<svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
-        <path d="M4 4h2.5l3.5 12h12l2.5-8H9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-        <circle cx="13" cy="22.5" r="1.8" stroke="currentColor" stroke-width="1.2"/>
-        <circle cx="20" cy="22.5" r="1.8" stroke="currentColor" stroke-width="1.2"/>
-        <path d="M13 10.5h5M15.5 8v5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" opacity=".45"/>
+        <rect x="6.5" y="6.5" width="15" height="15" rx="4" stroke="currentColor" stroke-width="1.4"/>
+        <path d="M11 3.5V6M17 3.5V6M11 22v2.5M17 22v2.5M3.5 11H6M3.5 17H6M22 11h2.5M22 17h2.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" opacity=".4"/>
+        <path d="M14 9.5c.3 2.7 1.8 4.2 4.5 4.5-2.7.3-4.2 1.8-4.5 4.5-.3-2.7-1.8-4.2-4.5-4.5 2.7-.3 4.2-1.8 4.5-4.5z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/>
       </svg>`,
     },
   ];
