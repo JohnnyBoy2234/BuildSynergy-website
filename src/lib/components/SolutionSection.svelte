@@ -21,8 +21,8 @@
     {
       label: 'Mobile App Development',
       desc:  'Custom iOS and Android apps that give your business its own presence directly on your customers\' devices.',
-      accent: '#6366f1',
-      glow:   'rgba(99,102,241,0.16)',
+      accent: '#8b5cf6',
+      glow:   'rgba(139,92,246,0.16)',
       icon: `<svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
         <rect x="8" y="2" width="12" height="24" rx="2.5" stroke="currentColor" stroke-width="1.4"/>
         <path d="M8 7h12M8 21h12" stroke="currentColor" stroke-width="1.1" opacity=".4"/>
@@ -33,8 +33,8 @@
     {
       label: 'Lead Capture & Quote Systems',
       desc:  'Smart enquiry forms and quote request flows that turn website visitors into real customers.',
-      accent: '#6366f1',
-      glow:   'rgba(99,102,241,0.16)',
+      accent: '#3b82f6',
+      glow:   'rgba(59,130,246,0.16)',
       icon: `<svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
         <path d="M3 5h22v14a1.5 1.5 0 0 1-1.5 1.5h-19A1.5 1.5 0 0 1 3 19V5z" stroke="currentColor" stroke-width="1.4"/>
         <path d="M3 5l11 8.5L25 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
@@ -45,8 +45,8 @@
     {
       label: 'Google Visibility & SEO',
       desc:  'Local SEO setup and Google presence so nearby customers can find your business and understand what you offer.',
-      accent: '#6366f1',
-      glow:   'rgba(99,102,241,0.16)',
+      accent: '#06b6d4',
+      glow:   'rgba(6,182,212,0.16)',
       icon: `<svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
         <circle cx="12.5" cy="12.5" r="8.5" stroke="currentColor" stroke-width="1.4"/>
         <path d="M19 19l5.5 5.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
@@ -69,8 +69,8 @@
     {
       label: 'AI Development & Integration',
       desc:  'Custom AI tools and integrations that automate repetitive tasks and add intelligent features to the systems your business already uses.',
-      accent: '#6366f1',
-      glow:   'rgba(99,102,241,0.16)',
+      accent: '#8b5cf6',
+      glow:   'rgba(139,92,246,0.16)',
       icon: `<svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
         <rect x="6.5" y="6.5" width="15" height="15" rx="4" stroke="currentColor" stroke-width="1.4"/>
         <path d="M11 3.5V6M17 3.5V6M11 22v2.5M17 22v2.5M3.5 11H6M3.5 17H6M22 11h2.5M22 17h2.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" opacity=".4"/>
@@ -194,13 +194,6 @@
         </div>
       {/each}
     </div>
-
-    <!-- Closing line -->
-    <p class="sol-closer" bind:this={closerEl}>
-      You focus on running the business.
-      <span> We make sure your first impression works.</span>
-    </p>
-
   </div>
 </section>
 
@@ -209,7 +202,7 @@
   .sol-section {
     position: relative;
     padding: var(--section-pad) var(--gutter);
-    background: var(--bg2);
+    background: transparent;
     overflow: hidden;
   }
 

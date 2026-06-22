@@ -19,8 +19,8 @@
       subtitle: 'Strategy & Client Relations',
       quote:    'I focus on understanding what each client actually needs and making sure we deliver something that moves their business forward. The relationship does not end at launch.',
       initials: 'CT',
-      accent:   '#6366f1',
-      glow:     'rgba(99,102,241,0.16)',
+      accent:   '#06b6d4',
+      glow:     'rgba(6,182,212,0.16)',
     },
   ];
 
@@ -121,7 +121,7 @@
   .team-section {
     position: relative;
     padding: var(--section-pad) var(--gutter);
-    background: var(--bg2);
+    background: transparent;
     overflow: hidden;
   }
 

@@ -149,7 +149,7 @@
     position: relative;
     width: 100%;
     min-height: 100svh;
-    background: var(--bg);
+    background: transparent;
     overflow: hidden;
     display: flex;
     align-items: center;
@@ -230,7 +230,14 @@
     margin-bottom: 1.6rem;
     max-width: 15ch;
   }
-  .hero-heading .accent { display: block; color: var(--indigo); }
+  .hero-heading .accent {
+    display: block;
+    background: linear-gradient(100deg, var(--indigo) 0%, var(--violet) 45%, var(--cyan) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: var(--indigo); /* fallback */
+  }
 
   .hero-sub {
     font-size: 1.08rem;

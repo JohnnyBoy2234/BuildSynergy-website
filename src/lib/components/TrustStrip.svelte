@@ -67,7 +67,7 @@
 <style>
   .incl-strip {
     position: relative;
-    background: var(--bg2);
+    background: transparent;
     border-top:    1px solid var(--border);
     border-bottom: 1px solid var(--border);
     padding: 1.5rem var(--gutter);

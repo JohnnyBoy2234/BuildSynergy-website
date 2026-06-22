@@ -134,7 +134,7 @@
   .process-section {
     position: relative;
     padding: var(--section-pad) var(--gutter);
-    background: var(--bg);
+    background: transparent;
     overflow: hidden;
   }
 
