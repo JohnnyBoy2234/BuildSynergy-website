@@ -40,7 +40,7 @@
   });
 </script>
 
-<section id="contact" class="contact-section">
+<section id="contact" class="contact-section" data-nav-dark>
   <!-- Particle network -->
   <SectionCanvas particleCount={45} opacity={0.35} />
 
@@ -50,7 +50,6 @@
 
   <div class="ct-inner">
     <div class="ct-header">
-      <span class="eyebrow">Start a Project</span>
       <h2 bind:this={headingEl}>Ready to give your business a stronger online presence?</h2>
       <p>Tell us about your business and what you'd like to improve. We'll help you identify the right digital solution.</p>
     </div>
