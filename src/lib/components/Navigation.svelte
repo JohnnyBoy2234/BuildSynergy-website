@@ -1,9 +1,12 @@
 <script lang="ts">
   import { onMount, tick } from 'svelte';
+  import { page } from '$app/state';
 
-  const navItems = [
+  type NavItem = { name: string; id: string; type: 'anchor' | 'route'; path?: string; icon: string };
+
+  const navItems: NavItem[] = [
     {
-      name: 'Services', id: 'services',
+      name: 'Services', id: 'services', type: 'anchor',
       icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
         <rect x="3" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.5"/>
         <rect x="14" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.5"/>
@@ -12,7 +15,7 @@
       </svg>`,
     },
     {
-      name: 'Process', id: 'process',
+      name: 'Process', id: 'process', type: 'anchor',
       icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
         <circle cx="5" cy="12" r="2.2" stroke="currentColor" stroke-width="1.4"/>
         <circle cx="12" cy="12" r="2.2" stroke="currentColor" stroke-width="1.4"/>
@@ -21,12 +24,21 @@
       </svg>`,
     },
     {
-      name: 'Why us', id: 'why',
+      name: 'Work', id: 'work', type: 'route', path: '/portfolio',
+      icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <rect x="3" y="6" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M8 6V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v1" stroke="currentColor" stroke-width="1.5"/>
+      </svg>`,
+    },
+    {
+      name: 'Why us', id: 'why', type: 'anchor',
       icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
         <path d="M12 3l1.9 5.6L19.5 9l-4.4 3.6L16.4 18 12 14.9 7.6 18l1.3-5.4L4.5 9l5.6-.4L12 3z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
       </svg>`,
     },
   ];
+
+  let isHome = $derived(page.url.pathname === '/');
 
   let activeTab = $state(navItems[0].name);
   let lampLeft  = $state(0);
@@ -65,6 +77,14 @@
     document.querySelector(`#${id}`)?.scrollIntoView({ behavior: 'smooth' });
   }
 
+  // Keep the lamp on "Work" while on a portfolio route.
+  $effect(() => {
+    if (page.url.pathname.startsWith('/portfolio')) {
+      activeTab = 'Work';
+      tick().then(refreshLamp);
+    }
+  });
+
   onMount(() => {
     const onResize = () => requestAnimationFrame(refreshLamp);
     const onScroll = () => {
@@ -94,11 +114,17 @@
     );
 
     tick().then(() => {
-      moveLamp(0);
-      navItems.forEach(n => {
-        const el = document.querySelector(`#${n.id}`);
-        if (el) io.observe(el);
-      });
+      // Scroll-spy only applies on the homepage where the sections exist.
+      if (isHome) {
+        moveLamp(0);
+        navItems.forEach(n => {
+          if (n.type !== 'anchor') return;
+          const el = document.querySelector(`#${n.id}`);
+          if (el) io.observe(el);
+        });
+      } else {
+        refreshLamp();
+      }
     });
 
     return () => {
@@ -140,17 +166,33 @@
       ></div>
 
       {#each navItems as item, i}
-        <button
-          class="nav-item"
-          class:active={activeTab === item.name}
-          bind:this={itemEls[i]}
-          onclick={() => { activate(item.name, i, true); closeMenu(); }}
-          aria-current={activeTab === item.name ? 'page' : undefined}
-          aria-label={item.name}
-        >
-          <span class="nav-icon">{@html item.icon}</span>
-          <span class="nav-label">{item.name}</span>
-        </button>
+        {#if item.type === 'route'}
+          <a
+            class="nav-item"
+            class:active={activeTab === item.name}
+            href={item.path}
+            bind:this={itemEls[i]}
+            onclick={closeMenu}
+            aria-current={activeTab === item.name ? 'page' : undefined}
+            aria-label={item.name}
+          >
+            <span class="nav-icon">{@html item.icon}</span>
+            <span class="nav-label">{item.name}</span>
+          </a>
+        {:else}
+          <a
+            class="nav-item"
+            class:active={activeTab === item.name}
+            href={`/#${item.id}`}
+            bind:this={itemEls[i]}
+            onclick={(e) => { if (isHome) { e.preventDefault(); activate(item.name, i, true); } closeMenu(); }}
+            aria-current={activeTab === item.name ? 'page' : undefined}
+            aria-label={item.name}
+          >
+            <span class="nav-icon">{@html item.icon}</span>
+            <span class="nav-label">{item.name}</span>
+          </a>
+        {/if}
       {/each}
     </div>
 
@@ -264,6 +306,7 @@
   .nav-item {
     position: relative;
     z-index: 1;
+    text-decoration: none;
     display: flex;
     align-items: center;
     gap: 0;
