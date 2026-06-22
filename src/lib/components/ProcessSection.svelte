@@ -32,7 +32,7 @@
     {
       num: '04',
       label: 'Launch & Grow',
-      desc: 'We don\'t just launch and leave — ongoing optimisation, AI improvements and proactive support keep your business growing.',
+      desc: 'We don\'t just launch and leave. Ongoing optimisation, AI improvements and proactive support keep your business growing.',
       icon: `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" aria-hidden="true">
         <path d="M12 3c3 1.6 5 5 5 9l-2.5 2h-5L7 12c0-4 2-7.4 5-9z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
         <circle cx="12" cy="10" r="1.6" stroke="currentColor" stroke-width="1.6"/>

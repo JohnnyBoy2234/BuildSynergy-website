@@ -8,7 +8,7 @@
   const solutions: Solution[] = [
     {
       label: 'AI Chatbots & Assistants',
-      desc: "An always-on assistant that answers questions and captures leads on your site — exactly like the one you're chatting with right now.",
+      desc: "An always on assistant that answers questions and captures leads on your site, exactly like the one you're chatting with right now.",
       badge: 'Live on this site',
       icon: `<svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
         <path d="M4 5.5h16a1.5 1.5 0 0 1 1.5 1.5v8A1.5 1.5 0 0 1 20 16.5H9l-4 3.5v-3.5H4A1.5 1.5 0 0 1 2.5 15V7A1.5 1.5 0 0 1 4 5.5z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
@@ -17,7 +17,7 @@
     },
     {
       label: 'Document Processing',
-      desc: 'Turn invoices, forms, IDs and PDFs into clean, structured data automatically — no more manual capture.',
+      desc: 'Turn invoices, forms, IDs and PDFs into clean, structured data automatically, with no more manual capture.',
       icon: `<svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
         <path d="M6 2.5h8l4 4V20a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 6 20V2.5z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
         <path d="M14 2.5V6.5h4" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
@@ -26,7 +26,7 @@
     },
     {
       label: 'Workflow Automation',
-      desc: 'Hand off repetitive admin — quotes, follow-ups, data entry — to AI that works across the tools you already use.',
+      desc: 'Hand off repetitive admin like quotes, follow ups and data entry to AI that works across the tools you already use.',
       icon: `<svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
         <circle cx="6" cy="6" r="2.5" stroke="currentColor" stroke-width="1.5"/>
         <circle cx="18" cy="6" r="2.5" stroke="currentColor" stroke-width="1.5"/>
@@ -95,7 +95,7 @@
       <p class="ai-eyebrow">AI Solutions</p>
       <h2 class="ai-heading">AI that does the work, not just the talking.</h2>
       <p class="ai-sub">
-        We design and build practical AI solutions that handle real work — so your team
+        We design and build practical AI solutions that handle real work, so your team
         spends less time on the repetitive and more on your customers.
       </p>
     </div>

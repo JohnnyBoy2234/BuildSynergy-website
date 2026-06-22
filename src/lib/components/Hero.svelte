@@ -122,7 +122,7 @@
 
     <p class="hero-sub">
       BuildSynergy gives South African service businesses a sharper, more trustworthy
-      website — with hosting, lead capture and ongoing support handled for you.
+      website, with hosting, lead capture and ongoing support handled for you.
     </p>
 
     <div class="hero-ctas">
