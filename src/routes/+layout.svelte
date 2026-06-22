@@ -1,7 +1,7 @@
 <script lang="ts">
   import '../app.css';
   import { onMount, type Snippet } from 'svelte';
-  import { afterNavigate } from '$app/navigation';
+  import { afterNavigate, onNavigate } from '$app/navigation';
   import ChatWidget from '$lib/components/ChatWidget.svelte';
   import { startSession, trackPage } from '$lib/chat/browsing';
 
@@ -10,6 +10,18 @@
 
   onMount(() => startSession());
   afterNavigate(() => trackPage(window.location.pathname, document.title));
+
+  onNavigate((navigation) => {
+    if (typeof document === 'undefined' || !document.startViewTransition) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    return new Promise((resolve) => {
+      document.startViewTransition(async () => {
+        resolve();
+        await navigation.complete;
+      });
+    });
+  });
 
   const orgSchema = {
     '@context': 'https://schema.org',
