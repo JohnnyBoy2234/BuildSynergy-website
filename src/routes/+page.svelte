@@ -32,12 +32,12 @@
   <div class="divider"></div>
   <ProblemSection />
 
+  <!-- 3b. AI Solutions — full-bleed dark band, its own separator (no divider) -->
+  <AiSection />
+
   <!-- 4. Solution -->
   <div class="divider"></div>
   <SolutionSection />
-
-  <!-- 4b. AI Solutions — full-bleed dark band, its own separator (no divider) -->
-  <AiSection />
 
   <!-- 5. Process -->
   <div class="divider"></div>

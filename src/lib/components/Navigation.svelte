@@ -6,19 +6,19 @@
 
   const navItems: NavItem[] = [
     {
+      name: 'AI', id: 'ai', type: 'anchor',
+      icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <rect x="5" y="5" width="14" height="14" rx="4" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M12 8.5c.25 2 1.3 3 3.3 3.3-2 .25-3 1.3-3.3 3.3-.25-2-1.3-3-3.3-3.3 2-.25 3-1.3 3.3-3.3z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+      </svg>`,
+    },
+    {
       name: 'Services', id: 'services', type: 'anchor',
       icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
         <rect x="3" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.5"/>
         <rect x="14" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.5"/>
         <rect x="3" y="14" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.5"/>
         <rect x="14" y="14" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.5"/>
-      </svg>`,
-    },
-    {
-      name: 'AI', id: 'ai', type: 'anchor',
-      icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <rect x="5" y="5" width="14" height="14" rx="4" stroke="currentColor" stroke-width="1.5"/>
-        <path d="M12 8.5c.25 2 1.3 3 3.3 3.3-2 .25-3 1.3-3.3 3.3-.25-2-1.3-3-3.3-3.3 2-.25 3-1.3 3.3-3.3z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
       </svg>`,
     },
     {
@@ -55,6 +55,8 @@
   let itemEls:  HTMLElement[] = [];
   let scrolled  = $state(false);
   let menuOpen  = $state(false);
+  let overDark  = $state(false);
+  let logoEl:   HTMLElement;
 
   function toggleMenu() { menuOpen = !menuOpen; }
   function closeMenu()  { menuOpen = false; }
@@ -93,9 +95,23 @@
   });
 
   onMount(() => {
-    const onResize = () => requestAnimationFrame(refreshLamp);
+    // Flip the wordmark to light type whenever the logo overlaps a section
+    // marked [data-nav-dark] (e.g. the AI band) so it stays readable.
+    const updateOverDark = () => {
+      if (!logoEl) return;
+      const lr = logoEl.getBoundingClientRect();
+      const mid = lr.top + lr.height / 2;
+      let dark = false;
+      document.querySelectorAll('[data-nav-dark]').forEach((el) => {
+        const r = el.getBoundingClientRect();
+        if (r.top <= mid && r.bottom >= mid) dark = true;
+      });
+      overDark = dark;
+    };
+    const onResize = () => { requestAnimationFrame(refreshLamp); updateOverDark(); };
     const onScroll = () => {
       scrolled = window.scrollY > 80;
+      updateOverDark();
       if (menuOpen) closeMenu();
     };
     const onDocClick = (e: MouseEvent) => {
@@ -148,6 +164,8 @@
   <!-- Wordmark logo, top-left -->
   <a
     class="nav-logo"
+    class:over-dark={overDark}
+    bind:this={logoEl}
     href="/"
     onclick={(e) => { if (isHome) { e.preventDefault(); go('home'); } closeMenu(); }}
     aria-label="BuildSynergy Home"
@@ -269,8 +287,8 @@
   .nav-logo {
     flex-shrink: 0;
     text-decoration: none;
-    font-family: var(--display);
-    font-size: 1.7rem;
+    font-family: 'Poppins', var(--display);
+    font-size: 2.1rem;
     line-height: 1;
     letter-spacing: -0.03em;
     white-space: nowrap;
@@ -280,12 +298,19 @@
   .logo-build {
     font-weight: 500;
     color: var(--text);
+    transition: color 0.3s ease;
   }
 
   .logo-accent {
     font-weight: 700;
     color: var(--indigo);
+    transition: color 0.3s ease;
   }
+
+  /* Over a section marked [data-nav-dark] the wordmark flips to light type so
+     it stays readable on dark backgrounds — no backing needed. */
+  .nav-logo.over-dark .logo-build  { color: #fff; }
+  .nav-logo.over-dark .logo-accent { color: #a5b4fc; }
 
   /* ── Links container ──────────────────────────────────────────────── */
   .nav-links {
@@ -408,7 +433,7 @@
       padding: 0 0.85rem;
       gap: 0.6rem;
     }
-    .nav-logo { font-size: 1.35rem; }
+    .nav-logo { font-size: 1.65rem; }
 
     .nav-pill {
       border-radius: 16px;

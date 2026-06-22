@@ -86,7 +86,7 @@
   });
 </script>
 
-<section id="ai" class="ai-section">
+<section id="ai" class="ai-section" data-nav-dark>
   <div class="ai-glow ai-glow--1" aria-hidden="true"></div>
   <div class="ai-glow ai-glow--2" aria-hidden="true"></div>
 
