@@ -5,7 +5,7 @@
   import { projects } from '$lib/portfolio';
   import ProjectCard from './ProjectCard.svelte';
 
-  const featured = projects.filter((p: typeof projects[number]) => p.featured).slice(0, 3);
+  const featured = projects.filter((p) => p.featured).slice(0, 3);
 
   let headingEl: HTMLElement;
   let cardEls: HTMLElement[] = [];

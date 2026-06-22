@@ -33,6 +33,8 @@
   function openLightbox(i: number) { lbIndex = i; lbOpen = true; }
 
   onMount(() => {
+    // NOTE: GSAP wiring binds once on mount. If a detail->detail link (e.g. "next project")
+    // is ever added, wrap the page in {#key data.project.slug} so this re-runs per slug.
     gsap.registerPlugin(ScrollTrigger);
     const mm = gsap.matchMedia();
 

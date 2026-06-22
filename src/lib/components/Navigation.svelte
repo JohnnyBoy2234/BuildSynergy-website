@@ -142,7 +142,7 @@
   <a
     class="nav-logo"
     href="/"
-    onclick={(e) => { e.preventDefault(); go('home'); closeMenu(); }}
+    onclick={(e) => { if (isHome) { e.preventDefault(); go('home'); } closeMenu(); }}
     aria-label="BuildSynergy Home"
   >
     <span class="logo-build">Build</span><span class="logo-accent">Synergy</span>
@@ -198,9 +198,9 @@
 
     <!-- CTA -->
     <a
-      href="#contact"
+      href="/#contact"
       class="nav-cta"
-      onclick={(e) => { e.preventDefault(); go('contact'); closeMenu(); }}
+      onclick={(e) => { if (isHome) { e.preventDefault(); go('contact'); } closeMenu(); }}
     >
       Get a quote
     </a>
