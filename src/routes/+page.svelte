@@ -1,5 +1,6 @@
 <script lang="ts">
   import Navigation       from '$lib/components/Navigation.svelte';
+  import AuroraBackground from '$lib/components/AuroraBackground.svelte';
   import Hero             from '$lib/components/Hero.svelte';
   import TrustStrip       from '$lib/components/TrustStrip.svelte';
   import ProblemSection   from '$lib/components/ProblemSection.svelte';
@@ -18,6 +19,7 @@
 />
 
 <Navigation />
+<AuroraBackground />
 <main>
   <!-- 1. Hero -->
   <Hero />
