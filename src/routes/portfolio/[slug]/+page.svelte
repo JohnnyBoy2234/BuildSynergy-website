@@ -81,9 +81,6 @@
         </div>
         <h1 class="hero-title">{project.title}</h1>
         <p class="hero-summary">{project.summary}</p>
-        <div class="hero-tags">
-          {#each project.tags as tag}<span class="tag">{tag}</span>{/each}
-        </div>
         {#if project.liveUrl}
           <a class="visit" href={project.liveUrl} target="_blank" rel="noopener noreferrer">Visit site →</a>
         {/if}
@@ -146,11 +143,24 @@
     display: flex; flex-direction: column; gap: clamp(4rem, 8vw, 7rem);
   }
   .back {
-    font-family: var(--display); font-size: 0.9rem; font-weight: 600;
-    color: var(--text-muted); text-decoration: none; width: fit-content;
-    transition: color 0.2s;
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    font-family: var(--display); font-size: 1rem; font-weight: 600;
+    color: var(--text); text-decoration: none; width: fit-content;
+    padding: 0.7rem 1.3rem;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 100px; box-shadow: var(--shadow-sm);
+    transition: color 0.2s, border-color 0.2s, box-shadow 0.2s, transform 0.2s, background 0.2s;
   }
-  .back:hover { color: var(--indigo); }
+  .back:hover {
+    color: var(--indigo);
+    border-color: color-mix(in srgb, var(--indigo) 40%, transparent);
+    box-shadow: var(--shadow-md);
+    transform: translateX(-3px);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .back { transition: color 0.2s, border-color 0.2s; }
+    .back:hover { transform: none; }
+  }
 
   /* Hero */
   .hero { display: grid; grid-template-columns: 1fr 1.1fr; gap: clamp(2rem, 5vw, 4rem); align-items: center; }
@@ -161,12 +171,6 @@
   }
   .hero-title { font-size: clamp(2.4rem, 5vw, 3.8rem); font-weight: 800; letter-spacing: -0.04em; line-height: 1.04; color: var(--text); }
   .hero-summary { font-size: 1.1rem; line-height: 1.7; color: var(--text-body); max-width: 460px; }
-  .hero-tags { display: flex; flex-wrap: wrap; gap: 0.45rem; }
-  .tag {
-    font-size: 0.75rem; font-weight: 600; color: var(--text-body);
-    background: var(--surface2); border: 1px solid var(--border);
-    padding: 0.3rem 0.7rem; border-radius: 100px;
-  }
   .visit {
     margin-top: 0.6rem; width: fit-content;
     font-family: var(--display); font-size: 0.95rem; font-weight: 600; color: #fff;

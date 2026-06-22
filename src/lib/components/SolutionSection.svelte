@@ -282,9 +282,11 @@
   }
 
   .sol-card:hover {
-    border-color: color-mix(in srgb, var(--accent) 40%, transparent);
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-md);
+    border-color: color-mix(in srgb, var(--accent) 65%, transparent);
+    transform: translateY(-8px);
+    box-shadow:
+      var(--shadow-lg),
+      0 14px 34px color-mix(in srgb, var(--accent) 26%, transparent);
   }
 
   /* Spotlight follows cursor via --mx / --my CSS vars */

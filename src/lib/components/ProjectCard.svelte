@@ -36,11 +36,6 @@
     </div>
     <h3 class="card-title">{project.title}</h3>
     <p class="card-summary">{project.summary}</p>
-    <div class="card-tags">
-      {#each project.tags.slice(0, 3) as tag}
-        <span class="tag">{tag}</span>
-      {/each}
-    </div>
     <span class="card-cta">View project →</span>
   </div>
 </a>
@@ -102,12 +97,6 @@
     color: var(--text);
   }
   .card-summary { font-size: 0.9rem; line-height: 1.6; color: var(--text-body); }
-  .card-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.2rem; }
-  .tag {
-    font-size: 0.72rem; font-weight: 600; color: var(--text-body);
-    background: var(--surface2); border: 1px solid var(--border);
-    padding: 0.25rem 0.6rem; border-radius: 100px;
-  }
   .card-cta {
     margin-top: 0.55rem;
     font-family: var(--display); font-size: 0.9rem; font-weight: 600;

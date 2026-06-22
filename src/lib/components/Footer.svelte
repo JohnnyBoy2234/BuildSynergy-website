@@ -19,17 +19,11 @@
     }
     return () => ScrollTrigger.getAll().forEach(t => t.kill());
   });
-
-  function scrollTo(id: string) {
-    document.querySelector(id)?.scrollIntoView({ behavior: 'smooth' });
-  }
 </script>
 
 <footer class="footer" bind:this={footerEl}>
   <!-- Gradient fade-in from top -->
   <div class="footer-fade" aria-hidden="true"></div>
-  <!-- Grid pattern -->
-  <div class="footer-grid-bg" aria-hidden="true"></div>
 
   <div class="footer-inner">
     <div class="footer-top">
@@ -40,24 +34,6 @@
       </div>
 
       <nav class="footer-nav" aria-label="Footer">
-        <div class="nav-col">
-          <span class="nav-label">Navigate</span>
-          <ul>
-            <li><a href="#home"     onclick={(e) => { e.preventDefault(); scrollTo('#home'); }}>Home</a></li>
-            <li><a href="#services" onclick={(e) => { e.preventDefault(); scrollTo('#services'); }}>Services</a></li>
-            <li><a href="#process"  onclick={(e) => { e.preventDefault(); scrollTo('#process'); }}>Process</a></li>
-            <li><a href="#packages" onclick={(e) => { e.preventDefault(); scrollTo('#packages'); }}>Packages</a></li>
-            <li><a href="#contact"  onclick={(e) => { e.preventDefault(); scrollTo('#contact'); }}>Contact</a></li>
-          </ul>
-        </div>
-        <div class="nav-col">
-          <span class="nav-label">Connect</span>
-          <ul>
-            <li><a href="/" aria-label="LinkedIn">LinkedIn</a></li>
-            <li><a href="/" aria-label="Facebook">Facebook</a></li>
-            <li><a href="/" aria-label="Instagram">Instagram</a></li>
-          </ul>
-        </div>
         <div class="nav-col">
           <span class="nav-label">Legal</span>
           <ul>
@@ -95,15 +71,6 @@
     top: 0; left: 0; right: 0;
     height: 200px;
     background: transparent;
-    pointer-events: none;
-  }
-
-  .footer-grid-bg {
-    position: absolute;
-    inset: 0;
-    background-image: linear-gradient(rgba(99,102,241,0.05) 1px, transparent 1px),
-                      linear-gradient(90deg, rgba(99,102,241,0.05) 1px, transparent 1px);
-    background-size: 52px 52px;
     pointer-events: none;
   }
 

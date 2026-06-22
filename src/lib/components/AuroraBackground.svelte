@@ -1,16 +1,14 @@
 <!--
-  Persistent page backdrop. A subtle blueprint grid gives the page structure so
-  it never reads as an empty colour field, with soft indigo glows drifting in the
-  corners for warmth. Fixed and pointer-transparent, sits below all content
-  (z-index:-1). White base is on <html> (app.css) so this negative-z layer is
-  always visible. Glows stay light so text on top keeps contrast.
+  Persistent page backdrop. Soft indigo glows drift in the corners for warmth
+  over a very light cool base. Fixed and pointer-transparent, sits below all
+  content (z-index:-1). White base is on <html> (app.css) so this negative-z
+  layer is always visible. Glows stay light so text on top keeps contrast.
   CSS-only; animation freezes under prefers-reduced-motion.
 -->
 <div class="aurora" aria-hidden="true">
   <span class="blob blob--1"></span>
   <span class="blob blob--2"></span>
   <span class="blob blob--3"></span>
-  <div class="grid"></div>
 </div>
 
 <style>
@@ -59,20 +57,6 @@
     height: 50vmax;
     background: radial-gradient(ellipse at center, rgba(6, 182, 212, 0.16) 0%, transparent 60%);
     animation: drift-3 40s ease-in-out infinite alternate;
-  }
-
-  /* Blueprint grid — the structure that keeps the page from looking empty.
-     Visible across the whole viewport, only feathered at the far edges. */
-  .grid {
-    position: absolute;
-    inset: 0;
-    background-image:
-      linear-gradient(to right,  rgba(99, 102, 241, 0.055) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(99, 102, 241, 0.055) 1px, transparent 1px),
-      radial-gradient(circle at 1px 1px, rgba(79, 70, 229, 0.12) 1.5px, transparent 0);
-    background-size: 64px 64px, 64px 64px, 64px 64px;
-    -webkit-mask-image: radial-gradient(ellipse 100% 100% at 50% 30%, #000 55%, transparent 95%);
-            mask-image: radial-gradient(ellipse 100% 100% at 50% 30%, #000 55%, transparent 95%);
   }
 
   @keyframes drift-1 {
