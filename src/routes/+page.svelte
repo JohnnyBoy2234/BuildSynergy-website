@@ -5,6 +5,7 @@
   import TrustStrip       from '$lib/components/TrustStrip.svelte';
   import ProblemSection   from '$lib/components/ProblemSection.svelte';
   import SolutionSection  from '$lib/components/SolutionSection.svelte';
+  import AiSection        from '$lib/components/AiSection.svelte';
   import ProcessSection   from '$lib/components/ProcessSection.svelte';
   import PortfolioTeaser  from '$lib/components/PortfolioTeaser.svelte';
   import ManifestoSection from '$lib/components/ManifestoSection.svelte';
@@ -34,6 +35,9 @@
   <!-- 4. Solution -->
   <div class="divider"></div>
   <SolutionSection />
+
+  <!-- 4b. AI Solutions — full-bleed dark band, its own separator (no divider) -->
+  <AiSection />
 
   <!-- 5. Process -->
   <div class="divider"></div>

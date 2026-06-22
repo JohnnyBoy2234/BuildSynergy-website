@@ -15,6 +15,13 @@
       </svg>`,
     },
     {
+      name: 'AI', id: 'ai', type: 'anchor',
+      icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <rect x="5" y="5" width="14" height="14" rx="4" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M12 8.5c.25 2 1.3 3 3.3 3.3-2 .25-3 1.3-3.3 3.3-.25-2-1.3-3-3.3-3.3 2-.25 3-1.3 3.3-3.3z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+      </svg>`,
+    },
+    {
       name: 'Process', id: 'process', type: 'anchor',
       icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
         <circle cx="5" cy="12" r="2.2" stroke="currentColor" stroke-width="1.4"/>
