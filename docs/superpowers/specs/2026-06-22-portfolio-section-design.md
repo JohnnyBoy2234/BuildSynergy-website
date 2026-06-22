@@ -5,16 +5,24 @@
 
 ## Goal
 
-Add a portfolio to the BuildSynergy site: a dedicated `/portfolio` page listing real
-finished projects, with a clickable detail page per project (gallery, written case
-study, service/tech tags, live link). Surface featured work on the homepage via a
-teaser section and add a `Work` link to the main navigation.
+Add a portfolio to the BuildSynergy site: a dedicated `/portfolio` page listing
+projects, with a clickable detail page per project that reads as an *experience* —
+a scroll-driven case study (gallery, narrative, service/tech tags, live link), with
+count-up outcome metrics and view-transition morphs between listing and detail.
+Surface featured work on the homepage via a teaser section and add a `Work` link to
+the main navigation.
+
+**Built with realistic placeholder data first** so the design can be judged before
+real content exists. The user swaps placeholder projects + images for real ones later;
+no code changes required — only `src/lib/portfolio.ts` and `static/portfolio/`.
 
 ## Non-Goals
 
 - No CMS / admin UI. Projects are edited by hand in a TypeScript file.
 - No DB tables (existing Drizzle/Neon stack is untouched).
-- No new runtime dependencies.
+- No new runtime dependencies (GSAP/ScrollTrigger and the native View Transitions API
+  cover the experience layer).
+- No filterable/searchable listing grid (deferred — listing is a clean animated grid).
 
 ## Data Model
 
@@ -37,15 +45,26 @@ export interface Project {
     approach: string;
     outcome: string;
   };
+  metrics: Metric[];     // animated count-up outcome stats
+}
+
+export interface Metric {
+  prefix?: string;       // e.g. "+", "R"
+  value: number;         // numeric target, count-up animates 0 → value
+  suffix?: string;       // e.g. "%", "k", "s"
+  label: string;         // e.g. "more enquiries in 3 months"
 }
 
 export const projects: Project[];
 export const getProject: (slug: string) => Project | undefined;
 ```
 
-- Project images live in `static/portfolio/<slug>/`.
-- Real project data supplied by the user; the file ships with at least one real entry.
-  Any sample placeholder entry is clearly marked for replacement.
+- Ships with **3–4 realistic placeholder projects** (varied categories: web build, SEO,
+  app, branding) so the design reads as real. Placeholder images are committed under
+  `static/portfolio/<slug>/` (simple generated/sample images, clearly replaceable).
+- The user later edits this file + swaps images to publish real work — no other changes.
+- `metrics` is count-up-friendly by construction (numeric `value` + prefix/suffix), so a
+  metric like `+140%` is `{ prefix: '+', value: 140, suffix: '%', label: '…' }`.
 
 ## Routes & Pages
 
@@ -60,20 +79,47 @@ src/routes/portfolio/
 ### Listing — `/portfolio`
 - `<Navigation />`, `<AuroraBackground />`, `<Seo>`, `<Footer />` for continuity with the site.
 - Heading + intro line.
-- Responsive grid of `ProjectCard`s (all projects).
-- GSAP scroll reveals consistent with existing sections.
+- Responsive grid of `ProjectCard`s (all projects), GSAP scroll reveals consistent with existing sections.
+- Each card's hero image carries a `view-transition-name` (`hero-<slug>`) so it morphs into the
+  detail hero on navigation.
 
-### Detail — `/portfolio/[slug]`
+### Detail — `/portfolio/[slug]` (the experience)
 - `+page.ts` resolves the project via `getProject`; unknown slug throws SvelteKit `error(404)`.
 - Layout, top to bottom:
   - Back link ("← All work")
-  - Title, category, year, tag chips, optional "Visit site" button (`liveUrl`)
-  - Hero image
-  - Case study in three labelled blocks: **The challenge** / **What we built** / **The outcome**
-  - Gallery grid (remaining screenshots)
-  - Closing CTA: reuse `<FinalCTA />` to funnel to contact
+  - **Hero block:** title, category, year, tag chips, optional "Visit site" button (`liveUrl`), and
+    the large hero image carrying the matching `view-transition-name` (`hero-<slug>`).
+  - **Scroll-driven case study:** the three blocks (**The challenge** / **What we built** /
+    **The outcome**) presented as a two-column scroll story — narrative text scrolls on one side
+    while a screenshot column **pins and parallaxes**, swapping the visible shot per block via
+    GSAP ScrollTrigger. Collapses to single-column stacked (no pin) on mobile.
+  - **Outcome metrics:** the `metrics` array rendered as count-up stats that animate 0 → value
+    when scrolled into view.
+  - **Gallery:** grid of remaining screenshots; clicking any opens the lightbox.
+  - Closing CTA: reuse `<FinalCTA />` to funnel to contact.
 - `<Navigation />`, `<AuroraBackground />`, `<Seo>`, `<Footer />`.
-- GSAP scroll reveals.
+
+## Experience Layer
+
+The portfolio's distinguishing interactions, all on existing tooling (GSAP + native View
+Transitions), each with a `prefers-reduced-motion` fallback to a static equivalent.
+
+1. **Scroll-driven case study** (detail page): GSAP ScrollTrigger pins the imagery column and
+   cross-fades/parallaxes screenshots as the reader moves through challenge → build → outcome.
+   Reduced motion / mobile: plain stacked text + images, no pin.
+
+2. **Count-up outcome metrics:** GSAP tweens each `Metric` from 0 to `value` (respecting
+   prefix/suffix) when the stats row enters the viewport, once. Reduced motion: render final
+   values immediately.
+
+3. **View-transition morph** (listing ↔ detail): `onNavigate` in `+layout.svelte` wraps
+   navigation in `document.startViewTransition` (feature-detected; no-op fallback otherwise).
+   Shared `view-transition-name: hero-<slug>` on the card hero and the detail hero makes the
+   image morph across the navigation. Guarded behind `prefers-reduced-motion`.
+
+4. **Lightbox** — new `src/lib/components/ProjectLightbox.svelte`: click a gallery image to open
+   a full-screen zoomable overlay with prev/next, keyboard (←/→/Esc) and swipe support, focus
+   trap, and background scroll lock. Dependency-free.
 
 ## Navigation (route-aware refactor)
 
@@ -117,8 +163,12 @@ New `src/lib/components/PortfolioTeaser.svelte`:
 - `+page.ts` 404s on unknown slug.
 - Typecheck / `npm run build` passes (the `Project` type guards the data).
 - Manual (run skill): `/portfolio` lists projects; cards link through; detail page renders all
-  sections; nav `Work` link works from both home and a detail page; anchor links from a detail
-  page navigate home and scroll to the right section.
+  sections; the scroll-driven case study pins/swaps imagery; metrics count up once on scroll;
+  the hero image morphs on listing ↔ detail navigation; the lightbox opens, navigates, and closes;
+  nav `Work` link works from both home and a detail page; anchor links from a detail page navigate
+  home and scroll to the right section.
+- Reduced motion: with `prefers-reduced-motion: reduce`, the pin/parallax, count-up, and view
+  transition all degrade to static — content is fully readable and final metric values show.
 
 ## Files Touched
 
@@ -129,8 +179,10 @@ New `src/lib/components/PortfolioTeaser.svelte`:
 - `src/routes/portfolio/[slug]/+page.svelte`
 - `src/lib/components/ProjectCard.svelte`
 - `src/lib/components/PortfolioTeaser.svelte`
-- `static/portfolio/<slug>/` image assets
+- `src/lib/components/ProjectLightbox.svelte`
+- `static/portfolio/<slug>/` placeholder image assets
 
 **Modified:**
 - `src/lib/components/Navigation.svelte` (route-aware + `Work` item)
 - `src/routes/+page.svelte` (insert `PortfolioTeaser`)
+- `src/routes/+layout.svelte` (View Transitions `onNavigate` hook)
