@@ -174,7 +174,7 @@
     display: flex; flex-direction: column; gap: 1.25rem;
     padding: 1.75rem 1.6rem;
     background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.09);
+    border: 2px solid rgba(255, 255, 255, 0.12);
     border-radius: 18px;
     transition: border-color 0.3s, transform 0.3s, background 0.3s, box-shadow 0.3s;
   }

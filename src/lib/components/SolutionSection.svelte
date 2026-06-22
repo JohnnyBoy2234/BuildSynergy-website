@@ -263,7 +263,7 @@
   .sol-card {
     position: relative;
     background: var(--surface);
-    border: 1px solid var(--border);
+    border: 2px solid var(--border);
     border-radius: 20px;
     padding: 2rem 1.85rem;
     display: flex; flex-direction: column; gap: 1.5rem;
