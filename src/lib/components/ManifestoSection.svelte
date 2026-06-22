@@ -69,8 +69,12 @@
         The team behind BuildSynergy.
       </h2>
       <p class="t-sub" bind:this={subEl}>
-        Two brothers. One focused on building, one on business.
-        Together we handle every project end to end from the first conversation to ongoing support.
+        We are more than developers — we are strategic growth partners. We combine cutting-edge
+        technology, AI-driven innovation and continuous optimisation to inspire confidence and drive
+        measurable results. Our commitment doesn’t end at launch: proactive support and long-term
+        strategy keep your business scaling and ahead of the competition. Our vision is to be one of
+        Africa’s leading website and app development companies — work that makes clients say,
+        “This is exactly what you’ve been looking for.”
       </p>
     </div>
 

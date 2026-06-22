@@ -7,7 +7,7 @@
     {
       num: '01',
       label: 'Discover',
-      desc: 'We review your business, goals and what customers need to see before they trust you.',
+      desc: 'Trust wins business. We build a presence that establishes credibility and turns more visitors into paying customers.',
       icon: `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" aria-hidden="true">
         <circle cx="10.5" cy="10.5" r="6.5" stroke="currentColor" stroke-width="1.8"/>
         <path d="M15.5 15.5L20 20" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
@@ -16,7 +16,7 @@
     {
       num: '02',
       label: 'Design',
-      desc: 'We create your site structure, messaging and visual direction refined together.',
+      desc: 'We design every detail to reflect your brand and inspire customer confidence.',
       icon: `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" aria-hidden="true">
         <path d="M15.5 5.5l3 3M4 20l1-4L16 5l3 3L9 19l-5 1z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
       </svg>`,
@@ -24,7 +24,7 @@
     {
       num: '03',
       label: 'Build',
-      desc: 'We develop your website, connect lead tools, optimise for mobile and prepare for launch.',
+      desc: 'We build a powerful online presence that positions your business for growth and success.',
       icon: `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" aria-hidden="true">
         <path d="M8 7l-5 5 5 5M16 7l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>`,
@@ -32,7 +32,7 @@
     {
       num: '04',
       label: 'Launch & Grow',
-      desc: 'We go live and keep your presence sharp through hosting, updates and monthly care.',
+      desc: 'We don\'t just launch and leave — ongoing optimisation, AI improvements and proactive support keep your business growing.',
       icon: `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" aria-hidden="true">
         <path d="M12 3c3 1.6 5 5 5 9l-2.5 2h-5L7 12c0-4 2-7.4 5-9z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
         <circle cx="12" cy="10" r="1.6" stroke="currentColor" stroke-width="1.6"/>
