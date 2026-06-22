@@ -55,9 +55,11 @@
     isolation: isolate;
   }
   .proj-card:hover {
-    border-color: color-mix(in srgb, var(--indigo) 40%, transparent);
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-md);
+    border-color: color-mix(in srgb, var(--indigo) 60%, transparent);
+    transform: translateY(-12px) scale(1.025);
+    box-shadow:
+      var(--shadow-lg),
+      0 28px 60px color-mix(in srgb, var(--indigo) 32%, transparent);
   }
 
   .card-spotlight {

@@ -176,12 +176,13 @@
     background: rgba(255, 255, 255, 0.04);
     border: 1px solid rgba(255, 255, 255, 0.09);
     border-radius: 18px;
-    transition: border-color 0.3s, transform 0.3s, background 0.3s;
+    transition: border-color 0.3s, transform 0.3s, background 0.3s, box-shadow 0.3s;
   }
   .ai-card:hover {
-    border-color: rgba(129, 140, 248, 0.55);
-    transform: translateY(-5px);
-    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(129, 140, 248, 0.75);
+    transform: translateY(-12px) scale(1.035);
+    background: rgba(255, 255, 255, 0.07);
+    box-shadow: 0 28px 60px rgba(99, 102, 241, 0.45);
   }
 
   .ai-card-spot {
