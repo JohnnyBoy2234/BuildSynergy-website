@@ -121,8 +121,8 @@
     </h1>
 
     <p class="hero-sub">
-      BuildSynergy gives South African service businesses a sharper, more trustworthy
-      website, with hosting, lead capture and ongoing support handled for you.
+      BuildSynergy helps businesses stand out online with powerful websites, AI-powered
+      automation that build trust, capture leads and turn customer attention into real growth.
     </p>
 
     <div class="hero-ctas">
