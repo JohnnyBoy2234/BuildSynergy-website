@@ -122,7 +122,7 @@
 
       <section>
         <h2>7. Cookies and Analytics</h2>
-        <p>Our website uses cookies and similar technologies. Strictly necessary cookies are required for the site to function. With your consent, we also use analytics to understand how visitors use our site, using first-party and, where applicable, third-party analytics tools. These may collect IP address, general location, browser type, device type, pages visited, time on pages and referring website. You can manage your preferences through your browser settings; disabling strictly necessary cookies may affect website functionality.</p>
+        <p>Our website uses cookies and similar technologies. Strictly necessary cookies are required for the site to function. With your consent, we also use analytics to understand how visitors use our site, using Vercel Analytics and Google Analytics. These may collect IP address, general location, browser type, device type, pages visited, time on pages and referring website. You can manage your preferences through your browser settings; disabling strictly necessary cookies may affect website functionality.</p>
       </section>
 
       <section>
@@ -138,7 +138,7 @@
 
       <section>
         <h2>10. Third-Party Hosting and Infrastructure</h2>
-        <p>BuildSynergy delivers managed hosting using third-party infrastructure providers which may include Hostinger, Vercel and other technology partners. These providers may process or store information according to their own terms, privacy policies and security practices. BuildSynergy will take reasonable steps to use reputable providers, but we are not responsible for the independent data handling practices, outages, policy changes, security failures or service interruptions of third-party providers outside our control.</p>
+        <p>BuildSynergy delivers managed hosting and related services using third-party infrastructure providers which may include Vercel and Hostinger (hosting and deployment), Neon (database), Resend (email) and other technology partners. These providers may process or store information according to their own terms, privacy policies and security practices. BuildSynergy will take reasonable steps to use reputable providers, but we are not responsible for the independent data handling practices, outages, policy changes, security failures or service interruptions of third-party providers outside our control.</p>
       </section>
 
       <section>
@@ -204,7 +204,7 @@
           <strong>Email:</strong> <a href="mailto:yoursupport@buildsynergy.co.za">yoursupport@buildsynergy.co.za</a><br />
           <strong>Phone:</strong> <a href="tel:+27815564058">+27 81 556 4058</a></p>
           <p><strong>Business Address:</strong><br />6 Fourjay Road, Lagoon Beach, Milnerton, Western Cape, 7441<br />
-          <em>By appointment only no walk-in visits.</em></p>
+          <em>By appointment only — no walk-in visits.</em></p>
           <p><strong>Website:</strong> <a href="https://buildsynergy.co.za">buildsynergy.co.za</a></p>
         </div>
       </section>

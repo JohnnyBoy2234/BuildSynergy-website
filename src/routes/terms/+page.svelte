@@ -179,8 +179,11 @@
           <li>OpenAI — AI model processing (USA)</li>
           <li>Anthropic — AI model processing (USA)</li>
           <li>Hostinger — website hosting, where applicable (EU / global)</li>
+          <li>Resend — transactional and enquiry email (USA / global)</li>
+          <li>Vercel Analytics — website analytics (USA / global)</li>
+          <li>Google Analytics — website analytics (USA / global)</li>
         </ul>
-        <p>The Client warrants that it has a lawful basis to provide the personal information to BuildSynergy and to authorise the processing described in these Terms, including any consents required from the Client's own customers or end-users. On termination, BuildSynergy will deal with the Client's personal information as set out in the Hosting Options, Data Export and Termination section.</p>
+        <p>The Client warrants that it has a lawful basis to provide the personal information to BuildSynergy and to authorise the processing described in these Terms, including any consents required from the Client's own customers or end-users. On termination, BuildSynergy will deal with the Client's personal information as set out in the Data Export and Termination section.</p>
       </section>
 
       <section>

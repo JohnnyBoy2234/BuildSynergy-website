@@ -125,8 +125,9 @@ solution.
 | OpenAI | AI model processing | USA |
 | Anthropic | AI model processing | USA |
 | Hostinger | Website hosting (where applicable) | EU / global |
-| *[Email provider]* | Transactional & enquiry email | *[confirm]* |
-| *[Analytics provider]* | Website analytics | *[confirm]* |
+| Resend | Transactional & enquiry email | USA / global |
+| Vercel Analytics | Website analytics | USA / global |
+| Google Analytics | Website analytics | USA / global |
 
 ### Acceptable Use
 
@@ -399,4 +400,4 @@ Otherwise delete it entirely.
 - [ ] Information Officer registered with the Information Regulator
 - [ ] Written sign-off step for scope / content / launch in the workflow
 - [ ] Sub-processor register maintained and matches the DPA list
-- [ ] Confirm email + analytics providers and fill the bracketed placeholders above
+- [x] Email + analytics providers confirmed (Resend, Vercel Analytics, Google Analytics)
