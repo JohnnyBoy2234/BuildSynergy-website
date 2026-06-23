@@ -14,8 +14,11 @@
   let { data }: { data: PageData } = $props();
   const project = $derived(data.project);
 
-  // First three images drive the scroll story (hero + gallery).
-  const story = $derived([project.heroImage, ...project.gallery].slice(0, 3));
+  // First three gallery images drive the scroll story (kept distinct from
+  // the hero image already shown above, so it never just repeats it).
+  const story = $derived(
+    project.gallery.length ? project.gallery.slice(0, 3) : [project.heroImage]
+  );
   const blocks = $derived([
     { label: 'The challenge', body: project.caseStudy.challenge },
     { label: 'What we built', body: project.caseStudy.approach },
