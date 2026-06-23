@@ -1,6 +1,6 @@
-Build Synergy — Services
+BuildSynergy — Services
 
-Build Synergy is a small web development and design studio based in Cape Town, South Africa. We build custom websites, SaaS MVPs, and brand identities for startups and growing small businesses.
+BuildSynergy is a small web development and design studio based in Cape Town, South Africa. We build custom websites, SaaS MVPs, and brand identities for startups and growing small businesses.
 
 --- What We Build ---
 

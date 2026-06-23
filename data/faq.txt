@@ -1,4 +1,4 @@
-Forge Digital — Frequently Asked Questions
+BuildSynergy — Frequently Asked Questions
 
 Q: Do you use WordPress?
 A: No. We do not use WordPress, Wix, Squarespace, or any other website builder. Everything we build is hand-coded. For content-heavy sites that need a CMS, we typically use Sanity or Contentful integrated with a Next.js frontend.
