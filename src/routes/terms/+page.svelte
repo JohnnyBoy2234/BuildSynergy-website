@@ -33,7 +33,7 @@
       <section>
         <h2>1. Introduction</h2>
         <p>These Terms and Conditions govern all services provided by BuildSynergy (Registration Number: 2025/529281/07), a business registered and operating in South Africa.</p>
-        <p><strong>"BuildSynergy", "we", "us" or "our"</strong> means BuildSynergy. <strong>"Client", "you" or "your"</strong> means the person, business or organisation purchasing or using our services. <strong>"Services"</strong> means any website design, website development, managed hosting, lead capture setup, SEO setup, AI development and integration, website care, maintenance, support, consulting, or related digital services. <strong>"Quotation"</strong> means the written quote, proposal, invoice, package or service offer accepted by the Client. <strong>"Website"</strong> means the website, landing page, application, AI solution, digital presence, content, design or related deliverable created or managed by BuildSynergy.</p>
+        <p><strong>"BuildSynergy", "we", "us" or "our"</strong> means BuildSynergy. <strong>"Client", "you" or "your"</strong> means the person, business or organisation purchasing or using our services. <strong>"Services"</strong> means any website design, website development, managed hosting, lead capture setup, SEO setup, AI development and integration, website care, maintenance, support, consulting, or related digital services. <strong>"Quotation"</strong> means the written quote, proposal, invoice, package or service offer accepted by the Client. <strong>"Website"</strong> means the website, landing page, application, AI solution, digital presence, content, design or related deliverable created or managed by BuildSynergy. <strong>"Business day"</strong> means any day other than a Saturday, Sunday or official public holiday in South Africa.</p>
         <p>By accepting a Quotation, paying a deposit, approving work, or using our Services, the Client agrees to these Terms and Conditions.</p>
       </section>
 
@@ -108,6 +108,7 @@
         <p>BuildSynergy will use reasonable efforts to deploy, manage, monitor, maintain and support the hosting environment. Availability depends on the underlying providers. Where a provider offers a service level, that provider's service level applies to its own infrastructure; BuildSynergy's responsibility is limited to reasonable management and does not include a guarantee of uptime, email delivery, DNS propagation, third-party platform availability or server performance.</p>
         <p>BuildSynergy may change or substitute hosting, infrastructure or technology providers with materially equivalent alternatives where reasonable, for example due to provider changes, pricing, performance or availability.</p>
         <p>Subject always to the Limitation of Liability section, BuildSynergy will not be liable for downtime, data loss, DNS or email disruption, cyberattacks, service outages, pricing or policy changes, plugin or API failures, or provider failures that are outside its reasonable control.</p>
+        <p>Hosting is provided on a fair-use basis appropriate to the Client's selected package. The underlying platforms meter usage such as bandwidth, requests, compute, storage and build time. Where the Client's usage materially exceeds the fair-use allowance of the package, or generates additional provider charges, BuildSynergy may bill the excess at the applicable rate, adjust the package, or, after reasonable notice, throttle or suspend the affected Service. BuildSynergy will use reasonable efforts to notify the Client of sustained excess usage before charging or restricting.</p>
         <p>Services are active only while the applicable monthly fees are paid and up to date. Non-payment may result in suspension, a reactivation fee, or termination of hosting after 30 calendar days of non-payment.</p>
       </section>
 
@@ -274,8 +275,9 @@
       </section>
 
       <section>
-        <h2>35. Governing Law</h2>
-        <p>These Terms are governed by the laws of the Republic of South Africa. Any dispute arising from these Terms or BuildSynergy's services will be subject to the jurisdiction of the South African courts.</p>
+        <h2>35. Governing Law and Disputes</h2>
+        <p>These Terms are governed by the laws of the Republic of South Africa.</p>
+        <p>If a dispute arises, the parties will first attempt to resolve it in good faith through direct discussion. If it cannot be resolved within 14 business days, the parties will attempt to resolve it through mediation before taking legal action, unless urgent or interim relief is required. Any dispute that remains unresolved will be subject to the jurisdiction of the South African courts. Nothing in this clause prevents BuildSynergy from taking action to recover unpaid amounts.</p>
       </section>
 
       <section class="tc-contact">
