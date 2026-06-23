@@ -1,4 +1,4 @@
-import "./index-server.js";
+import "./internal.js";
 import { B as attr, V as escape_html, n as attr_class, o as ensure_array_like } from "./dev.js";
 import "gsap";
 import "gsap/ScrollTrigger";

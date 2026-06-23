@@ -1,5 +1,6 @@
-import "./index-server.js";
+import "./internal.js";
 import { B as attr, V as escape_html, a as derived, l as stringify, n as attr_class, o as ensure_array_like, r as attr_style, u as html } from "./dev.js";
+import { t as page } from "./state.js";
 import "gsap";
 import "gsap/ScrollTrigger";
 //#region src/lib/components/Navigation.svelte
@@ -65,6 +66,8 @@ function Navigation($$renderer, $$props) {
 		let isMobile = false;
 		let scrolled = false;
 		let hideLabels = derived(() => scrolled);
+		let isHome = derived(() => page.url.pathname === "/");
+		let contactHref = derived(() => isHome() ? "#contact" : "/#contact");
 		$$renderer.push("<!--[-1-->");
 		$$renderer.push(`<!--]--> <header${attr_class("nav-wrap svelte-ocbj1u", void 0, { "mobile": isMobile })}><nav${attr_class("nav-pill svelte-ocbj1u", void 0, { "collapsed": hideLabels() })} aria-label="Main navigation">`);
 		$$renderer.push("<!--[0-->");
@@ -77,7 +80,7 @@ function Navigation($$renderer, $$props) {
 		}
 		$$renderer.push(`<!--]--> `);
 		$$renderer.push("<!--[0-->");
-		$$renderer.push(`<a href="#contact"${attr_class("nav-cta svelte-ocbj1u", void 0, { "cta-icon": hideLabels() })}>`);
+		$$renderer.push(`<a${attr("href", contactHref())}${attr_class("nav-cta svelte-ocbj1u", void 0, { "cta-icon": hideLabels() })}>`);
 		if (hideLabels()) {
 			$$renderer.push("<!--[0-->");
 			$$renderer.push(`<svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>`);
@@ -94,7 +97,11 @@ function Navigation($$renderer, $$props) {
 function Footer($$renderer, $$props) {
 	$$renderer.component(($$renderer) => {
 		const year = (/* @__PURE__ */ new Date()).getFullYear();
-		$$renderer.push(`<footer class="footer svelte-jz8lnl"><div class="footer-fade svelte-jz8lnl" aria-hidden="true"></div> <div class="footer-grid-bg svelte-jz8lnl" aria-hidden="true"></div> <div class="footer-inner svelte-jz8lnl"><div class="footer-top svelte-jz8lnl"><div class="footer-brand svelte-jz8lnl"><div class="logo svelte-jz8lnl">Build<span class="svelte-jz8lnl">Synergy</span></div> <p class="svelte-jz8lnl">Premium websites and digital solutions<br/>for modern South African businesses.</p> <a href="mailto:yoursupport@buildsynergy.co.za" class="footer-email svelte-jz8lnl">yoursupport@buildsynergy.co.za</a></div> <nav class="footer-nav svelte-jz8lnl" aria-label="Footer"><div class="nav-col svelte-jz8lnl"><span class="nav-label svelte-jz8lnl">Navigate</span> <ul class="svelte-jz8lnl"><li><a href="#home" class="svelte-jz8lnl">Home</a></li> <li><a href="#services" class="svelte-jz8lnl">Services</a></li> <li><a href="#process" class="svelte-jz8lnl">Process</a></li> <li><a href="#work" class="svelte-jz8lnl">Our Work</a></li> <li><a href="#packages" class="svelte-jz8lnl">Packages</a></li> <li><a href="#contact" class="svelte-jz8lnl">Contact</a></li></ul></div> <div class="nav-col svelte-jz8lnl"><span class="nav-label svelte-jz8lnl">Connect</span> <ul class="svelte-jz8lnl"><li><a href="/" aria-label="LinkedIn" class="svelte-jz8lnl">LinkedIn</a></li> <li><a href="/" aria-label="Facebook" class="svelte-jz8lnl">Facebook</a></li> <li><a href="/" aria-label="Instagram" class="svelte-jz8lnl">Instagram</a></li></ul></div> <div class="nav-col svelte-jz8lnl"><span class="nav-label svelte-jz8lnl">Legal</span> <ul class="svelte-jz8lnl"><li><a href="/privacy-policy" class="svelte-jz8lnl">Privacy Policy</a></li> <li><a href="/terms" class="svelte-jz8lnl">Terms &amp; Conditions</a></li></ul></div></nav></div> <div class="footer-divider svelte-jz8lnl"></div> <div class="footer-bottom svelte-jz8lnl"><span>© ${escape_html(year)} BuildSynergy. All rights reserved.  ·  <a href="/privacy-policy" class="legal-link svelte-jz8lnl">Privacy Policy</a></span> <button class="back-top svelte-jz8lnl" aria-label="Back to top">↑ Top</button></div></div></footer>`);
+		let isHome = derived(() => page.url.pathname === "/");
+		function navHref(id) {
+			return isHome() ? `#${id}` : `/#${id}`;
+		}
+		$$renderer.push(`<footer class="footer svelte-jz8lnl"><div class="footer-fade svelte-jz8lnl" aria-hidden="true"></div> <div class="footer-grid-bg svelte-jz8lnl" aria-hidden="true"></div> <div class="footer-inner svelte-jz8lnl"><div class="footer-top svelte-jz8lnl"><div class="footer-brand svelte-jz8lnl"><div class="logo svelte-jz8lnl">Build<span class="svelte-jz8lnl">Synergy</span></div> <p class="svelte-jz8lnl">Premium websites and digital solutions<br/>for modern South African businesses.</p> <a href="mailto:yoursupport@buildsynergy.co.za" class="footer-email svelte-jz8lnl">yoursupport@buildsynergy.co.za</a></div> <nav class="footer-nav svelte-jz8lnl" aria-label="Footer"><div class="nav-col svelte-jz8lnl"><span class="nav-label svelte-jz8lnl">Navigate</span> <ul class="svelte-jz8lnl"><li><a${attr("href", navHref("home"))} class="svelte-jz8lnl">Home</a></li> <li><a${attr("href", navHref("solution"))} class="svelte-jz8lnl">Services</a></li> <li><a${attr("href", navHref("process"))} class="svelte-jz8lnl">Process</a></li> <li><a${attr("href", navHref("work"))} class="svelte-jz8lnl">Our Work</a></li> <li><a${attr("href", navHref("packages"))} class="svelte-jz8lnl">Packages</a></li> <li><a${attr("href", navHref("contact"))} class="svelte-jz8lnl">Contact</a></li></ul></div> <div class="nav-col svelte-jz8lnl"><span class="nav-label svelte-jz8lnl">Connect</span> <ul class="svelte-jz8lnl"><li><a href="/" aria-label="LinkedIn" class="svelte-jz8lnl">LinkedIn</a></li> <li><a href="/" aria-label="Facebook" class="svelte-jz8lnl">Facebook</a></li> <li><a href="/" aria-label="Instagram" class="svelte-jz8lnl">Instagram</a></li></ul></div> <div class="nav-col svelte-jz8lnl"><span class="nav-label svelte-jz8lnl">Legal</span> <ul class="svelte-jz8lnl"><li><a href="/privacy-policy" class="svelte-jz8lnl">Privacy Policy</a></li> <li><a href="/terms" class="svelte-jz8lnl">Terms &amp; Conditions</a></li></ul></div></nav></div> <div class="footer-divider svelte-jz8lnl"></div> <div class="footer-bottom svelte-jz8lnl"><span>© ${escape_html(year)} BuildSynergy. All rights reserved.  ·  <a href="/privacy-policy" class="legal-link svelte-jz8lnl">Privacy Policy</a></span> <button class="back-top svelte-jz8lnl" aria-label="Back to top">↑ Top</button></div></div></footer>`);
 	});
 }
 //#endregion

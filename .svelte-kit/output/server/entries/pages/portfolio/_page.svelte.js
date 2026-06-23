@@ -1,4 +1,4 @@
-import "../../../chunks/index-server.js";
+import "../../../chunks/internal.js";
 import { B as attr, V as escape_html, o as ensure_array_like, r as attr_style } from "../../../chunks/dev.js";
 import { n as Navigation, t as Footer } from "../../../chunks/Footer.js";
 import { r as projects } from "../../../chunks/portfolio.js";

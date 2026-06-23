@@ -34,7 +34,14 @@
       "Bash(git status *)",
       "Bash(git ls-tree *)",
       "Bash(echo \"tracked check exit: $?\")",
-      "Bash(echo \"---exit:$?---\")"
+      "Bash(echo \"---exit:$?---\")",
+      "Bash(node -e \"const p=require\\('./package.json'\\); console.log\\(JSON.stringify\\({dependencies:p.dependencies, devDependencies:p.devDependencies},null,2\\)\\)\")",
+      "Bash(npm view *)",
+      "Bash(ls tailwind.config.*)",
+      "Bash(grep -rlE \"@tailwind|@apply|tailwindcss\" src)",
+      "Bash(rm -f postcss.config.mjs postcss.config.js tailwind.config.js)",
+      "Bash(ls postcss.config.* tailwind.config.*)",
+      "Bash(git push *)"
     ]
   }
 }
