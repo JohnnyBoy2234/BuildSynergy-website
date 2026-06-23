@@ -27,7 +27,7 @@
       <section>
         <h2>1. Introduction</h2>
         <p>This Privacy Policy explains how BuildSynergy (Registration Number: 2025/529281/07) collects, uses, stores, shares and protects personal information.</p>
-        <p>BuildSynergy is a South African digital services business providing website design, website development, managed hosting, lead capture setup, SEO basics, online presence audits, website care, maintenance and related digital services.</p>
+        <p>BuildSynergy is a South African digital services business providing website design, website development, managed hosting, lead capture setup, SEO basics, AI development and integration, website care, maintenance and related digital services.</p>
         <p>This Privacy Policy is prepared with reference to the Protection of Personal Information Act 4 of 2013 (POPIA).</p>
         <p><strong>"BuildSynergy", "we", "us" or "our"</strong> means BuildSynergy. <strong>"Client", "you" or "your"</strong> means any person, business, visitor, supplier, contractor or user who interacts with us. <strong>"Personal information"</strong> means information relating to an identifiable person or, where applicable, an identifiable juristic person.</p>
       </section>
@@ -36,7 +36,7 @@
         <h2>2. Who This Policy Applies To</h2>
         <ul>
           <li>Visitors to our website</li>
-          <li>People who submit enquiry or audit request forms</li>
+          <li>People who submit enquiry forms</li>
           <li>Clients who purchase our services</li>
           <li>Suppliers, contractors and business partners</li>
           <li>People who communicate with us by email, phone or other channels</li>
@@ -46,7 +46,7 @@
 
       <section>
         <h2>3. Acceptance</h2>
-        <p>By using our website, submitting information to us, requesting an audit, accepting a quotation, or using our services, you acknowledge that you have read and understood this Privacy Policy.</p>
+        <p>By using our website, submitting information to us, accepting a quotation, or using our services, you acknowledge that you have read and understood this Privacy Policy.</p>
         <p>You may only provide us with your own personal information, or the personal information of another person where you have permission or legal authority to do so.</p>
       </section>
 
@@ -91,11 +91,11 @@
         <h2>5. How We Collect Information</h2>
         <ul>
           <li>Directly from you when you contact us</li>
-          <li>Through enquiry, audit or onboarding forms</li>
+          <li>Through enquiry or onboarding forms</li>
           <li>Through email, phone or other communication</li>
           <li>During project delivery</li>
           <li>Through website analytics tools and cookies</li>
-          <li>From publicly available sources such as websites, Google search results, Google Business Profiles, social media pages and business directories</li>
+          <li>From information you provide about your existing website or online presence so that we can prepare a quotation or deliver the Services you request</li>
           <li>From third-party service providers where necessary to deliver our services</li>
         </ul>
       </section>
@@ -104,10 +104,10 @@
         <h2>6. Why We Use Your Information</h2>
         <ul>
           <li>Respond to enquiries</li>
-          <li>Provide free online presence audits</li>
           <li>Prepare quotations and proposals</li>
           <li>Onboard Clients and manage projects</li>
           <li>Design, develop and manage websites</li>
+          <li>Build and operate AI solutions and integrations</li>
           <li>Provide managed hosting and website care</li>
           <li>Set up lead capture forms and contact routes</li>
           <li>Provide SEO basics and digital presence recommendations</li>
@@ -121,35 +121,34 @@
       </section>
 
       <section>
-        <h2>7. Online Presence Audits</h2>
-        <p>When you request a free online presence audit, we may review publicly available information about your business, including your website, Google search presence, Google Business Profile, social media pages, public reviews, business listings and visible contact information.</p>
-        <p>The audit is used to assess how your business appears online and to recommend possible improvements. The audit does not guarantee rankings, leads, enquiries, sales, revenue or business results.</p>
+        <h2>7. Cookies and Analytics</h2>
+        <p>Our website uses cookies and similar technologies. Strictly necessary cookies are required for the site to function. With your consent, we also use analytics to understand how visitors use our site, using first-party and, where applicable, third-party analytics tools. These may collect IP address, general location, browser type, device type, pages visited, time on pages and referring website. You can manage your preferences through your browser settings; disabling strictly necessary cookies may affect website functionality.</p>
       </section>
 
       <section>
-        <h2>8. Cookies and Analytics</h2>
-        <p>Our website may use cookies, analytics tools and similar technologies to understand how visitors interact with our site and to improve user experience. Cookies may collect IP address, general location, browser type, device type, pages visited, time on pages and referring website. You can disable cookies in your browser settings, but this may affect website functionality.</p>
-      </section>
-
-      <section>
-        <h2>9. Lawful Basis and Purpose of Processing</h2>
+        <h2>8. Lawful Basis and Purpose of Processing</h2>
         <p>We process personal information where you have given consent, processing is necessary to provide our services or perform a contract, processing is necessary for legitimate business purposes, or processing is required by law. We aim to process only the information reasonably necessary for the purpose for which it was collected.</p>
       </section>
 
       <section>
-        <h2>10. Sharing of Personal Information</h2>
+        <h2>9. Sharing of Personal Information</h2>
         <p>We may share personal information with trusted third parties where necessary to operate our business and deliver our services, including hosting providers, DNS providers, domain registrars, email service providers, website platforms, analytics tools, payment processors, accounting providers, cloud storage providers, contractors assisting with service delivery, and legal or law enforcement authorities where required by law.</p>
         <p>We do not sell personal information to third parties. We do not share personal information with third parties for their own direct marketing purposes.</p>
       </section>
 
       <section>
-        <h2>11. Third-Party Hosting and Infrastructure</h2>
+        <h2>10. Third-Party Hosting and Infrastructure</h2>
         <p>BuildSynergy delivers managed hosting using third-party infrastructure providers which may include Hostinger, Vercel and other technology partners. These providers may process or store information according to their own terms, privacy policies and security practices. BuildSynergy will take reasonable steps to use reputable providers, but we are not responsible for the independent data handling practices, outages, policy changes, security failures or service interruptions of third-party providers outside our control.</p>
       </section>
 
       <section>
-        <h2>12. Client Website Data</h2>
-        <p>Where BuildSynergy manages a Client website, contact forms, analytics tools or hosting environment, personal information submitted by visitors to that Client website may be processed through the relevant systems. The Client remains responsible for ensuring that their own website content, privacy notices, business terms and customer data practices comply with applicable laws.</p>
+        <h2>11. AI Processing and International Providers</h2>
+        <p>Some of our services involve building and operating AI solutions. To do this, we and our clients use third-party AI providers (which may include OpenAI and Anthropic) and hosting platforms (which may include Vercel). Where you interact with an AI feature we have built, or where we process data to deliver an AI solution, that data may be sent to these providers and processed outside South Africa. On their standard business (API) terms, these providers do not use submitted data to train their models. We use reputable providers and rely on their security and data-protection commitments, but we are not responsible for their independent practices.</p>
+      </section>
+
+      <section>
+        <h2>12. Client Website Data and Our Role as Operator</h2>
+        <p>Where BuildSynergy manages a Client website, contact forms, analytics tools or hosting environment, personal information submitted by visitors to that Client website may be processed through the relevant systems. In this case we act as an operator processing personal information on the Client's behalf and on their instructions. The Client remains the responsible party for the personal information of their own customers and end-users, and for ensuring that their own website content, privacy notices, business terms and customer data practices comply with applicable laws.</p>
       </section>
 
       <section>
@@ -164,12 +163,12 @@
 
       <section>
         <h2>15. Retention of Information</h2>
-        <p>We keep personal information only for as long as reasonably necessary for the purpose for which it was collected, or as required by law. When information is no longer required, we will delete, destroy or anonymise it where reasonably possible.</p>
+        <p>We keep personal information only for as long as necessary for the purpose for which it was collected, or as required by law. As a guide: enquiry and prospect information is kept for up to 12 months after last contact; client project and account records, including invoices, are kept for at least 5 years to meet tax and legal obligations; and hosted client data is dealt with as set out in our Terms and Conditions. When information is no longer required, we delete, destroy or anonymise it where reasonably possible.</p>
       </section>
 
       <section>
         <h2>16. Your Rights</h2>
-        <p>Subject to applicable law, you may have the right to request access to, correction of, or deletion of personal information we hold about you; object to certain processing; withdraw consent; request restriction of processing; and lodge a complaint with the Information Regulator. To exercise your rights, contact us using the details below. We may need to verify your identity before processing your request.</p>
+        <p>Subject to applicable law, you may have the right to request access to, correction of, or deletion of personal information we hold about you; object to certain processing; withdraw consent; request restriction of processing; and lodge a complaint with the Information Regulator. To exercise your rights, contact our Information Officer using the details below. We will respond within a reasonable period and, in any event, within 30 days where practicable. We may need to verify your identity before processing your request.</p>
       </section>
 
       <section>
@@ -184,7 +183,7 @@
 
       <section>
         <h2>19. Cross-Border Processing</h2>
-        <p>Some of our third-party providers may store or process information outside South Africa. Where this occurs, we will take reasonable steps to ensure that personal information is handled lawfully and with appropriate safeguards. By using our services, you acknowledge that cross-border processing may be necessary for hosting, cloud services, analytics, email services, domain services and related digital tools.</p>
+        <p>Some of our third-party providers store or process information outside South Africa, including in the United States and the European Union. Where we transfer personal information across borders, we do so on a basis permitted by section 72 of POPIA — for example, because the recipient is subject to laws or binding agreements that provide adequate protection, the transfer is necessary to perform our contract with you, or you have consented. By using our services, you acknowledge that cross-border processing is necessary for hosting, cloud services, AI services, analytics, email services, domain services and related digital tools.</p>
       </section>
 
       <section>
@@ -202,7 +201,7 @@
         <div class="contact-block">
           <p><strong>BuildSynergy</strong><br />Registration Number: 2025/529281/07</p>
           <p><strong>Information Officer:</strong> Jonathan Theron<br />
-          <strong>Email:</strong> <a href="mailto:support@buildsynergy.co.za">support@buildsynergy.co.za</a><br />
+          <strong>Email:</strong> <a href="mailto:yoursupport@buildsynergy.co.za">yoursupport@buildsynergy.co.za</a><br />
           <strong>Phone:</strong> <a href="tel:+27815564058">+27 81 556 4058</a></p>
           <p><strong>Business Address:</strong><br />6 Fourjay Road, Lagoon Beach, Milnerton, Western Cape, 7441<br />
           <em>By appointment only no walk-in visits.</em></p>
