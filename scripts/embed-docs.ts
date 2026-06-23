@@ -5,7 +5,7 @@ import { GoogleGenerativeAIEmbeddings } from '@langchain/google-genai';
 import { TaskType } from '@google/generative-ai';
 
 const DATA_DIR = 'data';
-const OUT = 'static/rag-vectors.json';
+const OUT = 'src/lib/server/agent/rag-vectors.json';
 const EMBED_MODEL = 'gemini-embedding-001'; // MUST match llm.ts EMBED_MODEL
 
 async function main() {

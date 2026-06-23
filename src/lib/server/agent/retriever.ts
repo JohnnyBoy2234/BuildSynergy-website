@@ -1,20 +1,11 @@
-import { readFileSync } from 'node:fs';
-import { join } from 'node:path';
 import { makeEmbeddings } from './llm';
+// Imported (not read from static/ at runtime) so the corpus is bundled into the
+// serverless function — static/ assets are not on the Vercel function filesystem.
+import ragData from './rag-vectors.json';
 
 type RagFile = { model: string; chunks: string[]; vectors: number[][] };
 
-let dataPromise: Promise<RagFile> | null = null;
-
-function loadData(): Promise<RagFile> {
-  if (!dataPromise) {
-    dataPromise = Promise.resolve().then(() => {
-      const path = join(process.cwd(), 'static', 'rag-vectors.json');
-      return JSON.parse(readFileSync(path, 'utf-8')) as RagFile;
-    });
-  }
-  return dataPromise;
-}
+const data = ragData as RagFile;
 
 function cosine(a: number[], b: number[]): number {
   let dot = 0;
@@ -34,7 +25,6 @@ function cosine(a: number[], b: number[]): number {
  * at runtime; corpus vectors come from static/rag-vectors.json.
  */
 export async function loadRetriever() {
-  const data = await loadData();
   const embeddings = makeEmbeddings();
   return async (query: string, k = 3): Promise<string[]> => {
     const q = await embeddings.embedQuery(query);
