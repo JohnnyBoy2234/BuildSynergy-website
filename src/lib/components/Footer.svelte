@@ -29,7 +29,7 @@
     <div class="footer-top">
       <div class="footer-brand">
         <div class="logo">Build<span>Synergy</span></div>
-        <p>Premium websites and digital solutions<br />for modern South African businesses.</p>
+        <p>Premium websites, AI solutions and managed hosting<br />for modern South African businesses.</p>
         <a href="mailto:yoursupport@buildsynergy.co.za" class="footer-email">yoursupport@buildsynergy.co.za</a>
       </div>
 

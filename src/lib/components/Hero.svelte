@@ -113,7 +113,7 @@
   <div class="hero-wash" aria-hidden="true"></div>
 
   <div class="hero-inner" class:ready>
-    <span class="hero-eyebrow">Web design studio · South Africa</span>
+    <span class="hero-eyebrow">Web &amp; AI solutions · South Africa</span>
 
     <h1 class="hero-heading">
       You're better than the way customers
