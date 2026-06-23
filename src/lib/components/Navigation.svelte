@@ -22,7 +22,7 @@
       </svg>`,
     },
     {
-      name: 'Work', id: 'work', type: 'route', path: '/portfolio',
+      name: 'Work', id: 'work', type: 'anchor',
       icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
         <rect x="3" y="6" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/>
         <path d="M8 6V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v1" stroke="currentColor" stroke-width="1.5"/>
