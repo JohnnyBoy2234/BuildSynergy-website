@@ -19,7 +19,7 @@
         Back to BuildSynergy
       </a>
       <h1>Privacy Policy</h1>
-      <p class="pp-meta">BuildSynergy Reg. No. 2025/529281/07 &nbsp;·&nbsp; Effective Date: 5 June 2026</p>
+      <p class="pp-meta">BuildSynergy Reg. No. 2025/529281/07 &nbsp;·&nbsp; Effective Date: 23 June 2026</p>
     </div>
 
     <div class="pp-body">
