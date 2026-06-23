@@ -28,8 +28,33 @@ export interface Project {
 
 const SHOTS = ['/portfolio/placeholders/shot-1.svg', '/portfolio/placeholders/shot-2.svg'];
 
-// NOTE: placeholder content — swap titles, copy, images and metrics for real work.
+// NOTE: placeholder content below — swap titles, copy, images and metrics for real work.
 export const projects: Project[] = [
+  {
+    slug: 'mzanzihomes',
+    title: 'MzanziHomes',
+    category: 'Full Platform Build',
+    year: '2026',
+    summary: 'A zero-commission rental marketplace connecting tenants directly with landlords across South Africa.',
+    heroImage: '/portfolio/mzanzihomes/hero.png',
+    gallery: ['/portfolio/mzanzihomes/landlords.png', '/portfolio/mzanzihomes/tenants.png'],
+    tags: ['Full-Stack Build', 'Marketplace', 'Zero Commission', 'Landlord Tools'],
+    liveUrl: 'https://mzanzihomes.com',
+    featured: true,
+    caseStudy: {
+      challenge:
+        'South African renters and landlords are stuck paying steep agent commissions and dealing with unverified listings, while landlords have no simple way to manage tenants, contracts and rent collection directly.',
+      approach:
+        'We built MzanziHomes from the ground up — a two-sided marketplace with verified listings, direct landlord-tenant communication, secure digital leases, auto-invoicing and a full property management dashboard, all on a zero-commission model.',
+      outcome:
+        'The platform is feature-complete and in final testing ahead of public launch, with the full tenant and landlord experience built end-to-end and ready to onboard South Africa\'s first listings.',
+    },
+    metrics: [
+      { value: 0, suffix: '%', label: 'commission for tenants or landlords' },
+      { value: 100, suffix: '%', label: 'built in-house, end-to-end' },
+      { value: 2, label: 'dedicated dashboards — landlord & tenant' },
+    ],
+  },
   {
     slug: 'northwind-plumbing',
     title: 'Northwind Plumbing',
