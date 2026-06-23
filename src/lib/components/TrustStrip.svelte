@@ -50,147 +50,81 @@
   ] as const;
 </script>
 
-<div class="trust-strip" role="region" aria-label="Capabilities">
-  <!-- Accessible list for screen readers -->
-  <ul class="sr-only">
-    {#each capabilities as cap}<li>{cap.label}</li>{/each}
-  </ul>
-
-  <!-- Edge fade masks -->
-  <div class="strip-fade strip-fade--l" aria-hidden="true"></div>
-  <div class="strip-fade strip-fade--r" aria-hidden="true"></div>
-
-  <!-- Scrolling track two copies for seamless loop -->
-  <div class="strip-track" aria-hidden="true">
-    {#each [0, 1] as _}
+<section class="incl-strip" aria-label="What every site includes">
+  <div class="incl-inner">
+    <span class="incl-heading">Every site includes</span>
+    <ul class="incl-list">
       {#each capabilities as cap}
-        <div class="strip-item">
-          <span class="strip-icon">{@html cap.icon}</span>
-          <span class="strip-label">{cap.label}</span>
-        </div>
-        <span class="strip-div" aria-hidden="true">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-            <path d="M8 2L9.8 6.2L14 8L9.8 9.8L8 14L6.2 9.8L2 8L6.2 6.2L8 2Z"
-              fill="rgba(99,102,241,0.35)" stroke="none"/>
-          </svg>
-        </span>
+        <li class="incl-item">
+          <span class="incl-icon">{@html cap.icon}</span>
+          <span class="incl-label">{cap.label}</span>
+        </li>
       {/each}
-    {/each}
+    </ul>
   </div>
-</div>
+</section>
 
 <style>
-  .trust-strip {
+  .incl-strip {
     position: relative;
-    overflow: hidden;
-    background:
-      linear-gradient(to bottom,
-        rgba(99,102,241,0.06) 0%,
-        rgba(6,6,18,0.85)     40%,
-        rgba(6,6,18,0.85)     60%,
-        rgba(34,211,238,0.04) 100%
-      );
-    border-top:    1px solid rgba(99,102,241,0.2);
-    border-bottom: 1px solid rgba(34,211,238,0.12);
+    background: transparent;
+    border-top:    1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 1.5rem var(--gutter);
   }
 
-  /* Gradient line at top indigo → cyan glow */
-  .trust-strip::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 1px;
-    background: linear-gradient(90deg,
-      transparent 0%,
-      rgba(99,102,241,0.6) 25%,
-      rgba(168,85,247,0.5) 50%,
-      rgba(34,211,238,0.5) 75%,
-      transparent 100%
-    );
-    pointer-events: none;
-    z-index: 3;
-  }
-
-  /* Subtle bottom line too */
-  .trust-strip::after {
-    content: '';
-    position: absolute;
-    bottom: 0; left: 15%; right: 15%;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(34,211,238,0.25), transparent);
-    pointer-events: none;
-    z-index: 3;
-  }
-
-  .sr-only {
-    position: absolute;
-    width: 1px; height: 1px;
-    overflow: hidden; clip: rect(0,0,0,0);
-    white-space: nowrap; padding: 0; margin: 0; border: 0; list-style: none;
-  }
-
-  /* Edge masks matching the strip background */
-  .strip-fade {
-    position: absolute;
-    top: 0; bottom: 0; width: 120px;
-    z-index: 2; pointer-events: none;
-  }
-  .strip-fade--l { left:  0; background: linear-gradient(90deg,  #04040e 0%, transparent 100%); }
-  .strip-fade--r { right: 0; background: linear-gradient(270deg, #04040e 0%, transparent 100%); }
-
-  /* Scrolling track */
-  .strip-track {
+  .incl-inner {
+    max-width: var(--container);
+    margin: 0 auto;
     display: flex;
     align-items: center;
-    width: max-content;
-    padding: 1rem 0;
-    animation: marquee 32s linear infinite;
-    will-change: transform;
+    flex-wrap: wrap;
+    gap: 1rem 1.5rem;
   }
 
-  /* Pill-tag style items */
-  .strip-item {
-    display: flex;
-    align-items: center;
-    gap: 0.55rem;
-    padding: 0.45rem 1.1rem;
-    margin: 0 0.35rem;
-    border-radius: 100px;
-    border: 1px solid rgba(255,255,255,0.07);
-    background: rgba(255,255,255,0.03);
-    white-space: nowrap;
-  }
-
-  .strip-icon {
-    display: flex;
-    align-items: center;
-    color: rgba(99,102,241,0.65);
-    flex-shrink: 0;
-  }
-
-  .strip-label {
+  .incl-heading {
     font-family: var(--display);
-    font-size: 0.77rem;
+    font-size: 0.68rem;
     font-weight: 600;
-    letter-spacing: 0.03em;
-    color: rgba(255,255,255,0.6);
-    white-space: nowrap;
-  }
-
-  /* Diamond separator between items */
-  .strip-div {
-    display: flex;
-    align-items: center;
-    margin: 0 0.25rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-muted);
     flex-shrink: 0;
   }
 
-  @keyframes marquee {
-    from { transform: translateX(0); }
-    to   { transform: translateX(-50%); }
+  .incl-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 0.6rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
   }
 
-  @media (prefers-reduced-motion: reduce) {
-    .strip-track { animation-play-state: paused; }
+  .incl-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 0.95rem;
+    border-radius: 100px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .incl-icon {
+    display: flex;
+    align-items: center;
+    color: var(--indigo);
+    flex-shrink: 0;
+  }
+
+  .incl-label {
+    font-family: var(--display);
+    font-size: 0.76rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    color: var(--text-body);
+    white-space: nowrap;
   }
 </style>

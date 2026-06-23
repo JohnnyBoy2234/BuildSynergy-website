@@ -6,36 +6,38 @@
 
 /* ── Design Tokens ──────────────────────────────────────────────────── */
 :root {
-  /* Backgrounds deep navy-black with indigo undertone */
-  --bg:       #04040e;
-  --bg2:      #07071a;
-  --surface:  #0c0c22;
-  --surface2: #11112e;
-
-  /* Glass */
-  --glass:    rgba(255,255,255,0.04);
-  --glass2:   rgba(255,255,255,0.07);
+  /* Backgrounds — light, cool */
+  --bg:       #FFFFFF;
+  --bg2:      #F7F9FC;
+  --surface:  #FFFFFF;
+  --surface2: #F4F6FB;
+  --tint:     #EEF1F8;
 
   /* Borders */
-  --border:   rgba(255,255,255,0.09);
-  --border2:  rgba(255,255,255,0.16);
+  --border:   #E5E8F0;
+  --border2:  #D4D9E6;
 
   /* Text */
-  --text:       rgba(255,255,255,0.93);
-  --text-body:  rgba(255,255,255,0.62);
-  --text-muted: rgba(255,255,255,0.40);
+  --text:       #0B0F19;
+  --text-body:  #4A5163;
+  --text-muted: #7A8194;
 
-  /* Accent palette pulled from the abstract 3D background */
-  --indigo:      #6366f1;
-  --cyan:        #22d3ee;
-  --violet:      #a855f7;
-  --pink:        #e879f9;
-  --blue:        #6366f1;   /* alias for backwards compat */
+  /* Accents: cool spectrum (indigo primary + violet / blue / cyan) */
+  --indigo:        #6366F1;
+  --indigo-strong: #4F46E5;
+  --indigo-soft:   #EEF0FE;
+  --violet:        #8B5CF6;
+  --violet-soft:   #F1ECFE;
+  --blue:          #3B82F6;
+  --blue-soft:     #E7F0FE;
+  --cyan:          #06B6D4;
+  --cyan-soft:     #E0F6FB;
 
-  /* Glow colours */
-  --indigo-glow: rgba(99,102,241,0.22);
-  --cyan-glow:   rgba(34,211,238,0.18);
-  --violet-glow: rgba(168,85,247,0.15);
+  /* Shadows replace dark-theme glows */
+  --shadow-sm:     0 1px 2px rgba(16,24,40,0.05);
+  --shadow-md:     0 4px 16px rgba(16,24,40,0.08);
+  --shadow-lg:     0 12px 32px rgba(16,24,40,0.10);
+  --shadow-indigo: 0 8px 24px rgba(99,102,241,0.18);
 
   /* Typography */
   --sans:    'Inter', system-ui, sans-serif;
@@ -48,9 +50,11 @@
 }
 
 /* ── Base ────────────────────────────────────────────────────────────── */
-html { scroll-behavior: smooth; }
+/* White base lives on <html> so the fixed AuroraBackground (z-index:-1) is
+   never hidden behind an opaque <body> background. */
+html { scroll-behavior: smooth; background: var(--bg); }
 body {
-  background: var(--bg);
+  background: transparent;
   color: var(--text);
   font-family: var(--sans);
   font-size: 16px;
@@ -61,15 +65,12 @@ body {
   overflow-x: hidden;
 }
 
-/* Ambient background indigo / violet / cyan from the abstract 3D bg */
+/* Near-invisible cool wash at the top of the page */
 body::before {
   content: '';
   position: fixed;
   inset: 0;
-  background:
-    radial-gradient(ellipse 65% 60% at 70% 20%, rgba(99,102,241,0.12) 0%, transparent 70%),
-    radial-gradient(ellipse 50% 50% at 25% 75%, rgba(168,85,247,0.10) 0%, transparent 70%),
-    radial-gradient(ellipse 40% 40% at 50% 50%, rgba(34,211,238,0.05) 0%, transparent 60%);
+  background: radial-gradient(ellipse 70% 60% at 50% -5%, rgba(99,102,241,0.04) 0%, transparent 70%);
   pointer-events: none;
   z-index: 0;
 }
@@ -114,49 +115,46 @@ p { color: var(--text-body); line-height: 1.7; }
   display: inline-block;
 }
 
-/* ── Buttons ─────────────────────────────────────────────────────────── */
-.btn-primary {
+/* ── Buttons (single accent) ─────────────────────────────────────────── */
+.btn {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  background: linear-gradient(135deg, var(--indigo), var(--violet));
+  gap: 0.55rem;
+  background: var(--indigo);
   color: #fff;
   font-family: var(--display);
-  font-size: 0.875rem;
+  font-size: 0.9rem;
   font-weight: 600;
   text-decoration: none;
-  padding: 0.85rem 1.75rem;
+  padding: 0.9rem 1.7rem;
   border-radius: 100px;
   border: none;
   cursor: pointer;
-  transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
 }
-.btn-primary:hover {
-  opacity: 0.88;
-  transform: translateY(-1px);
-  box-shadow: 0 0 28px rgba(99,102,241,0.4);
-}
+.btn:hover { background: var(--indigo-strong); transform: translateY(-1px); box-shadow: var(--shadow-indigo); }
+.btn svg { transition: transform 0.2s; }
+.btn:hover svg { transform: translateX(3px); }
 
-.btn-secondary {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
+.btn--ghost {
   background: transparent;
   color: var(--text-body);
-  font-family: var(--display);
-  font-size: 0.875rem;
-  font-weight: 500;
-  text-decoration: none;
-  padding: 0.85rem 1.5rem;
-  border-radius: 100px;
   border: 1px solid var(--border2);
-  cursor: pointer;
-  transition: color 0.2s, border-color 0.2s, transform 0.2s;
+  font-weight: 500;
 }
-.btn-secondary:hover {
+.btn--ghost:hover {
+  background: var(--surface2);
   color: var(--text);
-  border-color: rgba(255,255,255,0.3);
-  transform: translateY(-1px);
+  border-color: var(--indigo);
+}
+
+/* ── Single faint static section wash ────────────────────────────────── */
+.section-wash {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse 55% 50% at 70% 30%,
+    rgba(99,102,241,0.05) 0%, transparent 70%);
 }
 
 /* ── Container ───────────────────────────────────────────────────────── */
@@ -182,12 +180,7 @@ p { color: var(--text-body); line-height: 1.7; }
   position: relative;
   z-index: 2;
   pointer-events: none;
-  background: linear-gradient(
-    to bottom,
-    transparent 0%,
-    var(--bg) 50%,
-    transparent 100%
-  );
+  background: transparent;
 }
 
 /* ── Reveal system (progressive enhancement content always visible) ── */
@@ -200,7 +193,7 @@ p { color: var(--text-body); line-height: 1.7; }
 
 /* ── Gradient text white → indigo/cyan to echo abstract bg ─────────── */
 .text-gradient {
-  background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 55%, #67e8f9 100%);
+  background: linear-gradient(135deg, #0B0F19 0%, #4F46E5 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -208,14 +201,15 @@ p { color: var(--text-body); line-height: 1.7; }
 
 /* ── Card base ───────────────────────────────────────────────────────── */
 .card {
-  background: var(--glass);
+  background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 16px;
-  transition: border-color 0.3s, background 0.3s, transform 0.25s;
+  box-shadow: var(--shadow-sm);
+  transition: border-color 0.3s, box-shadow 0.3s, transform 0.25s;
 }
 .card:hover {
   border-color: var(--border2);
-  background: var(--glass2);
+  box-shadow: var(--shadow-md);
   transform: translateY(-3px);
 }
 

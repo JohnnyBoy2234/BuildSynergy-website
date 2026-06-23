@@ -2,16 +2,18 @@
   import { onMount, tick } from 'svelte';
   import { page } from '$app/state';
 
-  const navItems = [
+  type NavItem = { name: string; id: string; type: 'anchor' | 'route'; path?: string; icon: string };
+
+  const navItems: NavItem[] = [
     {
-      name: 'Home', id: 'home',
+      name: 'AI', id: 'ai', type: 'anchor',
       icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <path d="M3 12L12 3l9 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M5 10v9a1 1 0 001 1h4v-5h4v5h4a1 1 0 001-1v-9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        <rect x="5" y="5" width="14" height="14" rx="4" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M12 8.5c.25 2 1.3 3 3.3 3.3-2 .25-3 1.3-3.3 3.3-.25-2-1.3-3-3.3-3.3 2-.25 3-1.3 3.3-3.3z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
       </svg>`,
     },
     {
-      name: 'Services', id: 'services',
+      name: 'Services', id: 'services', type: 'anchor',
       icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
         <rect x="3" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.5"/>
         <rect x="14" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.5"/>
@@ -20,7 +22,7 @@
       </svg>`,
     },
     {
-      name: 'Process', id: 'process',
+      name: 'Process', id: 'process', type: 'anchor',
       icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
         <circle cx="5" cy="12" r="2.2" stroke="currentColor" stroke-width="1.4"/>
         <circle cx="12" cy="12" r="2.2" stroke="currentColor" stroke-width="1.4"/>
@@ -29,39 +31,35 @@
       </svg>`,
     },
     {
-      name: 'Work', id: 'work',
+      name: 'Work', id: 'work', type: 'route', path: '/portfolio',
       icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
         <rect x="3" y="6" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/>
         <path d="M8 6V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v1" stroke="currentColor" stroke-width="1.5"/>
       </svg>`,
     },
     {
-      name: 'Packages', id: 'packages',
+      name: 'Why us', id: 'why', type: 'anchor',
       icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z" stroke="currentColor" stroke-width="1.5"/>
-        <path d="M3.27 6.96L12 12.01l8.73-5.05M12 22.08V12" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" opacity=".45"/>
-      </svg>`,
-    },
-    {
-      name: 'Contact', id: 'contact',
-      icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="1.5"/>
-        <path d="M22 6l-10 7L2 6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" opacity=".55"/>
+        <path d="M12 3l1.9 5.6L19.5 9l-4.4 3.6L16.4 18 12 14.9 7.6 18l1.3-5.4L4.5 9l5.6-.4L12 3z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
       </svg>`,
     },
   ];
+
+  let isHome = $derived(page.url.pathname === '/');
 
   let activeTab = $state(navItems[0].name);
   let lampLeft  = $state(0);
   let lampWidth = $state(0);
   let pillEl:   HTMLElement;
+  let linksEl:  HTMLElement;
   let itemEls:  HTMLElement[] = [];
-  let isMobile  = $state(false);
   let scrolled  = $state(false);
+  let menuOpen  = $state(false);
+  let overDark  = $state(false);
+  let logoEl:   HTMLElement;
 
-  let hideLabels = $derived(!isMobile && scrolled);
-  let isHome     = $derived(page.url.pathname === '/');
-  let contactHref = $derived(isHome ? '#contact' : '/#contact');
+  function toggleMenu() { menuOpen = !menuOpen; }
+  function closeMenu()  { menuOpen = false; }
 
   async function activate(name: string, index: number, scroll = false) {
     activeTab = name;
@@ -72,8 +70,8 @@
 
   function moveLamp(index: number) {
     const el = itemEls[index];
-    if (!el || !pillEl) return;
-    const nr = pillEl.getBoundingClientRect();
+    if (!el || !linksEl) return;
+    const nr = linksEl.getBoundingClientRect();
     const er = el.getBoundingClientRect();
     lampLeft  = er.left - nr.left;
     lampWidth = er.width;
@@ -84,31 +82,48 @@
     if (i !== -1) moveLamp(i);
   }
 
-  // Re-measure lamp whenever collapsed state or mobile state changes
+  function go(id: string) {
+    document.querySelector(`#${id}`)?.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  // Keep the lamp on "Work" while on a portfolio route.
   $effect(() => {
-    const _ = hideLabels;
-    const t = setTimeout(() => requestAnimationFrame(refreshLamp), 360);
-    return () => clearTimeout(t);
+    if (page.url.pathname.startsWith('/portfolio')) {
+      activeTab = 'Work';
+      tick().then(refreshLamp);
+    }
   });
 
-  $effect(() => {
-    const _ = isMobile;
-    const t = setTimeout(() => requestAnimationFrame(refreshLamp), 80);
-    return () => clearTimeout(t);
-  });
-
-  onMount(async () => {
-    const checkMobile = () => { isMobile = window.innerWidth < 768; };
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-
+  onMount(() => {
+    // Flip the wordmark to light type whenever the logo overlaps a section
+    // marked [data-nav-dark] (e.g. the AI band) so it stays readable.
+    const updateOverDark = () => {
+      if (!logoEl) return;
+      const lr = logoEl.getBoundingClientRect();
+      const mid = lr.top + lr.height / 2;
+      let dark = false;
+      document.querySelectorAll('[data-nav-dark]').forEach((el) => {
+        const r = el.getBoundingClientRect();
+        if (r.top <= mid && r.bottom >= mid) dark = true;
+      });
+      overDark = dark;
+    };
+    const onResize = () => { requestAnimationFrame(refreshLamp); updateOverDark(); };
     const onScroll = () => {
       scrolled = window.scrollY > 80;
+      updateOverDark();
+      if (menuOpen) closeMenu();
     };
-    window.addEventListener('scroll', onScroll, { passive: true });
+    const onDocClick = (e: MouseEvent) => {
+      if (menuOpen && pillEl && !pillEl.contains(e.target as Node)) closeMenu();
+    };
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') closeMenu(); };
 
-    await tick();
-    moveLamp(0);
+    onResize();
+    window.addEventListener('resize', onResize);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('click', onDocClick);
+    window.addEventListener('keydown', onKey);
 
     const io = new IntersectionObserver(
       (entries) => {
@@ -120,292 +135,189 @@
       },
       { rootMargin: '-40% 0px -55% 0px' }
     );
-    navItems.forEach(n => {
-      const el = document.querySelector(`#${n.id}`);
-      if (el) io.observe(el);
+
+    tick().then(() => {
+      // Scroll-spy only applies on the homepage where the sections exist.
+      if (isHome) {
+        moveLamp(0);
+        navItems.forEach(n => {
+          if (n.type !== 'anchor') return;
+          const el = document.querySelector(`#${n.id}`);
+          if (el) io.observe(el);
+        });
+      } else {
+        refreshLamp();
+      }
     });
 
     return () => {
-      window.removeEventListener('resize', checkMobile);
+      window.removeEventListener('resize', onResize);
       window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('click', onDocClick);
+      window.removeEventListener('keydown', onKey);
       io.disconnect();
     };
   });
 </script>
 
-<!-- Mobile-only top brand bar -->
-{#if isMobile}
-<div class="mobile-topbar">
+<header class="nav-wrap">
+  <!-- Wordmark logo, top-left -->
   <a
-    class="mobile-brand"
+    class="nav-logo"
+    class:over-dark={overDark}
+    bind:this={logoEl}
     href="/"
-    onclick={(e) => { e.preventDefault(); activate('Home', 0, true); }}
+    onclick={(e) => { if (isHome) { e.preventDefault(); go('home'); } closeMenu(); }}
     aria-label="BuildSynergy Home"
   >
-    <svg class="mobile-logo-mark" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <defs>
-        <linearGradient id="lgMark" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%"   stop-color="#6366f1"/>
-          <stop offset="50%"  stop-color="#a855f7"/>
-          <stop offset="100%" stop-color="#22d3ee"/>
-        </linearGradient>
-      </defs>
-      <path d="M12 2 L20 9 L12 22 L4 9 Z" stroke="url(#lgMark)" stroke-width="1.4" fill="none" stroke-linejoin="round"/>
-      <path d="M12 6 L17 10 L12 18 L7 10 Z" fill="url(#lgMark)" opacity="0.25"/>
-      <circle cx="12" cy="2"  r="1.4" fill="#6366f1"/>
-      <circle cx="20" cy="9"  r="1.1" fill="#a855f7"/>
-      <circle cx="4"  cy="9"  r="1.1" fill="#22d3ee"/>
-      <circle cx="12" cy="22" r="1.2" fill="#22d3ee"/>
-    </svg>
-    <span class="mobile-brand-name">Build<span class="mobile-brand-accent">Synergy</span></span>
+    <span class="logo-build">Build</span><span class="logo-accent">Synergy</span>
   </a>
-  <a
-    href={contactHref}
-    class="mobile-topbar-cta"
-    onclick={(e) => { if (isHome) { e.preventDefault(); activate('Contact', 5, true); } }}
-  >
-    Start a Project
-  </a>
-</div>
-{/if}
 
-<!-- Floating nav pill -->
-<header class="nav-wrap" class:mobile={isMobile}>
+  <!-- Nav pill, top-right: links + CTA + hamburger -->
   <nav
     class="nav-pill"
-    class:collapsed={hideLabels}
+    class:scrolled
+    class:menu-open={menuOpen}
     bind:this={pillEl}
     aria-label="Main navigation"
   >
-    <!-- Logo (desktop only) -->
-    {#if !isMobile}
-      <a
-        class="nav-logo-pill"
-        href="/"
-        onclick={(e) => { e.preventDefault(); activate('Home', 0, true); }}
-        aria-label="BuildSynergy Home"
-      >
-        <svg class="logo-mark" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <defs>
-            <linearGradient id="lgMarkDesktop" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%"   stop-color="#6366f1"/>
-              <stop offset="50%"  stop-color="#a855f7"/>
-              <stop offset="100%" stop-color="#22d3ee"/>
-            </linearGradient>
-          </defs>
-          <path d="M12 2 L20 9 L12 22 L4 9 Z" stroke="url(#lgMarkDesktop)" stroke-width="1.4" fill="none" stroke-linejoin="round"/>
-          <path d="M12 6 L17 10 L12 18 L7 10 Z" fill="url(#lgMarkDesktop)" opacity="0.25"/>
-          <circle cx="12" cy="2"  r="1.4" fill="#6366f1"/>
-          <circle cx="20" cy="9"  r="1.1" fill="#a855f7"/>
-          <circle cx="4"  cy="9"  r="1.1" fill="#22d3ee"/>
-          <circle cx="12" cy="22" r="1.2" fill="#22d3ee"/>
-        </svg>
-        <span class="logo-text" class:logo-hidden={hideLabels}>
-          Build<span class="logo-accent">Synergy</span>
-        </span>
-      </a>
+    <!-- Links (inline on desktop, dropdown on mobile) -->
+    <div id="nav-links" class="nav-links" class:open={menuOpen} bind:this={linksEl}>
+      <!-- Sliding lamp indicator (desktop only) -->
+      <div
+        class="lamp"
+        style="left: {lampLeft}px; width: {lampWidth}px"
+        aria-hidden="true"
+      ></div>
 
-      <div class="nav-sep" aria-hidden="true"></div>
-    {/if}
-
-    <!-- Sliding lamp indicator -->
-    <div
-      class="lamp"
-      style="left: {lampLeft}px; width: {lampWidth}px"
-      aria-hidden="true"
-    >
-      <div class="lamp-bar">
-        <div class="lamp-bloom lamp-bloom--wide"></div>
-        <div class="lamp-bloom lamp-bloom--mid"></div>
-        <div class="lamp-bloom lamp-bloom--tight"></div>
-      </div>
+      {#each navItems as item, i}
+        {#if item.type === 'route'}
+          <a
+            class="nav-item"
+            class:active={activeTab === item.name}
+            href={item.path}
+            bind:this={itemEls[i]}
+            onclick={closeMenu}
+            aria-current={activeTab === item.name ? 'page' : undefined}
+            aria-label={item.name}
+          >
+            <span class="nav-icon">{@html item.icon}</span>
+            <span class="nav-label">{item.name}</span>
+          </a>
+        {:else}
+          <a
+            class="nav-item"
+            class:active={activeTab === item.name}
+            href={`/#${item.id}`}
+            bind:this={itemEls[i]}
+            onclick={(e) => { if (isHome) { e.preventDefault(); activate(item.name, i, true); } closeMenu(); }}
+            aria-current={activeTab === item.name ? 'page' : undefined}
+            aria-label={item.name}
+          >
+            <span class="nav-icon">{@html item.icon}</span>
+            <span class="nav-label">{item.name}</span>
+          </a>
+        {/if}
+      {/each}
     </div>
 
-    {#each navItems as item, i}
-      <button
-        class="nav-item"
-        class:active={activeTab === item.name}
-        bind:this={itemEls[i]}
-        onclick={() => activate(item.name, i, true)}
-        aria-current={activeTab === item.name ? 'page' : undefined}
-        aria-label={item.name}
-      >
-        <span class="nav-icon">{@html item.icon}</span>
-        <span class="nav-label">{item.name}</span>
-      </button>
-    {/each}
+    <!-- CTA -->
+    <a
+      href="/#contact"
+      class="nav-cta"
+      onclick={(e) => { if (isHome) { e.preventDefault(); go('contact'); } closeMenu(); }}
+    >
+      Get a quote
+    </a>
 
-    <!-- CTA (desktop only) -->
-    {#if !isMobile}
-      <a
-        href={contactHref}
-        class="nav-cta"
-        class:cta-icon={hideLabels}
-        onclick={(e) => { if (isHome) { e.preventDefault(); activate('Contact', 5, true); } }}
-      >
-        {#if hideLabels}
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        {:else}
-          Start a Project
-        {/if}
-      </a>
-    {/if}
+    <!-- Hamburger (mobile only) -->
+    <button
+      class="nav-burger"
+      class:open={menuOpen}
+      onclick={toggleMenu}
+      aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+      aria-expanded={menuOpen}
+      aria-controls="nav-links"
+    >
+      <span></span>
+      <span></span>
+    </button>
   </nav>
 </header>
 
 <style>
-  /* ── Mobile top brand bar ────────────────────────────────────────── */
-  .mobile-topbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 101;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0.75rem 1.25rem;
-    background: rgba(8, 8, 22, 0.82);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(99, 102, 241, 0.14);
-    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
-  }
-
-  .mobile-brand {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    text-decoration: none;
-  }
-
-  .mobile-logo-mark {
-    width: 32px;
-    height: 32px;
-    flex-shrink: 0;
-    filter: drop-shadow(0 0 6px rgba(99, 102, 241, 0.45));
-  }
-
-  .mobile-brand-name {
-    font-family: var(--display);
-    font-size: 1.45rem;
-    font-weight: 800;
-    letter-spacing: -0.03em;
-    color: rgba(255, 255, 255, 0.92);
-    white-space: nowrap;
-  }
-
-  .mobile-brand-accent {
-    background: linear-gradient(135deg, #a5b4fc, #22d3ee);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .mobile-topbar-cta {
-    font-family: var(--display);
-    font-size: 0.78rem;
-    font-weight: 600;
-    color: #fff;
-    text-decoration: none;
-    background: linear-gradient(135deg, #6366f1, #a855f7);
-    padding: 0.45rem 0.9rem;
-    border-radius: 100px;
-    white-space: nowrap;
-    transition: opacity 0.2s, box-shadow 0.2s;
-    flex-shrink: 0;
-  }
-  .mobile-topbar-cta:hover {
-    opacity: 0.88;
-    box-shadow: 0 0 14px rgba(99, 102, 241, 0.4);
-  }
-
   /* ── Wrapper ─────────────────────────────────────────────────────── */
   .nav-wrap {
     position: fixed;
     top: 1.5rem;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 0;
+    right: 0;
     z-index: 100;
-    overflow: visible;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0 clamp(1.25rem, 4vw, 3rem);
+    pointer-events: none;
   }
-  .nav-wrap.mobile {
-    top: auto;
-    bottom: 1.5rem;
-  }
+  .nav-wrap > * { pointer-events: auto; }
 
   /* ── Pill ─────────────────────────────────────────────────────────── */
   .nav-pill {
     position: relative;
     display: flex;
     align-items: center;
-    gap: 0.1rem;
-    background: rgba(8, 8, 22, 0.55);
+    gap: 0.35rem;
+    background: rgba(255,255,255,0.7);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(99,102,241,0.18);
+    border: 1px solid var(--border);
     border-radius: 100px;
-    padding: 0.3rem 0.3rem;
-    box-shadow:
-      0 0 0 1px rgba(255,255,255,0.04) inset,
-      0 4px 24px rgba(0,0,0,0.4);
+    padding: 0.45rem 0.5rem;
+    box-shadow: var(--shadow-md);
     overflow: visible;
-    transition: padding 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: background 0.3s ease, border-color 0.3s ease;
+  }
+  .nav-pill.scrolled {
+    background: rgba(255,255,255,0.9);
+    border-color: var(--border2);
   }
 
-  /* ── Logo (desktop only) ──────────────────────────────────────────── */
-  .nav-logo-pill {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
+  /* ── Wordmark logo ────────────────────────────────────────────────── */
+  .nav-logo {
+    flex-shrink: 0;
     text-decoration: none;
-    padding: 0.45rem 0.75rem 0.45rem 0.6rem;
-    flex-shrink: 0;
-    position: relative;
-    z-index: 1;
-    overflow: hidden;
-  }
-
-  .logo-mark {
-    width: 26px;
-    height: 26px;
-    flex-shrink: 0;
-    filter: drop-shadow(0 0 6px rgba(99,102,241,0.45));
-  }
-
-  .logo-text {
-    font-family: var(--display);
-    font-size: 1.25rem;
-    font-weight: 800;
+    font-family: 'Poppins', var(--display);
+    font-size: 2.1rem;
+    line-height: 1;
     letter-spacing: -0.03em;
-    color: rgba(255,255,255,0.92);
     white-space: nowrap;
-    overflow: hidden;
-    max-width: 150px;
-    opacity: 1;
-    transition: max-width 0.32s cubic-bezier(0.4, 0, 0.2, 1),
-                opacity 0.25s ease;
+    transition: filter 0.25s ease;
   }
-  .logo-text.logo-hidden {
-    max-width: 0;
-    opacity: 0;
+
+  .logo-build {
+    font-weight: 500;
+    color: var(--text);
+    transition: color 0.3s ease;
   }
 
   .logo-accent {
-    background: linear-gradient(135deg, #a5b4fc, #22d3ee);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    font-weight: 700;
+    color: var(--indigo);
+    transition: color 0.3s ease;
   }
 
-  /* ── Separator ────────────────────────────────────────────────────── */
-  .nav-sep {
-    width: 1px;
-    height: 18px;
-    background: rgba(255,255,255,0.1);
-    flex-shrink: 0;
+  /* Over a section marked [data-nav-dark] the wordmark flips to light type so
+     it stays readable on dark backgrounds — no backing needed. */
+  .nav-logo.over-dark .logo-build  { color: #fff; }
+  .nav-logo.over-dark .logo-accent { color: #a5b4fc; }
+
+  /* ── Links container ──────────────────────────────────────────────── */
+  .nav-links {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.1rem;
   }
 
   /* ── Lamp indicator ──────────────────────────────────────────────── */
@@ -414,7 +326,7 @@
     top: 0;
     height: 100%;
     border-radius: 100px;
-    background: rgba(99,102,241,0.12);
+    background: var(--indigo-soft);
     transition: left 0.38s cubic-bezier(0.25, 1, 0.5, 1),
                 width 0.38s cubic-bezier(0.25, 1, 0.5, 1);
     pointer-events: none;
@@ -422,51 +334,28 @@
     overflow: visible;
   }
 
-  .lamp-bar {
-    position: absolute;
-    top: -2px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 36px;
-    height: 3px;
-    background: linear-gradient(90deg, rgba(99,102,241,0), #a855f7, rgba(99,102,241,0));
-    border-radius: 0 0 4px 4px;
-  }
-
-  .lamp-bloom {
-    position: absolute;
-    border-radius: 50%;
-    top: -4px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(168,85,247,0.25);
-    filter: blur(6px);
-  }
-  .lamp-bloom--wide  { width: 48px; height: 12px; top: -6px; filter: blur(8px); }
-  .lamp-bloom--mid   { width: 28px; height: 8px;  top: -4px; filter: blur(5px); }
-  .lamp-bloom--tight { width: 14px; height: 6px;  top: -2px; filter: blur(3px); background: rgba(168,85,247,0.5); }
-
   /* ── Nav items ────────────────────────────────────────────────────── */
   .nav-item {
     position: relative;
     z-index: 1;
+    text-decoration: none;
     display: flex;
     align-items: center;
     gap: 0;
     font-family: var(--display);
-    font-size: 0.82rem;
+    font-size: 1rem;
     font-weight: 500;
-    color: rgba(255,255,255,0.52);
+    color: var(--text-muted);
     background: none;
     border: none;
     cursor: pointer;
-    padding: 0.45rem 0.85rem;
+    padding: 0.6rem 1.15rem;
     border-radius: 100px;
-    transition: color 0.2s, padding 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: color 0.2s;
     white-space: nowrap;
   }
-  .nav-item:hover  { color: rgba(255,255,255,0.85); }
-  .nav-item.active { color: #fff; }
+  .nav-item:hover  { color: var(--text); }
+  .nav-item.active { color: var(--text); }
 
   /* Icon */
   .nav-icon {
@@ -480,74 +369,130 @@
   .nav-item:hover .nav-icon,
   .nav-item.active .nav-icon { opacity: 1; }
 
-  /* Label */
   .nav-label {
-    overflow: hidden;
-    max-width: 80px;
-    margin-left: 0.35rem;
-    opacity: 1;
+    margin-left: 0.4rem;
     white-space: nowrap;
-    transition: max-width 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-                opacity 0.22s ease,
-                margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  /* Desktop collapsed: icons only */
-  .nav-pill.collapsed .nav-label {
-    max-width: 0;
-    opacity: 0;
-    margin-left: 0;
-  }
-  .nav-pill.collapsed .nav-item {
-    padding: 0.45rem 0.65rem;
-  }
-
-  /* ── Mobile items: stacked icon + label ──────────────────────────── */
-  .nav-wrap.mobile .nav-item {
-    flex-direction: column;
-    gap: 0.2rem;
-    padding: 0.4rem 0.9rem 0.35rem;
-  }
-  .nav-wrap.mobile .nav-label {
-    font-size: 0.56rem;
-    font-weight: 600;
-    letter-spacing: 0.02em;
-    max-width: none;
-    margin-left: 0;
-    opacity: 1;
-  }
-  .nav-wrap.mobile .nav-icon {
-    opacity: 0.7;
-  }
-  .nav-wrap.mobile .nav-item.active .nav-icon,
-  .nav-wrap.mobile .nav-item:hover .nav-icon {
-    opacity: 1;
-  }
-
-  /* ── CTA button (desktop only) ────────────────────────────────────── */
+  /* ── CTA button ───────────────────────────────────────────────────── */
   .nav-cta {
     position: relative;
     z-index: 1;
     font-family: var(--display);
-    font-size: 0.8rem;
+    font-size: 0.95rem;
     font-weight: 600;
     color: #fff;
     text-decoration: none;
-    background: linear-gradient(135deg, #6366f1, #a855f7);
-    padding: 0.5rem 1.1rem;
+    background: var(--indigo);
+    padding: 0.65rem 1.4rem;
     border-radius: 100px;
     white-space: nowrap;
     flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: opacity 0.2s, box-shadow 0.2s, padding 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: background 0.2s, box-shadow 0.2s;
   }
   .nav-cta:hover {
-    opacity: 0.88;
-    box-shadow: 0 0 18px rgba(99,102,241,0.4);
+    background: var(--indigo-strong);
+    box-shadow: var(--shadow-indigo);
   }
-  .nav-cta.cta-icon {
-    padding: 0.5rem 0.62rem;
+
+  /* ── Hamburger (mobile only) ──────────────────────────────────────── */
+  .nav-burger {
+    display: none;
+    position: relative;
+    z-index: 1;
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+  }
+  .nav-burger span {
+    position: absolute;
+    width: 18px;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--text);
+    transition: transform 0.25s ease;
+  }
+  .nav-burger span:nth-child(1) { transform: translateY(-4px); }
+  .nav-burger span:nth-child(2) { transform: translateY(4px); }
+  .nav-burger.open span:nth-child(1) { transform: rotate(45deg); }
+  .nav-burger.open span:nth-child(2) { transform: rotate(-45deg); }
+
+  /* ── Mobile: wordmark left, CTA + hamburger pill right, dropdown ──── */
+  @media (max-width: 767px) {
+    .nav-wrap {
+      top: 0.75rem;
+      padding: 0 0.85rem;
+      gap: 0.6rem;
+    }
+    .nav-logo { font-size: 1.65rem; }
+
+    .nav-pill {
+      border-radius: 16px;
+      padding: 0.4rem 0.5rem;
+      gap: 0.4rem;
+    }
+
+    .lamp { display: none; }
+
+    .nav-cta {
+      font-size: 0.85rem;
+      padding: 0.55rem 1.05rem;
+    }
+    .nav-burger { display: inline-flex; }
+
+    /* links collapse into a dropdown panel under the pill */
+    .nav-links {
+      position: absolute;
+      top: calc(100% + 0.55rem);
+      left: auto;
+      right: 0;
+      min-width: 220px;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.15rem;
+      padding: 0.5rem;
+      background: var(--surface);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      box-shadow: var(--shadow-lg);
+      opacity: 0;
+      transform: translateY(-8px);
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+    }
+    .nav-links.open {
+      opacity: 1;
+      transform: none;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .nav-item {
+      flex-direction: row;
+      justify-content: flex-start;
+      width: 100%;
+      padding: 0.7rem 0.85rem;
+      border-radius: 10px;
+    }
+    .nav-item.active { background: var(--indigo-soft); }
+    .nav-icon { opacity: 0.8; }
+    .nav-label {
+      margin-left: 0.65rem;
+      font-size: 0.95rem;
+      font-weight: 500;
+      letter-spacing: 0;
+    }
   }
 </style>

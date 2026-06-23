@@ -2,12 +2,9 @@
   import { onMount } from 'svelte';
   import gsap from 'gsap';
   import { ScrollTrigger } from 'gsap/ScrollTrigger';
-  import { page } from '$app/state';
 
   let footerEl: HTMLElement;
   const year = new Date().getFullYear();
-
-  let isHome = $derived(page.url.pathname === '/');
 
   onMount(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -22,28 +19,11 @@
     }
     return () => ScrollTrigger.getAll().forEach(t => t.kill());
   });
-
-  function scrollTo(id: string) {
-    document.querySelector(id)?.scrollIntoView({ behavior: 'smooth' });
-  }
-
-  function navHref(id: string) {
-    return isHome ? `#${id}` : `/#${id}`;
-  }
-
-  function navClick(e: MouseEvent, id: string) {
-    if (isHome) {
-      e.preventDefault();
-      scrollTo(`#${id}`);
-    }
-  }
 </script>
 
 <footer class="footer" bind:this={footerEl}>
   <!-- Gradient fade-in from top -->
   <div class="footer-fade" aria-hidden="true"></div>
-  <!-- Grid pattern -->
-  <div class="footer-grid-bg" aria-hidden="true"></div>
 
   <div class="footer-inner">
     <div class="footer-top">
@@ -54,25 +34,6 @@
       </div>
 
       <nav class="footer-nav" aria-label="Footer">
-        <div class="nav-col">
-          <span class="nav-label">Navigate</span>
-          <ul>
-            <li><a href={navHref('home')}     onclick={(e) => navClick(e, 'home')}>Home</a></li>
-            <li><a href={navHref('solution')} onclick={(e) => navClick(e, 'solution')}>Services</a></li>
-            <li><a href={navHref('process')}  onclick={(e) => navClick(e, 'process')}>Process</a></li>
-            <li><a href={navHref('work')}     onclick={(e) => navClick(e, 'work')}>Our Work</a></li>
-            <li><a href={navHref('packages')} onclick={(e) => navClick(e, 'packages')}>Packages</a></li>
-            <li><a href={navHref('contact')}  onclick={(e) => navClick(e, 'contact')}>Contact</a></li>
-          </ul>
-        </div>
-        <div class="nav-col">
-          <span class="nav-label">Connect</span>
-          <ul>
-            <li><a href="/" aria-label="LinkedIn">LinkedIn</a></li>
-            <li><a href="/" aria-label="Facebook">Facebook</a></li>
-            <li><a href="/" aria-label="Instagram">Instagram</a></li>
-          </ul>
-        </div>
         <div class="nav-col">
           <span class="nav-label">Legal</span>
           <ul>
@@ -100,7 +61,8 @@
   .footer {
     position: relative;
     padding: 5rem var(--gutter) 2.5rem;
-    background: var(--bg);
+    background: var(--bg2);
+    border-top: 1px solid var(--border);
     overflow: hidden;
   }
 
@@ -108,16 +70,7 @@
     position: absolute;
     top: 0; left: 0; right: 0;
     height: 200px;
-    background: linear-gradient(to bottom, rgba(7,7,26,0.8), transparent);
-    pointer-events: none;
-  }
-
-  .footer-grid-bg {
-    position: absolute;
-    inset: 0;
-    background-image: linear-gradient(rgba(99,102,241,0.05) 1px, transparent 1px),
-                      linear-gradient(90deg, rgba(99,102,241,0.05) 1px, transparent 1px);
-    background-size: 52px 52px;
+    background: transparent;
     pointer-events: none;
   }
 
@@ -145,7 +98,7 @@
     letter-spacing: -0.02em;
     margin-bottom: 0.75rem;
   }
-  .logo span { color: var(--cyan); }
+  .logo span { color: var(--indigo); }
 
   .footer-brand p {
     font-size: 0.875rem;
@@ -161,7 +114,7 @@
     transition: color 0.2s;
     letter-spacing: 0.01em;
   }
-  .footer-email:hover { color: var(--cyan); }
+  .footer-email:hover { color: var(--indigo-strong); }
 
   .footer-nav { display: flex; gap: 3.5rem; flex-wrap: wrap; }
   .nav-col { display: flex; flex-direction: column; gap: 0.85rem; }
@@ -184,7 +137,7 @@
 
   .footer-divider {
     height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(99,102,241,0.25), rgba(168,85,247,0.2), transparent);
+    background: linear-gradient(90deg, transparent, var(--border2), transparent);
     margin-bottom: 2rem;
   }
 
@@ -217,10 +170,6 @@
     transition: color 0.2s;
   }
   .legal-link:hover { color: var(--indigo); }
-
-  @media (max-width: 767px) {
-    .footer { padding-bottom: 6.5rem; }
-  }
 
   @media (max-width: 640px) {
     .footer-top { flex-direction: column; }

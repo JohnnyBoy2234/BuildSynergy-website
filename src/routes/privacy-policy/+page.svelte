@@ -1,7 +1,12 @@
-<svelte:head>
-  <title>Privacy Policy BuildSynergy</title>
-  <meta name="description" content="BuildSynergy Privacy Policy how we collect, use and protect your personal information in accordance with POPIA." />
-</svelte:head>
+<script lang="ts">
+  import Seo from '$lib/components/Seo.svelte';
+</script>
+
+<Seo
+  title="Privacy Policy — BuildSynergy"
+  description="BuildSynergy Privacy Policy — how we collect, use and protect your personal information in accordance with POPIA."
+  path="/privacy-policy"
+/>
 
 <div class="pp-wrap">
   <div class="pp-container">
@@ -236,7 +241,7 @@
     font-family: var(--display);
     font-size: 0.8rem;
     font-weight: 600;
-    color: rgba(255,255,255,0.35);
+    color: var(--text-muted);
     text-decoration: none;
     letter-spacing: 0.02em;
     margin-bottom: 2.5rem;
@@ -249,16 +254,16 @@
     font-size: clamp(2rem, 4vw, 3rem);
     font-weight: 800;
     letter-spacing: -0.04em;
-    color: rgba(255,255,255,0.95);
+    color: var(--text);
     margin-bottom: 0.75rem;
   }
 
   .pp-meta {
     font-size: 0.8rem;
-    color: rgba(255,255,255,0.28);
+    color: var(--text-muted);
     margin-bottom: 3.5rem;
     padding-bottom: 2rem;
-    border-bottom: 1px solid rgba(255,255,255,0.07);
+    border-bottom: 1px solid var(--border);
   }
 
   /* ── Body ──────────────────────────────────────────────────────── */
@@ -279,7 +284,7 @@
     font-size: 1.05rem;
     font-weight: 700;
     letter-spacing: -0.02em;
-    color: rgba(255,255,255,0.85);
+    color: var(--text);
     padding-bottom: 0.5rem;
     border-bottom: 1px solid rgba(99,102,241,0.15);
   }
@@ -288,13 +293,13 @@
     font-family: var(--display);
     font-size: 0.88rem;
     font-weight: 600;
-    color: rgba(255,255,255,0.55);
+    color: var(--text-body);
     margin-top: 0.5rem;
   }
 
   p {
     font-size: 0.9rem;
-    color: rgba(255,255,255,0.45);
+    color: var(--text-body);
     line-height: 1.78;
   }
 
@@ -308,7 +313,7 @@
 
   ul li {
     font-size: 0.875rem;
-    color: rgba(255,255,255,0.42);
+    color: var(--text-body);
     line-height: 1.65;
     padding-left: 1.1rem;
     position: relative;
@@ -322,15 +327,15 @@
     line-height: 1.45;
   }
 
-  strong { color: rgba(255,255,255,0.65); font-weight: 600; }
-  em     { color: rgba(255,255,255,0.3); font-style: normal; }
+  strong { color: var(--text); font-weight: 600; }
+  em     { color: var(--text-muted); font-style: normal; }
 
   a {
     color: var(--indigo);
     text-decoration: none;
     transition: color 0.2s;
   }
-  a:hover { color: var(--cyan); }
+  a:hover { color: var(--indigo-strong); }
 
   /* Contact block */
   .pp-contact .contact-block {

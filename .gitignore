@@ -12,10 +12,10 @@ dist
 dist-ssr
 *.local
 
-# SvelteKit / Vercel build output
-.svelte-kit
-.vercel
-build
+# Environment secrets
+.env
+.env.*
+!.env.example
 
 # Editor directories and files
 .vscode/*
@@ -27,3 +27,10 @@ build
 *.njsproj
 *.sln
 *.sw?
+
+# Vercel build output
+.vercel
+
+# SvelteKit generated output (should never be tracked)
+.svelte-kit
+build
