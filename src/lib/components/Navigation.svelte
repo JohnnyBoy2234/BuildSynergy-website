@@ -74,10 +74,16 @@
     if (i !== -1) moveLamp(i);
   }
 
-  // Re-measure lamp whenever collapsed state changes, after transitions finish
+  // Re-measure lamp whenever collapsed state or mobile state changes
   $effect(() => {
     const _ = hideLabels;
     const t = setTimeout(() => requestAnimationFrame(refreshLamp), 360);
+    return () => clearTimeout(t);
+  });
+
+  $effect(() => {
+    const _ = isMobile;
+    const t = setTimeout(() => requestAnimationFrame(refreshLamp), 80);
     return () => clearTimeout(t);
   });
 
@@ -117,6 +123,43 @@
   });
 </script>
 
+<!-- Mobile-only top brand bar -->
+{#if isMobile}
+<div class="mobile-topbar">
+  <a
+    class="mobile-brand"
+    href="/"
+    onclick={(e) => { e.preventDefault(); activate('Home', 0, true); }}
+    aria-label="BuildSynergy Home"
+  >
+    <svg class="mobile-logo-mark" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <defs>
+        <linearGradient id="lgMark" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%"   stop-color="#6366f1"/>
+          <stop offset="50%"  stop-color="#a855f7"/>
+          <stop offset="100%" stop-color="#22d3ee"/>
+        </linearGradient>
+      </defs>
+      <path d="M12 2 L20 9 L12 22 L4 9 Z" stroke="url(#lgMark)" stroke-width="1.4" fill="none" stroke-linejoin="round"/>
+      <path d="M12 6 L17 10 L12 18 L7 10 Z" fill="url(#lgMark)" opacity="0.25"/>
+      <circle cx="12" cy="2"  r="1.4" fill="#6366f1"/>
+      <circle cx="20" cy="9"  r="1.1" fill="#a855f7"/>
+      <circle cx="4"  cy="9"  r="1.1" fill="#22d3ee"/>
+      <circle cx="12" cy="22" r="1.2" fill="#22d3ee"/>
+    </svg>
+    <span class="mobile-brand-name">Build<span class="mobile-brand-accent">Synergy</span></span>
+  </a>
+  <a
+    href="#contact"
+    class="mobile-topbar-cta"
+    onclick={(e) => { e.preventDefault(); activate('Contact', 4, true); }}
+  >
+    Start a Project
+  </a>
+</div>
+{/if}
+
+<!-- Floating nav pill -->
 <header class="nav-wrap" class:mobile={isMobile}>
   <nav
     class="nav-pill"
@@ -124,34 +167,36 @@
     bind:this={pillEl}
     aria-label="Main navigation"
   >
-    <!-- Logo -->
-    <a
-      class="nav-logo-pill"
-      href="/"
-      onclick={(e) => { e.preventDefault(); activate('Home', 0, true); }}
-      aria-label="BuildSynergy Home"
-    >
-      <svg class="logo-mark" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <defs>
-          <linearGradient id="lgMark" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%"   stop-color="#6366f1"/>
-            <stop offset="50%"  stop-color="#a855f7"/>
-            <stop offset="100%" stop-color="#22d3ee"/>
-          </linearGradient>
-        </defs>
-        <path d="M12 2 L20 9 L12 22 L4 9 Z" stroke="url(#lgMark)" stroke-width="1.4" fill="none" stroke-linejoin="round"/>
-        <path d="M12 6 L17 10 L12 18 L7 10 Z" fill="url(#lgMark)" opacity="0.25"/>
-        <circle cx="12" cy="2"  r="1.4" fill="#6366f1"/>
-        <circle cx="20" cy="9"  r="1.1" fill="#a855f7"/>
-        <circle cx="4"  cy="9"  r="1.1" fill="#22d3ee"/>
-        <circle cx="12" cy="22" r="1.2" fill="#22d3ee"/>
-      </svg>
-      <span class="logo-text" class:logo-hidden={hideLabels}>
-        Build<span class="logo-accent">Synergy</span>
-      </span>
-    </a>
+    <!-- Logo (desktop only) -->
+    {#if !isMobile}
+      <a
+        class="nav-logo-pill"
+        href="/"
+        onclick={(e) => { e.preventDefault(); activate('Home', 0, true); }}
+        aria-label="BuildSynergy Home"
+      >
+        <svg class="logo-mark" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <linearGradient id="lgMarkDesktop" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%"   stop-color="#6366f1"/>
+              <stop offset="50%"  stop-color="#a855f7"/>
+              <stop offset="100%" stop-color="#22d3ee"/>
+            </linearGradient>
+          </defs>
+          <path d="M12 2 L20 9 L12 22 L4 9 Z" stroke="url(#lgMarkDesktop)" stroke-width="1.4" fill="none" stroke-linejoin="round"/>
+          <path d="M12 6 L17 10 L12 18 L7 10 Z" fill="url(#lgMarkDesktop)" opacity="0.25"/>
+          <circle cx="12" cy="2"  r="1.4" fill="#6366f1"/>
+          <circle cx="20" cy="9"  r="1.1" fill="#a855f7"/>
+          <circle cx="4"  cy="9"  r="1.1" fill="#22d3ee"/>
+          <circle cx="12" cy="22" r="1.2" fill="#22d3ee"/>
+        </svg>
+        <span class="logo-text" class:logo-hidden={hideLabels}>
+          Build<span class="logo-accent">Synergy</span>
+        </span>
+      </a>
 
-    <div class="nav-sep" aria-hidden="true"></div>
+      <div class="nav-sep" aria-hidden="true"></div>
+    {/if}
 
     <!-- Sliding lamp indicator -->
     <div
@@ -180,25 +225,93 @@
       </button>
     {/each}
 
-    <!-- CTA -->
-    <a
-      href="#contact"
-      class="nav-cta"
-      class:cta-icon={hideLabels || isMobile}
-      onclick={(e) => { e.preventDefault(); activate('Contact', 4, true); }}
-    >
-      {#if hideLabels || isMobile}
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      {:else}
-        Start a Project
-      {/if}
-    </a>
+    <!-- CTA (desktop only) -->
+    {#if !isMobile}
+      <a
+        href="#contact"
+        class="nav-cta"
+        class:cta-icon={hideLabels}
+        onclick={(e) => { e.preventDefault(); activate('Contact', 4, true); }}
+      >
+        {#if hideLabels}
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        {:else}
+          Start a Project
+        {/if}
+      </a>
+    {/if}
   </nav>
 </header>
 
 <style>
+  /* ── Mobile top brand bar ────────────────────────────────────────── */
+  .mobile-topbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 101;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1.25rem;
+    background: rgba(8, 8, 22, 0.82);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(99, 102, 241, 0.14);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  .mobile-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+  }
+
+  .mobile-logo-mark {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+    filter: drop-shadow(0 0 6px rgba(99, 102, 241, 0.45));
+  }
+
+  .mobile-brand-name {
+    font-family: var(--display);
+    font-size: 1.45rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: rgba(255, 255, 255, 0.92);
+    white-space: nowrap;
+  }
+
+  .mobile-brand-accent {
+    background: linear-gradient(135deg, #a5b4fc, #22d3ee);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .mobile-topbar-cta {
+    font-family: var(--display);
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #fff;
+    text-decoration: none;
+    background: linear-gradient(135deg, #6366f1, #a855f7);
+    padding: 0.45rem 0.9rem;
+    border-radius: 100px;
+    white-space: nowrap;
+    transition: opacity 0.2s, box-shadow 0.2s;
+    flex-shrink: 0;
+  }
+  .mobile-topbar-cta:hover {
+    opacity: 0.88;
+    box-shadow: 0 0 14px rgba(99, 102, 241, 0.4);
+  }
+
   /* ── Wrapper ─────────────────────────────────────────────────────── */
   .nav-wrap {
     position: fixed;
@@ -232,7 +345,7 @@
     transition: padding 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  /* ── Logo ─────────────────────────────────────────────────────────── */
+  /* ── Logo (desktop only) ──────────────────────────────────────────── */
   .nav-logo-pill {
     display: flex;
     align-items: center;
@@ -254,13 +367,13 @@
 
   .logo-text {
     font-family: var(--display);
-    font-size: 1rem;
-    font-weight: 700;
+    font-size: 1.25rem;
+    font-weight: 800;
     letter-spacing: -0.03em;
     color: rgba(255,255,255,0.92);
     white-space: nowrap;
     overflow: hidden;
-    max-width: 120px;
+    max-width: 150px;
     opacity: 1;
     transition: max-width 0.32s cubic-bezier(0.4, 0, 0.2, 1),
                 opacity 0.25s ease;
@@ -268,11 +381,6 @@
   .logo-text.logo-hidden {
     max-width: 0;
     opacity: 0;
-  }
-
-  /* Hide logo text on mobile (mark only) */
-  .nav-wrap.mobile .logo-text {
-    display: none;
   }
 
   .logo-accent {
@@ -362,8 +470,7 @@
   .nav-item:hover .nav-icon,
   .nav-item.active .nav-icon { opacity: 1; }
 
-  /* Label with collapse transition — margin-left carries the spacing so it
-     collapses with the text, keeping the icon visually centered */
+  /* Label */
   .nav-label {
     overflow: hidden;
     max-width: 80px;
@@ -389,13 +496,14 @@
   .nav-wrap.mobile .nav-item {
     flex-direction: column;
     gap: 0.2rem;
-    padding: 0.4rem 0.75rem 0.35rem;
+    padding: 0.4rem 0.9rem 0.35rem;
   }
   .nav-wrap.mobile .nav-label {
     font-size: 0.56rem;
     font-weight: 600;
     letter-spacing: 0.02em;
     max-width: none;
+    margin-left: 0;
     opacity: 1;
   }
   .nav-wrap.mobile .nav-icon {
@@ -406,7 +514,7 @@
     opacity: 1;
   }
 
-  /* ── CTA button ───────────────────────────────────────────────────── */
+  /* ── CTA button (desktop only) ────────────────────────────────────── */
   .nav-cta {
     position: relative;
     z-index: 1;

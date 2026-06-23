@@ -716,6 +716,10 @@
     .score-card          { right: 5%; bottom: 18%; }
   }
 
+  @media (max-width: 767px) {
+    .hero-container { padding-top: 5.5rem; padding-bottom: 6rem; }
+  }
+
   @media (max-width: 640px) {
     .hero-heading { font-size: clamp(2.1rem, 8vw, 2.8rem); }
     .hero-ctas { flex-direction: column; align-items: stretch; }

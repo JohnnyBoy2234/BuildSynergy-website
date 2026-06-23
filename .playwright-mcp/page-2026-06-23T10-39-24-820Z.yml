@@ -1,0 +1,500 @@
+- generic [ref=e2]:
+  - region "Notifications (F8)":
+    - list
+  - region "Notifications alt+T"
+  - generic [ref=e3]:
+    - banner [ref=e4]:
+      - generic [ref=e5]:
+        - link "MzanziHomes":
+          - /url: /
+          - generic:
+            - img
+          - generic: MzanziHomes
+        - generic [ref=e7]:
+          - link [ref=e8] [cursor=pointer]:
+            - /url: /
+            - img [ref=e10]
+          - generic [ref=e13]:
+            - generic [ref=e14]: Welcome to
+            - generic [ref=e15]: MzanziHomes
+        - generic [ref=e16]:
+          - link "Log In" [ref=e17] [cursor=pointer]:
+            - /url: /auth
+          - link "Sign Up" [ref=e18] [cursor=pointer]:
+            - /url: /auth
+    - generic [ref=e23]:
+      - group "View mode" [ref=e24]:
+        - button "rent" [pressed] [ref=e25] [cursor=pointer]: rent
+        - button "buy" [ref=e27] [cursor=pointer]
+      - generic [ref=e28]:
+        - heading "Find Your Perfect Home in South Africa" [level=1] [ref=e29]
+        - paragraph [ref=e30]: Verified listings. Direct landlords. Zero agent fees. MzanziHomes makes renting simple, safe, and transparent.
+      - generic [ref=e34]:
+        - generic [ref=e36]:
+          - img [ref=e37]
+          - generic [ref=e40]:
+            - generic [ref=e41]: Location
+            - textbox "Location" [ref=e42]:
+              - /placeholder: Search by city, suburb or area...
+        - generic [ref=e44]:
+          - button "Property Type Any type" [ref=e46] [cursor=pointer]:
+            - img [ref=e47]
+            - generic [ref=e50]:
+              - generic [ref=e51]: Property Type
+              - generic [ref=e52]: Any type
+            - img [ref=e53]
+          - button "Budget / month Any price" [ref=e57] [cursor=pointer]:
+            - img [ref=e58]
+            - generic [ref=e61]:
+              - generic [ref=e62]: Budget / month
+              - generic [ref=e63]: Any price
+            - img [ref=e64]
+          - button "Bedrooms Any" [ref=e68] [cursor=pointer]:
+            - img [ref=e69]
+            - generic [ref=e72]:
+              - generic [ref=e73]: Bedrooms
+              - generic [ref=e74]: Any
+            - img [ref=e75]
+          - generic [ref=e77]:
+            - button "Filters" [ref=e78] [cursor=pointer]:
+              - img [ref=e79]
+              - text: Filters
+            - button "Search" [ref=e80] [cursor=pointer]:
+              - img [ref=e81]
+              - text: Search
+    - generic [ref=e87]:
+      - generic [ref=e89]:
+        - img [ref=e90]
+        - text: Commission-Free
+      - generic [ref=e94]:
+        - img [ref=e95]
+        - text: Verified Listings
+      - generic [ref=e98]:
+        - img [ref=e99]
+        - text: Digital Leases
+      - generic [ref=e103]:
+        - img [ref=e104]
+        - text: Credit Checks
+      - generic [ref=e107]:
+        - img [ref=e108]
+        - text: In-App Messaging
+      - generic [ref=e111]:
+        - img [ref=e112]
+        - text: Auto Invoicing
+      - generic [ref=e115]:
+        - img [ref=e116]
+        - text: Secure Contracts
+      - generic [ref=e120]:
+        - img [ref=e121]
+        - text: Smart Dashboard
+      - generic [ref=e127]:
+        - img [ref=e128]
+        - text: Mobile-First
+      - generic [ref=e131]:
+        - img [ref=e132]
+        - text: List in Minutes
+      - generic [ref=e135]:
+        - img [ref=e136]
+        - text: Unlimited Properties
+      - generic [ref=e141]:
+        - img [ref=e142]
+        - text: 50+ SA Cities
+      - generic [ref=e146]:
+        - img [ref=e147]
+        - text: Commission-Free
+      - generic [ref=e151]:
+        - img [ref=e152]
+        - text: Verified Listings
+      - generic [ref=e155]:
+        - img [ref=e156]
+        - text: Digital Leases
+      - generic [ref=e160]:
+        - img [ref=e161]
+        - text: Credit Checks
+      - generic [ref=e164]:
+        - img [ref=e165]
+        - text: In-App Messaging
+      - generic [ref=e168]:
+        - img [ref=e169]
+        - text: Auto Invoicing
+      - generic [ref=e172]:
+        - img [ref=e173]
+        - text: Secure Contracts
+      - generic [ref=e177]:
+        - img [ref=e178]
+        - text: Smart Dashboard
+      - generic [ref=e184]:
+        - img [ref=e185]
+        - text: Mobile-First
+      - generic [ref=e188]:
+        - img [ref=e189]
+        - text: List in Minutes
+      - generic [ref=e192]:
+        - img [ref=e193]
+        - text: Unlimited Properties
+      - generic [ref=e198]:
+        - img [ref=e199]
+        - text: 50+ SA Cities
+    - generic [ref=e204]:
+      - generic [ref=e205]:
+        - text: For Landlords
+        - heading "List your property. Keep your money." [level=2] [ref=e206]:
+          - text: List your property.
+          - text: Keep your money.
+        - paragraph [ref=e207]: MzanziHomes finds you tenants and handles referencing, contracts, and more — while you stay in full control and pay zero commission.
+        - list [ref=e208]:
+          - listitem [ref=e209]:
+            - img [ref=e210]
+            - generic [ref=e213]: 100% Commission-Free
+          - listitem [ref=e214]:
+            - img [ref=e215]
+            - generic [ref=e218]: No Hidden Fees
+          - listitem [ref=e219]:
+            - img [ref=e220]
+            - generic [ref=e223]: Full Property Management Tools
+          - listitem [ref=e224]:
+            - img [ref=e225]
+            - generic [ref=e228]: Verified Tenant Screening
+          - listitem [ref=e229]:
+            - img [ref=e230]
+            - generic [ref=e233]: Securely Stored Records
+        - generic [ref=e234]:
+          - link "Add Listing" [ref=e235] [cursor=pointer]:
+            - /url: /list-property
+          - link "Learn More" [ref=e236] [cursor=pointer]:
+            - /url: /about/landlord
+      - generic [ref=e237]:
+        - img "Modern property" [ref=e239]
+        - img "Property owner" [ref=e241]
+        - generic [ref=e242]:
+          - generic [ref=e244]: R
+          - generic [ref=e245]:
+            - paragraph [ref=e246]: Zero Commission
+            - paragraph [ref=e247]: 100% Yours
+    - generic [ref=e250]:
+      - generic [ref=e251]:
+        - img "Happy family at home" [ref=e253]
+        - img "Beautiful home" [ref=e255]
+        - generic [ref=e256]:
+          - img [ref=e258]
+          - generic [ref=e260]:
+            - paragraph [ref=e261]: All Properties
+            - paragraph [ref=e262]: Verified & Safe
+      - generic [ref=e263]:
+        - text: For Tenants
+        - heading "Find your next home. No agent fees." [level=2] [ref=e264]:
+          - text: Find your next home.
+          - text: No agent fees.
+        - paragraph [ref=e265]: On MzanziHomes there are never any agent fees. We verify all listings so you never encounter dead adverts. Your safety and security are our priority.
+        - list [ref=e266]:
+          - listitem [ref=e267]:
+            - img [ref=e268]
+            - generic [ref=e271]: No Agent Fees — Ever
+          - listitem [ref=e272]:
+            - img [ref=e273]
+            - generic [ref=e276]: Verified Properties Only
+          - listitem [ref=e277]:
+            - img [ref=e278]
+            - generic [ref=e281]: Direct Landlord Communication
+          - listitem [ref=e282]:
+            - img [ref=e283]
+            - generic [ref=e286]: Secure Digital Leases
+        - generic [ref=e287]:
+          - link "Find Rental" [ref=e288] [cursor=pointer]:
+            - /url: /properties
+          - link "Learn More" [ref=e289] [cursor=pointer]:
+            - /url: /about/tenant
+    - generic [ref=e292]:
+      - generic [ref=e293]:
+        - text: Everything you need
+        - heading "Built for modern renting" [level=2] [ref=e294]
+        - paragraph [ref=e295]: One platform. Every tool you need to list, rent, manage, and communicate. Commission-free.
+      - generic [ref=e296]:
+        - generic [ref=e297]:
+          - generic [ref=e299]: R
+          - heading "Commission-Free" [level=3] [ref=e300]
+          - paragraph [ref=e301]: Keep 100% of your rental income. No agent fees, ever.
+        - generic [ref=e302]:
+          - img [ref=e304]
+          - heading "Smart Platform" [level=3] [ref=e306]
+          - paragraph [ref=e307]: Digital leases, e-signatures, and smart dashboards built for modern landlords.
+        - generic [ref=e308]:
+          - img [ref=e310]
+          - heading "Speed & Simplicity" [level=3] [ref=e312]
+          - paragraph [ref=e313]: List, screen, and sign in minutes. No delays, no middlemen.
+        - generic [ref=e314]:
+          - img [ref=e316]
+          - heading "All-in-One Dashboard" [level=3] [ref=e321]
+          - paragraph [ref=e322]: Listings, leases, rent, maintenance and accounting from one place.
+        - generic [ref=e323]:
+          - img [ref=e325]
+          - heading "Built-In Invoicing" [level=3] [ref=e327]
+          - paragraph [ref=e328]: Professional invoices generated automatically. Save time, stay compliant.
+        - generic [ref=e329]:
+          - img [ref=e331]
+          - heading "Verified & Secure" [level=3] [ref=e333]
+          - paragraph [ref=e334]: Credit-checked tenants, verified listings, legally binding contracts.
+        - generic [ref=e335]:
+          - img [ref=e337]
+          - heading "In-App Messaging" [level=3] [ref=e339]
+          - paragraph [ref=e340]: Chat, share documents, and track updates. No WhatsApp chaos.
+        - generic [ref=e341]:
+          - img [ref=e343]
+          - heading "Unlimited Properties" [level=3] [ref=e347]
+          - paragraph [ref=e348]: Manage one property or a hundred. Scalable from day one.
+    - generic [ref=e350]:
+      - generic [ref=e351]:
+        - generic [ref=e352]: Testimonials
+        - heading "What our users say" [level=2] [ref=e353]
+        - paragraph [ref=e354]: Landlords and tenants across South Africa trust MzanziHomes.
+      - generic [ref=e355]:
+        - generic [ref=e357]:
+          - generic [ref=e358]:
+            - paragraph [ref=e359]: Found my flat in Cape Town in just 3 days. Zero agent fees saved me over R9,000. MzanziHomes is exactly what South Africa needed.
+            - generic [ref=e360]:
+              - img "Thandi M." [ref=e361]
+              - generic [ref=e362]:
+                - generic [ref=e363]: Thandi M.
+                - generic [ref=e364]: Tenant, Cape Town
+          - generic [ref=e365]:
+            - paragraph [ref=e366]: My property has stayed occupied with quality tenants. The screening process is thorough and the digital lease system is so much better than paper.
+            - generic [ref=e367]:
+              - img "Johan van der Berg" [ref=e368]
+              - generic [ref=e369]:
+                - generic [ref=e370]: Johan van der Berg
+                - generic [ref=e371]: Landlord, Johannesburg
+          - generic [ref=e372]:
+            - paragraph [ref=e373]: As a first-time renter I was nervous, but MzanziHomes made it simple. Verified listings, no hidden fees, and direct chat with my landlord.
+            - generic [ref=e374]:
+              - img "Amahle Dube" [ref=e375]
+              - generic [ref=e376]:
+                - generic [ref=e377]: Amahle Dube
+                - generic [ref=e378]: Tenant, Durban
+          - generic [ref=e379]:
+            - paragraph [ref=e380]: Found my flat in Cape Town in just 3 days. Zero agent fees saved me over R9,000. MzanziHomes is exactly what South Africa needed.
+            - generic [ref=e381]:
+              - img "Thandi M." [ref=e382]
+              - generic [ref=e383]:
+                - generic [ref=e384]: Thandi M.
+                - generic [ref=e385]: Tenant, Cape Town
+          - generic [ref=e386]:
+            - paragraph [ref=e387]: My property has stayed occupied with quality tenants. The screening process is thorough and the digital lease system is so much better than paper.
+            - generic [ref=e388]:
+              - img "Johan van der Berg" [ref=e389]
+              - generic [ref=e390]:
+                - generic [ref=e391]: Johan van der Berg
+                - generic [ref=e392]: Landlord, Johannesburg
+          - generic [ref=e393]:
+            - paragraph [ref=e394]: As a first-time renter I was nervous, but MzanziHomes made it simple. Verified listings, no hidden fees, and direct chat with my landlord.
+            - generic [ref=e395]:
+              - img "Amahle Dube" [ref=e396]
+              - generic [ref=e397]:
+                - generic [ref=e398]: Amahle Dube
+                - generic [ref=e399]: Tenant, Durban
+        - generic [ref=e401]:
+          - generic [ref=e402]:
+            - paragraph [ref=e403]: I manage 6 properties and MzanziHomes's dashboard handles everything — rent tracking, maintenance, invoices. One app, zero chaos.
+            - generic [ref=e404]:
+              - img "Pieter Steyn" [ref=e405]
+              - generic [ref=e406]:
+                - generic [ref=e407]: Pieter Steyn
+                - generic [ref=e408]: Landlord, Pretoria
+          - generic [ref=e409]:
+            - paragraph [ref=e410]: The credit check feature gave me peace of mind before signing my lease. I knew my landlord was legitimate and the property was real.
+            - generic [ref=e411]:
+              - img "Nomvula K." [ref=e412]
+              - generic [ref=e413]:
+                - generic [ref=e414]: Nomvula K.
+                - generic [ref=e415]: Tenant, Sandton
+          - generic [ref=e416]:
+            - paragraph [ref=e417]: Switching to MzanziHomes saved me R24,000 per year in agent fees across my two rentals. The platform pays for itself instantly.
+            - generic [ref=e418]:
+              - img "Mark Jacobs" [ref=e419]
+              - generic [ref=e420]:
+                - generic [ref=e421]: Mark Jacobs
+                - generic [ref=e422]: Landlord, Cape Town
+          - generic [ref=e423]:
+            - paragraph [ref=e424]: I manage 6 properties and MzanziHomes's dashboard handles everything — rent tracking, maintenance, invoices. One app, zero chaos.
+            - generic [ref=e425]:
+              - img "Pieter Steyn" [ref=e426]
+              - generic [ref=e427]:
+                - generic [ref=e428]: Pieter Steyn
+                - generic [ref=e429]: Landlord, Pretoria
+          - generic [ref=e430]:
+            - paragraph [ref=e431]: The credit check feature gave me peace of mind before signing my lease. I knew my landlord was legitimate and the property was real.
+            - generic [ref=e432]:
+              - img "Nomvula K." [ref=e433]
+              - generic [ref=e434]:
+                - generic [ref=e435]: Nomvula K.
+                - generic [ref=e436]: Tenant, Sandton
+          - generic [ref=e437]:
+            - paragraph [ref=e438]: Switching to MzanziHomes saved me R24,000 per year in agent fees across my two rentals. The platform pays for itself instantly.
+            - generic [ref=e439]:
+              - img "Mark Jacobs" [ref=e440]
+              - generic [ref=e441]:
+                - generic [ref=e442]: Mark Jacobs
+                - generic [ref=e443]: Landlord, Cape Town
+        - generic [ref=e445]:
+          - generic [ref=e446]:
+            - paragraph [ref=e447]: The e-signature lease process was so smooth. Had everything signed legally in under an hour from my phone. No printing, no fax.
+            - generic [ref=e448]:
+              - img "Lerato Molefe" [ref=e449]
+              - generic [ref=e450]:
+                - generic [ref=e451]: Lerato Molefe
+                - generic [ref=e452]: Tenant, East Rand
+          - generic [ref=e453]:
+            - paragraph [ref=e454]: I love getting the automatic invoices each month. Rent tracking and proof of payment all in one place. Makes tax season a breeze.
+            - generic [ref=e455]:
+              - img "Riaan Botha" [ref=e456]
+              - generic [ref=e457]:
+                - generic [ref=e458]: Riaan Botha
+                - generic [ref=e459]: Landlord, Stellenbosch
+          - generic [ref=e460]:
+            - paragraph [ref=e461]: After a bad experience with a dodgy agent, MzanziHomes's verified listings gave me the confidence to rent again. Completely transparent.
+            - generic [ref=e462]:
+              - img "Zanele Nkosi" [ref=e463]
+              - generic [ref=e464]:
+                - generic [ref=e465]: Zanele Nkosi
+                - generic [ref=e466]: Tenant, Soweto
+          - generic [ref=e467]:
+            - paragraph [ref=e468]: The e-signature lease process was so smooth. Had everything signed legally in under an hour from my phone. No printing, no fax.
+            - generic [ref=e469]:
+              - img "Lerato Molefe" [ref=e470]
+              - generic [ref=e471]:
+                - generic [ref=e472]: Lerato Molefe
+                - generic [ref=e473]: Tenant, East Rand
+          - generic [ref=e474]:
+            - paragraph [ref=e475]: I love getting the automatic invoices each month. Rent tracking and proof of payment all in one place. Makes tax season a breeze.
+            - generic [ref=e476]:
+              - img "Riaan Botha" [ref=e477]
+              - generic [ref=e478]:
+                - generic [ref=e479]: Riaan Botha
+                - generic [ref=e480]: Landlord, Stellenbosch
+          - generic [ref=e481]:
+            - paragraph [ref=e482]: After a bad experience with a dodgy agent, MzanziHomes's verified listings gave me the confidence to rent again. Completely transparent.
+            - generic [ref=e483]:
+              - img "Zanele Nkosi" [ref=e484]
+              - generic [ref=e485]:
+                - generic [ref=e486]: Zanele Nkosi
+                - generic [ref=e487]: Tenant, Soweto
+    - generic [ref=e489]:
+      - generic [ref=e490]:
+        - generic [ref=e491]:
+          - text: Listings
+          - heading "Featured Properties" [level=2] [ref=e492]
+          - paragraph [ref=e493]: Verified properties from trusted landlords across South Africa
+        - link "View all" [ref=e494] [cursor=pointer]:
+          - /url: /properties
+          - text: View all
+          - img
+      - generic [ref=e495]:
+        - img [ref=e497]
+        - paragraph [ref=e500]: Featured properties coming soon
+        - link "Browse all listings" [ref=e501] [cursor=pointer]:
+          - /url: /properties
+          - text: Browse all listings
+          - img
+    - generic [ref=e503]:
+      - generic [ref=e504]:
+        - text: Resources
+        - heading "Blog of the Week" [level=2] [ref=e505]
+      - link "Safety & Trust Featured Safe, Simple, and Transparent - The New Way to Rent in South Africa 19 December 2024 4 min read Renting shouldn't feel risky or confusing. Discover how MzanziHomes combines verified safety, data protection, and complete transparency. Read Full Article" [ref=e507] [cursor=pointer]:
+        - /url: /blog/safe-transparent-new-way
+        - generic [ref=e509]:
+          - generic [ref=e510]:
+            - generic [ref=e511]: Safety & Trust
+            - generic [ref=e512]: Featured
+          - heading "Safe, Simple, and Transparent - The New Way to Rent in South Africa" [level=2] [ref=e513]
+          - generic [ref=e514]:
+            - generic [ref=e515]:
+              - img [ref=e516]
+              - generic [ref=e518]: 19 December 2024
+            - generic [ref=e519]:
+              - img [ref=e520]
+              - generic [ref=e523]: 4 min read
+          - paragraph [ref=e524]: Renting shouldn't feel risky or confusing. Discover how MzanziHomes combines verified safety, data protection, and complete transparency.
+          - generic [ref=e525]:
+            - generic [ref=e526]: Read Full Article
+            - img [ref=e527]
+    - generic [ref=e532]:
+      - generic [ref=e533]: Join MzanziHomes
+      - generic [ref=e534]:
+        - heading "Rent smarter. Rent safer." [level=2] [ref=e535]:
+          - text: Rent smarter.
+          - text: Rent safer.
+        - paragraph [ref=e536]: Join South Africa's most trusted commission-free rental platform today.
+        - generic [ref=e537]:
+          - link "Browse Properties" [ref=e538] [cursor=pointer]:
+            - /url: /properties
+          - link "List Your Property" [ref=e539] [cursor=pointer]:
+            - /url: /list-property
+    - contentinfo [ref=e540]:
+      - generic [ref=e541]:
+        - generic [ref=e542]:
+          - generic [ref=e543]:
+            - link "MzanziHomes" [ref=e544] [cursor=pointer]:
+              - /url: /
+              - img [ref=e546]
+              - generic [ref=e549]: MzanziHomes
+            - paragraph [ref=e550]: Safe, Simple, Commission-Free Renting. Direct landlord-tenant connections with full verification and peace of mind.
+            - generic [ref=e551]:
+              - link "Facebook" [ref=e552] [cursor=pointer]:
+                - /url: https://facebook.com/MzanziHomes
+                - img [ref=e553]
+              - link "Twitter" [ref=e555] [cursor=pointer]:
+                - /url: https://twitter.com/MzanziHomes
+                - img [ref=e556]
+              - link "Instagram" [ref=e558] [cursor=pointer]:
+                - /url: https://instagram.com/MzanziHomes
+                - img [ref=e559]
+              - link "LinkedIn" [ref=e562] [cursor=pointer]:
+                - /url: https://linkedin.com/company/MzanziHomes
+                - img [ref=e563]
+          - generic [ref=e567]:
+            - heading "Company" [level=3] [ref=e568]
+            - list [ref=e569]:
+              - listitem [ref=e570]:
+                - link "About" [ref=e571] [cursor=pointer]:
+                  - /url: /about
+              - listitem [ref=e572]:
+                - link "How It Works" [ref=e573] [cursor=pointer]:
+                  - /url: /#how-it-works
+              - listitem [ref=e574]:
+                - link "Blog" [ref=e575] [cursor=pointer]:
+                  - /url: /blog
+              - listitem [ref=e576]:
+                - link "Contact" [ref=e577] [cursor=pointer]:
+                  - /url: /contact
+          - generic [ref=e578]:
+            - heading "Services" [level=3] [ref=e579]
+            - list [ref=e580]:
+              - listitem [ref=e581]:
+                - link "List Property" [ref=e582] [cursor=pointer]:
+                  - /url: /list-property
+              - listitem [ref=e583]:
+                - link "Find Rental" [ref=e584] [cursor=pointer]:
+                  - /url: /properties
+              - listitem [ref=e585]:
+                - link "Pricing" [ref=e586] [cursor=pointer]:
+                  - /url: /pricing
+              - listitem [ref=e587]:
+                - link "Maintenance" [ref=e588] [cursor=pointer]:
+                  - /url: /maintenance
+          - generic [ref=e589]:
+            - heading "Legal" [level=3] [ref=e590]
+            - list [ref=e591]:
+              - listitem [ref=e592]:
+                - link "Privacy Policy" [ref=e593] [cursor=pointer]:
+                  - /url: /privacy-policy
+              - listitem [ref=e594]:
+                - link "Terms of Service" [ref=e595] [cursor=pointer]:
+                  - /url: /terms
+              - listitem [ref=e596]:
+                - link "Safe Renting Policy" [ref=e597] [cursor=pointer]:
+                  - /url: /safe-renting
+              - listitem [ref=e598]:
+                - link "FAQ" [ref=e599] [cursor=pointer]:
+                  - /url: /faq
+        - generic [ref=e600]:
+          - paragraph [ref=e601]: © 2025 MzanziHomes.com All rights reserved.
+          - paragraph [ref=e602]: Made with ❤️ in South Africa

@@ -36,7 +36,7 @@
       <div class="footer-brand">
         <div class="logo">Build<span>Synergy</span></div>
         <p>Premium websites and digital solutions<br />for modern South African businesses.</p>
-        <a href="mailto:hello@buildsynergy.co.za" class="footer-email">hello@buildsynergy.co.za</a>
+        <a href="mailto:yoursupport@buildsynergy.co.za" class="footer-email">yoursupport@buildsynergy.co.za</a>
       </div>
 
       <nav class="footer-nav" aria-label="Footer">
@@ -202,6 +202,10 @@
     transition: color 0.2s;
   }
   .legal-link:hover { color: var(--indigo); }
+
+  @media (max-width: 767px) {
+    .footer { padding-bottom: 6.5rem; }
+  }
 
   @media (max-width: 640px) {
     .footer-top { flex-direction: column; }

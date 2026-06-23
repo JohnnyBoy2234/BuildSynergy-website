@@ -63,7 +63,7 @@
         </div>
         <div class="form-actions">
           <button type="submit">Submit My Project</button>
-          <a href="mailto:hello@buildsynergy.co.za" class="alt-link">Or book a strategy call →</a>
+          <a href="mailto:yoursupport@buildsynergy.co.za" class="alt-link">Or book a strategy call →</a>
         </div>
       </form>
     {/if}
