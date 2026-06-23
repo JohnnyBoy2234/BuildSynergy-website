@@ -55,15 +55,15 @@
       </svg>`,
     },
     {
-      label: 'Branding & Visual Identity',
-      desc:  'Logo, colour palette and visual identity that makes your business instantly recognisable and trustworthy.',
+      label: 'E-Commerce',
+      desc:  'Online stores that make it easy for customers to browse, buy and pay, with secure checkout built in.',
       accent: '#6366f1',
       glow:   'rgba(99,102,241,0.16)',
       icon: `<svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
-        <circle cx="14" cy="14" r="10" stroke="currentColor" stroke-width="1.4"/>
-        <circle cx="14" cy="14" r="4"  stroke="currentColor" stroke-width="1.2" opacity=".5"/>
-        <path d="M14 4v4M14 20v4M4 14h4M20 14h4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" opacity=".35"/>
-        <circle cx="14" cy="14" r="1.5" fill="currentColor"/>
+        <path d="M6 8h16l-1.5 11.5a1.5 1.5 0 0 1-1.5 1.5H9a1.5 1.5 0 0 1-1.5-1.5L6 8z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+        <path d="M9.5 8V6.5a4.5 4.5 0 0 1 9 0V8" stroke="currentColor" stroke-width="1.4"/>
+        <circle cx="11.5" cy="14" r="1" fill="currentColor" opacity=".55"/>
+        <circle cx="16.5" cy="14" r="1" fill="currentColor" opacity=".55"/>
       </svg>`,
     },
     {
