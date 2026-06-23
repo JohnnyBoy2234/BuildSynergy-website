@@ -6,7 +6,7 @@
   // import ProblemSection   from '$lib/components/ProblemSection.svelte';
   import SolutionSection  from '$lib/components/SolutionSection.svelte';
   import AiSection        from '$lib/components/AiSection.svelte';
-  import ProcessSection   from '$lib/components/ProcessSection.svelte';
+  // import ProcessSection   from '$lib/components/ProcessSection.svelte';
   import PortfolioTeaser  from '$lib/components/PortfolioTeaser.svelte';
   import ManifestoSection from '$lib/components/ManifestoSection.svelte';
   import FinalCTA         from '$lib/components/FinalCTA.svelte';
@@ -42,8 +42,10 @@
   <SolutionSection />
 
   <!-- 5. Process -->
+  <!--
   <div class="divider"></div>
   <ProcessSection />
+  -->
 
   <!-- 6. Selected work -->
   <div class="divider"></div>

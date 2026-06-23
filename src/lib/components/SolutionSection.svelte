@@ -155,7 +155,7 @@
     <!-- Header -->
     <div class="sol-header">
       <h2 class="sol-heading" bind:this={headingEl}>
-        We Build the Digital Front Door Your Business Deserves.
+        Digital Solutions
       </h2>
       <p class="sol-sub" bind:this={subEl}>
         BuildSynergy creates modern digital systems that help customers find you, trust you and contact you faster without you having to manage the technical side.

@@ -3,7 +3,7 @@
   import gsap from 'gsap';
   import { ScrollTrigger } from 'gsap/ScrollTrigger';
   import SectionCanvas from './SectionCanvas.svelte';
-  import LeadFunnel from './funnel/LeadFunnel.svelte';
+  import LeadForm from './LeadForm.svelte';
 
   let panelEl:   HTMLElement;
   let headingEl: HTMLElement;
@@ -55,7 +55,7 @@
     </div>
 
     <div class="ct-panel" bind:this={panelEl}>
-      <LeadFunnel />
+      <LeadForm />
     </div>
   </div>
 </section>

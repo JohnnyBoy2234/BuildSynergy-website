@@ -46,6 +46,8 @@
   ];
 
   let headingEl: HTMLElement;
+  let headingTextEl: HTMLElement;
+  let subEl: HTMLElement;
   let cardEls: HTMLElement[] = [];
 
   function scrollToContact() {
@@ -55,8 +57,12 @@
   onMount(() => {
     gsap.registerPlugin(ScrollTrigger);
 
-    gsap.from(headingEl, {
-      y: 20, opacity: 0, duration: 0.7, ease: 'power3.out',
+    gsap.from(headingTextEl.querySelectorAll('.word-inner'), {
+      y: '110%', opacity: 0, duration: 0.85, stagger: 0.045, ease: 'power4.out',
+      scrollTrigger: { trigger: headingEl, start: 'top 85%' },
+    });
+    gsap.from(subEl, {
+      y: 16, opacity: 0, duration: 0.7, ease: 'power3.out', delay: 0.25,
       scrollTrigger: { trigger: headingEl, start: 'top 85%' },
     });
     cardEls.forEach((el, i) => {
@@ -92,8 +98,17 @@
 
   <div class="ai-inner">
     <div class="ai-header" bind:this={headingEl}>
-      <h2 class="ai-heading">AI that does the work, not just the talking.</h2>
-      <p class="ai-sub">
+      <h2 class="ai-heading" bind:this={headingTextEl}>
+        <span class="word-outer"><span class="word-inner">The</span></span>
+        <span class="word-outer"><span class="word-inner">world</span></span>
+        <span class="word-outer"><span class="word-inner">of</span></span>
+        <span class="word-outer"><span class="word-inner ai-word-glow">AI.</span></span>
+        <br />
+        <span class="word-outer"><span class="word-inner">Don't</span></span>
+        <span class="word-outer"><span class="word-inner">become</span></span>
+        <span class="word-outer"><span class="word-inner ai-word-warn">outdated.</span></span>
+      </h2>
+      <p class="ai-sub" bind:this={subEl}>
         We design and build practical AI solutions that handle real work, so your team
         spends less time on the repetitive and more on your customers.
       </p>
@@ -157,6 +172,16 @@
   .ai-heading {
     font-size: clamp(2rem, 3.8vw, 3.2rem); font-weight: 800;
     letter-spacing: -0.04em; line-height: 1.05; color: #fff;
+  }
+  .ai-word-glow {
+    background: linear-gradient(100deg, #818cf8 0%, #a78bfa 45%, #22d3ee 100%);
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+    color: #818cf8;
+  }
+  .ai-word-warn {
+    background: linear-gradient(100deg, #fb923c 0%, #f472b6 100%);
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+    color: #fb923c;
   }
   .ai-sub { font-size: 1.05rem; line-height: 1.75; color: rgba(255, 255, 255, 0.7); max-width: 600px; }
 
