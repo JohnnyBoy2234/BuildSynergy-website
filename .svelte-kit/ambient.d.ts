@@ -56,7 +56,6 @@ declare module '$env/static/private' {
 	export const INIT_CWD: string;
 	export const VSCODE_CWD: string;
 	export const CLAUDECODE: string;
-	export const EFC_9076_4126798990: string;
 	export const COLOR: string;
 	export const EDITOR: string;
 	export const CLAUDE_CODE_ENABLE_SDK_FILE_CHECKPOINTING: string;
@@ -67,7 +66,6 @@ declare module '$env/static/private' {
 	export const CLAUDE_EFFORT: string;
 	export const LOGONSERVER: string;
 	export const COMMONPROGRAMFILES: string;
-	export const EFC_9076_1592913036: string;
 	export const npm_config_local_prefix: string;
 	export const CommonProgramW6432: string;
 	export const npm_config_userconfig: string;
@@ -75,10 +73,9 @@ declare module '$env/static/private' {
 	export const COMSPEC: string;
 	export const COREPACK_ENABLE_AUTO_PIN: string;
 	export const DriverData: string;
+	export const EFC_10292_1592913036: string;
 	export const npm_config_noproxy: string;
-	export const FPS_BROWSER_APP_PROFILE_STRING: string;
 	export const ELECTRON_RUN_AS_NODE: string;
-	export const FPS_BROWSER_USER_PROFILE_STRING: string;
 	export const GIT_CONFIG_COUNT: string;
 	export const JAVA_HOME: string;
 	export const GIT_CONFIG_KEY_0: string;
@@ -86,6 +83,7 @@ declare module '$env/static/private' {
 	export const GIT_EDITOR: string;
 	export const npm_config_global_prefix: string;
 	export const HOME: string;
+	export const npm_package_version: string;
 	export const HOMEDRIVE: string;
 	export const HOMEPATH: string;
 	export const LOCALAPPDATA: string;
@@ -105,7 +103,6 @@ declare module '$env/static/private' {
 	export const WINDIR: string;
 	export const npm_package_json: string;
 	export const npm_package_name: string;
-	export const npm_package_version: string;
 	export const NUMBER_OF_PROCESSORS: string;
 	export const OLDPWD: string;
 	export const OneDrive: string;
@@ -115,7 +112,6 @@ declare module '$env/static/private' {
 	export const PATHEXT: string;
 	export const PLINK_PROTOCOL: string;
 	export const PNPM_HOME: string;
-	export const __COMPAT_LAYER: string;
 	export const PROCESSOR_ARCHITECTURE: string;
 	export const PROCESSOR_IDENTIFIER: string;
 	export const PROCESSOR_LEVEL: string;
@@ -258,7 +254,6 @@ declare module '$env/dynamic/private' {
 		INIT_CWD: string;
 		VSCODE_CWD: string;
 		CLAUDECODE: string;
-		EFC_9076_4126798990: string;
 		COLOR: string;
 		EDITOR: string;
 		CLAUDE_CODE_ENABLE_SDK_FILE_CHECKPOINTING: string;
@@ -269,7 +264,6 @@ declare module '$env/dynamic/private' {
 		CLAUDE_EFFORT: string;
 		LOGONSERVER: string;
 		COMMONPROGRAMFILES: string;
-		EFC_9076_1592913036: string;
 		npm_config_local_prefix: string;
 		CommonProgramW6432: string;
 		npm_config_userconfig: string;
@@ -277,10 +271,9 @@ declare module '$env/dynamic/private' {
 		COMSPEC: string;
 		COREPACK_ENABLE_AUTO_PIN: string;
 		DriverData: string;
+		EFC_10292_1592913036: string;
 		npm_config_noproxy: string;
-		FPS_BROWSER_APP_PROFILE_STRING: string;
 		ELECTRON_RUN_AS_NODE: string;
-		FPS_BROWSER_USER_PROFILE_STRING: string;
 		GIT_CONFIG_COUNT: string;
 		JAVA_HOME: string;
 		GIT_CONFIG_KEY_0: string;
@@ -288,6 +281,7 @@ declare module '$env/dynamic/private' {
 		GIT_EDITOR: string;
 		npm_config_global_prefix: string;
 		HOME: string;
+		npm_package_version: string;
 		HOMEDRIVE: string;
 		HOMEPATH: string;
 		LOCALAPPDATA: string;
@@ -307,7 +301,6 @@ declare module '$env/dynamic/private' {
 		WINDIR: string;
 		npm_package_json: string;
 		npm_package_name: string;
-		npm_package_version: string;
 		NUMBER_OF_PROCESSORS: string;
 		OLDPWD: string;
 		OneDrive: string;
@@ -317,7 +310,6 @@ declare module '$env/dynamic/private' {
 		PATHEXT: string;
 		PLINK_PROTOCOL: string;
 		PNPM_HOME: string;
-		__COMPAT_LAYER: string;
 		PROCESSOR_ARCHITECTURE: string;
 		PROCESSOR_IDENTIFIER: string;
 		PROCESSOR_LEVEL: string;

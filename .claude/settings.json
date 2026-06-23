@@ -30,7 +30,11 @@
       "WebFetch(domain:mzanzihomes.com)",
       "Bash(find . -iname \"mzanzihomes*\" 2>/dev/null; find \"C:/Users/Jonathan D Theron\" -maxdepth 3 -iname \"*.playwright-mcp*\" -type d 2>/dev/null)",
       "Read(//c/Users/Jonathan D Theron/**)",
-      "mcp__plugin_playwright_playwright__browser_close"
+      "mcp__plugin_playwright_playwright__browser_close",
+      "Bash(git status *)",
+      "Bash(git ls-tree *)",
+      "Bash(echo \"tracked check exit: $?\")",
+      "Bash(echo \"---exit:$?---\")"
     ]
   }
 }

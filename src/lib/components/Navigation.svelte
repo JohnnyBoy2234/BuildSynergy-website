@@ -28,6 +28,13 @@
       </svg>`,
     },
     {
+      name: 'Work', id: 'work',
+      icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <rect x="3" y="6" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M8 6V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v1" stroke="currentColor" stroke-width="1.5"/>
+      </svg>`,
+    },
+    {
       name: 'Packages', id: 'packages',
       icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
         <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z" stroke="currentColor" stroke-width="1.5"/>
@@ -152,7 +159,7 @@
   <a
     href="#contact"
     class="mobile-topbar-cta"
-    onclick={(e) => { e.preventDefault(); activate('Contact', 4, true); }}
+    onclick={(e) => { e.preventDefault(); activate('Contact', 5, true); }}
   >
     Start a Project
   </a>
@@ -231,7 +238,7 @@
         href="#contact"
         class="nav-cta"
         class:cta-icon={hideLabels}
-        onclick={(e) => { e.preventDefault(); activate('Contact', 4, true); }}
+        onclick={(e) => { e.preventDefault(); activate('Contact', 5, true); }}
       >
         {#if hideLabels}
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true">

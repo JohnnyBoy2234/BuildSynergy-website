@@ -6,12 +6,72 @@
     "isEntry": true,
     "imports": [
       "_internal2.js",
-      "_internal.js"
+      "_internal.js",
+      "_shared-server.js"
+    ]
+  },
+  "_FinalCTA.CAGiwhek.css": {
+    "file": "_app/immutable/assets/FinalCTA.CAGiwhek.css",
+    "src": "_FinalCTA.CAGiwhek.css"
+  },
+  "_FinalCTA.js": {
+    "file": "chunks/FinalCTA.js",
+    "name": "FinalCTA",
+    "imports": [
+      "_index-server.js",
+      "_dev.js"
+    ],
+    "css": [
+      "_app/immutable/assets/FinalCTA.CAGiwhek.css"
+    ]
+  },
+  "_Footer.DAJAAtR6.css": {
+    "file": "_app/immutable/assets/Footer.DAJAAtR6.css",
+    "src": "_Footer.DAJAAtR6.css"
+  },
+  "_Footer.js": {
+    "file": "chunks/Footer.js",
+    "name": "Footer",
+    "imports": [
+      "_index-server.js",
+      "_dev.js"
+    ],
+    "css": [
+      "_app/immutable/assets/Footer.DAJAAtR6.css"
+    ]
+  },
+  "_Seo.BF909vao.css": {
+    "file": "_app/immutable/assets/Seo.BF909vao.css",
+    "src": "_Seo.BF909vao.css"
+  },
+  "_Seo.js": {
+    "file": "chunks/Seo.js",
+    "name": "Seo",
+    "imports": [
+      "_dev.js"
+    ],
+    "css": [
+      "_app/immutable/assets/Seo.BF909vao.css"
+    ]
+  },
+  "_agent.js": {
+    "file": "chunks/agent.js",
+    "name": "agent",
+    "imports": [
+      "_shared-server.js",
+      "_email.js"
     ]
   },
   "_dev.js": {
     "file": "chunks/dev.js",
     "name": "dev"
+  },
+  "_email.js": {
+    "file": "chunks/email.js",
+    "name": "email",
+    "imports": [
+      "_shared-server.js"
+    ]
   },
   "_exports.js": {
     "file": "chunks/exports.js",
@@ -39,6 +99,14 @@
       "_internal.js",
       "_dev.js"
     ]
+  },
+  "_portfolio.js": {
+    "file": "chunks/portfolio.js",
+    "name": "portfolio"
+  },
+  "_shared-server.js": {
+    "file": "chunks/shared-server.js",
+    "name": "shared-server"
   },
   "_shared.js": {
     "file": "chunks/shared.js",
@@ -89,6 +157,7 @@
       "_utils.js",
       "_internal.js",
       "_exports.js",
+      "_shared-server.js",
       "_shared.js",
       "_dev.js"
     ]
@@ -105,6 +174,12 @@
       "_app/immutable/assets/_layout.xI23bZ8D.css"
     ]
   },
+  "src/routes/+layout.ts": {
+    "file": "entries/pages/_layout.ts.js",
+    "name": "entries/pages/_layout.ts",
+    "src": "src/routes/+layout.ts",
+    "isEntry": true
+  },
   "src/routes/+page.svelte": {
     "file": "entries/pages/_page.svelte.js",
     "name": "entries/pages/_page.svelte",
@@ -112,10 +187,90 @@
     "isEntry": true,
     "imports": [
       "_index-server.js",
-      "_dev.js"
+      "_dev.js",
+      "_FinalCTA.js",
+      "_Footer.js"
     ],
     "css": [
-      "_app/immutable/assets/_page.CsGFeGUt.css"
+      "_app/immutable/assets/_page.YgaQKYKx.css"
+    ]
+  },
+  "src/routes/api/analytics/+server.ts": {
+    "file": "entries/endpoints/api/analytics/_server.ts.js",
+    "name": "entries/endpoints/api/analytics/_server.ts",
+    "src": "src/routes/api/analytics/+server.ts",
+    "isEntry": true,
+    "imports": [
+      "_agent.js"
+    ]
+  },
+  "src/routes/api/chat/+server.ts": {
+    "file": "entries/endpoints/api/chat/_server.ts.js",
+    "name": "entries/endpoints/api/chat/_server.ts",
+    "src": "src/routes/api/chat/+server.ts",
+    "isEntry": true,
+    "imports": [
+      "_agent.js"
+    ]
+  },
+  "src/routes/api/greeting/+server.ts": {
+    "file": "entries/endpoints/api/greeting/_server.ts.js",
+    "name": "entries/endpoints/api/greeting/_server.ts",
+    "src": "src/routes/api/greeting/+server.ts",
+    "isEntry": true,
+    "imports": [
+      "_agent.js"
+    ]
+  },
+  "src/routes/api/lead/+server.ts": {
+    "file": "entries/endpoints/api/lead/_server.ts.js",
+    "name": "entries/endpoints/api/lead/_server.ts",
+    "src": "src/routes/api/lead/+server.ts",
+    "isEntry": true,
+    "imports": [
+      "_email.js"
+    ]
+  },
+  "src/routes/portfolio/+page.svelte": {
+    "file": "entries/pages/portfolio/_page.svelte.js",
+    "name": "entries/pages/portfolio/_page.svelte",
+    "src": "src/routes/portfolio/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_index-server.js",
+      "_dev.js",
+      "_Seo.js",
+      "_Footer.js",
+      "_portfolio.js"
+    ],
+    "css": [
+      "_app/immutable/assets/_page.CQlR8pff.css"
+    ]
+  },
+  "src/routes/portfolio/[slug]/+page.svelte": {
+    "file": "entries/pages/portfolio/_slug_/_page.svelte.js",
+    "name": "entries/pages/portfolio/_slug_/_page.svelte",
+    "src": "src/routes/portfolio/[slug]/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_index-server.js",
+      "_dev.js",
+      "_Seo.js",
+      "_FinalCTA.js",
+      "_Footer.js",
+      "_portfolio.js"
+    ],
+    "css": [
+      "_app/immutable/assets/_page.y3sqP3sw.css"
+    ]
+  },
+  "src/routes/portfolio/[slug]/+page.ts": {
+    "file": "entries/pages/portfolio/_slug_/_page.ts.js",
+    "name": "entries/pages/portfolio/_slug_/_page.ts",
+    "src": "src/routes/portfolio/[slug]/+page.ts",
+    "isEntry": true,
+    "imports": [
+      "_portfolio.js"
     ]
   },
   "src/routes/privacy-policy/+page.svelte": {

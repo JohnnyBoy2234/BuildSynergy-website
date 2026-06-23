@@ -1,88 +1,9 @@
 import "../../chunks/index-server.js";
-import { B as escape_html, a as ensure_array_like, c as stringify, i as derived, l as html, n as attr_class, o as head, r as attr_style, z as attr } from "../../chunks/dev.js";
+import { B as attr, V as escape_html, l as stringify, n as attr_class, o as ensure_array_like, r as attr_style, s as head, u as html } from "../../chunks/dev.js";
+import { n as Navigation, t as Footer } from "../../chunks/Footer.js";
+import { t as FinalCTA } from "../../chunks/FinalCTA.js";
 import "gsap";
 import "gsap/ScrollTrigger";
-import "three";
-//#region src/lib/components/Navigation.svelte
-function Navigation($$renderer, $$props) {
-	$$renderer.component(($$renderer) => {
-		const navItems = [
-			{
-				name: "Home",
-				id: "home",
-				icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <path d="M3 12L12 3l9 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M5 10v9a1 1 0 001 1h4v-5h4v5h4a1 1 0 001-1v-9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>`
-			},
-			{
-				name: "Services",
-				id: "services",
-				icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <rect x="3" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.5"/>
-        <rect x="14" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.5"/>
-        <rect x="3" y="14" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.5"/>
-        <rect x="14" y="14" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.5"/>
-      </svg>`
-			},
-			{
-				name: "Process",
-				id: "process",
-				icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <circle cx="5" cy="12" r="2.2" stroke="currentColor" stroke-width="1.4"/>
-        <circle cx="12" cy="12" r="2.2" stroke="currentColor" stroke-width="1.4"/>
-        <circle cx="19" cy="12" r="2.2" stroke="currentColor" stroke-width="1.4"/>
-        <path d="M7.2 12h2.6M14.2 12h2.6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" opacity=".4"/>
-      </svg>`
-			},
-			{
-				name: "Packages",
-				id: "packages",
-				icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z" stroke="currentColor" stroke-width="1.5"/>
-        <path d="M3.27 6.96L12 12.01l8.73-5.05M12 22.08V12" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" opacity=".45"/>
-      </svg>`
-			},
-			{
-				name: "Contact",
-				id: "contact",
-				icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="1.5"/>
-        <path d="M22 6l-10 7L2 6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" opacity=".55"/>
-      </svg>`
-			}
-		];
-		let activeTab = navItems[0].name;
-		let lampLeft = 0;
-		let lampWidth = 0;
-		let isMobile = false;
-		let scrolled = false;
-		let hideLabels = derived(() => scrolled);
-		$$renderer.push("<!--[-1-->");
-		$$renderer.push(`<!--]--> <header${attr_class("nav-wrap svelte-ocbj1u", void 0, { "mobile": isMobile })}><nav${attr_class("nav-pill svelte-ocbj1u", void 0, { "collapsed": hideLabels() })} aria-label="Main navigation">`);
-		$$renderer.push("<!--[0-->");
-		$$renderer.push(`<a class="nav-logo-pill svelte-ocbj1u" href="/" aria-label="BuildSynergy Home"><svg class="logo-mark svelte-ocbj1u" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><linearGradient id="lgMarkDesktop" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#6366f1"></stop><stop offset="50%" stop-color="#a855f7"></stop><stop offset="100%" stop-color="#22d3ee"></stop></linearGradient></defs><path d="M12 2 L20 9 L12 22 L4 9 Z" stroke="url(#lgMarkDesktop)" stroke-width="1.4" fill="none" stroke-linejoin="round"></path><path d="M12 6 L17 10 L12 18 L7 10 Z" fill="url(#lgMarkDesktop)" opacity="0.25"></path><circle cx="12" cy="2" r="1.4" fill="#6366f1"></circle><circle cx="20" cy="9" r="1.1" fill="#a855f7"></circle><circle cx="4" cy="9" r="1.1" fill="#22d3ee"></circle><circle cx="12" cy="22" r="1.2" fill="#22d3ee"></circle></svg> <span${attr_class("logo-text svelte-ocbj1u", void 0, { "logo-hidden": hideLabels() })}>Build<span class="logo-accent svelte-ocbj1u">Synergy</span></span></a> <div class="nav-sep svelte-ocbj1u" aria-hidden="true"></div>`);
-		$$renderer.push(`<!--]--> <div class="lamp svelte-ocbj1u"${attr_style(`left: ${stringify(lampLeft)}px; width: ${stringify(lampWidth)}px`)} aria-hidden="true"><div class="lamp-bar svelte-ocbj1u"><div class="lamp-bloom lamp-bloom--wide svelte-ocbj1u"></div> <div class="lamp-bloom lamp-bloom--mid svelte-ocbj1u"></div> <div class="lamp-bloom lamp-bloom--tight svelte-ocbj1u"></div></div></div> <!--[-->`);
-		const each_array = ensure_array_like(navItems);
-		for (let i = 0, $$length = each_array.length; i < $$length; i++) {
-			let item = each_array[i];
-			$$renderer.push(`<button${attr_class("nav-item svelte-ocbj1u", void 0, { "active": activeTab === item.name })}${attr("aria-current", activeTab === item.name ? "page" : void 0)}${attr("aria-label", item.name)}><span class="nav-icon svelte-ocbj1u">${html(item.icon)}</span> <span class="nav-label svelte-ocbj1u">${escape_html(item.name)}</span></button>`);
-		}
-		$$renderer.push(`<!--]--> `);
-		$$renderer.push("<!--[0-->");
-		$$renderer.push(`<a href="#contact"${attr_class("nav-cta svelte-ocbj1u", void 0, { "cta-icon": hideLabels() })}>`);
-		if (hideLabels()) {
-			$$renderer.push("<!--[0-->");
-			$$renderer.push(`<svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>`);
-		} else {
-			$$renderer.push("<!--[-1-->");
-			$$renderer.push(`Start a Project`);
-		}
-		$$renderer.push(`<!--]--></a>`);
-		$$renderer.push(`<!--]--></nav></header>`);
-	});
-}
-//#endregion
 //#region src/lib/components/Hero.svelte
 function Hero($$renderer, $$props) {
 	$$renderer.component(($$renderer) => {
@@ -316,6 +237,41 @@ function ProcessSection($$renderer, $$props) {
 	});
 }
 //#endregion
+//#region src/lib/components/ProjectsSection.svelte
+function ProjectsSection($$renderer, $$props) {
+	$$renderer.component(($$renderer) => {
+		const projects = [{
+			id: "mzanzihomes",
+			name: "MzanziHomes",
+			status: "In Testing",
+			url: "https://mzanzihomes.com",
+			image: "/mzanzihomes-preview.png",
+			category: "Real Estate · Two-Sided Marketplace",
+			tagline: "Find Your Perfect Home in South Africa",
+			description: "A full-build rental marketplace connecting tenants directly with landlords — verified listings, zero agent fees, and a simpler, safer way to rent. Currently in final testing ahead of public launch.",
+			tags: [
+				"Full Website Build",
+				"Zero Agent Fees",
+				"Verified Listings",
+				"Landlord Tools"
+			]
+		}];
+		$$renderer.push(`<section id="work" class="proj-section svelte-1adnqlh"><div class="proj-glow-l svelte-1adnqlh" aria-hidden="true"></div> <div class="proj-glow-r svelte-1adnqlh" aria-hidden="true"></div> <div class="proj-container svelte-1adnqlh"><div class="proj-header svelte-1adnqlh"><span class="eyebrow">Our Work</span> <h2 class="proj-heading svelte-1adnqlh">Real Builds for Real Businesses.</h2> <p class="proj-intro svelte-1adnqlh">A look at what we've built. More case studies are on the way as our projects go live.</p></div> <div class="proj-grid svelte-1adnqlh"><!--[-->`);
+		const each_array = ensure_array_like(projects);
+		for (let i = 0, $$length = each_array.length; i < $$length; i++) {
+			let proj = each_array[i];
+			$$renderer.push(`<a class="proj-card svelte-1adnqlh"${attr("href", proj.url)} target="_blank" rel="noopener noreferrer"${attr("aria-label", `View ${stringify(proj.name)}`)}><div class="proj-media svelte-1adnqlh"><img${attr("src", proj.image)}${attr("alt", `${stringify(proj.name)} website preview`)} loading="lazy" class="svelte-1adnqlh"/> <span class="proj-status svelte-1adnqlh">${escape_html(proj.status)}</span></div> <div class="proj-body svelte-1adnqlh"><span class="proj-category svelte-1adnqlh">${escape_html(proj.category)}</span> <h3 class="proj-name svelte-1adnqlh">${escape_html(proj.name)}</h3> <p class="proj-tagline svelte-1adnqlh">${escape_html(proj.tagline)}</p> <p class="proj-desc svelte-1adnqlh">${escape_html(proj.description)}</p> <ul class="proj-tags svelte-1adnqlh" aria-label="Project highlights"><!--[-->`);
+			const each_array_1 = ensure_array_like(proj.tags);
+			for (let $$index = 0, $$length = each_array_1.length; $$index < $$length; $$index++) {
+				let tag = each_array_1[$$index];
+				$$renderer.push(`<li class="svelte-1adnqlh">${escape_html(tag)}</li>`);
+			}
+			$$renderer.push(`<!--]--></ul> <span class="proj-link svelte-1adnqlh">Preview the build <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true" class="svelte-1adnqlh"><path d="M2.5 7h9M8 3.5l3.5 3.5L8 10.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"></path></svg></span></div></a>`);
+		}
+		$$renderer.push(`<!--]--></div></div></section>`);
+	});
+}
+//#endregion
 //#region src/lib/components/PackageSection.svelte
 function PackageSection($$renderer, $$props) {
 	$$renderer.component(($$renderer) => {
@@ -427,100 +383,6 @@ function ManifestoSection($$renderer, $$props) {
 	});
 }
 //#endregion
-//#region src/lib/components/SectionCanvas.svelte
-function SectionCanvas($$renderer, $$props) {
-	$$renderer.component(($$renderer) => {
-		const { particleCount = 60, opacity = .55 } = $$props;
-		$$renderer.push(`<canvas class="sc svelte-68xypr" aria-hidden="true"></canvas>`);
-	});
-}
-//#endregion
-//#region src/lib/components/ContactSection.svelte
-function ContactSection($$renderer, $$props) {
-	$$renderer.component(($$renderer) => {
-		const serviceOptions = [
-			"New Website",
-			"Website Redesign",
-			"WhatsApp Integration",
-			"Contact or Quote Forms",
-			"AI Chatbot",
-			"Google Visibility",
-			"Company Profile",
-			"Photography or Video",
-			"Website Maintenance",
-			"Not Sure Yet"
-		];
-		let name = "";
-		let businessName = "";
-		let email = "";
-		let phone = "";
-		let website = "";
-		let selectedService = "";
-		let message = "";
-		let agreed = false;
-		let submitting = false;
-		let errors = {};
-		$$renderer.push(`<section id="contact" class="contact-section svelte-1mt7jo5">`);
-		SectionCanvas($$renderer, {
-			particleCount: 45,
-			opacity: .35
-		});
-		$$renderer.push(`<!----> <div class="ct-glow ct-glow--l svelte-1mt7jo5" aria-hidden="true"></div> <div class="ct-glow ct-glow--r svelte-1mt7jo5" aria-hidden="true"></div> <div class="ct-inner svelte-1mt7jo5"><div class="ct-header svelte-1mt7jo5"><span class="eyebrow">Start a Project</span> <h2 class="svelte-1mt7jo5">Ready to give your business a stronger online presence?</h2> <p class="svelte-1mt7jo5">Tell us about your business and what you'd like to improve. We'll help you identify the right digital solution.</p></div> <div class="ct-panel svelte-1mt7jo5">`);
-		{
-			$$renderer.push("<!--[-1-->");
-			$$renderer.push(`<form novalidate="" class="svelte-1mt7jo5"><div class="form-row svelte-1mt7jo5"><div${attr_class("form-field svelte-1mt7jo5", void 0, { "err": errors.name })}><label for="c-name" class="svelte-1mt7jo5">Name</label> <input id="c-name" type="text" placeholder="Your name"${attr("value", name)} autocomplete="name" class="svelte-1mt7jo5"/> `);
-			if (errors.name) {
-				$$renderer.push("<!--[0-->");
-				$$renderer.push(`<span class="err-msg svelte-1mt7jo5">${escape_html(errors.name)}</span>`);
-			} else $$renderer.push("<!--[-1-->");
-			$$renderer.push(`<!--]--></div> <div${attr_class("form-field svelte-1mt7jo5", void 0, { "err": errors.businessName })}><label for="c-biz" class="svelte-1mt7jo5">Business Name</label> <input id="c-biz" type="text" placeholder="Your business"${attr("value", businessName)} class="svelte-1mt7jo5"/> `);
-			if (errors.businessName) {
-				$$renderer.push("<!--[0-->");
-				$$renderer.push(`<span class="err-msg svelte-1mt7jo5">${escape_html(errors.businessName)}</span>`);
-			} else $$renderer.push("<!--[-1-->");
-			$$renderer.push(`<!--]--></div></div> <div class="form-row svelte-1mt7jo5"><div${attr_class("form-field svelte-1mt7jo5", void 0, { "err": errors.email })}><label for="c-email" class="svelte-1mt7jo5">Email</label> <input id="c-email" type="email" placeholder="hello@yourbusiness.co.za"${attr("value", email)} autocomplete="email" class="svelte-1mt7jo5"/> `);
-			if (errors.email) {
-				$$renderer.push("<!--[0-->");
-				$$renderer.push(`<span class="err-msg svelte-1mt7jo5">${escape_html(errors.email)}</span>`);
-			} else $$renderer.push("<!--[-1-->");
-			$$renderer.push(`<!--]--></div> <div class="form-field svelte-1mt7jo5"><label for="c-phone" class="svelte-1mt7jo5">Phone</label> <input id="c-phone" type="tel" placeholder="+27 81 000 0000"${attr("value", phone)} autocomplete="tel" class="svelte-1mt7jo5"/></div></div> <div class="form-field svelte-1mt7jo5"><label for="c-site" class="svelte-1mt7jo5">Website <span class="opt svelte-1mt7jo5">(optional)</span></label> <input id="c-site" type="url" placeholder="https://yourbusiness.co.za"${attr("value", website)} class="svelte-1mt7jo5"/></div> <div class="form-field svelte-1mt7jo5"><label class="svelte-1mt7jo5">What do you need help with?</label> <div class="chips svelte-1mt7jo5" role="group"><!--[-->`);
-			const each_array = ensure_array_like(serviceOptions);
-			for (let $$index = 0, $$length = each_array.length; $$index < $$length; $$index++) {
-				let opt = each_array[$$index];
-				$$renderer.push(`<button type="button"${attr_class("chip svelte-1mt7jo5", void 0, { "active": selectedService === opt })}${attr("aria-pressed", selectedService === opt)}>${escape_html(opt)}</button>`);
-			}
-			$$renderer.push(`<!--]--></div></div> <div${attr_class("form-field svelte-1mt7jo5", void 0, { "err": errors.message })}><label for="c-msg" class="svelte-1mt7jo5">Project Message</label> <textarea id="c-msg" rows="4" placeholder="Tell us about your project and goals..." class="svelte-1mt7jo5">`);
-			const $$body = escape_html(message);
-			if ($$body) $$renderer.push(`${$$body}`);
-			$$renderer.push(`</textarea> `);
-			if (errors.message) {
-				$$renderer.push("<!--[0-->");
-				$$renderer.push(`<span class="err-msg svelte-1mt7jo5">${escape_html(errors.message)}</span>`);
-			} else $$renderer.push("<!--[-1-->");
-			$$renderer.push(`<!--]--></div> <div${attr_class("form-field agree-field svelte-1mt7jo5", void 0, { "err": errors.agreed })}><label class="agree-label svelte-1mt7jo5"><input type="checkbox"${attr("checked", agreed, true)} class="agree-check svelte-1mt7jo5"/> <span>I agree to the <a href="/privacy-policy" target="_blank" rel="noopener" class="svelte-1mt7jo5">Privacy Policy</a> and <a href="/terms" target="_blank" rel="noopener" class="svelte-1mt7jo5">Terms &amp; Conditions</a>.</span></label> `);
-			if (errors.agreed) {
-				$$renderer.push("<!--[0-->");
-				$$renderer.push(`<span class="err-msg svelte-1mt7jo5">${escape_html(errors.agreed)}</span>`);
-			} else $$renderer.push("<!--[-1-->");
-			$$renderer.push(`<!--]--></div> <div class="form-actions svelte-1mt7jo5"><button type="submit" class="btn-submit svelte-1mt7jo5"${attr("disabled", submitting, true)}>${escape_html("Start My Project")}</button></div></form>`);
-		}
-		$$renderer.push(`<!--]--></div></div></section>`);
-	});
-}
-//#endregion
-//#region src/lib/components/FinalCTA.svelte
-function FinalCTA($$renderer) {
-	ContactSection($$renderer, {});
-}
-//#endregion
-//#region src/lib/components/Footer.svelte
-function Footer($$renderer, $$props) {
-	$$renderer.component(($$renderer) => {
-		const year = (/* @__PURE__ */ new Date()).getFullYear();
-		$$renderer.push(`<footer class="footer svelte-jz8lnl"><div class="footer-fade svelte-jz8lnl" aria-hidden="true"></div> <div class="footer-grid-bg svelte-jz8lnl" aria-hidden="true"></div> <div class="footer-inner svelte-jz8lnl"><div class="footer-top svelte-jz8lnl"><div class="footer-brand svelte-jz8lnl"><div class="logo svelte-jz8lnl">Build<span class="svelte-jz8lnl">Synergy</span></div> <p class="svelte-jz8lnl">Premium websites and digital solutions<br/>for modern South African businesses.</p> <a href="mailto:yoursupport@buildsynergy.co.za" class="footer-email svelte-jz8lnl">yoursupport@buildsynergy.co.za</a></div> <nav class="footer-nav svelte-jz8lnl" aria-label="Footer"><div class="nav-col svelte-jz8lnl"><span class="nav-label svelte-jz8lnl">Navigate</span> <ul class="svelte-jz8lnl"><li><a href="#home" class="svelte-jz8lnl">Home</a></li> <li><a href="#services" class="svelte-jz8lnl">Services</a></li> <li><a href="#process" class="svelte-jz8lnl">Process</a></li> <li><a href="#packages" class="svelte-jz8lnl">Packages</a></li> <li><a href="#contact" class="svelte-jz8lnl">Contact</a></li></ul></div> <div class="nav-col svelte-jz8lnl"><span class="nav-label svelte-jz8lnl">Connect</span> <ul class="svelte-jz8lnl"><li><a href="/" aria-label="LinkedIn" class="svelte-jz8lnl">LinkedIn</a></li> <li><a href="/" aria-label="Facebook" class="svelte-jz8lnl">Facebook</a></li> <li><a href="/" aria-label="Instagram" class="svelte-jz8lnl">Instagram</a></li></ul></div> <div class="nav-col svelte-jz8lnl"><span class="nav-label svelte-jz8lnl">Legal</span> <ul class="svelte-jz8lnl"><li><a href="/privacy-policy" class="svelte-jz8lnl">Privacy Policy</a></li> <li><a href="/terms" class="svelte-jz8lnl">Terms &amp; Conditions</a></li></ul></div></nav></div> <div class="footer-divider svelte-jz8lnl"></div> <div class="footer-bottom svelte-jz8lnl"><span>© ${escape_html(year)} BuildSynergy. All rights reserved.  ·  <a href="/privacy-policy" class="legal-link svelte-jz8lnl">Privacy Policy</a></span> <button class="back-top svelte-jz8lnl" aria-label="Back to top">↑ Top</button></div></div></footer>`);
-	});
-}
-//#endregion
 //#region src/routes/+page.svelte
 function _page($$renderer) {
 	head("1uha8ag", $$renderer, ($$renderer) => {
@@ -540,6 +402,8 @@ function _page($$renderer) {
 	SolutionSection($$renderer, {});
 	$$renderer.push(`<!----> <div class="divider"></div> `);
 	ProcessSection($$renderer, {});
+	$$renderer.push(`<!----> <div class="divider"></div> `);
+	ProjectsSection($$renderer, {});
 	$$renderer.push(`<!----> <div class="divider"></div> `);
 	PackageSection($$renderer, {});
 	$$renderer.push(`<!----> `);

@@ -1,5 +1,31 @@
 {
-	"/": [],
-	"/privacy-policy": [],
-	"/terms": []
+	"/": [
+		"src/routes/+layout.ts",
+		"src/routes/+layout.ts"
+	],
+	"/api/analytics": [
+		"src/routes/api/analytics/+server.ts"
+	],
+	"/api/chat": [
+		"src/routes/api/chat/+server.ts"
+	],
+	"/api/greeting": [
+		"src/routes/api/greeting/+server.ts"
+	],
+	"/api/lead": [
+		"src/routes/api/lead/+server.ts"
+	],
+	"/portfolio": [
+		"src/routes/+layout.ts"
+	],
+	"/portfolio/[slug]": [
+		"src/routes/portfolio/[slug]/+page.ts",
+		"src/routes/+layout.ts"
+	],
+	"/privacy-policy": [
+		"src/routes/+layout.ts"
+	],
+	"/terms": [
+		"src/routes/+layout.ts"
+	]
 }

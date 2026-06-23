@@ -46,6 +46,7 @@
             <li><a href="#home"     onclick={(e) => { e.preventDefault(); scrollTo('#home'); }}>Home</a></li>
             <li><a href="#services" onclick={(e) => { e.preventDefault(); scrollTo('#services'); }}>Services</a></li>
             <li><a href="#process"  onclick={(e) => { e.preventDefault(); scrollTo('#process'); }}>Process</a></li>
+            <li><a href="#work"     onclick={(e) => { e.preventDefault(); scrollTo('#work'); }}>Our Work</a></li>
             <li><a href="#packages" onclick={(e) => { e.preventDefault(); scrollTo('#packages'); }}>Packages</a></li>
             <li><a href="#contact"  onclick={(e) => { e.preventDefault(); scrollTo('#contact'); }}>Contact</a></li>
           </ul>
