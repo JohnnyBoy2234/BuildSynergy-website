@@ -22,15 +22,6 @@
       </svg>`,
     },
     {
-      name: 'Process', id: 'process', type: 'anchor',
-      icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <circle cx="5" cy="12" r="2.2" stroke="currentColor" stroke-width="1.4"/>
-        <circle cx="12" cy="12" r="2.2" stroke="currentColor" stroke-width="1.4"/>
-        <circle cx="19" cy="12" r="2.2" stroke="currentColor" stroke-width="1.4"/>
-        <path d="M7.2 12h2.6M14.2 12h2.6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" opacity=".4"/>
-      </svg>`,
-    },
-    {
       name: 'Work', id: 'work', type: 'route', path: '/portfolio',
       icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
         <rect x="3" y="6" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/>
