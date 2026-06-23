@@ -20,7 +20,28 @@ async function main() {
     apiKey: process.env.GOOGLE_API_KEY,
     taskType: TaskType.RETRIEVAL_DOCUMENT,
   });
-  const vectors = await embedder.embedDocuments(chunks);
+
+  // Batch + retry: a single large embedDocuments call hits Google's batch/rate
+  // limits and silently returns empty vectors. Embed in small batches and verify.
+  const BATCH = 20;
+  const vectors: number[][] = [];
+  for (let i = 0; i < chunks.length; i += BATCH) {
+    const batch = chunks.slice(i, i + BATCH);
+    let vecs: number[][] = [];
+    for (let attempt = 0; attempt < 5; attempt++) {
+      vecs = await embedder.embedDocuments(batch);
+      if (vecs.every((v) => v && v.length > 0)) break;
+      await new Promise((r) => setTimeout(r, 2000 * (attempt + 1)));
+    }
+    if (!vecs.every((v) => v && v.length > 0)) {
+      throw new Error(`empty vectors in batch starting at chunk ${i} after retries`);
+    }
+    vectors.push(...vecs);
+    process.stdout.write(`  embedded ${vectors.length}/${chunks.length}\r`);
+  }
+  if (vectors.some((v) => v.length !== vectors[0].length)) {
+    throw new Error('inconsistent vector dimensions');
+  }
 
   writeFileSync(OUT, JSON.stringify({ model: EMBED_MODEL, chunks, vectors }));
   console.log(`Embedded ${chunks.length} chunks → ${OUT}`);
