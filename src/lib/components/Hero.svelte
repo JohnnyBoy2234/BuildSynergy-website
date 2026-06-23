@@ -116,8 +116,8 @@
     <span class="hero-eyebrow">Web &amp; AI solutions · South Africa</span>
 
     <h1 class="hero-heading">
-      You're better than the way customers
-      <span class="accent">see you online.</span>
+      Our purpose is to help you become
+      <span class="accent">the obvious choice.</span>
     </h1>
 
     <p class="hero-sub">
