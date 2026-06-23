@@ -34,3 +34,7 @@ dist-ssr
 # SvelteKit generated output (should never be tracked)
 .svelte-kit
 build
+
+# Playwright MCP debug artifacts
+.playwright-mcp
+dev-preview*.png
