@@ -3,7 +3,7 @@
   import AuroraBackground from '$lib/components/AuroraBackground.svelte';
   import Hero             from '$lib/components/Hero.svelte';
   import TrustStrip       from '$lib/components/TrustStrip.svelte';
-  import ProblemSection   from '$lib/components/ProblemSection.svelte';
+  // import ProblemSection   from '$lib/components/ProblemSection.svelte';
   import SolutionSection  from '$lib/components/SolutionSection.svelte';
   import AiSection        from '$lib/components/AiSection.svelte';
   import ProcessSection   from '$lib/components/ProcessSection.svelte';
@@ -29,8 +29,10 @@
   <TrustStrip />
 
   <!-- 3. Problem -->
+  <!--
   <div class="divider"></div>
   <ProblemSection />
+  -->
 
   <!-- 3b. AI Solutions — full-bleed dark band, its own separator (no divider) -->
   <AiSection />

@@ -41,7 +41,10 @@
       "Bash(grep -rlE \"@tailwind|@apply|tailwindcss\" src)",
       "Bash(rm -f postcss.config.mjs postcss.config.js tailwind.config.js)",
       "Bash(ls postcss.config.* tailwind.config.*)",
-      "Bash(git push *)"
+      "Bash(git push *)",
+      "Bash(git fetch *)",
+      "Bash(nohup npm run dev)",
+      "Read(//tmp/**)"
     ]
   }
 }

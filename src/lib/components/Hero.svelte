@@ -113,8 +113,6 @@
   <div class="hero-wash" aria-hidden="true"></div>
 
   <div class="hero-inner" class:ready>
-    <span class="hero-eyebrow">Web &amp; AI solutions · South Africa</span>
-
     <h1 class="hero-heading">
       Our purpose is to help you become
       <span class="accent">the obvious choice.</span>
@@ -132,14 +130,7 @@
           <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </button>
-      <button class="btn btn--ghost" onclick={() => scrollTo('#services')}>
-        See what we do
-      </button>
     </div>
-
-    <p class="hero-trust">
-      For trades, suppliers and local businesses ready to be taken seriously online.
-    </p>
   </div>
 </section>
 
@@ -202,24 +193,11 @@
     transition: opacity 0.7s ease, transform 0.7s ease;
   }
   .hero-inner.ready > * { opacity: 1; transform: none; }
-  .hero-inner.ready .hero-eyebrow { transition-delay: 0.05s; }
-  .hero-inner.ready .hero-heading { transition-delay: 0.13s; }
-  .hero-inner.ready .hero-sub     { transition-delay: 0.21s; }
-  .hero-inner.ready .hero-ctas    { transition-delay: 0.29s; }
-  .hero-inner.ready .hero-trust   { transition-delay: 0.37s; }
+  .hero-inner.ready .hero-heading { transition-delay: 0.05s; }
+  .hero-inner.ready .hero-sub     { transition-delay: 0.13s; }
+  .hero-inner.ready .hero-ctas    { transition-delay: 0.21s; }
 
   /* ── Copy ──────────────────────────────────────────────────────── */
-  .hero-eyebrow {
-    display: inline-block;
-    font-family: var(--display);
-    font-size: 0.72rem;
-    font-weight: 600;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    margin-bottom: 1.5rem;
-  }
-
   .hero-heading {
     font-family: var(--display);
     font-size: clamp(2.7rem, 5.6vw, 4.6rem);
@@ -253,14 +231,6 @@
     gap: 0.85rem;
     align-items: center;
     justify-content: center;
-    margin-bottom: 2rem;
-  }
-
-  .hero-trust {
-    font-size: 0.82rem;
-    color: var(--text-muted);
-    line-height: 1.6;
-    max-width: 420px;
   }
 
   /* ── Responsive ────────────────────────────────────────────────── */

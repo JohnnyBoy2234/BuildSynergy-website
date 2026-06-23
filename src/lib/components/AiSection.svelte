@@ -92,7 +92,6 @@
 
   <div class="ai-inner">
     <div class="ai-header" bind:this={headingEl}>
-      <p class="ai-eyebrow">AI Solutions</p>
       <h2 class="ai-heading">AI that does the work, not just the talking.</h2>
       <p class="ai-sub">
         We design and build practical AI solutions that handle real work, so your team
@@ -155,10 +154,6 @@
   }
 
   .ai-header { max-width: 680px; display: flex; flex-direction: column; gap: 1.1rem; }
-  .ai-eyebrow {
-    font-family: var(--display); font-size: 0.85rem; font-weight: 600;
-    letter-spacing: 0.1em; text-transform: uppercase; color: #a5b4fc;
-  }
   .ai-heading {
     font-size: clamp(2rem, 3.8vw, 3.2rem); font-weight: 800;
     letter-spacing: -0.04em; line-height: 1.05; color: #fff;

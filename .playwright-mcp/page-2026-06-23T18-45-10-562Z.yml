@@ -1,0 +1,292 @@
+- generic [ref=e2]:
+  - banner:
+    - link "BuildSynergy Home" [ref=e3] [cursor=pointer]:
+      - /url: /
+      - text: BuildSynergy
+    - navigation "Main navigation" [ref=e4]:
+      - generic [ref=e5]:
+        - link "AI" [ref=e6] [cursor=pointer]:
+          - /url: /#ai
+          - img [ref=e8]
+          - generic [ref=e11]: AI
+        - link "Services" [ref=e12] [cursor=pointer]:
+          - /url: /#services
+          - img [ref=e14]
+          - generic [ref=e19]: Services
+        - link "Process" [ref=e20] [cursor=pointer]:
+          - /url: /#process
+          - img [ref=e22]
+          - generic [ref=e26]: Process
+        - link "Work" [ref=e27] [cursor=pointer]:
+          - /url: /portfolio
+          - img [ref=e29]
+          - generic [ref=e32]: Work
+        - link "Why us" [ref=e33] [cursor=pointer]:
+          - /url: /#why
+          - img [ref=e35]
+          - generic [ref=e37]: Why us
+      - link "Get a quote" [ref=e38] [cursor=pointer]:
+        - /url: /#contact
+  - main [ref=e39]:
+    - generic [ref=e41]:
+      - heading "Our purpose is to help you become the obvious choice." [level=1] [ref=e42]:
+        - text: Our purpose is to help you become
+        - generic [ref=e43]: the obvious choice.
+      - paragraph [ref=e44]: BuildSynergy helps businesses stand out online with powerful websites, AI-powered automation that build trust, capture leads and turn customer attention into real growth.
+      - button "Get a quote" [ref=e46] [cursor=pointer]:
+        - text: Get a quote
+        - img [ref=e47]
+    - region "Our services" [ref=e49]:
+      - generic [ref=e50]:
+        - list [ref=e51]:
+          - listitem [ref=e52]:
+            - img [ref=e54]
+            - generic [ref=e57]: Professional Design
+          - listitem [ref=e58]:
+            - img [ref=e60]
+            - generic [ref=e63]: AI Automation
+          - listitem [ref=e64]:
+            - img [ref=e66]
+            - generic [ref=e71]: Managed Hosting
+          - listitem [ref=e72]:
+            - img [ref=e74]
+            - generic [ref=e77]: WhatsApp Integration
+          - listitem [ref=e78]:
+            - img [ref=e80]
+            - generic [ref=e84]: Quote & Contact Forms
+          - listitem [ref=e85]:
+            - img [ref=e87]
+            - generic [ref=e89]: Mobile Optimisation
+          - listitem [ref=e90]:
+            - img [ref=e92]
+            - generic [ref=e96]: SEO Foundations
+          - listitem [ref=e97]:
+            - img [ref=e99]
+            - generic [ref=e102]: Google Business Setup
+          - listitem [ref=e103]:
+            - img [ref=e105]
+            - generic [ref=e108]: Monthly Support
+          - listitem [ref=e109]:
+            - img [ref=e111]
+            - generic [ref=e114]: Lead Capture
+        - list [ref=e115]:
+          - listitem [ref=e116]:
+            - img [ref=e118]
+            - generic [ref=e121]: Professional Design
+          - listitem [ref=e122]:
+            - img [ref=e124]
+            - generic [ref=e127]: AI Automation
+          - listitem [ref=e128]:
+            - img [ref=e130]
+            - generic [ref=e135]: Managed Hosting
+          - listitem [ref=e136]:
+            - img [ref=e138]
+            - generic [ref=e141]: WhatsApp Integration
+          - listitem [ref=e142]:
+            - img [ref=e144]
+            - generic [ref=e148]: Quote & Contact Forms
+          - listitem [ref=e149]:
+            - img [ref=e151]
+            - generic [ref=e153]: Mobile Optimisation
+          - listitem [ref=e154]:
+            - img [ref=e156]
+            - generic [ref=e160]: SEO Foundations
+          - listitem [ref=e161]:
+            - img [ref=e163]
+            - generic [ref=e166]: Google Business Setup
+          - listitem [ref=e167]:
+            - img [ref=e169]
+            - generic [ref=e172]: Monthly Support
+          - listitem [ref=e173]:
+            - img [ref=e175]
+            - generic [ref=e178]: Lead Capture
+    - generic [ref=e180]:
+      - generic [ref=e181]:
+        - heading "AI that does the work, not just the talking." [level=2] [ref=e182]
+        - paragraph [ref=e183]: We design and build practical AI solutions that handle real work, so your team spends less time on the repetitive and more on your customers.
+      - generic [ref=e184]:
+        - generic [ref=e185]:
+          - img [ref=e187]
+          - generic [ref=e190]:
+            - generic [ref=e191]:
+              - heading "AI Chatbots & Assistants" [level=3] [ref=e192]
+              - generic [ref=e193]: Live on this site
+            - paragraph [ref=e195]: An always on assistant that answers questions and captures leads on your site, exactly like the one you're chatting with right now.
+        - generic [ref=e196]:
+          - img [ref=e198]
+          - generic [ref=e202]:
+            - heading "Document Processing" [level=3] [ref=e204]
+            - paragraph [ref=e205]: Turn invoices, forms, IDs and PDFs into clean, structured data automatically, with no more manual capture.
+        - generic [ref=e206]:
+          - img [ref=e208]
+          - generic [ref=e213]:
+            - heading "Workflow Automation" [level=3] [ref=e215]
+            - paragraph [ref=e216]: Hand off repetitive admin like quotes, follow ups and data entry to AI that works across the tools you already use.
+        - generic [ref=e217]:
+          - img [ref=e219]
+          - generic [ref=e223]:
+            - heading "Custom AI Integrations" [level=3] [ref=e225]
+            - paragraph [ref=e226]: Bespoke AI features built into your existing website or systems, tailored to how your business actually runs.
+      - button "Get an AI solution →" [ref=e228] [cursor=pointer]
+    - generic [ref=e230]:
+      - generic [ref=e231]:
+        - heading "We Build the Digital Front Door Your Business Deserves." [level=2] [ref=e232]
+        - paragraph [ref=e233]: BuildSynergy creates modern digital systems that help customers find you, trust you and contact you faster without you having to manage the technical side.
+      - generic [ref=e234]:
+        - generic [ref=e235]:
+          - generic: "01"
+          - img [ref=e239]
+          - generic [ref=e245]:
+            - heading "Website Design & Development" [level=3] [ref=e246]
+            - paragraph [ref=e247]: A complete, professional website built around your business with managed hosting and monthly care included as standard.
+        - generic [ref=e248]:
+          - generic: "02"
+          - img [ref=e252]
+          - generic [ref=e257]:
+            - heading "Mobile App Development" [level=3] [ref=e258]
+            - paragraph [ref=e259]: Custom iOS and Android apps that give your business its own presence directly on your customers' devices.
+        - generic [ref=e260]:
+          - generic: "03"
+          - img [ref=e264]
+          - generic [ref=e269]:
+            - heading "Lead Capture & Quote Systems" [level=3] [ref=e270]
+            - paragraph [ref=e271]: Smart enquiry forms and quote request flows that turn website visitors into real customers.
+        - generic [ref=e272]:
+          - generic: "04"
+          - img [ref=e276]
+          - generic [ref=e281]:
+            - heading "Google Visibility & SEO" [level=3] [ref=e282]
+            - paragraph [ref=e283]: Local SEO setup and Google presence so nearby customers can find your business and understand what you offer.
+        - generic [ref=e284]:
+          - generic: "05"
+          - img [ref=e288]
+          - generic [ref=e293]:
+            - heading "Branding & Visual Identity" [level=3] [ref=e294]
+            - paragraph [ref=e295]: Logo, colour palette and visual identity that makes your business instantly recognisable and trustworthy.
+        - generic [ref=e296]:
+          - generic: "06"
+          - img [ref=e300]
+          - generic [ref=e304]:
+            - heading "AI Development & Integration" [level=3] [ref=e305]
+            - paragraph [ref=e306]: Custom AI tools and integrations that automate repetitive tasks and add intelligent features to the systems your business already uses.
+    - generic [ref=e308]:
+      - generic [ref=e309]:
+        - heading "Simple steps. Most of the work is ours." [level=2] [ref=e310]
+        - paragraph [ref=e311]: We handle strategy, design, development and ongoing care. Your only job is to review and approve before we go live.
+      - list "How it works" [ref=e313]:
+        - listitem [ref=e314]:
+          - generic [ref=e315]:
+            - generic [ref=e316]: "01"
+            - img [ref=e319]
+          - generic [ref=e322]:
+            - heading "Discover" [level=3] [ref=e323]
+            - paragraph [ref=e324]: Trust wins business. We build a presence that establishes credibility and turns more visitors into paying customers.
+        - listitem [ref=e325]:
+          - generic [ref=e326]:
+            - generic [ref=e327]: "02"
+            - img [ref=e330]
+          - generic [ref=e332]:
+            - heading "Design" [level=3] [ref=e333]
+            - paragraph [ref=e334]: We design every detail to reflect your brand and inspire customer confidence.
+        - listitem [ref=e335]:
+          - generic [ref=e336]:
+            - generic [ref=e337]: "03"
+            - img [ref=e340]
+          - generic [ref=e342]:
+            - heading "Build" [level=3] [ref=e343]
+            - paragraph [ref=e344]: We build a powerful online presence that positions your business for growth and success.
+        - listitem [ref=e345]:
+          - generic [ref=e346]:
+            - generic [ref=e347]: "04"
+            - img [ref=e350]
+          - generic [ref=e354]:
+            - heading "Launch & Grow" [level=3] [ref=e355]
+            - paragraph [ref=e356]: We don't just launch and leave. Ongoing optimisation, AI improvements and proactive support keep your business growing.
+      - paragraph [ref=e357]: Most clients are live within 2–4 weeks of getting started.
+    - generic [ref=e359]:
+      - generic [ref=e360]:
+        - generic [ref=e361]:
+          - paragraph [ref=e362]: Selected work
+          - heading "Real businesses, real results." [level=2] [ref=e363]
+        - link "View all work →" [ref=e364] [cursor=pointer]:
+          - /url: /portfolio
+      - link "MzanziHomes — Full Platform Build" [ref=e367] [cursor=pointer]:
+        - /url: /portfolio/mzanzihomes
+        - img "MzanziHomes preview" [ref=e369]
+        - generic [ref=e370]:
+          - generic [ref=e371]:
+            - generic [ref=e372]: Full Platform Build
+            - generic [ref=e373]: "2026"
+          - heading "MzanziHomes" [level=3] [ref=e374]
+          - paragraph [ref=e375]: A zero-commission rental marketplace connecting tenants directly with landlords across South Africa.
+          - generic [ref=e376]: View project →
+    - generic [ref=e378]:
+      - generic [ref=e379]:
+        - heading "The team behind BuildSynergy." [level=2] [ref=e380]
+        - paragraph [ref=e381]: "We are more than developers. We are strategic growth partners. We combine cutting edge technology, AI driven innovation and continuous optimisation to inspire confidence and drive measurable results. Our commitment doesn’t end at launch: proactive support and long term strategy keep your business scaling and ahead of the competition. Our vision is to be one of Africa’s leading website and app development companies, doing work that makes clients say, “This is exactly what you’ve been looking for.”"
+      - generic [ref=e382]:
+        - article [ref=e383]:
+          - generic [ref=e384]:
+            - img [ref=e385]
+            - generic [ref=e388]: JT
+          - generic [ref=e389]:
+            - generic [ref=e390]:
+              - heading "Jonathan Theron" [level=3] [ref=e391]
+              - generic [ref=e392]: Co-Founder
+            - paragraph [ref=e393]: Design & Development
+        - article [ref=e394]:
+          - generic [ref=e395]:
+            - img [ref=e396]
+            - generic [ref=e399]: CT
+          - generic [ref=e400]:
+            - generic [ref=e401]:
+              - heading "Caleb Theron" [level=3] [ref=e402]
+              - generic [ref=e403]: Co-Founder
+            - paragraph [ref=e404]: Strategy & Client Relations
+    - generic [ref=e406]:
+      - generic [ref=e407]:
+        - heading "Ready to give your business a stronger online presence?" [level=2] [ref=e408]
+        - paragraph [ref=e409]: Tell us about your business and what you'd like to improve. We'll help you identify the right digital solution.
+      - generic [ref=e411]:
+        - status [ref=e413]: Step 1 of 4
+        - generic [ref=e417]:
+          - heading "What do you need help with?" [level=3] [ref=e418]
+          - group "Service required" [ref=e419]:
+            - button "New Website" [ref=e420] [cursor=pointer]
+            - button "Website Redesign" [ref=e421] [cursor=pointer]
+            - button "WhatsApp Integration" [ref=e422] [cursor=pointer]
+            - button "Contact or Quote Forms" [ref=e423] [cursor=pointer]
+            - button "AI Chatbot" [ref=e424] [cursor=pointer]
+            - button "Google Visibility" [ref=e425] [cursor=pointer]
+            - button "Company Profile" [ref=e426] [cursor=pointer]
+            - button "Photography or Video" [ref=e427] [cursor=pointer]
+            - button "Website Maintenance" [ref=e428] [cursor=pointer]
+            - button "Not Sure Yet" [ref=e429] [cursor=pointer]
+  - contentinfo [ref=e430]:
+    - generic [ref=e431]:
+      - generic [ref=e432]:
+        - generic [ref=e433]:
+          - generic [ref=e434]: BuildSynergy
+          - paragraph [ref=e435]:
+            - text: Premium websites, AI solutions and managed hosting
+            - text: for modern South African businesses.
+          - link "yoursupport@buildsynergy.co.za" [ref=e436] [cursor=pointer]:
+            - /url: mailto:yoursupport@buildsynergy.co.za
+        - navigation "Footer" [ref=e437]:
+          - generic [ref=e438]:
+            - generic [ref=e439]: Legal
+            - list [ref=e440]:
+              - listitem [ref=e441]:
+                - link "Privacy Policy" [ref=e442] [cursor=pointer]:
+                  - /url: /privacy-policy
+              - listitem [ref=e443]:
+                - link "Terms & Conditions" [ref=e444] [cursor=pointer]:
+                  - /url: /terms
+      - generic [ref=e446]:
+        - generic [ref=e447]:
+          - text: © 2026 BuildSynergy. All rights reserved. ·
+          - link "Privacy Policy" [ref=e448] [cursor=pointer]:
+            - /url: /privacy-policy
+        - button "Back to top" [ref=e449] [cursor=pointer]: ↑ Top
+  - button "Open chat" [ref=e450] [cursor=pointer]:
+    - img [ref=e451]

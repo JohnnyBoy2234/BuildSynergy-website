@@ -9,6 +9,13 @@
       </svg>`,
     },
     {
+      label: 'AI Automation',
+      icon: `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <path d="M8 1.5c.3 2.3 1.5 3.5 3.8 3.8-2.3.3-3.5 1.5-3.8 3.8-.3-2.3-1.5-3.5-3.8-3.8 2.3-.3 3.5-1.5 3.8-3.8z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/>
+        <path d="M13 9.5c.18 1.3.85 2 2.15 2.2-1.3.18-2 .85-2.15 2.15-.18-1.3-.85-2-2.15-2.15 1.3-.18 2-.85 2.15-2.2z" stroke="currentColor" stroke-width="1" stroke-linejoin="round" opacity=".7"/>
+      </svg>`,
+    },
+    {
       label: 'Managed Hosting',
       icon: `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
         <rect x="1.5" y="2.5" width="13" height="4.5" rx="1" stroke="currentColor" stroke-width="1.3"/>
@@ -18,7 +25,14 @@
       </svg>`,
     },
     {
-      label: 'Quote Requests',
+      label: 'WhatsApp Integration',
+      icon: `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <path d="M8 1.5a6.5 6.5 0 0 0-5.6 9.8L1.5 14.5l3.3-.9A6.5 6.5 0 1 0 8 1.5z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/>
+        <path d="M5.6 5.6c.3 1.8 2.6 4.1 4.4 4.4.6.1 1.1-.5.9-1l-.3-.6c-.1-.3-.5-.4-.8-.3l-.4.2c-.5.2-1.5-.6-2-1.1-.5-.5-1.3-1.5-1.1-2l.2-.4c.1-.3 0-.7-.3-.8l-.6-.3c-.5-.2-1.1.3-1 .9z" fill="currentColor"/>
+      </svg>`,
+    },
+    {
+      label: 'Quote & Contact Forms',
       icon: `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
         <path d="M2.5 4h11M2.5 7.5h7.5M2.5 11h5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
         <circle cx="12.5" cy="11" r="2.5" stroke="currentColor" stroke-width="1.2"/>
@@ -26,11 +40,25 @@
       </svg>`,
     },
     {
-      label: 'SEO Basics',
+      label: 'Mobile Optimisation',
+      icon: `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <rect x="4" y="1.5" width="8" height="13" rx="1.5" stroke="currentColor" stroke-width="1.3"/>
+        <path d="M7 12.5h2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+      </svg>`,
+    },
+    {
+      label: 'SEO Foundations',
       icon: `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
         <circle cx="6.5" cy="6.5" r="4.5" stroke="currentColor" stroke-width="1.3"/>
         <path d="M10 10l4 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
         <path d="M4.5 6.5h4M6.5 4.5v4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" opacity=".55"/>
+      </svg>`,
+    },
+    {
+      label: 'Google Business Setup',
+      icon: `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <path d="M8 1.5C5.5 1.5 3.5 3.5 3.5 6c0 3.2 4.5 8 4.5 8s4.5-4.8 4.5-8c0-2.5-2-4.5-4.5-4.5z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/>
+        <circle cx="8" cy="6" r="1.6" stroke="currentColor" stroke-width="1.2"/>
       </svg>`,
     },
     {
@@ -50,10 +78,17 @@
   ] as const;
 </script>
 
-<section class="incl-strip" aria-label="What every site includes">
-  <div class="incl-inner">
-    <span class="incl-heading">Every site includes</span>
-    <ul class="incl-list">
+<section class="incl-strip" aria-label="Our services">
+  <div class="incl-track">
+    <ul class="incl-list" aria-hidden="false">
+      {#each capabilities as cap}
+        <li class="incl-item">
+          <span class="incl-icon">{@html cap.icon}</span>
+          <span class="incl-label">{cap.label}</span>
+        </li>
+      {/each}
+    </ul>
+    <ul class="incl-list" aria-hidden="true">
       {#each capabilities as cap}
         <li class="incl-item">
           <span class="incl-icon">{@html cap.icon}</span>
@@ -70,46 +105,45 @@
     background: transparent;
     border-top:    1px solid var(--border);
     border-bottom: 1px solid var(--border);
-    padding: 1.5rem var(--gutter);
+    padding: 1.25rem 0;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 6%, #000 94%, transparent 100%);
+            mask-image: linear-gradient(90deg, transparent 0%, #000 6%, #000 94%, transparent 100%);
   }
 
-  .incl-inner {
-    max-width: var(--container);
-    margin: 0 auto;
+  .incl-track {
     display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 1rem 1.5rem;
+    width: max-content;
+    animation: incl-scroll 32s linear infinite;
+  }
+  .incl-strip:hover .incl-track {
+    animation-play-state: paused;
   }
 
-  .incl-heading {
-    font-family: var(--display);
-    font-size: 0.68rem;
-    font-weight: 600;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    flex-shrink: 0;
+  @keyframes incl-scroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
   }
 
   .incl-list {
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem 0.6rem;
+    flex-shrink: 0;
+    gap: 0.75rem;
     list-style: none;
     margin: 0;
-    padding: 0;
+    padding: 0 0.375rem;
   }
 
   .incl-item {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 0.4rem 0.95rem;
+    padding: 0.5rem 1.1rem;
     border-radius: 100px;
     border: 1px solid var(--border);
     background: var(--surface);
     box-shadow: var(--shadow-sm);
+    white-space: nowrap;
   }
 
   .incl-icon {
@@ -121,10 +155,14 @@
 
   .incl-label {
     font-family: var(--display);
-    font-size: 0.76rem;
+    font-size: 0.8rem;
     font-weight: 600;
     letter-spacing: 0.01em;
     color: var(--text-body);
     white-space: nowrap;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .incl-track { animation: none; }
   }
 </style>
