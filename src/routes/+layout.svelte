@@ -3,6 +3,7 @@
   import { onMount, type Snippet } from 'svelte';
   import { afterNavigate, onNavigate } from '$app/navigation';
   import ChatWidget from '$lib/components/ChatWidget.svelte';
+  import CookieConsent from '$lib/components/CookieConsent.svelte';
   import { startSession, trackPage } from '$lib/chat/browsing';
 
   interface Props { children: Snippet }
@@ -51,3 +52,5 @@
 {@render children()}
 
 <ChatWidget />
+
+<CookieConsent />
