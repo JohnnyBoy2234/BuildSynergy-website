@@ -1,0 +1,42 @@
+Forge Digital — How We Work
+
+--- Our Process ---
+
+Every project follows the same four-stage process regardless of size.
+
+Stage 1: Discovery (1 week)
+We start with a scoping call — usually 60 minutes. We ask about your business, your goals, your users, and your timeline. After the call, we send a written brief back to you summarising what we heard. You review it and confirm. This brief becomes the contract for the project.
+
+Stage 2: Design (1–2 weeks)
+We work in Figma. You get a full desktop and mobile design before any code is written. We do two rounds of design revisions. A third revision round can be added for R2,500. Design approval is required before we move to build.
+
+Stage 3: Build (2–10 weeks depending on scope)
+We build in sprints of one week. At the end of each sprint you get a preview link. You can give feedback in writing via a shared document we set up for each project. We do not take feedback over WhatsApp or phone calls during the build phase.
+
+Stage 4: Handover (1 week)
+We deploy the project, run you through the codebase or CMS (depending on your tech), hand over all credentials, and do a final walkthrough call. After handover, we offer 30 days of bug fixes at no charge. Bugs are defined as something not working as specified in the brief. New feature requests after handover are scoped and quoted separately.
+
+--- Communication ---
+
+We work Monday to Friday, 9am to 5pm SAST.
+Our primary communication channel is email and a shared Notion workspace.
+We do weekly check-in calls during active build phases — typically 30 minutes on Fridays.
+We do not work on weekends. We do not take urgent calls outside business hours.
+
+--- Timeline Expectations ---
+
+We are a small team. We typically run two to three projects at a time. If our calendar is full, we will let you know estimated availability. We do not promise start dates we cannot keep.
+
+Rush projects (shorter timelines than standard) can sometimes be accommodated for an additional 20% rush fee. This is not always possible and depends on our current workload.
+
+--- Revisions and Scope ---
+
+Two rounds of revisions are included in every project.
+Changes that fall outside the agreed brief are scoped as change requests. We provide a written quote for any change request before proceeding.
+We do not start change request work until it is approved and invoiced.
+
+--- Payments ---
+
+We invoice through a South African invoicing system. We accept EFT bank transfer and credit card via PayFast.
+We do not accept PayPal, crypto, or deferred payment plans.
+Late payments (beyond 7 days of invoice date) attract a 5% penalty per week.

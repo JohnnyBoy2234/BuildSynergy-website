@@ -1,0 +1,40 @@
+Forge Digital — Frequently Asked Questions
+
+Q: Do you use WordPress?
+A: No. We do not use WordPress, Wix, Squarespace, or any other website builder. Everything we build is hand-coded. For content-heavy sites that need a CMS, we typically use Sanity or Contentful integrated with a Next.js frontend.
+
+Q: Can I update the website myself after it's done?
+A: Yes, if your project includes a CMS. For marketing sites we almost always integrate a headless CMS so you can update text, images, and blog posts without touching code. For SaaS MVPs, content management depends on what was agreed in the brief.
+
+Q: Do you offer hosting?
+A: We handle deployment and recommend hosting providers, but we do not manage hosting on your behalf as an ongoing service. We typically deploy to Vercel (frontend), Railway or Render (backend), and Supabase (database). You will have your own accounts and own the infrastructure.
+
+Q: What technology stack do you use?
+A: For frontend: Next.js or SvelteKit, TypeScript, Tailwind CSS. For backend: Node.js with Fastify or Python with FastAPI. For databases: PostgreSQL via Supabase or Neon. We choose the stack that fits the project — we do not force a fixed stack on every client.
+
+Q: How do I get started?
+A: Fill in our contact form on the website and select "Start a project." We will reply within one business day to schedule a scoping call. If the project is a good fit, we send you a proposal within 48 hours of the scoping call.
+
+Q: Do you sign NDAs?
+A: Yes. We are happy to sign a mutual NDA before a scoping call if you are sharing sensitive product information. Send us your NDA template and we will review it.
+
+Q: Can you work with my existing codebase?
+A: It depends. We do an initial code review (free, one hour) to assess the quality and architecture. If the codebase is reasonable to work with, we proceed. If it needs significant rework before we can build on it, we will tell you upfront and quote for the cleanup separately.
+
+Q: Do you do ongoing maintenance after the project is done?
+A: We offer 30 days of free bug fixes after handover. Beyond that, we do not currently offer monthly retainers. If you need updates after the 30-day window, we handle them as separate small engagements.
+
+Q: I have a tight deadline. Can you rush the project?
+A: Sometimes. Rush projects are subject to a 20% premium and depend on our current availability. We will always tell you honestly if we can meet a timeline rather than overpromise.
+
+Q: I only have a rough idea — is that enough to get started?
+A: The Discovery stage exists exactly for that. You do not need a finished spec to have a scoping call. Come with your problem, your users, and a rough sense of budget and timeline — we will help you shape the brief.
+
+Q: Do you offer equity deals instead of payment?
+A: No. We do not take equity in exchange for work. We charge for our time and expertise.
+
+Q: What happens if I'm not happy with the final product?
+A: The design approval stage exists to prevent this. If the final build matches the approved design and brief, we consider the project delivered. If something does not match the spec, that is a bug and we fix it within the 30-day window at no charge. Subjective changes after handover — "I want the colour to be slightly warmer" — are change requests.
+
+Q: Do you work with clients outside South Africa?
+A: Yes. We have worked with clients in the UK, Germany, and the US. We invoice in ZAR but can discuss USD invoicing for international clients. Time zone overlap is important to us — we work best with clients no more than 4 hours behind or ahead of SAST.

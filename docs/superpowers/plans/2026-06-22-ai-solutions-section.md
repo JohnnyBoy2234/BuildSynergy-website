@@ -1,0 +1,389 @@
+# AI Solutions Section Implementation Plan
+
+> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+
+**Goal:** Add a standout full-bleed dark "AI Solutions" band to the homepage (after Services) showcasing four AI solutions, with a matching nav link.
+
+**Architecture:** One self-contained presentational component (`AiSection.svelte`) holding its four solutions inline, GSAP scroll reveals, and cursor-spotlight hover — styled as a dark contrasting band against the light page. Two small wiring edits insert it into the homepage and add an "AI" anchor to the existing route-aware `Navigation`.
+
+**Tech Stack:** SvelteKit 2.63 (runes), Svelte 5, GSAP 3.15 + ScrollTrigger. No new dependencies.
+
+## Global Constraints
+
+- **No new dependencies.** Runes mode (`$props`/`$state` as needed; `onMount` for GSAP).
+- **Reuse existing global tokens** (`--display`, `--indigo`, `--section-pad`, `--gutter`, `--container`); the dark surface uses section-local rgba/hex values. **Add no new global CSS variables.**
+- **Every animation has a `prefers-reduced-motion: reduce` fallback** to static.
+- **Section must have `id="ai"`** (nav scroll-spy + `#ai` anchor target).
+- **Full-bleed:** the section sets its own full-width dark `background`; inner content is wrapped at `max-width: var(--container)`. `<main>` is not width-constrained and sections self-pad, so no negative-margin hacks are needed.
+- **Testing standard:** this repo unit-tests pure TS only (Vitest, node env); there is no component/DOM test harness — do not add one. Presentational components are verified with the real `npm run build` (Vite resolves `$lib`) plus a manual browser check. **Do NOT rely on `npm run check`** — it has a pre-existing tsconfig issue that reports false `Cannot find module '$lib/...'` errors across every file.
+- **Exact copy** (use verbatim): heading `AI that does the work, not just the talking.`; sub `We design and build practical AI solutions that handle real work — so your team spends less time on the repetitive and more on your customers.`; CTA `Get an AI solution →`; the four card labels/descriptions from Task 1; chatbot badge `Live on this site`.
+
+---
+
+### Task 1: AiSection component
+
+**Files:**
+- Create: `src/lib/components/AiSection.svelte`
+
+**Interfaces:**
+- Produces: `<AiSection />` — a default-exported Svelte component with no props, rendering `<section id="ai">`. Consumed by the homepage (Task 2).
+
+- [ ] **Step 1: Create the component**
+
+Create `src/lib/components/AiSection.svelte`:
+
+```svelte
+<script lang="ts">
+  import { onMount } from 'svelte';
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  type Solution = { label: string; desc: string; icon: string; badge?: string };
+
+  const solutions: Solution[] = [
+    {
+      label: 'AI Chatbots & Assistants',
+      desc: "An always-on assistant that answers questions and captures leads on your site — exactly like the one you're chatting with right now.",
+      badge: 'Live on this site',
+      icon: `<svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M4 5.5h16a1.5 1.5 0 0 1 1.5 1.5v8A1.5 1.5 0 0 1 20 16.5H9l-4 3.5v-3.5H4A1.5 1.5 0 0 1 2.5 15V7A1.5 1.5 0 0 1 4 5.5z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+        <path d="M7 10h10M7 13h6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" opacity=".55"/>
+      </svg>`,
+    },
+    {
+      label: 'Document Processing',
+      desc: 'Turn invoices, forms, IDs and PDFs into clean, structured data automatically — no more manual capture.',
+      icon: `<svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M6 2.5h8l4 4V20a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 6 20V2.5z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+        <path d="M14 2.5V6.5h4" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+        <path d="M9 12h6M9 15h6M9 18h3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" opacity=".55"/>
+      </svg>`,
+    },
+    {
+      label: 'Workflow Automation',
+      desc: 'Hand off repetitive admin — quotes, follow-ups, data entry — to AI that works across the tools you already use.',
+      icon: `<svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <circle cx="6" cy="6" r="2.5" stroke="currentColor" stroke-width="1.5"/>
+        <circle cx="18" cy="6" r="2.5" stroke="currentColor" stroke-width="1.5"/>
+        <circle cx="12" cy="18" r="2.5" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M8.2 7.2 10.8 16M15.8 7.2 13.2 16M8.5 6h7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" opacity=".55"/>
+      </svg>`,
+    },
+    {
+      label: 'Custom AI Integrations',
+      desc: 'Bespoke AI features built into your existing website or systems, tailored to how your business actually runs.',
+      icon: `<svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <rect x="6" y="6" width="12" height="12" rx="3" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M9 3.5V6M15 3.5V6M9 18v2.5M15 18v2.5M3.5 9H6M3.5 15H6M18 9h2.5M18 15h2.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" opacity=".5"/>
+        <path d="M11 11.5c.2 1.5 1 2.3 2.5 2.5-1.5.2-2.3 1-2.5 2.5-.2-1.5-1-2.3-2.5-2.5 1.5-.2 2.3-1 2.5-2.5z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/>
+      </svg>`,
+    },
+  ];
+
+  let headingEl: HTMLElement;
+  let cardEls: HTMLElement[] = [];
+
+  function scrollToContact() {
+    document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  onMount(() => {
+    gsap.registerPlugin(ScrollTrigger);
+
+    gsap.from(headingEl, {
+      y: 20, opacity: 0, duration: 0.7, ease: 'power3.out',
+      scrollTrigger: { trigger: headingEl, start: 'top 85%' },
+    });
+    cardEls.forEach((el, i) => {
+      gsap.from(el, {
+        y: 26, opacity: 0, duration: 0.7, ease: 'power3.out',
+        scrollTrigger: { trigger: el, start: 'top 90%' },
+        delay: i * 0.07,
+      });
+    });
+
+    // Cursor spotlight per card (listeners avoid a11y warnings on non-interactive divs)
+    const cleanup: Array<() => void> = [];
+    cardEls.forEach((el) => {
+      const handler = (e: MouseEvent) => {
+        const r = el.getBoundingClientRect();
+        el.style.setProperty('--mx', `${e.clientX - r.left}px`);
+        el.style.setProperty('--my', `${e.clientY - r.top}px`);
+      };
+      el.addEventListener('mousemove', handler);
+      cleanup.push(() => el.removeEventListener('mousemove', handler));
+    });
+
+    return () => {
+      cleanup.forEach((fn) => fn());
+      ScrollTrigger.getAll().forEach((t) => t.kill());
+    };
+  });
+</script>
+
+<section id="ai" class="ai-section">
+  <div class="ai-glow ai-glow--1" aria-hidden="true"></div>
+  <div class="ai-glow ai-glow--2" aria-hidden="true"></div>
+
+  <div class="ai-inner">
+    <div class="ai-header" bind:this={headingEl}>
+      <p class="ai-eyebrow">AI Solutions</p>
+      <h2 class="ai-heading">AI that does the work, not just the talking.</h2>
+      <p class="ai-sub">
+        We design and build practical AI solutions that handle real work — so your team
+        spends less time on the repetitive and more on your customers.
+      </p>
+    </div>
+
+    <div class="ai-grid">
+      {#each solutions as s, i}
+        <div class="ai-card" bind:this={cardEls[i]}>
+          <div class="ai-card-spot" aria-hidden="true"></div>
+          <div class="ai-card-icon">{@html s.icon}</div>
+          <div class="ai-card-body">
+            <div class="ai-card-top">
+              <h3 class="ai-card-label">{s.label}</h3>
+              {#if s.badge}
+                <span class="ai-badge"><span class="ai-badge-dot"></span>{s.badge}</span>
+              {/if}
+            </div>
+            <p class="ai-card-desc">{s.desc}</p>
+          </div>
+        </div>
+      {/each}
+    </div>
+
+    <div class="ai-cta-wrap">
+      <button class="ai-cta" onclick={scrollToContact}>Get an AI solution →</button>
+    </div>
+  </div>
+</section>
+
+<style>
+  .ai-section {
+    position: relative;
+    padding: var(--section-pad) var(--gutter);
+    background:
+      radial-gradient(ellipse 70% 60% at 50% 0%, #1a2138 0%, transparent 60%),
+      linear-gradient(165deg, #0b0f19 0%, #11152a 55%, #0b0f19 100%);
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  .ai-glow {
+    position: absolute; border-radius: 50%; filter: blur(90px);
+    pointer-events: none; z-index: 0;
+  }
+  .ai-glow--1 {
+    top: -10%; left: 8%; width: 420px; height: 420px;
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.30), transparent 65%);
+  }
+  .ai-glow--2 {
+    bottom: -15%; right: 6%; width: 480px; height: 480px;
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.24), transparent 65%);
+  }
+
+  .ai-inner {
+    position: relative; z-index: 1;
+    max-width: var(--container); margin: 0 auto;
+    display: flex; flex-direction: column; gap: 3rem;
+  }
+
+  .ai-header { max-width: 680px; display: flex; flex-direction: column; gap: 1.1rem; }
+  .ai-eyebrow {
+    font-family: var(--display); font-size: 0.85rem; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase; color: #a5b4fc;
+  }
+  .ai-heading {
+    font-size: clamp(2rem, 3.8vw, 3.2rem); font-weight: 800;
+    letter-spacing: -0.04em; line-height: 1.05; color: #fff;
+  }
+  .ai-sub { font-size: 1.05rem; line-height: 1.75; color: rgba(255, 255, 255, 0.7); max-width: 600px; }
+
+  .ai-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+  @media (max-width: 1000px) { .ai-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px)  { .ai-grid { grid-template-columns: 1fr; } }
+
+  .ai-card {
+    position: relative; overflow: hidden; isolation: isolate;
+    display: flex; flex-direction: column; gap: 1.25rem;
+    padding: 1.75rem 1.6rem;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 18px;
+    transition: border-color 0.3s, transform 0.3s, background 0.3s;
+  }
+  .ai-card:hover {
+    border-color: rgba(129, 140, 248, 0.55);
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.06);
+  }
+
+  .ai-card-spot {
+    position: absolute; inset: 0; z-index: 0; border-radius: inherit; pointer-events: none;
+    background: radial-gradient(240px circle at var(--mx, 50%) var(--my, 50%), rgba(99, 102, 241, 0.22), transparent 65%);
+    opacity: 0; transition: opacity 0.4s;
+  }
+  .ai-card:hover .ai-card-spot { opacity: 1; }
+
+  .ai-card-icon {
+    position: relative; z-index: 1;
+    width: 50px; height: 50px; border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(99, 102, 241, 0.14);
+    border: 1px solid rgba(129, 140, 248, 0.30);
+    color: #c7d2fe;
+  }
+
+  .ai-card-body { position: relative; z-index: 1; display: flex; flex-direction: column; gap: 0.55rem; }
+  .ai-card-top { display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; }
+  .ai-card-label {
+    font-family: var(--display); font-size: 1.05rem; font-weight: 700;
+    letter-spacing: -0.02em; color: #fff;
+  }
+  .ai-card-desc { font-size: 0.875rem; line-height: 1.65; color: rgba(255, 255, 255, 0.62); }
+
+  .ai-badge {
+    display: inline-flex; align-items: center; gap: 0.35rem;
+    font-size: 0.65rem; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase;
+    color: #6ee7b7; background: rgba(16, 185, 129, 0.12);
+    border: 1px solid rgba(16, 185, 129, 0.30);
+    padding: 0.2rem 0.5rem; border-radius: 100px;
+  }
+  .ai-badge-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: #34d399; box-shadow: 0 0 6px #34d399;
+    animation: ai-pulse 2s ease-in-out infinite;
+  }
+  @keyframes ai-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
+
+  .ai-cta-wrap { display: flex; }
+  .ai-cta {
+    font-family: var(--display); font-size: 1rem; font-weight: 600; color: #0b0f19;
+    background: #fff; border: none; cursor: pointer;
+    padding: 0.85rem 1.7rem; border-radius: 100px;
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+  }
+  .ai-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(99, 102, 241, 0.40);
+    background: #eef0fe;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ai-card, .ai-cta { transition: none !important; transform: none !important; }
+    .ai-card-spot { display: none; }
+    .ai-badge-dot { animation: none; }
+  }
+</style>
+```
+
+- [ ] **Step 2: Verify it compiles**
+
+Run: `npm run build`
+Expected: build succeeds with no errors referencing `AiSection.svelte` (it isn't imported yet, so it won't appear in the route output — that's fine; this step confirms it compiles standalone via the svelte plugin). No new unused-CSS warnings for `AiSection.svelte`.
+
+- [ ] **Step 3: Commit**
+
+```bash
+git add src/lib/components/AiSection.svelte
+git commit -m "feat(ai): dark AI solutions section component"
+```
+
+---
+
+### Task 2: Wire AiSection into homepage + add AI nav link
+
+**Files:**
+- Modify: `src/routes/+page.svelte`
+- Modify: `src/lib/components/Navigation.svelte`
+
+**Interfaces:**
+- Consumes: `<AiSection />` from Task 1.
+
+- [ ] **Step 1: Insert AiSection into the homepage**
+
+In `src/routes/+page.svelte`, add the import after the `SolutionSection` import. Find:
+
+```svelte
+  import SolutionSection  from '$lib/components/SolutionSection.svelte';
+  import ProcessSection   from '$lib/components/ProcessSection.svelte';
+```
+
+Replace with:
+
+```svelte
+  import SolutionSection  from '$lib/components/SolutionSection.svelte';
+  import AiSection        from '$lib/components/AiSection.svelte';
+  import ProcessSection   from '$lib/components/ProcessSection.svelte';
+```
+
+Then insert the section after `<SolutionSection />`. Find:
+
+```svelte
+  <!-- 4. Solution -->
+  <div class="divider"></div>
+  <SolutionSection />
+
+  <!-- 5. Process -->
+```
+
+Replace with:
+
+```svelte
+  <!-- 4. Solution -->
+  <div class="divider"></div>
+  <SolutionSection />
+
+  <!-- 4b. AI Solutions — full-bleed dark band, its own separator (no divider) -->
+  <AiSection />
+
+  <!-- 5. Process -->
+```
+
+- [ ] **Step 2: Add the "AI" nav item**
+
+In `src/lib/components/Navigation.svelte`, insert a new anchor item between `Services` and `Process` in `navItems`. Find:
+
+```svelte
+    {
+      name: 'Process', id: 'process', type: 'anchor',
+```
+
+Replace with:
+
+```svelte
+    {
+      name: 'AI', id: 'ai', type: 'anchor',
+      icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <rect x="5" y="5" width="14" height="14" rx="4" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M12 8.5c.25 2 1.3 3 3.3 3.3-2 .25-3 1.3-3.3 3.3-.25-2-1.3-3-3.3-3.3 2-.25 3-1.3 3.3-3.3z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+      </svg>`,
+    },
+    {
+      name: 'Process', id: 'process', type: 'anchor',
+```
+
+This makes the nav `Services · AI · Process · Work · Why us`. No other changes needed — `AI` is `type: 'anchor'`, so the existing route-aware logic, lamp, and IntersectionObserver scroll-spy pick it up automatically (it observes every `type === 'anchor'` item whose `id` exists in the DOM, and `#ai` now exists).
+
+- [ ] **Step 3: Verify build + behaviour**
+
+Run: `npm run build`
+Expected: build succeeds; the homepage chunk now includes `AiSection`; no unused-CSS warnings introduced; no `#ai`-related prerender "missing id" warnings (the section provides `id="ai"`).
+
+Manual (run skill): homepage shows the dark AI band immediately after the Services grid; the four cards reveal on scroll and show the spotlight/lift on hover; the chatbot card has a pulsing "Live on this site" badge; the "Get an AI solution →" button smooth-scrolls to the contact section; the nav shows "AI" between Services and Process and scroll-spies/scrolls to it; with reduced motion enabled the section is static and fully readable.
+
+- [ ] **Step 4: Commit**
+
+```bash
+git add src/routes/+page.svelte src/lib/components/Navigation.svelte
+git commit -m "feat(ai): place AI section on homepage + add AI nav link"
+```
+
+---
+
+## Self-Review Notes
+
+- **Spec coverage:** dark full-bleed band after Services (T1 styling + T2 insert), four solution cards with exact copy + chatbot badge (T1), heading/sub/CTA→#contact (T1), `id="ai"` (T1), GSAP reveals + spotlight hover + reduced-motion fallback (T1), AI anchor nav link participating in route-aware nav/scroll-spy (T2), no new deps / tokens-or-local-rgba only (T1). Kept the Services AI card (untouched — out of scope, per spec non-goals).
+- **Placeholder scan:** none — all code, copy, and commands are concrete.
+- **Type consistency:** `Solution` type and the `solutions` array are self-contained in T1; T2 only references the prop-less `<AiSection />` and the existing `NavItem` shape (`{ name, id, type, path?, icon }`) — the inserted item matches it (anchor item, no `path`).

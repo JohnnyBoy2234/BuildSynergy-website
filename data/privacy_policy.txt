@@ -1,0 +1,49 @@
+Forge Digital — Privacy Policy
+Last updated: 1 March 2025
+
+This policy explains how Forge Digital (Pty) Ltd ("we", "us") collects, uses, and protects personal information when you use our website or contact us about a project.
+
+--- What We Collect ---
+
+Contact information: name, email address, phone number, company name — provided when you submit a contact form or email us directly.
+Project information: details about your business, project goals, and budget shared during scoping calls or in written briefs.
+Usage data: standard web analytics including page views, device type, and approximate location. We use Plausible Analytics, which is privacy-first and does not use cookies or collect personally identifiable data.
+
+We do not collect payment card details directly. Payments are processed through PayFast, which has its own privacy policy.
+
+--- How We Use Your Information ---
+
+To respond to project enquiries and send proposals.
+To communicate during an active project engagement.
+To send occasional updates about Forge Digital if you have opted in (you can unsubscribe at any time).
+
+We do not sell your data. We do not share your data with third parties except service providers directly involved in running our business (email hosting, cloud storage, invoicing software). Each of these providers is bound by data processing agreements.
+
+--- Data Storage ---
+
+Project information is stored in Notion and Google Workspace. Both are encrypted at rest. Access is limited to the Forge Digital team.
+Contact form submissions are stored in our email system.
+We retain project data for 5 years after project completion for legal and tax purposes. After 5 years, data is deleted unless there is an ongoing legal obligation to retain it.
+
+--- Your Rights ---
+
+You have the right to request access to the personal data we hold about you.
+You have the right to request correction or deletion of your data.
+You have the right to withdraw consent for marketing communications at any time.
+To exercise any of these rights, email us at privacy@forgedigital.co.za. We will respond within 14 business days.
+
+We comply with the Protection of Personal Information Act (POPIA) as applicable in South Africa. For EU/UK users, we also comply with GDPR obligations to the extent required.
+
+--- Cookies ---
+
+Our website does not use tracking cookies. We use Plausible Analytics, which is cookieless and GDPR-compliant by default.
+
+--- Changes to This Policy ---
+
+We may update this policy. If we make significant changes, we will note the updated date at the top of this document. Continued use of our services after changes constitutes acceptance of the revised policy.
+
+--- Contact ---
+
+Questions about this policy: privacy@forgedigital.co.za
+General enquiries: hello@forgedigital.co.za
+Forge Digital (Pty) Ltd, Cape Town, South Africa
