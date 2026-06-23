@@ -1,5 +1,6 @@
 <script lang="ts">
   import { onMount, tick } from 'svelte';
+  import { page } from '$app/state';
 
   const navItems = [
     {
@@ -59,6 +60,8 @@
   let scrolled  = $state(false);
 
   let hideLabels = $derived(!isMobile && scrolled);
+  let isHome     = $derived(page.url.pathname === '/');
+  let contactHref = $derived(isHome ? '#contact' : '/#contact');
 
   async function activate(name: string, index: number, scroll = false) {
     activeTab = name;
@@ -157,9 +160,9 @@
     <span class="mobile-brand-name">Build<span class="mobile-brand-accent">Synergy</span></span>
   </a>
   <a
-    href="#contact"
+    href={contactHref}
     class="mobile-topbar-cta"
-    onclick={(e) => { e.preventDefault(); activate('Contact', 5, true); }}
+    onclick={(e) => { if (isHome) { e.preventDefault(); activate('Contact', 5, true); } }}
   >
     Start a Project
   </a>
@@ -235,10 +238,10 @@
     <!-- CTA (desktop only) -->
     {#if !isMobile}
       <a
-        href="#contact"
+        href={contactHref}
         class="nav-cta"
         class:cta-icon={hideLabels}
-        onclick={(e) => { e.preventDefault(); activate('Contact', 5, true); }}
+        onclick={(e) => { if (isHome) { e.preventDefault(); activate('Contact', 5, true); } }}
       >
         {#if hideLabels}
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true">

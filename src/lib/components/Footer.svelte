@@ -2,9 +2,12 @@
   import { onMount } from 'svelte';
   import gsap from 'gsap';
   import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  import { page } from '$app/state';
 
   let footerEl: HTMLElement;
   const year = new Date().getFullYear();
+
+  let isHome = $derived(page.url.pathname === '/');
 
   onMount(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -22,6 +25,17 @@
 
   function scrollTo(id: string) {
     document.querySelector(id)?.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  function navHref(id: string) {
+    return isHome ? `#${id}` : `/#${id}`;
+  }
+
+  function navClick(e: MouseEvent, id: string) {
+    if (isHome) {
+      e.preventDefault();
+      scrollTo(`#${id}`);
+    }
   }
 </script>
 
@@ -43,12 +57,12 @@
         <div class="nav-col">
           <span class="nav-label">Navigate</span>
           <ul>
-            <li><a href="#home"     onclick={(e) => { e.preventDefault(); scrollTo('#home'); }}>Home</a></li>
-            <li><a href="#services" onclick={(e) => { e.preventDefault(); scrollTo('#services'); }}>Services</a></li>
-            <li><a href="#process"  onclick={(e) => { e.preventDefault(); scrollTo('#process'); }}>Process</a></li>
-            <li><a href="#work"     onclick={(e) => { e.preventDefault(); scrollTo('#work'); }}>Our Work</a></li>
-            <li><a href="#packages" onclick={(e) => { e.preventDefault(); scrollTo('#packages'); }}>Packages</a></li>
-            <li><a href="#contact"  onclick={(e) => { e.preventDefault(); scrollTo('#contact'); }}>Contact</a></li>
+            <li><a href={navHref('home')}     onclick={(e) => navClick(e, 'home')}>Home</a></li>
+            <li><a href={navHref('solution')} onclick={(e) => navClick(e, 'solution')}>Services</a></li>
+            <li><a href={navHref('process')}  onclick={(e) => navClick(e, 'process')}>Process</a></li>
+            <li><a href={navHref('work')}     onclick={(e) => navClick(e, 'work')}>Our Work</a></li>
+            <li><a href={navHref('packages')} onclick={(e) => navClick(e, 'packages')}>Packages</a></li>
+            <li><a href={navHref('contact')}  onclick={(e) => navClick(e, 'contact')}>Contact</a></li>
           </ul>
         </div>
         <div class="nav-col">

@@ -45,7 +45,7 @@
             <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </button>
-        <button class="cta-secondary" onclick={() => scrollTo('#services')}>
+        <button class="cta-secondary" onclick={() => scrollTo('#solution')}>
           See What We Do
         </button>
       </div>
