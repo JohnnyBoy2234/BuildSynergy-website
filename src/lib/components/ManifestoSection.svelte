@@ -206,7 +206,7 @@
   }
   .t-avatar {
     position: relative;
-    width: 124px; height: 148px;
+    width: 200px; height: 240px;
     border-radius: 18px;
     overflow: hidden;
     flex-shrink: 0;
