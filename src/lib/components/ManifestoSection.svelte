@@ -109,7 +109,6 @@
           <div class="t-info">
             <h3 class="t-name">{member.name}</h3>
             <p class="t-role">{member.subtitle}</p>
-            <p class="t-quote">&ldquo;{member.quote}&rdquo;</p>
           </div>
         </article>
       {/each}
@@ -297,14 +296,6 @@
     text-transform: uppercase;
     font-weight: 700;
     margin-bottom: 0.4rem;
-  }
-  .t-quote {
-    font-size: 0.92rem;
-    color: var(--text-body);
-    line-height: 1.65;
-    font-style: italic;
-    border-left: 2px solid color-mix(in srgb, var(--accent) 40%, transparent);
-    padding-left: 0.9rem;
   }
 
   /* ── Word-split heading support ────────────────────────────────── */
