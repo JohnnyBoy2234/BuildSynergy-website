@@ -16,6 +16,7 @@ export const POST: RequestHandler = async ({ request }) => {
   try {
     result = await graph.invoke({ messages: [new HumanMessage(message)] }, cfg);
   } catch (e) {
+    console.error('chat agent error:', e); // full stack to Vercel logs; client gets a clean 502
     throw error(502, `agent error: ${(e as Error).name}`);
   }
 
