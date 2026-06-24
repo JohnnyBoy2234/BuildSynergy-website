@@ -40,7 +40,11 @@ export const POST: RequestHandler = async ({ request }) => {
         for await (const [mode, chunk] of events) {
           if (mode === 'messages') {
             const [msg, meta] = chunk;
-            if (meta?.tags?.includes('final_answer') && msg?.content) {
+            // Forward only user-facing answer tokens. Prefer the tag; fall back to the
+            // node name in case withConfig tags don't propagate through the piped chain.
+            const isFinal = meta?.tags?.includes('final_answer')
+              || ['ask', 'answer', 'compose_response'].includes(meta?.langgraph_node);
+            if (isFinal && msg?.content) {
               streamed += String(msg.content);
               started = true;
               controller.enqueue(frame({ t: 'token', v: String(msg.content) }));
