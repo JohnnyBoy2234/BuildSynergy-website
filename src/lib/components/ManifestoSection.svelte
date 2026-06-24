@@ -3,7 +3,10 @@
   import gsap from 'gsap';
   import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-  const team = [
+  const team: {
+    name: string; badge: string; subtitle: string; quote: string;
+    initials: string; accent: string; glow: string; photo?: string;
+  }[] = [
     {
       name:     'Jonathan Theron',
       badge:    'Co-Founder',
@@ -12,6 +15,7 @@
       initials: 'JT',
       accent:   '#6366f1',
       glow:     'rgba(99,102,241,0.16)',
+      photo:    '/team/jonathan-theron.jpg',
     },
     {
       name:     'Caleb Theron',
@@ -21,6 +25,7 @@
       initials: 'CT',
       accent:   '#06b6d4',
       glow:     'rgba(6,182,212,0.16)',
+      photo:    '/team/caleb-theron.jpg',
     },
   ];
 
@@ -66,7 +71,7 @@
     <!-- Header -->
     <div class="t-header">
       <h2 class="t-heading" bind:this={headingEl}>
-        The team behind BuildSynergy.
+        The founders behind BuildSynergy.
       </h2>
       <p class="t-sub" bind:this={subEl}>
         We are more than developers. We are strategic growth partners. We combine cutting edge
@@ -86,12 +91,16 @@
           bind:this={cardEls[i]}
           style="--accent:{member.accent}; --glow:{member.glow}"
         >
-          <div class="t-avatar" aria-hidden="true">
-            <svg class="t-silhouette" viewBox="0 0 120 140" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <circle cx="60" cy="42" r="26" fill="currentColor" opacity="0.16"/>
-              <path d="M10 140 C10 100 30 82 60 82 C90 82 110 100 110 140" fill="currentColor" opacity="0.12"/>
-            </svg>
-            <span class="t-initials">{member.initials}</span>
+          <div class="t-avatar">
+            {#if member.photo}
+              <img class="t-photo" src={member.photo} alt={member.name} loading="lazy" />
+            {:else}
+              <svg class="t-silhouette" viewBox="0 0 120 140" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <circle cx="60" cy="42" r="26" fill="currentColor" opacity="0.16"/>
+                <path d="M10 140 C10 100 30 82 60 82 C90 82 110 100 110 140" fill="currentColor" opacity="0.12"/>
+              </svg>
+              <span class="t-initials">{member.initials}</span>
+            {/if}
           </div>
 
           <div class="t-info">
@@ -187,7 +196,14 @@
   }
   .t-member:first-child { border-top: none; padding-top: 0; }
 
-  /* Portrait picture (placeholder until real photos drop in) */
+  /* Portrait picture */
+  .t-photo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
   .t-avatar {
     position: relative;
     width: 124px; height: 148px;
