@@ -1,11 +1,8 @@
-const INFERENCE_CONF = 0.5;
-
 export type PageView = { path: string; title: string; visits: number; time_seconds: number };
 export type BrowsingSession = {
   referrer: string; session_count: number; total_time_seconds: number; page_views: PageView[];
 };
-export type InferenceSeed = { claim: string; confidence: number; reasoning: string };
-export type BrowsingSeed = { notes: string[]; inferred: Record<string, InferenceSeed> };
+export type BrowsingSeed = { notes: string[] };
 
 const hasPath = (s: BrowsingSession, prefix: string) => s.page_views.some((pv) => pv.path.startsWith(prefix));
 const visitsTo = (s: BrowsingSession, prefix: string) =>
@@ -24,7 +21,6 @@ export function behavioralScore(s: BrowsingSession): number {
 
 export function browsingToSeed(s: BrowsingSession): BrowsingSeed {
   const notes: string[] = [];
-  const inferred: Record<string, InferenceSeed> = {};
   for (const pv of s.page_views) {
     const { path } = pv;
     const visits = pv.visits ?? 1;
@@ -34,14 +30,8 @@ export function browsingToSeed(s: BrowsingSession): BrowsingSeed {
     } else if (path.startsWith('/contact')) {
       notes.push('Visited /contact — high intent, near conversion');
     } else if (path.startsWith('/portfolio/') || path.startsWith('/services/')) {
-      const slug = path.replace(/\/$/, '').split('/').pop() ?? '';
-      inferred.project_type = {
-        claim: `Interested in a ${slug} project`,
-        confidence: INFERENCE_CONF,
-        reasoning: `Browsed ${path} before chatting`,
-      };
       notes.push(`Browsed ${path}`);
     }
   }
-  return { notes, inferred };
+  return { notes };
 }
