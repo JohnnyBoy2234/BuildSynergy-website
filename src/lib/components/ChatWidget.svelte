@@ -7,7 +7,7 @@
   import {
     getOrCreateSessionId, loadTranscript, saveTranscript, type ChatMessage,
   } from '$lib/chat/session';
-  import { analytics, chat as sendChat } from '$lib/chat/api';
+  import { analytics, chatStream } from '$lib/chat/api';
 
   const ESCALATION_NOTE = "I've flagged this for the team — they'll follow up with you directly.";
   const GREETING = "Hi 👋 I'm the BuildSynergy assistant. Tell me a bit about your business and what you'd like to improve online — I'll point you in the right direction.";
@@ -18,6 +18,7 @@
   let sending = $state(false);
   let escalated = $state(false);
   let analyticsSent = false;
+  let userSentSinceOpen = false;
   let sessionId = '';
 
   onMount(() => {
@@ -40,17 +41,32 @@
 
   async function handleSend(text: string) {
     messages = [...messages, { role: 'user', content: text }];
+    userSentSinceOpen = true;
     persist();
     sending = true;
+    messages = [...messages, { role: 'assistant', content: '' }];
+    const idx = messages.length - 1;
     try {
-      const r = await sendChat(sessionId, text);
-      messages = [...messages, { role: 'assistant', content: r.reply }];
-      if (r.escalate && !escalated) {
-        escalated = true;
-        messages = [...messages, { role: 'assistant', content: ESCALATION_NOTE }];
-      }
-    } catch {
-      messages = [...messages, { role: 'error', content: 'Something went wrong — please try again.' }];
+      await chatStream(sessionId, text, {
+        onToken: (v) => {
+          messages[idx] = { ...messages[idx], content: messages[idx].content + v };
+          messages = [...messages];
+        },
+        onReset: () => {
+          messages[idx] = { ...messages[idx], content: '' };
+          messages = [...messages];
+        },
+        onDone: (_sid, escalate) => {
+          if (escalate && !escalated) {
+            escalated = true;
+            messages = [...messages, { role: 'assistant', content: ESCALATION_NOTE }];
+          }
+        },
+        onError: () => {
+          messages[idx] = { role: 'error', content: 'Something went wrong — please try again.' };
+          messages = [...messages];
+        },
+      });
     } finally {
       sending = false;
       persist();
