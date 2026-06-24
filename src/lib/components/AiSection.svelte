@@ -50,10 +50,6 @@
   let subEl: HTMLElement;
   let cardEls: HTMLElement[] = [];
 
-  function scrollToContact() {
-    document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' });
-  }
-
   onMount(() => {
     gsap.registerPlugin(ScrollTrigger);
 
@@ -130,10 +126,6 @@
           </div>
         </div>
       {/each}
-    </div>
-
-    <div class="ai-cta-wrap">
-      <button class="ai-cta" onclick={scrollToContact}>Get an AI solution →</button>
     </div>
   </div>
 </section>
@@ -243,21 +235,8 @@
   }
   @keyframes ai-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
 
-  .ai-cta-wrap { display: flex; }
-  .ai-cta {
-    font-family: var(--display); font-size: 1rem; font-weight: 600; color: #0b0f19;
-    background: #fff; border: none; cursor: pointer;
-    padding: 0.85rem 1.7rem; border-radius: 100px;
-    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
-  }
-  .ai-cta:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 30px rgba(99, 102, 241, 0.40);
-    background: #eef0fe;
-  }
-
   @media (prefers-reduced-motion: reduce) {
-    .ai-card, .ai-cta { transition: none !important; transform: none !important; }
+    .ai-card { transition: none !important; transform: none !important; }
     .ai-card-spot { display: none; }
     .ai-badge-dot { animation: none; }
   }

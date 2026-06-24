@@ -45,6 +45,7 @@
     position: relative;
     display: flex;
     flex-direction: column;
+    height: 100%;
     background: var(--surface);
     border: 2px solid var(--border);
     border-radius: 20px;
@@ -85,6 +86,7 @@
 
   .card-body {
     position: relative; z-index: 1;
+    flex: 1;
     display: flex; flex-direction: column; gap: 0.6rem;
     padding: 1.5rem 1.5rem 1.65rem;
   }
@@ -100,7 +102,7 @@
   }
   .card-summary { font-size: 0.9rem; line-height: 1.6; color: var(--text-body); }
   .card-cta {
-    margin-top: 0.55rem;
+    margin-top: auto;
     font-family: var(--display); font-size: 0.9rem; font-weight: 600;
     color: var(--indigo);
     transition: transform 0.25s;
