@@ -1,14 +1,13 @@
 import { makeLlm } from './llm';
 import { loadRetriever } from './retriever';
-import { getCheckpointer } from './persistence';
 import { buildGraph } from './graph';
 
 let agentPromise: ReturnType<typeof build> | null = null;
 
 async function build() {
-  const [retrieve, checkpointer] = await Promise.all([loadRetriever(), getCheckpointer()]);
+  const retrieve = await loadRetriever();
   const llm = makeLlm();
-  return { graph: buildGraph({ llm, retrieve }, checkpointer), llm };
+  return { graph: buildGraph({ llm, retrieve }), llm };
 }
 
 export function getAgent() {
