@@ -35,7 +35,18 @@
     open = !open;
     if (open && !analyticsSent) {
       analyticsSent = true;
-      void analytics(sessionId, getBrowsing()).catch(() => {});
+      userSentSinceOpen = false;
+      void analytics(sessionId, getBrowsing())
+        .then((r) => {
+          // Server thread is authoritative; don't clobber an in-flight turn or a fresh visitor.
+          if (userSentSinceOpen || !r.messages?.length) return;
+          const mapped = r.messages.map(
+            (m): ChatMessage => ({ role: m.type === 'human' ? 'user' : 'assistant', content: m.content }),
+          );
+          messages = [{ role: 'assistant', content: GREETING }, ...mapped];
+          persist();
+        })
+        .catch(() => {});
     }
   }
 
