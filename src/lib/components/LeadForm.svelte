@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { emptyFunnelData } from './funnel/types';
+  import { emptyFunnelData, BUDGET_OPTIONS } from './funnel/types';
 
   let data = $state(emptyFunnelData());
   let errors = $state<Record<string, string>>({});
@@ -83,6 +83,16 @@
         {#if errors.mainGoal}<span class="err-msg">{errors.mainGoal}</span>{/if}
       </div>
 
+      <div class="form-field">
+        <label for="lf-budget">Project Budget <span class="opt">(optional)</span></label>
+        <select id="lf-budget" bind:value={data.budget}>
+          <option value="">Select a range…</option>
+          {#each BUDGET_OPTIONS as option}
+            <option value={option}>{option}</option>
+          {/each}
+        </select>
+      </div>
+
       <div class="form-field agree-field" class:err={errors.agreed}>
         <label class="agree-label">
           <input type="checkbox" bind:checked={data.agreed} class="agree-check" />
@@ -152,7 +162,7 @@
   }
   .opt { font-weight: 400; opacity: 0.6; }
 
-  input, textarea {
+  input, textarea, select {
     background: rgba(255, 255, 255, 0.06);
     border: 1px solid rgba(255, 255, 255, 0.14);
     border-radius: 10px;
@@ -164,8 +174,18 @@
     outline: none;
     transition: border-color 0.2s, box-shadow 0.2s;
   }
+  select {
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='rgba(255,255,255,0.55)' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    padding-right: 2.5rem;
+    cursor: pointer;
+  }
+  select option { background: #14141f; color: #fff; }
   input::placeholder, textarea::placeholder { color: rgba(255, 255, 255, 0.45); }
-  input:focus, textarea:focus {
+  input:focus, textarea:focus, select:focus {
     border-color: rgba(99, 102, 241, 0.7);
     box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.18);
   }
