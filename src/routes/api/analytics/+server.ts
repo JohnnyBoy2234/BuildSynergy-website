@@ -11,9 +11,12 @@ export const POST: RequestHandler = async ({ request }) => {
   const cfg = { configurable: { thread_id: sessionId } };
 
   const seed = browsingToSeed(browsing);
-  const seededProfile = {
+  // Don't clobber a profile already extracted from chat: only seed when none exists.
+  // Analytics can fire after the first chat turn (reopen), and profile is last-write-wins.
+  const snap = await graph.getState(cfg);
+  const profile = snap.values?.profile ?? {
     name: null, email: null, project_type: null, goal: null, urgency: null, notes: [...seed.notes],
   };
-  await graph.updateState(cfg, { browsing, profile: seededProfile });
+  await graph.updateState(cfg, { browsing, profile });
   return json({ session_id: sessionId });
 };

@@ -325,11 +325,16 @@ Respond with JSON only: {{"action": "portfolio"|"contact"|"newsletter", "message
   };
 }
 
-function routeAfterProcessTurn(state: AgentStateType): 'recommend' | 'ask' | 'fetch_docs' | 'compose_fetch' {
+export function routeAfterProcessTurn(state: AgentStateType): 'recommend' | 'ask' | 'fetch_docs' | 'compose_fetch' {
   const profile = state.profile ?? ({} as Profile);
   const score = state.lead_score ?? 0.0;
   const intents = state.intents ?? [];
-  if (score >= SCORE_THRESHOLD) return profile.email ? 'recommend' : 'ask';
+  if (score >= SCORE_THRESHOLD) {
+    // A hot lead asking a real question must be answered, not nagged for email:
+    // compose (answer + email ask) when we still owe an email, else just answer.
+    if (intents.includes('question')) return profile.email ? 'fetch_docs' : 'compose_fetch';
+    return profile.email ? 'recommend' : 'ask';
+  }
   if (intents.includes('question') && intents.includes('intake')) return 'compose_fetch';
   if (intents.includes('question')) return 'fetch_docs';
   return 'ask';
@@ -348,9 +353,12 @@ function routeAfterGradeDocs(state: AgentStateType): 'answer' | 'rewrite_query' 
   return 'answer';
 }
 
-function routeAfterVerify(state: AgentStateType): 'answer' | 'compose_response' | '__end__' {
+export function routeAfterVerify(state: AgentStateType): 'answer' | 'compose_response' | '__end__' {
   if (state.answer_grade === 'hallucination') return 'answer';
-  if ((state.intents ?? []).includes('intake')) return 'compose_response';
+  // Append the intake question after the answer when the user shared info, OR
+  // when a hot lead still owes us an email — so we capture without nagging.
+  const hotNoEmail = (state.lead_score ?? 0) >= SCORE_THRESHOLD && !state.profile?.email;
+  if ((state.intents ?? []).includes('intake') || hotNoEmail) return 'compose_response';
   return '__end__';
 }
 

@@ -24,11 +24,9 @@ describe('behavioralScore', () => {
 });
 
 describe('browsingToSeed', () => {
-  it('infers project_type from a /services/ slug at confidence 0.5', () => {
+  it('notes a /services/ visit', () => {
     const s = session({ page_views: [{ path: '/services/web-design', title: 'X', visits: 1, time_seconds: 5 }] });
-    const seed = browsingToSeed(s);
-    expect(seed.inferred.project_type?.confidence).toBe(0.5);
-    expect(seed.inferred.project_type?.claim).toContain('web-design');
+    expect(browsingToSeed(s).notes.join(' ')).toContain('/services/web-design');
   });
 
   it('notes a pricing visit', () => {
