@@ -188,7 +188,8 @@
   .t-members {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: clamp(1.5rem, 3vw, 2.5rem);
+    gap: clamp(1.25rem, 2.5vw, 2rem);
+    max-width: 760px;
   }
 
   .t-member {
@@ -196,9 +197,9 @@
     isolation: isolate;
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
-    padding: 2rem;
-    border-radius: 26px;
+    gap: 1.1rem;
+    padding: 1.5rem;
+    border-radius: 22px;
     background: var(--surface);
     border: 1px solid var(--border);
     box-shadow: var(--shadow-sm);
