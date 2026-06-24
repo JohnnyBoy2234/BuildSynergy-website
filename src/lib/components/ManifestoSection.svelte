@@ -91,6 +91,8 @@
           bind:this={cardEls[i]}
           style="--accent:{member.accent}; --glow:{member.glow}"
         >
+          <div class="t-card-glow" aria-hidden="true"></div>
+
           <div class="t-avatar">
             {#if member.photo}
               <img class="t-photo" src={member.photo} alt={member.name} loading="lazy" />
@@ -101,14 +103,13 @@
               </svg>
               <span class="t-initials">{member.initials}</span>
             {/if}
+            <span class="t-role-badge">{member.badge}</span>
           </div>
 
           <div class="t-info">
-            <div class="t-name-row">
-              <h3 class="t-name">{member.name}</h3>
-              <span class="t-role-badge">{member.badge}</span>
-            </div>
+            <h3 class="t-name">{member.name}</h3>
             <p class="t-role">{member.subtitle}</p>
+            <p class="t-quote">&ldquo;{member.quote}&rdquo;</p>
           </div>
         </article>
       {/each}
@@ -157,15 +158,15 @@
     position: relative; z-index: 1;
     max-width: var(--container);
     margin: 0 auto;
-    display: grid;
-    grid-template-columns: 0.9fr 1.1fr;
-    gap: clamp(2.5rem, 6vw, 6rem);
-    align-items: start;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(3rem, 6vw, 4.5rem);
   }
 
-  /* ── Header (left) ─────────────────────────────────────────────── */
+  /* ── Header ───────────────────────────────────────────────────── */
   .t-header {
     display: flex; flex-direction: column; gap: 1.2rem;
+    max-width: 640px;
   }
 
   .t-heading {
@@ -180,45 +181,73 @@
     font-size: 1rem;
     color: var(--text-body);
     line-height: 1.78;
-    max-width: 520px;
+    max-width: 560px;
   }
 
-  /* ── Members (right, stacked) ──────────────────────────────────── */
-  .t-members { display: flex; flex-direction: column; }
+  /* ── Founder cards ────────────────────────────────────────────── */
+  .t-members {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(1.5rem, 3vw, 2.5rem);
+  }
 
   .t-member {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 1.75rem;
-    align-items: center;
-    padding: 2rem 0;
-    border-top: 1px solid var(--border);
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 2rem;
+    border-radius: 26px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
   }
-  .t-member:first-child { border-top: none; padding-top: 0; }
+  .t-member:hover {
+    transform: translateY(-6px);
+    border-color: color-mix(in srgb, var(--accent) 45%, transparent);
+    box-shadow: 0 28px 60px -20px color-mix(in srgb, var(--accent) 35%, transparent);
+  }
+
+  .t-card-glow {
+    position: absolute;
+    top: -30%; right: -20%;
+    width: 70%; height: 70%;
+    background: radial-gradient(circle, var(--glow) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0.8;
+    transition: opacity 0.35s ease;
+  }
+  .t-member:hover .t-card-glow { opacity: 1; }
 
   /* Portrait picture */
+  .t-avatar {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    border-radius: 18px;
+    overflow: hidden;
+    background:
+      radial-gradient(ellipse 85% 80% at 50% 112%, var(--glow) 0%, transparent 62%),
+      var(--surface2);
+    border: 1px solid var(--border);
+    transition: border-color 0.35s;
+  }
+  .t-member:hover .t-avatar {
+    border-color: color-mix(in srgb, var(--accent) 50%, transparent);
+  }
   .t-photo {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: transform 0.5s ease;
   }
-  .t-avatar {
-    position: relative;
-    width: 200px; height: 240px;
-    border-radius: 18px;
-    overflow: hidden;
-    flex-shrink: 0;
-    background:
-      radial-gradient(ellipse 85% 80% at 50% 112%, var(--glow) 0%, transparent 62%),
-      var(--surface2);
-    border: 1px solid var(--border);
-    transition: border-color 0.3s;
-  }
-  .t-member:hover .t-avatar {
-    border-color: color-mix(in srgb, var(--accent) 50%, transparent);
-  }
+  .t-member:hover .t-photo { transform: scale(1.04); }
   .t-silhouette {
     position: absolute;
     width: 78%;
@@ -229,42 +258,52 @@
     position: absolute;
     top: 50%; left: 50%; transform: translate(-50%, -50%);
     font-family: var(--display);
-    font-size: 2rem;
+    font-size: 3rem;
     font-weight: 800;
     letter-spacing: -0.04em;
     color: color-mix(in srgb, var(--accent) 40%, transparent);
     user-select: none;
   }
+  .t-role-badge {
+    position: absolute;
+    bottom: 0.9rem; left: 0.9rem;
+    font-family: var(--display);
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.75rem;
+    border-radius: 100px;
+    color: #fff;
+    background: color-mix(in srgb, var(--accent) 88%, #000 4%);
+    box-shadow: 0 4px 14px color-mix(in srgb, var(--accent) 45%, transparent);
+    white-space: nowrap;
+  }
 
   /* Info */
   .t-info { display: flex; flex-direction: column; gap: 0.5rem; min-width: 0; }
-  .t-name-row { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
   .t-name {
     font-family: var(--display);
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     font-weight: 800;
     letter-spacing: -0.03em;
     color: var(--text);
   }
-  .t-role-badge {
-    font-family: var(--display);
-    font-size: 0.58rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 0.2rem 0.6rem;
-    border-radius: 100px;
-    color: var(--indigo-strong);
-    background: var(--indigo-soft);
-    border: 1px solid color-mix(in srgb, var(--accent) 22%, transparent);
-    white-space: nowrap;
-  }
   .t-role {
     font-size: 0.72rem;
-    color: var(--text-muted);
+    color: var(--accent);
     letter-spacing: 0.06em;
     text-transform: uppercase;
-    font-weight: 600;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+  }
+  .t-quote {
+    font-size: 0.92rem;
+    color: var(--text-body);
+    line-height: 1.65;
+    font-style: italic;
+    border-left: 2px solid color-mix(in srgb, var(--accent) 40%, transparent);
+    padding-left: 0.9rem;
   }
 
   /* ── Word-split heading support ────────────────────────────────── */
@@ -274,15 +313,11 @@
   :global(.t-heading .word-inner) { display: inline-block; }
 
   /* ── Responsive ────────────────────────────────────────────────── */
-  @media (max-width: 860px) {
-    .t-container { grid-template-columns: 1fr; }
-    .t-header { position: static; }
-  }
-  @media (max-width: 480px) {
-    .t-member { grid-template-columns: 1fr; gap: 1rem; }
+  @media (max-width: 760px) {
+    .t-members { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .t-member, .t-avatar { transition: none !important; transform: none !important; }
+    .t-member, .t-avatar, .t-photo { transition: none !important; transform: none !important; }
   }
 </style>
