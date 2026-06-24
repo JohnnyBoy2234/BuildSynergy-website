@@ -1,22 +1,8 @@
-import { PostgresSaver } from '@langchain/langgraph-checkpoint-postgres';
 import { HumanMessage, AIMessage, type BaseMessage } from '@langchain/core/messages';
 import pg from 'pg';
 import { env } from '$env/dynamic/private';
 import type { Profile } from './schemas';
 import type { BrowsingSession } from './browsing';
-
-let checkpointerPromise: Promise<PostgresSaver> | null = null;
-
-export function getCheckpointer(): Promise<PostgresSaver> {
-  if (!checkpointerPromise) {
-    checkpointerPromise = (async () => {
-      const saver = PostgresSaver.fromConnString(env.DATABASE_URL);
-      await saver.setup(); // idempotent: creates checkpoint tables if absent
-      return saver;
-    })();
-  }
-  return checkpointerPromise;
-}
 
 const pool = new pg.Pool({ connectionString: env.DATABASE_URL });
 

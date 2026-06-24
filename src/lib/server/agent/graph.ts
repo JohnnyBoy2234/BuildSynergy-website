@@ -9,7 +9,7 @@ import { behavioralScore } from './browsing';
 import { writeLead } from './persistence';
 import { sendLeadEmail, chatbotLeadEmail } from '../leads/email';
 import {
-  TurnAnalysisSchema, GradeSchema, DocGradeSchema, AnswerGradeSchema, RecommendationSchema,
+  TurnAnalysisSchema, AnswerGradeSchema, RecommendationSchema,
   type TurnAnalysis, type Profile,
 } from './schemas';
 
@@ -78,7 +78,7 @@ Be warm. Show you have been listening.`,
     ],
     ['human', 'Generate the next message.'],
   ]);
-  const chain = prompt.pipe(llm).pipe(new StringOutputParser());
+  const chain = prompt.pipe(llm).pipe(new StringOutputParser()).withConfig({ tags: ['final_answer'] });
   return chain.invoke({
     profile: JSON.stringify(profile), notes: JSON.stringify(notes),
     conversation: conversation(state.messages), target_instruction: targetInstructions[target],
@@ -146,87 +146,15 @@ Respond with JSON only.`,
 
 function makeAsk(llm: ChatGroq) {
   return async (state: AgentStateType) => {
-    const counts = { ...(state.retry_counts ?? {}) };
-    counts.ask = (counts.ask ?? 0) + 1;
     const question = await generateIntakeQuestion(state, llm);
-    return { pending_message: question, retry_counts: counts };
-  };
-}
-
-function makeValidateQuestion(llm: ChatGroq) {
-  const structured = llm.withStructuredOutput(GradeSchema, { method: 'jsonMode', name: 'Grade' });
-  return async (state: AgentStateType) => {
-    const question = state.pending_message ?? '';
-    const counts = state.retry_counts ?? {};
-    if ((counts.ask ?? 0) >= 2) {
-      return { question_grade: 'good', messages: [new AIMessage(question)] };
-    }
-    const prompt = ChatPromptTemplate.fromMessages([
-      [
-        'system',
-        `Grade this question about to be sent to a user.
-
-Question: "{question}"
-Conversation so far: {conversation}
-Current profile: {profile}
-
-Grade "good" if: sounds natural, targets a real profile gap, not already answered.
-Grade "poor" if: information is already in the profile, very similar to a previous question, or sounds robotic.
-Respond with JSON only: {{"score": "good"}} or {{"score": "poor"}}`,
-      ],
-      ['human', 'Grade this question.'],
-    ]);
-    const result = await prompt.pipe(structured).invoke({
-      question, conversation: conversation(state.messages), profile: JSON.stringify(state.profile ?? {}),
-    });
-    if (result.score === 'good') return { question_grade: 'good', messages: [new AIMessage(question)] };
-    return { question_grade: 'poor' };
-  };
-}
-
-function makeRewriteQuery(llm: ChatGroq) {
-  return async (state: AgentStateType) => {
-    const counts = { ...(state.retry_counts ?? {}) };
-    counts.rewrite_query = (counts.rewrite_query ?? 0) + 1;
-    const prompt = ChatPromptTemplate.fromMessages([
-      [
-        'system',
-        "Rewrite the user's question for document retrieval. Strip conversational elements. Focus on the core information need. User context: {profile}",
-      ],
-      ['human', '{question}'],
-    ]);
-    const rewritten = await prompt.pipe(llm).pipe(new StringOutputParser()).invoke({
-      question: state.messages.at(-1)!.content, profile: JSON.stringify(state.profile ?? {}),
-    });
-    return { rewritten_query: rewritten, retry_counts: counts };
+    return { pending_message: question, messages: [new AIMessage(question)] };
   };
 }
 
 function makeFetchDocs(retrieve: Deps['retrieve']) {
   return async (state: AgentStateType) => {
-    const query = state.rewritten_query || String(state.messages.at(-1)!.content);
-    const docs = await retrieve(query, 3);
+    const docs = await retrieve(String(state.messages.at(-1)!.content), 3);
     return { retrieved_docs: docs.join('\n\n') };
-  };
-}
-
-function makeGradeDocs(llm: ChatGroq) {
-  const structured = llm.withStructuredOutput(DocGradeSchema, { method: 'jsonMode', name: 'DocGrade' });
-  return async (state: AgentStateType) => {
-    const query = state.rewritten_query || String(state.messages.at(-1)!.content);
-    const prompt = ChatPromptTemplate.fromMessages([
-      [
-        'system',
-        `Are these documents relevant to answering the query?
-Query: {query}
-Documents: {docs}
-Grade 'relevant' if the documents contain useful information. Grade 'irrelevant' if they do not.
-Respond with JSON only: {{"score": "relevant"}} or {{"score": "irrelevant"}}`,
-      ],
-      ['human', 'Grade the documents.'],
-    ]);
-    const result = await prompt.pipe(structured).invoke({ query, docs: state.retrieved_docs ?? '' });
-    return { doc_relevance: result.score };
   };
 }
 
@@ -245,9 +173,10 @@ function makeAnswer(llm: ChatGroq) {
       ],
       ['human', '{question}'],
     ]);
-    const response = await prompt.pipe(llm).pipe(new StringOutputParser()).invoke({
-      question: state.messages.at(-1)!.content, docs, profile: JSON.stringify(state.profile ?? {}),
-    });
+    const response = await prompt.pipe(llm).pipe(new StringOutputParser())
+      .withConfig({ tags: ['final_answer'] }).invoke({
+        question: state.messages.at(-1)!.content, docs, profile: JSON.stringify(state.profile ?? {}),
+      });
     return { pending_message: response, retry_counts: counts };
   };
 }
@@ -258,8 +187,14 @@ function makeVerifyAnswer(llm: ChatGroq) {
     const answer = state.pending_message ?? '';
     const counts = state.retry_counts ?? {};
     const docs = state.retrieved_docs ?? '';
+    // compose_response will append the intake question and commit the final message;
+    // when it runs, verify must not also commit one (would duplicate in the saved thread).
+    const willCompose = (state.intents ?? []).includes('intake')
+      || ((state.lead_score ?? 0) >= SCORE_THRESHOLD && !state.profile?.email);
+    const commit = (text: string) => (willCompose ? {} : { messages: [new AIMessage(text)] });
+
     if (!docs) {
-      return { answer_grade: 'grounded', pending_message: NO_DOCS_FALLBACK, messages: [new AIMessage(NO_DOCS_FALLBACK)] };
+      return { answer_grade: 'grounded', pending_message: NO_DOCS_FALLBACK, ...commit(NO_DOCS_FALLBACK) };
     }
     const prompt = ChatPromptTemplate.fromMessages([
       [
@@ -273,9 +208,9 @@ Respond with JSON only: {{"score": "grounded"}} or {{"score": "hallucination"}}`
       ['human', 'Grade the answer.'],
     ]);
     const result = await prompt.pipe(structured).invoke({ docs, answer });
-    if (result.score === 'grounded') return { answer_grade: 'grounded', messages: [new AIMessage(answer)] };
+    if (result.score === 'grounded') return { answer_grade: 'grounded', ...commit(answer) };
     if ((counts.answer ?? 0) >= 2) {
-      return { answer_grade: 'grounded', pending_message: NO_DOCS_FALLBACK, messages: [new AIMessage(NO_DOCS_FALLBACK)] };
+      return { answer_grade: 'grounded', pending_message: NO_DOCS_FALLBACK, ...commit(NO_DOCS_FALLBACK) };
     }
     return { answer_grade: 'hallucination' };
   };
@@ -340,19 +275,6 @@ export function routeAfterProcessTurn(state: AgentStateType): 'recommend' | 'ask
   return 'ask';
 }
 
-function routeAfterValidate(state: AgentStateType): 'ask' | '__end__' {
-  const counts = state.retry_counts ?? {};
-  if (state.question_grade === 'good') return '__end__';
-  if ((counts.ask ?? 0) >= 2) return '__end__';
-  return 'ask';
-}
-
-function routeAfterGradeDocs(state: AgentStateType): 'answer' | 'rewrite_query' {
-  const counts = state.retry_counts ?? {};
-  if (state.doc_relevance === 'irrelevant' && (counts.rewrite_query ?? 0) < 2) return 'rewrite_query';
-  return 'answer';
-}
-
 export function routeAfterVerify(state: AgentStateType): 'answer' | 'compose_response' | '__end__' {
   if (state.answer_grade === 'hallucination') return 'answer';
   // Append the intake question after the answer when the user shared info, OR
@@ -362,14 +284,11 @@ export function routeAfterVerify(state: AgentStateType): 'answer' | 'compose_res
   return '__end__';
 }
 
-export function buildGraph({ llm, retrieve }: Deps, checkpointer: unknown) {
+export function buildGraph({ llm, retrieve }: Deps) {
   const builder = new StateGraph(AgentState)
     .addNode('process_turn', makeProcessTurn(llm))
     .addNode('ask', makeAsk(llm))
-    .addNode('validate_question', makeValidateQuestion(llm))
-    .addNode('rewrite_query', makeRewriteQuery(llm))
     .addNode('fetch_docs', makeFetchDocs(retrieve))
-    .addNode('grade_docs', makeGradeDocs(llm))
     .addNode('answer', makeAnswer(llm))
     .addNode('verify_answer', makeVerifyAnswer(llm))
     .addNode('compose_response', makeComposeResponse(llm))
@@ -378,16 +297,12 @@ export function buildGraph({ llm, retrieve }: Deps, checkpointer: unknown) {
     .addConditionalEdges('process_turn', routeAfterProcessTurn, {
       recommend: 'recommend', ask: 'ask', fetch_docs: 'fetch_docs', compose_fetch: 'fetch_docs',
     })
-    .addEdge('ask', 'validate_question')
-    .addConditionalEdges('validate_question', routeAfterValidate, { ask: 'ask', __end__: END })
-    .addEdge('rewrite_query', 'fetch_docs')
-    .addEdge('fetch_docs', 'grade_docs')
-    .addConditionalEdges('grade_docs', routeAfterGradeDocs, { answer: 'answer', rewrite_query: 'rewrite_query' })
+    .addEdge('ask', END)
+    .addEdge('fetch_docs', 'answer')
     .addEdge('answer', 'verify_answer')
     .addConditionalEdges('verify_answer', routeAfterVerify, { answer: 'answer', compose_response: 'compose_response', __end__: END })
     .addEdge('compose_response', END)
     .addEdge('recommend', END);
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  return builder.compile({ checkpointer: checkpointer as any });
+  return builder.compile();
 }
