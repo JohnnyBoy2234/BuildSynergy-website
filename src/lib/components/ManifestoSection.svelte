@@ -158,9 +158,10 @@
     position: relative; z-index: 1;
     max-width: var(--container);
     margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: clamp(3rem, 6vw, 4.5rem);
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: start;
   }
 
   /* ── Header ───────────────────────────────────────────────────── */
@@ -189,7 +190,6 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: clamp(1.25rem, 2.5vw, 2rem);
-    max-width: 760px;
   }
 
   .t-member {
@@ -314,7 +314,10 @@
   :global(.t-heading .word-inner) { display: inline-block; }
 
   /* ── Responsive ────────────────────────────────────────────────── */
-  @media (max-width: 760px) {
+  @media (max-width: 900px) {
+    .t-container { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 560px) {
     .t-members { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; }
   }
 
