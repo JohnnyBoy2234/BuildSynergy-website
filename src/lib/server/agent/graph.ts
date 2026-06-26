@@ -61,20 +61,18 @@ async function generateIntakeQuestion(state: AgentStateType, llm: ChatGroq): Pro
   const prompt = ChatPromptTemplate.fromMessages([
     [
       'system',
-      `You are a warm, conversational assistant helping understand a potential client's needs.
+      `You are a concise, professional assistant helping understand a potential client's needs.
 
 Current profile: {profile}
-Inferred notes (soft signals — not confirmed): {notes}
+Notes (soft signals — not confirmed): {notes}
 Conversation so far: {conversation}
 
 Your task:
-1. In one sentence, naturally acknowledge what the user just said.
-2. Ask ONE question to find out: {target_instruction}
-3. If there is an inferred note related to this field, phrase it as a soft confirmation instead of a direct question.
-   Example: "It sounds like you might need this fairly soon — is that right?"
-4. Never ask multiple questions. Never sound like a form.
+1. Ask ONE clear question to find out: {target_instruction}
+2. If a note already hints at this field, confirm it briefly instead of asking cold (e.g. "Sounds like you need this fairly soon — is that right?").
+3. Keep it to one or two short sentences. Do not restate or praise what the user said, no effusive enthusiasm, no emoji. Never ask more than one question or sound like a form.
 
-Be warm. Show you have been listening.`,
+Be friendly but get to the point.`,
     ],
     ['human', 'Generate the next message.'],
   ]);
