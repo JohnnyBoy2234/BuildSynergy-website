@@ -18,23 +18,29 @@ type Deps = { llm: ChatGroq; retrieve: (q: string, k?: number) => Promise<string
 const conversation = (messages: AgentStateType['messages']) =>
   messages.map((m) => `${m.getType() === 'human' ? 'User' : 'Assistant'}: ${m.content}`).join('\n');
 
+const CONFIDENCE_FLOOR = 0.6;
+const missingContact = (p?: Profile) => !p?.name || !p?.email;
+
 function mergeProfile(current: Profile, a: TurnAnalysis): Profile {
   const merged: Profile = { ...current, notes: [...(current.notes ?? [])] };
+  // Notes are signal, not a transcript: skip duplicates and low-confidence guesses
+  // so the lead email shows a tight intent summary instead of accumulated noise.
+  const seen = new Set(merged.notes);
+  const addNote = (n: string) => { if (!seen.has(n)) { seen.add(n); merged.notes.push(n); } };
   for (const f of ['name', 'email', 'project_type', 'goal', 'urgency'] as const) {
     if (a[f] != null) merged[f] = a[f];
   }
   for (const f of ['project_type', 'goal', 'urgency'] as const) {
     if (merged[f]) continue;
     const inferred = a[`inferred_${f}` as const];
-    if (!inferred) continue;
-    if (inferred.confidence >= 0.6) {
+    if (inferred && inferred.confidence >= CONFIDENCE_FLOOR) {
       merged[f] = inferred.claim;
-      merged.notes.push(`Assumed ${f}: ${inferred.reasoning}`);
-    } else {
-      merged.notes.push(`${inferred.claim} — ${inferred.reasoning}`);
+      addNote(`Assumed ${f}: ${inferred.reasoning}`);
     }
   }
-  for (const note of a.inferred_notes ?? []) merged.notes.push(`${note.claim} — ${note.reasoning}`);
+  for (const note of a.inferred_notes ?? []) {
+    if (note.confidence >= CONFIDENCE_FLOOR) addNote(`${note.claim} — ${note.reasoning}`);
+  }
   return merged;
 }
 
@@ -44,10 +50,11 @@ async function generateIntakeQuestion(state: AgentStateType, llm: ChatGroq): Pro
   const notes = profile.notes ?? [];
 
   let target: string | null;
-  if (score >= SCORE_THRESHOLD && !profile.email) {
-    target = 'email';
+  if (score >= SCORE_THRESHOLD && missingContact(profile)) {
+    target = 'contact';
   } else {
-    target = (['project_type', 'goal', 'urgency', 'email'] as const).find((f) => !profile[f]) ?? null;
+    target = (['project_type', 'goal', 'urgency', 'contact'] as const)
+      .find((f) => (f === 'contact' ? missingContact(profile) : !profile[f])) ?? null;
   }
   if (target === null) return 'Is there anything else I can help you with before we continue?';
 
@@ -55,7 +62,7 @@ async function generateIntakeQuestion(state: AgentStateType, llm: ChatGroq): Pro
     project_type: 'Ask what kind of project or website they want to build.',
     goal: 'Ask what outcome or result they want to achieve with this project.',
     urgency: 'Ask about their timeline — when do they need this done?',
-    email: 'Ask for the best email address to reach them, framing it as wanting to follow up personally.',
+    contact: "Ask for their name and the best email to reach them, framing it as wanting to follow up personally. If the profile already has one of the two, only ask for the missing one.",
   };
 
   const prompt = ChatPromptTemplate.fromMessages([
@@ -188,7 +195,7 @@ function makeVerifyAnswer(llm: ChatGroq) {
     // compose_response will append the intake question and commit the final message;
     // when it runs, verify must not also commit one (would duplicate in the saved thread).
     const willCompose = (state.intents ?? []).includes('intake')
-      || ((state.lead_score ?? 0) >= SCORE_THRESHOLD && !state.profile?.email);
+      || ((state.lead_score ?? 0) >= SCORE_THRESHOLD && missingContact(state.profile));
     const commit = (text: string) => (willCompose ? {} : { messages: [new AIMessage(text)] });
 
     if (!docs) {
@@ -263,10 +270,10 @@ export function routeAfterProcessTurn(state: AgentStateType): 'recommend' | 'ask
   const score = state.lead_score ?? 0.0;
   const intents = state.intents ?? [];
   if (score >= SCORE_THRESHOLD) {
-    // A hot lead asking a real question must be answered, not nagged for email:
-    // compose (answer + email ask) when we still owe an email, else just answer.
-    if (intents.includes('question')) return profile.email ? 'fetch_docs' : 'compose_fetch';
-    return profile.email ? 'recommend' : 'ask';
+    // A hot lead asking a real question must be answered, not nagged for contact:
+    // compose (answer + contact ask) when we still owe name/email, else just answer.
+    if (intents.includes('question')) return missingContact(profile) ? 'compose_fetch' : 'fetch_docs';
+    return missingContact(profile) ? 'ask' : 'recommend';
   }
   if (intents.includes('question') && intents.includes('intake')) return 'compose_fetch';
   if (intents.includes('question')) return 'fetch_docs';
@@ -276,9 +283,9 @@ export function routeAfterProcessTurn(state: AgentStateType): 'recommend' | 'ask
 export function routeAfterVerify(state: AgentStateType): 'answer' | 'compose_response' | '__end__' {
   if (state.answer_grade === 'hallucination') return 'answer';
   // Append the intake question after the answer when the user shared info, OR
-  // when a hot lead still owes us an email — so we capture without nagging.
-  const hotNoEmail = (state.lead_score ?? 0) >= SCORE_THRESHOLD && !state.profile?.email;
-  if ((state.intents ?? []).includes('intake') || hotNoEmail) return 'compose_response';
+  // when a hot lead still owes us name/email — so we capture without nagging.
+  const hotNoContact = (state.lead_score ?? 0) >= SCORE_THRESHOLD && missingContact(state.profile);
+  if ((state.intents ?? []).includes('intake') || hotNoContact) return 'compose_response';
   return '__end__';
 }
 

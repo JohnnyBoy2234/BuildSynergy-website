@@ -11,30 +11,36 @@ import type { AgentStateType } from './state';
 const HOT = SCORE_THRESHOLD;
 const st = (s: Partial<AgentStateType>) => s as AgentStateType;
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const profile = (email: string | null) => ({ email } as any);
+const profile = (email: string | null, name: string | null = null) => ({ email, name } as any);
+// Contact is complete only with both name and email.
+const contact = profile('a@b.c', 'Ada');
 
 describe('routeAfterProcessTurn', () => {
-  it('answers a hot no-email lead who asks a question instead of nagging for email', () => {
+  it('answers a hot lead missing contact who asks a question instead of nagging', () => {
     expect(routeAfterProcessTurn(st({ lead_score: HOT, profile: profile(null), intents: ['question'] })))
       .toBe('compose_fetch');
   });
 
-  it('still asks a hot no-email lead with no question for their email', () => {
+  it('still asks a hot lead missing contact with no question for their details', () => {
     expect(routeAfterProcessTurn(st({ lead_score: HOT, profile: profile(null), intents: [] }))).toBe('ask');
   });
 
-  it('answers (not recommends) a hot lead with email who asks a question', () => {
-    expect(routeAfterProcessTurn(st({ lead_score: HOT, profile: profile('a@b.c'), intents: ['question'] })))
+  it('asks a hot lead with email but no name for their details', () => {
+    expect(routeAfterProcessTurn(st({ lead_score: HOT, profile: profile('a@b.c'), intents: [] }))).toBe('ask');
+  });
+
+  it('answers (not recommends) a hot lead with full contact who asks a question', () => {
+    expect(routeAfterProcessTurn(st({ lead_score: HOT, profile: contact, intents: ['question'] })))
       .toBe('fetch_docs');
   });
 
-  it('recommends a hot lead with email and no live question', () => {
-    expect(routeAfterProcessTurn(st({ lead_score: HOT, profile: profile('a@b.c'), intents: [] }))).toBe('recommend');
+  it('recommends a hot lead with full contact and no live question', () => {
+    expect(routeAfterProcessTurn(st({ lead_score: HOT, profile: contact, intents: [] }))).toBe('recommend');
   });
 });
 
 describe('routeAfterVerify', () => {
-  it('composes the email ask after answering a hot no-email lead (pure question)', () => {
+  it('composes the contact ask after answering a hot lead missing contact (pure question)', () => {
     expect(routeAfterVerify(st({
       lead_score: HOT, profile: profile(null), intents: ['question'], answer_grade: 'grounded',
     }))).toBe('compose_response');
