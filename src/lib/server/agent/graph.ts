@@ -116,8 +116,10 @@ Soft inferences (only for fields that are currently null AND the conversation ST
 - inferred_project_type: {{"claim": "...", "confidence": 0.0-1.0, "reasoning": "..."}} or null
 - inferred_goal: same or null
 - inferred_urgency: same or null
-- inferred_notes: list of 1-3 objects, each with the same structure: {{"claim": "...", "confidence": 0.0-1.0, "reasoning": "..."}}
-  Use this for soft observations about the user's situation or mindset that don't fit the above fields.
+- inferred_notes: list of 0-3 objects, each with the same structure: {{"claim": "...", "confidence": 0.0-1.0, "reasoning": "..."}}
+  Sales-relevant observations about the user's situation, constraints, or buying intent that don't fit the fields above.
+  Only include observations NOT already present in the current profile's notes. Do not restate or reword an existing note.
+  If nothing genuinely new is implied this turn, return an empty list.
 
 Intent classification (list — both may apply to the same message):
 - intents: list containing "question" and/or "intake"
@@ -221,9 +223,18 @@ Respond with JSON only: {{"score": "grounded"}} or {{"score": "hallucination"}}`
   };
 }
 
+// True if our most recent reply already ended in a question — used to avoid
+// probing for intake on back-to-back turns so the lead has room to lead.
+function justAsked(messages: AgentStateType['messages']): boolean {
+  const lastAi = [...messages].reverse().find((m) => m.getType() === 'ai');
+  return !!lastAi && String(lastAi.content).trimEnd().endsWith('?');
+}
+
 function makeComposeResponse(llm: ChatGroq) {
   return async (state: AgentStateType) => {
     const ragAnswer = state.pending_message ?? '';
+    // ponytail: throttle by last-turn shape; add turn counting if alternating isn't enough.
+    if (justAsked(state.messages)) return { messages: [new AIMessage(ragAnswer)] };
     const question = await generateIntakeQuestion(state, llm);
     return { messages: [new AIMessage(`${ragAnswer}\n\n${question}`)] };
   };
