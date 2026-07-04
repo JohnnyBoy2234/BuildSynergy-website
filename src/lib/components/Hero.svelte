@@ -123,6 +123,8 @@
       companies attract more customers, respond instantly and grow without increasing overheads.
     </p>
 
+    <p class="hero-trust">Trusted by businesses ready to lead the next generation of commerce.</p>
+
     <div class="hero-ctas">
       <button class="btn" onclick={() => scrollTo('#contact')}>
         Get a quote
@@ -195,7 +197,8 @@
   .hero-inner.ready > * { opacity: 1; transform: none; }
   .hero-inner.ready .hero-heading { transition-delay: 0.05s; }
   .hero-inner.ready .hero-sub     { transition-delay: 0.13s; }
-  .hero-inner.ready .hero-ctas    { transition-delay: 0.21s; }
+  .hero-inner.ready .hero-trust   { transition-delay: 0.19s; }
+  .hero-inner.ready .hero-ctas    { transition-delay: 0.27s; }
 
   /* ── Copy ──────────────────────────────────────────────────────── */
   .hero-heading {
@@ -221,8 +224,16 @@
     font-size: 1.08rem;
     color: var(--text-body);
     line-height: 1.7;
-    margin-bottom: 2.25rem;
+    margin-bottom: 1rem;
     max-width: 560px;
+  }
+
+  .hero-trust {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    letter-spacing: 0.02em;
+    margin-bottom: 1.5rem;
   }
 
   .hero-ctas {
