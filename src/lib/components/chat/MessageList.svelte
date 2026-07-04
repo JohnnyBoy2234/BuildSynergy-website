@@ -57,7 +57,7 @@
     border-bottom-left-radius: 4px;
   }
   .bubble.user {
-    background: var(--indigo);
+    background: #ec4899;
     color: #fff;
     border-bottom-right-radius: 4px;
   }

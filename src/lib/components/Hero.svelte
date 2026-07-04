@@ -229,11 +229,11 @@
   }
 
   .hero-trust {
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: var(--text-muted);
-    letter-spacing: 0.02em;
+    font-size: 1.08rem;
+    color: var(--text-body);
+    line-height: 1.7;
     margin-bottom: 1.5rem;
+    max-width: 560px;
   }
 
   .hero-ctas {

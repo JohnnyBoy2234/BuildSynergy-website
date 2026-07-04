@@ -144,14 +144,14 @@
     width: 56px; height: 56px;
     border: none;
     border-radius: 50%;
-    background: var(--indigo);
+    background: #ec4899;
     color: #fff;
     cursor: pointer;
     display: inline-flex; align-items: center; justify-content: center;
-    box-shadow: var(--shadow-indigo);
+    box-shadow: 0 8px 24px rgba(236, 72, 153, 0.35);
     transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
   }
-  .launcher:hover { transform: translateY(-2px); background: var(--indigo-strong); box-shadow: 0 12px 36px rgba(99, 102, 241, 0.35); }
+  .launcher:hover { transform: translateY(-2px); background: #db2777; box-shadow: 0 12px 36px rgba(236, 72, 153, 0.45); }
 
   .panel {
     position: fixed;
@@ -185,8 +185,8 @@
   }
   .dot {
     width: 8px; height: 8px; border-radius: 50%;
-    background: var(--indigo);
-    box-shadow: 0 0 8px var(--indigo);
+    background: #ec4899;
+    box-shadow: 0 0 8px rgba(236, 72, 153, 0.7);
   }
   .close {
     background: none; border: none; cursor: pointer;
