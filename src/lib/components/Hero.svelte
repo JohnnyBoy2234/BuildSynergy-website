@@ -114,13 +114,13 @@
 
   <div class="hero-inner" class:ready>
     <h1 class="hero-heading">
-      Our purpose is to help you become
-      <span class="accent">the obvious choice.</span>
+      South Africa's AI Website &amp;
+      <span class="accent">Business Automation Company.</span>
     </h1>
 
     <p class="hero-sub">
-      BuildSynergy helps businesses stand out online with powerful websites, AI-powered
-      automation that build trust, capture leads and turn customer attention into real growth.
+      We build intelligent websites, AI receptionists and automated business systems that help
+      companies attract more customers, respond instantly and grow without increasing overheads.
     </p>
 
     <div class="hero-ctas">
